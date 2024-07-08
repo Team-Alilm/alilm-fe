@@ -15,4 +15,7 @@ export const PRODUCT_SCRAPING_URL_GET = `${API_URL}/api/v1/products/scraping`;
 export const PRODUCT_LIST_URL_GET = `${API_URL}/api/v1/products`;
 
 // 나의 상품 리스트 API
-export const MY_PRODUCT_LIST_URL_GET = `${API_URL}/api/v1/products/my`;
+export const MY_PRODUCT_LIST_URL_GET = `${API_URL}/api/v1/baskets/my`;
+
+// 상품 등록 API
+export const PRODUCT_REGISTER_URL_POST = `${API_URL}/api/v1/alilms`;
