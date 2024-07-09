@@ -1,4 +1,4 @@
-const API_URL = 'https://alilm.store';
+const API_URL = process.env.ALILM_SERVER_API_BASE_URL;
 
 const OAUTH_ROOT = `${API_URL}/oauth2`;
 
