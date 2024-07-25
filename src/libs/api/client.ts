@@ -1,6 +1,6 @@
 import { type ApiErrorScheme, errorMessage } from '@/libs/exceptions';
-import ApiException from '@/libs/exceptions/ApiException';
-import CustomException from '@/libs/exceptions/CustomException';
+import ApiException from '@/libs/exceptions/api-exception';
+import CustomException from '@/libs/exceptions/custom-exception';
 import { LOCAL_STORAGE_KEY, Storage } from '@/libs/storage';
 import type { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import axios from 'axios';
