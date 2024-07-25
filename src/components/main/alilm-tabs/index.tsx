@@ -1,3 +1,5 @@
+'use client';
+
 import { type MouseEventHandler } from 'react';
 
 import { type AlilmTab, useAlilmTabs } from './contexts/alilm-tabs-context';

@@ -21,11 +21,13 @@ const Flex = ({
   grow,
   shrink,
   gap,
+  style,
   ...props
 }: FlexProps) => {
   return (
     <div
       style={{
+        width: '100%',
         display: 'flex',
         flexDirection: direction,
         alignItems: align,
@@ -35,6 +37,7 @@ const Flex = ({
         flexGrow: grow,
         flexShrink: shrink,
         gap,
+        ...style,
       }}
       {...props}
     >
