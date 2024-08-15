@@ -51,7 +51,12 @@ module.exports = {
       { blankLine: 'always', prev: '*', next: 'return' },
     ],
 
-    'prettier/prettier': 'error',
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
 
     'unicorn/filename-case': [
       'error',
