@@ -1,3 +1,5 @@
+'use client';
+
 import SwitchCase from '@/components/design-system/switch-case';
 import { useAlilmTabsValue } from '@/components/main/alilm-tabs/contexts/alilm-tabs-context';
 

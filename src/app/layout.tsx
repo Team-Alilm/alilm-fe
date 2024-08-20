@@ -1,4 +1,5 @@
 import { type PropsWithChildren } from 'react';
+import Header from '@/components/common/header';
 
 import * as styles from './layout.css';
 
@@ -8,7 +9,10 @@ const RootLayout = ({ children }: PropsWithChildren) => {
   return (
     <html lang="kr">
       <body>
-        <div className={styles.layout}>{children}</div>
+        <div className={styles.layout}>
+          <Header />
+          {children}
+        </div>
       </body>
     </html>
   );

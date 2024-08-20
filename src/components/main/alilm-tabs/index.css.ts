@@ -28,4 +28,7 @@ export const alilmTab = recipe({
       },
     },
   },
+  defaultVariants: {
+    isActive: false,
+  },
 });
