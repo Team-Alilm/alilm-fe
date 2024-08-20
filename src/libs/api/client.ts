@@ -6,7 +6,7 @@ import type { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axio
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'http://localhost:8088',
+  baseURL: 'https://alilm.store',
   timeout: 15000,
 });
 
