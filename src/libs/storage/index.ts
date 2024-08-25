@@ -1,7 +1,7 @@
 type LocalStorageKey = (typeof LOCAL_STORAGE_KEY)[keyof typeof LOCAL_STORAGE_KEY];
 
 export const LOCAL_STORAGE_KEY = {
-  accessToken: 'authentication',
+  accessToken: 'access-token',
 } as const;
 
 export class Storage {

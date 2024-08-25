@@ -10,7 +10,7 @@ const instance = axios.create({
   timeout: 15000,
 });
 
-function interceptorRequestFulfilled(config: InternalAxiosRequestConfig) {
+const interceptorRequestFulfilled = (config: InternalAxiosRequestConfig) => {
   if (typeof window === 'undefined') {
     return config;
   }
@@ -25,21 +25,21 @@ function interceptorRequestFulfilled(config: InternalAxiosRequestConfig) {
   config.headers.Authorization = `Bearer ${accessToken}`;
 
   return config;
-}
+};
 
 instance.interceptors.request.use(interceptorRequestFulfilled);
 
 // Response interceptor
-function interceptorResponseFulfilled(res: AxiosResponse) {
+const interceptorResponseFulfilled = (res: AxiosResponse) => {
   if (200 <= res.status && res.status < 300) {
     return res.data;
   }
 
   return Promise.reject(res.data);
-}
+};
 
 // Response interceptor
-function interceptorResponseRejected(error: AxiosError<ApiErrorScheme>) {
+const interceptorResponseRejected = (error: AxiosError<ApiErrorScheme>) => {
   if (error.response?.data?.['response_messages']) {
     return Promise.reject(new ApiException(error.response.data, error.response.status));
   }
@@ -49,26 +49,26 @@ function interceptorResponseRejected(error: AxiosError<ApiErrorScheme>) {
   }
 
   return Promise.reject(new CustomException(errorMessage.UNKNOWN_400, 'NETWORK_ERROR'));
-}
+};
 
 instance.interceptors.response.use(interceptorResponseFulfilled, interceptorResponseRejected);
 
-export function get<T>(...args: Parameters<typeof instance.get>) {
+export const get = <T>(...args: Parameters<typeof instance.get>) => {
   return instance.get<T, T>(...args);
-}
+};
 
-export function post<T>(...args: Parameters<typeof instance.post>) {
+export const post = <T>(...args: Parameters<typeof instance.post>) => {
   return instance.post<T, T>(...args);
-}
+};
 
-export function put<T>(...args: Parameters<typeof instance.put>) {
+export const put = <T>(...args: Parameters<typeof instance.put>) => {
   return instance.put<T, T>(...args);
-}
+};
 
-export function patch<T>(...args: Parameters<typeof instance.patch>) {
+export const patch = <T>(...args: Parameters<typeof instance.patch>) => {
   return instance.patch<T, T>(...args);
-}
+};
 
-export function del<T>(...args: Parameters<typeof instance.delete>) {
+export const del = <T>(...args: Parameters<typeof instance.delete>) => {
   return instance.delete<T, T>(...args);
-}
+};
