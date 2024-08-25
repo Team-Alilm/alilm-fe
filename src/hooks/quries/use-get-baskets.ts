@@ -28,6 +28,6 @@ export const useGetBaskets = () => {
       return allPages.length + 1;
     },
     select: data => data.pages.flatMap(({ content }) => content),
-    initialPageParam: 1,
+    initialPageParam: 0,
   });
 };
