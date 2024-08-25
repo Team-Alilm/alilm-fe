@@ -2,6 +2,7 @@ import { type PropsWithChildren } from 'react';
 import Header from '@/components/common/header';
 
 import * as styles from './layout.css';
+import Providers from './providers';
 
 import '@/styles/global.css';
 
@@ -10,8 +11,10 @@ const RootLayout = ({ children }: PropsWithChildren) => {
     <html lang="kr">
       <body>
         <div className={styles.layout}>
-          <Header />
-          {children}
+          <Providers>
+            <Header />
+            {children}
+          </Providers>
         </div>
       </body>
     </html>

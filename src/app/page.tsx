@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import Spacer from '@/components/design-system/spacer';
 import AlilmInfo from '@/components/main/alilm-info';
 import AlilmTabs from '@/components/main/alilm-tabs';
@@ -10,7 +11,9 @@ const MainPage = () => {
   return (
     <div className={styles.mainPage}>
       <Spacer height={40} />
-      <AlilmInfo />
+      <Suspense>
+        <AlilmInfo />
+      </Suspense>
       <Spacer height={60} />
       <AlilmTabsProvider>
         <AlilmTabs />

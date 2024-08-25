@@ -5,7 +5,6 @@ export const createPage = style({
   flexDirection: 'column',
   alignItems: 'center',
   width: '100%',
-  minHeight: '100vh',
   height: '100%',
   padding: '32px',
   background: '#FFFFFF',

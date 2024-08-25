@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-export const productCard = style({
+export const basketCard = style({
   width: '180px',
   cursor: 'pointer',
 });
@@ -23,7 +23,7 @@ export const options = style({
   marginBottom: '12px',
 });
 
-export const watingTogetherButton = style({
+export const waitTogetherButton = style({
   border: '1px solid #EEEEEE',
   borderRadius: '4px',
   height: '33px',
@@ -35,14 +35,14 @@ export const watingTogetherButton = style({
   cursor: 'pointer',
 });
 
-export const productBadgeList = style({
+export const basketBadgeList = style({
   display: 'flex',
   alignItems: 'center',
   gap: '4px',
   margin: '6px 0',
 });
 
-export const productBadge = style({
+export const basketBadge = style({
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',

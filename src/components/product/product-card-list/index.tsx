@@ -1,10 +1,11 @@
 'use client';
 
+import { Suspense } from 'react';
 import SwitchCase from '@/components/design-system/switch-case';
 import { useAlilmTabsValue } from '@/components/main/alilm-tabs/contexts/alilm-tabs-context';
 
-import ProductCard from '../product-card';
-import * as styles from './index.css';
+import BasketCardList from '../basket-card-list';
+import MyBasketCardList from '../my-basket-card-list';
 
 const ProductCardList = () => {
   const alilmTab = useAlilmTabsValue();
@@ -14,35 +15,25 @@ const ProductCardList = () => {
       <SwitchCase
         value={alilmTab}
         caseBy={{
-          home: <HomeProductCardList />,
-          myAlilm: <MyAlilmProductCardList />,
+          home: (
+            <Suspense>
+              <BasketCardList />
+            </Suspense>
+          ),
+          myAlilm: (
+            <Suspense>
+              <MyBasketCardList />
+            </Suspense>
+          ),
         }}
-        defaultComponent={<HomeProductCardList />}
+        defaultComponent={
+          <Suspense>
+            <BasketCardList />
+          </Suspense>
+        }
       />
     </div>
   );
 };
 
 export default ProductCardList;
-
-const HomeProductCardList = () => {
-  return (
-    <div className={styles.productCardList}>
-      {Array.from({ length: 10 }).map((_, index) => (
-        // TODO: replace key index -> unique id
-        <ProductCard key={index} />
-      ))}
-    </div>
-  );
-};
-
-const MyAlilmProductCardList = () => {
-  return (
-    <div className={styles.productCardList}>
-      {Array.from({ length: 10 }).map((_, index) => (
-        // TODO: replace key index -> unique id
-        <ProductCard key={index} />
-      ))}
-    </div>
-  );
-};
