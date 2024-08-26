@@ -1,4 +1,5 @@
 'use client';
+
 import { useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { LOCAL_STORAGE_KEY, Storage } from '@/libs/storage';

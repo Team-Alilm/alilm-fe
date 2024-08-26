@@ -1,29 +1,27 @@
-import { type HTMLAttributes } from 'react';
+import { type InputHTMLAttributes } from 'react';
 
 import Button from '../button';
 import Flex from '../flex';
 import Input from '../input';
 
-interface ButtonInputProps extends HTMLAttributes<HTMLInputElement> {
-  label?: string;
-  description?: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+interface ButtonInputProps extends InputHTMLAttributes<HTMLInputElement> {
   onButtonClick: VoidFunction;
   buttonText: string;
+  label?: string;
+  isButtonDisabled?: boolean;
 }
 
 const ButtonInput = ({
-  label,
-  description,
-  onChange,
   onButtonClick,
   buttonText,
+  label,
+  isButtonDisabled,
   ...props
 }: ButtonInputProps) => {
   return (
     <Flex align="flex-end" gap={8}>
-      <Input onChange={onChange} label={label} {...props} />
-      <Button onClick={onButtonClick} description={description}>
+      <Input label={label} {...props} />
+      <Button type="button" onClick={onButtonClick} disabled={isButtonDisabled}>
         {buttonText}
       </Button>
     </Flex>

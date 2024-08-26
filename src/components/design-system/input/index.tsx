@@ -1,9 +1,9 @@
-import { type HTMLAttributes } from 'react';
+import { type InputHTMLAttributes } from 'react';
 
 import Flex from '../flex';
 import * as styles from './index.css';
 
-interface InputProps extends HTMLAttributes<HTMLInputElement> {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
 }
 

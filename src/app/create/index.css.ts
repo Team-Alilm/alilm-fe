@@ -23,13 +23,6 @@ export const createForm = style({
   width: '100%',
 });
 
-export const previewImage = style({
-  background: '#EAEAEA',
-  width: '100%',
-  height: '156px',
-  borderRadius: '8px',
-});
-
 export const buttonDescription = style({
   fontSize: '13px',
   color: '#3E3E3E',

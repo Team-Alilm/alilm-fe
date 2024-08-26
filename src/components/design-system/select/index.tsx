@@ -1,4 +1,4 @@
-import { type HTMLAttributes } from 'react';
+import { type SelectHTMLAttributes } from 'react';
 import Image from 'next/image';
 
 import Flex from '../flex';
@@ -6,7 +6,7 @@ import * as styles from './index.css';
 
 type SelectOption = { value: string; label: string };
 
-interface SelectProps extends HTMLAttributes<HTMLSelectElement> {
+interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   label?: string;
   options: SelectOption[];
 }
