@@ -10,4 +10,5 @@ export const basketBadge = style({
   background: '#EBF0FF',
   fontSize: '12px',
   fontWeight: '700',
+  margin: '6px 0',
 });
