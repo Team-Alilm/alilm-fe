@@ -3,7 +3,10 @@ import { recipe } from '@vanilla-extract/recipes';
 
 export const button = recipe({
   base: {
-    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: '0',
     height: '54px',
     padding: '0 24px',
     fontSize: '16px',

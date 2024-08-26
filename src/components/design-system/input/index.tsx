@@ -9,7 +9,7 @@ interface InputProps extends HTMLAttributes<HTMLInputElement> {
 
 const Input = ({ label, ...props }: InputProps) => {
   return (
-    <Flex direction="column" gap={8}>
+    <Flex direction="column" gap={8} style={{ flex: '1' }}>
       {label && <p className={styles.label}>{label}</p>}
       <input className={styles.input} {...props} />
     </Flex>
