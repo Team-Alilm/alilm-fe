@@ -8,15 +8,18 @@ import {
   type RegisteredBasketsParams,
   useRegisteredBaskets,
 } from '@/hooks/mutations/use-registered-baskets';
+import { PRODUCTS_CRAWLING_QUERY_KEY } from '@/hooks/quries/use-get-products-crawling';
+import { useQueryClient } from '@tanstack/react-query';
 
 import * as styles from './index.css';
 
 export type CreateFormValue = RegisteredBasketsParams;
 
 const CreatePage = () => {
+  const queryClient = useQueryClient();
   const { mutate: registeredBaskets } = useRegisteredBaskets();
-  const [showProductsOptionsForm, setShowProductsOptionsForm] = useState(false);
   const [url, setUrl] = useState('');
+  const [showProductsOptionsForm, setShowProductsOptionsForm] = useState(false);
   const [createForm, setCreateForm] = useState<CreateFormValue>({
     number: 0,
     name: '',
@@ -31,8 +34,13 @@ const CreatePage = () => {
   });
   const isButtonDisabled = !createForm.firstOption;
 
-  const handleUrlChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleUrlInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUrl(e.target.value);
+  };
+
+  const handleUrlInputButtonClick = () => {
+    setShowProductsOptionsForm(true);
+    queryClient.invalidateQueries({ queryKey: [PRODUCTS_CRAWLING_QUERY_KEY] });
   };
 
   const handleCreateFormSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -46,15 +54,13 @@ const CreatePage = () => {
       <form onSubmit={handleCreateFormSubmit} className={styles.createForm}>
         <ButtonInput
           name="url"
-          onChange={handleUrlChange}
-          onButtonClick={() => {
-            setShowProductsOptionsForm(true);
-          }}
+          onChange={handleUrlInputChange}
+          onButtonClick={handleUrlInputButtonClick}
           isButtonDisabled={!url}
           label="URL 주소"
           buttonText="조회"
         />
-        {showProductsOptionsForm && !!url && (
+        {showProductsOptionsForm && (
           <Suspense>
             <ProductOptionsForm url={url} setCreateForm={setCreateForm} />
           </Suspense>

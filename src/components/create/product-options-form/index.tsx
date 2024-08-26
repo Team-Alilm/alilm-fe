@@ -1,4 +1,4 @@
-import { type ChangeEvent, type Dispatch, type SetStateAction, useEffect } from 'react';
+import { type ChangeEvent, type Dispatch, type SetStateAction, useEffect, useMemo } from 'react';
 import { type CreateFormValue } from '@/app/create/page';
 import Select from '@/components/design-system/select';
 import { useGetProductsCrawling } from '@/hooks/quries/use-get-products-crawling';
@@ -13,19 +13,16 @@ interface ProductOptionsFormProps {
 
 const ProductOptionsForm = ({ url, setCreateForm }: ProductOptionsFormProps) => {
   const { data: productsCrawling } = useGetProductsCrawling(url);
+  const [firstOptions, secondOptions, thirdOptions] = useMemo(() => {
+    const formatOptions = (options: string[]) =>
+      options.map(option => ({ label: option, value: option }));
 
-  const firstOptions = productsCrawling.firstOptions.map(options => ({
-    label: options,
-    value: options,
-  }));
-  const secondOptions = productsCrawling.secondOptions.map(options => ({
-    label: options,
-    value: options,
-  }));
-  const thirdOptions = productsCrawling.thirdOptions.map(options => ({
-    label: options,
-    value: options,
-  }));
+    return [
+      formatOptions(productsCrawling.firstOptions),
+      formatOptions(productsCrawling.secondOptions),
+      formatOptions(productsCrawling.thirdOptions),
+    ];
+  }, [productsCrawling]);
 
   const handleOptionsChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -42,11 +39,9 @@ const ProductOptionsForm = ({ url, setCreateForm }: ProductOptionsFormProps) => 
     setCreateForm(prevCreateForm => ({
       ...prevCreateForm,
       ...omitedProductsCrawling,
-      ...{
-        firstOption: firstOptions[0].value,
-        secondOption: secondOptions[0]?.value ?? null,
-        thirdOption: thirdOptions[0]?.value ?? null,
-      },
+      firstOption: firstOptions[0].value,
+      secondOption: secondOptions[0]?.value ?? null,
+      thirdOption: thirdOptions[0]?.value ?? null,
     }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productsCrawling, url]);

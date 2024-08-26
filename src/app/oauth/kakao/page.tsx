@@ -6,9 +6,9 @@ import { LOCAL_STORAGE_KEY, Storage } from '@/libs/storage';
 
 const OauthKakaoPage = () => {
   const router = useRouter();
-  const queryParams = new URLSearchParams(window.location.search);
 
   useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search);
     const accessToken = queryParams.get('Authorization');
 
     if (accessToken) {
