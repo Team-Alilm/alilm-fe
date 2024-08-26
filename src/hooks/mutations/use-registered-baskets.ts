@@ -29,7 +29,7 @@ export const useRegisteredBaskets = () => {
   return useMutation({
     mutationFn: async (params: RegisteredBasketsParams) => await postRegisteredBaskets(params),
     onSuccess: () => {
-      alert('상품이 성공적으로 등록되었습니다!');
+      alert('상품 등록 성공!');
       queryClient.invalidateQueries({ queryKey: [BASKETS_QUERY_KEY, MY_BASKETS_QUERY_KEY] });
       router.replace('/');
     },
