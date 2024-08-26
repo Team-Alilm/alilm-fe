@@ -11,7 +11,7 @@ interface BasketsResponse {
 export const BASKETS_QUERY_KEY = 'getBaskets';
 
 export const getBaskets = async (pageParam: number) => {
-  const data = await get<BasketsResponse>(`/baskets?size=20&page=${pageParam}`);
+  const data = await get<BasketsResponse>(`/baskets?size=9&page=${pageParam}`);
 
   return data;
 };
