@@ -13,17 +13,12 @@ const MyBasketCard = ({
   secondOption,
   thirdOption,
 }: MyBasketProps) => {
-  const categories = category.split(' > ');
   const options = [firstOption, secondOption, thirdOption].filter(option => option !== '');
 
   return (
     <div className={styles.myBasketCard}>
       <img src={imageUrl} className={styles.thumbnailImage} alt="My Basket Thubnail" />
-      <div className={styles.myBasketBadgeList}>
-        {categories.map((category, index) => (
-          <BasketBadge key={index}>{category}</BasketBadge>
-        ))}
-      </div>
+      <BasketBadge>{category}</BasketBadge>
       <p className={styles.description}>{name}</p>
       <p className={styles.options}>{options.join(' / ')}</p>
     </div>

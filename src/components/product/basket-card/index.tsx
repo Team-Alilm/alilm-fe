@@ -8,7 +8,6 @@ type BasketProps = Basket;
 
 const BasketCard = ({ id, name, imageUrl, category, option1, option2, option3 }: BasketProps) => {
   const { mutate: copyBasketsMutate } = useCopyBaskets();
-  const categories = category.split(' > ');
   const options = [option1, option2, option3].filter(option => option !== '');
 
   const handleWaitToggetherButtonClick = () => {
@@ -18,11 +17,7 @@ const BasketCard = ({ id, name, imageUrl, category, option1, option2, option3 }:
   return (
     <div className={styles.basketCard}>
       <img src={imageUrl} className={styles.thumbnailImage} alt="Basket Thubnail" />
-      <div className={styles.basketBadgeList}>
-        {categories.map((category, index) => (
-          <BasketBadge key={index}>{category}</BasketBadge>
-        ))}
-      </div>
+      <BasketBadge>{category}</BasketBadge>
       <p className={styles.description}>{name}</p>
       <p className={styles.options}>{options.join(' / ')}</p>
       <button onClick={handleWaitToggetherButtonClick} className={styles.waitTogetherButton}>
