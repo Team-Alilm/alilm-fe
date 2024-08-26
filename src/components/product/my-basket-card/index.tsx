@@ -13,7 +13,9 @@ const MyBasketCard = ({
   secondOption,
   thirdOption,
 }: MyBasketProps) => {
-  const options = [firstOption, secondOption, thirdOption].filter(option => option !== '');
+  const options = [firstOption, secondOption, thirdOption].filter(
+    option => option !== null && option !== ''
+  );
 
   return (
     <div className={styles.myBasketCard}>

@@ -8,7 +8,7 @@ type BasketProps = Basket;
 
 const BasketCard = ({ id, name, imageUrl, category, option1, option2, option3 }: BasketProps) => {
   const { mutate: copyBasketsMutate } = useCopyBaskets();
-  const options = [option1, option2, option3].filter(option => option !== '');
+  const options = [option1, option2, option3].filter(option => option !== null && option !== '');
 
   const handleWaitToggetherButtonClick = () => {
     copyBasketsMutate(id);
