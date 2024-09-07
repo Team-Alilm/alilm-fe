@@ -11,7 +11,7 @@ const AlilmInfo = () => {
   return (
     <div className={styles.alilmInfo}>
       <Flex direction="column">
-        <p className={styles.title}>현재까지 누적 재입고 알림 등록 수</p>
+        <p className={styles.title}>현재까지 누적 재입고 알림 발송 수</p>
         <p className={styles.figure}>{notificationsCount.allCount}건</p>
       </Flex>
       <Flex direction="column">
