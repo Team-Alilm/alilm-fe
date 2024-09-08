@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 import * as styles from './index.css';
 
@@ -12,8 +12,11 @@ const Header = () => {
     router.push('/');
   };
 
+  const pathname = usePathname();
+
   return (
-    <header className={styles.header}>
+    // todo 최적화 필요
+    <header className={styles.header} style={{ display: pathname === '/login' ? 'none' : 'flex' }}>
       <Image
         src="/icons/logo.svg"
         onClick={handleLogoClick}

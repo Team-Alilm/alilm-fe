@@ -42,6 +42,15 @@ const interceptorResponseFulfilled = (res: AxiosResponse) => {
 
 // Response interceptor
 const interceptorResponseRejected = (error: AxiosError<ApiErrorScheme>) => {
+  //todo : 401 권환 헨들링을 임시로 했어요 리펙토링 필요해보여요!
+  if (error.response?.status === 401) {
+    if (typeof window !== 'undefined') {
+      window.location.href = '/login';
+    }
+
+    return Promise.reject(new CustomException(errorMessage.UNKNOWN_401, 'NETWORK_ERROR'));
+  }
+
   if (error.response?.data?.['response_messages']) {
     return Promise.reject(new ApiException(error.response.data, error.response.status));
   }
