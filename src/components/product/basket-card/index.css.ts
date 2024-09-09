@@ -3,7 +3,6 @@ import { style } from '@vanilla-extract/css';
 export const basketCard = style({
   minWidth: '100px',
   width: '30%',
-  cursor: 'pointer',
 });
 
 export const thumbnailImage = style({
@@ -16,6 +15,9 @@ export const name = style({
   fontSize: '14px',
   fontWeight: '700',
   marginBottom: '6px',
+  whiteSpace: 'nowrap', // Prevents text from wrapping to the next line
+  overflow: 'hidden', // Ensures that the overflowed content is hidden
+  textOverflow: 'ellipsis', // Replaces the overflowed content with an ellipsis (...)
 });
 
 export const brand = style({

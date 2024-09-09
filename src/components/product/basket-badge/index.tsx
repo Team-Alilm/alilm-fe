@@ -6,8 +6,4 @@ const BasketBadge = ({ children }: PropsWithChildren) => {
   return <span className={styles.basketBadge}>{children}</span>;
 };
 
-const BrandBadge = ({ children }: PropsWithChildren) => {
-  return <span className={styles.brandBadge}>{children}</span>;
-};
-
-export { BasketBadge, BrandBadge };
+export { BasketBadge };

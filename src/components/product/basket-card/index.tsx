@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { BasketBadge, BrandBadge } from '@/components/product/basket-badge';
+import { BasketBadge } from '@/components/product/basket-badge';
 import { useCopyBaskets } from '@/hooks/mutations/use-copy-baskets';
 import { type Basket } from '@/types/basket';
 
@@ -9,19 +9,19 @@ type BasketProps = Basket;
 
 const BasketCard = ({
   id,
+  number,
   name,
   brand,
   imageUrl,
   category,
-  price,
   firstOption,
   secondOption,
   thirdOption,
   waitingCount,
 }: BasketProps) => {
-  const formattedPrice = new Intl.NumberFormat('ko-KR').format(price);
-
   const { mutate: copyBasketsMutate } = useCopyBaskets();
+
+  const description = `${brand}${firstOption ? ` / ${firstOption}` : ''}${secondOption ? ` / ${secondOption}` : ''}${thirdOption ? ` / ${thirdOption}` : ''}`;
 
   const handleWaitToggetherButtonClick = () => {
     copyBasketsMutate(id);
@@ -38,14 +38,14 @@ const BasketCard = ({
         layout="responsive"
       />
       <BasketBadge>{category}</BasketBadge>
-      <BrandBadge>{brand}</BrandBadge>
       <p className={styles.name}>{name}</p>
-      {formattedPrice} 원
-      <p className={styles.options}>
-        {firstOption} {secondOption} {thirdOption}
+      <p className={styles.options}>{description}</p>
+      <p className={styles.waitingCount}>
+        <Image src="/icons/user.png" width={12} height={12} alt="user" /> 함께 기다리는 사람{' '}
+        {waitingCount} 명
       </p>
       <button onClick={handleWaitToggetherButtonClick} className={styles.waitTogetherButton}>
-        {waitingCount} 함께 기다리기
+        함께 기다리기
       </button>
     </div>
   );
