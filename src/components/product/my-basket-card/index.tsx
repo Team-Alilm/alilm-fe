@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { type MyBasket } from '@/types/basket';
 
 import BasketBadge from '../basket-badge';
@@ -19,7 +20,14 @@ const MyBasketCard = ({
 
   return (
     <div className={styles.myBasketCard}>
-      <img src={imageUrl} className={styles.thumbnailImage} alt="My Basket Thubnail" />
+      <Image
+        src={imageUrl}
+        className={styles.thumbnailImage}
+        alt="Basket Thubnail"
+        width={800}
+        height={800}
+        layout="responsive"
+      />
       <BasketBadge>{category}</BasketBadge>
       <p className={styles.description}>{name}</p>
       <p className={styles.options}>{options.join(' / ')}</p>
