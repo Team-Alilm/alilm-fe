@@ -12,9 +12,15 @@ export const thumbnailImage = style({
   borderRadius: '4px',
 });
 
-export const description = style({
+export const name = style({
   fontSize: '14px',
   fontWeight: '700',
+  marginBottom: '6px',
+});
+
+export const brand = style({
+  fontSize: '14px',
+  fontWeight: '400',
   marginBottom: '6px',
 });
 
@@ -41,6 +47,18 @@ export const basketBadgeList = style({
   alignItems: 'center',
   gap: '4px',
   margin: '6px 0',
+});
+
+export const price = style({
+  fontSize: '16px',
+  fontWeight: '700',
+  color: '#333',
+});
+
+export const waitingCount = style({
+  fontSize: '14px',
+  fontWeight: '400',
+  color: '#666',
 });
 
 export const basketBadge = style({

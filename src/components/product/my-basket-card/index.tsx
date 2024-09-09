@@ -1,22 +1,22 @@
 import Image from 'next/image';
 import { type MyBasket } from '@/types/basket';
 
-import BasketBadge from '../basket-badge';
+import { BasketBadge, BrandBadge } from '../basket-badge';
 import * as styles from './index.css';
 
 type MyBasketProps = MyBasket;
 
 const MyBasketCard = ({
   name,
+  brand,
   imageUrl,
   category,
+  price,
   firstOption,
   secondOption,
   thirdOption,
 }: MyBasketProps) => {
-  const options = [firstOption, secondOption, thirdOption].filter(
-    option => option !== null && option !== ''
-  );
+  const formattedPrice = new Intl.NumberFormat('ko-KR').format(price);
 
   return (
     <div className={styles.myBasketCard}>
@@ -29,8 +29,12 @@ const MyBasketCard = ({
         layout="responsive"
       />
       <BasketBadge>{category}</BasketBadge>
-      <p className={styles.description}>{name}</p>
-      <p className={styles.options}>{options.join(' / ')}</p>
+      <p className={styles.name}>{name}</p>
+      <BrandBadge>{brand}</BrandBadge>
+      <p className={styles.options}>{firstOption}</p>
+      <p className={styles.options}>{secondOption}</p>
+      <p className={styles.options}>{thirdOption}</p>
+      <p className={styles.price}>{formattedPrice}원</p>
     </div>
   );
 };

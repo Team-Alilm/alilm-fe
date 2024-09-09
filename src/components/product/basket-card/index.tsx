@@ -1,15 +1,27 @@
 import Image from 'next/image';
+import { BasketBadge, BrandBadge } from '@/components/product/basket-badge';
 import { useCopyBaskets } from '@/hooks/mutations/use-copy-baskets';
 import { type Basket } from '@/types/basket';
 
-import BasketBadge from '../basket-badge';
 import * as styles from './index.css';
 
 type BasketProps = Basket;
 
-const BasketCard = ({ id, name, imageUrl, category, option1, option2, option3 }: BasketProps) => {
+const BasketCard = ({
+  id,
+  name,
+  brand,
+  imageUrl,
+  category,
+  price,
+  firstOption,
+  secondOption,
+  thirdOption,
+  waitingCount,
+}: BasketProps) => {
+  const formattedPrice = new Intl.NumberFormat('ko-KR').format(price);
+
   const { mutate: copyBasketsMutate } = useCopyBaskets();
-  const options = [option1, option2, option3].filter(option => option !== null && option !== '');
 
   const handleWaitToggetherButtonClick = () => {
     copyBasketsMutate(id);
@@ -26,10 +38,14 @@ const BasketCard = ({ id, name, imageUrl, category, option1, option2, option3 }:
         layout="responsive"
       />
       <BasketBadge>{category}</BasketBadge>
-      <p className={styles.description}>{name}</p>
-      <p className={styles.options}>{options.join(' / ')}</p>
+      <BrandBadge>{brand}</BrandBadge>
+      <p className={styles.name}>{name}</p>
+      {formattedPrice} 원
+      <p className={styles.options}>
+        {firstOption} {secondOption} {thirdOption}
+      </p>
       <button onClick={handleWaitToggetherButtonClick} className={styles.waitTogetherButton}>
-        함께 기다리기
+        {waitingCount} 함께 기다리기
       </button>
     </div>
   );

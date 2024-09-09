@@ -12,7 +12,7 @@ export const thumbnailImage = style({
   borderRadius: '4px',
 });
 
-export const description = style({
+export const name = style({
   fontSize: '14px',
   fontWeight: '700',
   marginBottom: '6px',
@@ -21,7 +21,7 @@ export const description = style({
 export const options = style({
   fontSize: '13px',
   fontWeight: '400',
-  marginBottom: '12px',
+  marginBottom: '6px',
 });
 
 export const myBasketBadgeList = style({
@@ -29,4 +29,10 @@ export const myBasketBadgeList = style({
   alignItems: 'center',
   gap: '4px',
   margin: '6px 0',
+});
+
+export const price = style({
+  fontSize: '16px',
+  fontWeight: '700',
+  color: '#333',
 });

@@ -4,11 +4,12 @@ export interface Basket {
   name: string;
   brand: string;
   imageUrl: string;
-  category: string;
+  store: string;
   price: number;
-  option1: string;
-  option2: string;
-  option3: string;
+  category: string;
+  firstOption: string;
+  secondOption?: string;
+  thirdOption?: string;
   waitingCount: number;
 }
 
@@ -22,7 +23,7 @@ export interface MyBasket {
   price: number;
   category: string;
   firstOption: string;
-  secondOption: string;
-  thirdOption: string;
+  secondOption?: string;
+  thirdOption?: string;
   isHidden: boolean;
 }
