@@ -42,6 +42,7 @@ export const waitTogetherButton = style({
   color: '#101010',
   background: '#FFFFFF',
   cursor: 'pointer',
+  marginTop: '10px',
 });
 
 export const basketBadgeList = style({
@@ -51,26 +52,8 @@ export const basketBadgeList = style({
   margin: '6px 0',
 });
 
-export const price = style({
-  fontSize: '16px',
-  fontWeight: '700',
-  color: '#333',
-});
-
 export const waitingCount = style({
   fontSize: '14px',
   fontWeight: '400',
   color: '#666',
-});
-
-export const basketBadge = style({
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  height: '22px',
-  padding: '0 8px',
-  color: '#456AEB',
-  background: '#EBF0FF',
-  fontSize: '12px',
-  fontWeight: '700',
 });

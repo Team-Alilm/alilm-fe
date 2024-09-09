@@ -25,7 +25,6 @@ const MyBasketCard = ({
         alt="Basket Thubnail"
         width={800}
         height={800}
-        layout="responsive"
       />
       <BasketBadge>{category}</BasketBadge>
       <p className={styles.name}>{name}</p>
