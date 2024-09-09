@@ -9,7 +9,6 @@ type BasketProps = Basket;
 
 const BasketCard = ({
   id,
-  number,
   name,
   brand,
   imageUrl,
