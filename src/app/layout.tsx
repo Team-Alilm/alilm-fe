@@ -1,4 +1,5 @@
 import { type PropsWithChildren } from 'react';
+import { type Metadata } from 'next';
 import Header from '@/components/common/header';
 
 import * as styles from './layout.css';
@@ -22,3 +23,12 @@ const RootLayout = ({ children }: PropsWithChildren) => {
 };
 
 export default RootLayout;
+
+export const metadata: Metadata = {
+  title: 'Alilm',
+  description: 'Alilm',
+  keywords: 'Alilm',
+  icons: {
+    icon: '/icons/alilm.ico',
+  },
+};
