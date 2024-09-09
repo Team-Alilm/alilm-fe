@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useCopyBaskets } from '@/hooks/mutations/use-copy-baskets';
 import { type Basket } from '@/types/basket';
 
@@ -16,7 +17,14 @@ const BasketCard = ({ id, name, imageUrl, category, option1, option2, option3 }:
 
   return (
     <div className={styles.basketCard}>
-      <img src={imageUrl} className={styles.thumbnailImage} alt="Basket Thubnail" />
+      <Image
+        src={imageUrl}
+        className={styles.thumbnailImage}
+        alt="Basket Thubnail"
+        width={800}
+        height={800}
+        layout="responsive"
+      />
       <BasketBadge>{category}</BasketBadge>
       <p className={styles.description}>{name}</p>
       <p className={styles.options}>{options.join(' / ')}</p>

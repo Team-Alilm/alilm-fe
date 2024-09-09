@@ -1,7 +1,8 @@
 import { style } from '@vanilla-extract/css';
 
 export const basketCard = style({
-  width: '180px',
+  minWidth: '145px',
+  width: '30%',
   cursor: 'pointer',
 });
 
