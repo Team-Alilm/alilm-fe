@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
 export const myBasketCard = style({
-  minWidth: '145px',
+  minWidth: '100px',
   width: '30%',
   cursor: 'pointer',
 });
