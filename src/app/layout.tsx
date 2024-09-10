@@ -13,8 +13,10 @@ const RootLayout = ({ children }: PropsWithChildren) => {
       <body>
         <Providers>
           <div className={styles.layout}>
-            <Header />
-            {children}
+            <div className={styles.header}>
+              <Header />
+            </div>
+            <div className={styles.mainContent}>{children}</div>
           </div>
         </Providers>
       </body>
