@@ -8,7 +8,6 @@ import Spacer from '@/components/design-system/spacer';
 import AlilmInfo from '@/components/main/alilm-info';
 import AlilmTabs from '@/components/main/alilm-tabs';
 import { AlilmTabsProvider } from '@/components/main/alilm-tabs/contexts/alilm-tabs-context';
-// 온보딩 컴포넌트 추가
 import ProductCardList from '@/components/product/product-card-list';
 
 import * as styles from './page.css';
