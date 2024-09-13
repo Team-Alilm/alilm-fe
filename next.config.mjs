@@ -6,7 +6,12 @@ const withVanillaExtract = createVanillaExtractPlugin();
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    domains: ['image.msscdn.net'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'image.msscdn.net',
+      },
+    ],
   },
 };
 

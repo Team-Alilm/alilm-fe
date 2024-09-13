@@ -7,5 +7,17 @@ export const onboardingPage = style({
   width: '100%',
   height: '100%',
   padding: '32px',
-  background: '#ff0000',
+});
+
+export const swiperContainer = style({
+  width: '100%',
+  height: '100%',
+});
+
+export const slideContent = style({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100%',
 });
