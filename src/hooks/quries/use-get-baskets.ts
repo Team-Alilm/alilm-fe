@@ -25,7 +25,7 @@ export const useGetBaskets = () => {
         return null;
       }
 
-      return allPages.length + 1;
+      return allPages.length;
     },
     select: data => data.pages.flatMap(({ content }) => content),
     initialPageParam: 0,
