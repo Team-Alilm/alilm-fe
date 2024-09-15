@@ -34,7 +34,7 @@ export const imageContainer = style({
 
 export const nextButton = style({
   padding: '12px 24px', // 더 넉넉한 여백
-  backgroundColor: '#ff6a00',
+  backgroundColor: '#000000',
   color: '#fff',
   border: 'none',
   borderRadius: '8px', // 더 둥근 모서리
@@ -44,7 +44,7 @@ export const nextButton = style({
   transition: 'background-color 0.3s ease',
 
   ':hover': {
-    backgroundColor: '#ff7f33', // 좀 더 자연스러운 호버 색상
+    backgroundColor: 'rgba(0,0,0,0.5)', // 좀 더 자연스러운 호버 색상
   },
 });
 
