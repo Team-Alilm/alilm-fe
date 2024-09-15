@@ -4,6 +4,7 @@ export const layout = style({
   margin: '0 auto',
   maxWidth: '600px',
   width: '100%',
+  backgroundColor: '#ffffff',
   minHeight: '100vh',
 });
 

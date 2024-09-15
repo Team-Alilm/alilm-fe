@@ -3,6 +3,8 @@ import { style } from '@vanilla-extract/css';
 export const loginPage = style({
   display: 'flex',
   flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
   width: '100%',
   height: '100%',
   padding: '32px',
@@ -13,6 +15,7 @@ export const title = style({
   fontSize: '24px',
   fontWeight: 'bold',
   marginTop: '72px',
+  marginBottom: '48px',
 });
 
 export const loginButton = style({

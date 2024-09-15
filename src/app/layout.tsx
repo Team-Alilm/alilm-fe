@@ -1,7 +1,7 @@
 import { type PropsWithChildren } from 'react';
 import { type Metadata } from 'next';
 
-import HeaderController from './HeaderController'; // 클라이언트 컴포넌트
+import HeaderController from './header-controller'; // 클라이언트 컴포넌트
 import * as styles from './layout.css';
 import Providers from './providers';
 

@@ -2,7 +2,8 @@ import { style } from '@vanilla-extract/css';
 
 export const basketCard = style({
   minWidth: '100px',
-  width: '25%',
+  margin: 'auto',
+  width: '30%',
 });
 
 export const thumbnailImage = style({
