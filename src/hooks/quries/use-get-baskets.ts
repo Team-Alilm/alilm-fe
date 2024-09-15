@@ -11,9 +11,7 @@ interface BasketsResponse {
 export const BASKETS_QUERY_KEY = 'getBaskets';
 
 export const getBaskets = async (pageParam: number) => {
-  const data = await get<BasketsResponse>(`/baskets?size=9&page=${pageParam}`);
-
-  return data;
+  return await get<BasketsResponse>(`/baskets?size=9&page=${pageParam}`);
 };
 
 export const useGetBaskets = () => {
@@ -21,9 +19,7 @@ export const useGetBaskets = () => {
     queryKey: [BASKETS_QUERY_KEY],
     queryFn: async ({ pageParam }) => await getBaskets(pageParam),
     getNextPageParam: (lastPage, allPages) => {
-      if (lastPage.last) {
-        return null;
-      }
+      if (lastPage.last) return null;
 
       return allPages.length;
     },
