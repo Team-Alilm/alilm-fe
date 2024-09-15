@@ -15,7 +15,6 @@ const Header = () => {
   const pathname = usePathname();
 
   return (
-    // todo 최적화 필요
     <header className={styles.header} style={{ display: pathname === '/login' ? 'none' : 'flex' }}>
       <Image
         src="/icons/logo.svg"

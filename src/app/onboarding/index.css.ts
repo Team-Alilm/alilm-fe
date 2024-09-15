@@ -1,31 +1,30 @@
 import { style } from '@vanilla-extract/css';
 
 export const onboardingPage = style({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
   width: '100%',
   height: '100%',
-  padding: '32px',
-});
-
-export const swiperContainer = style({
-  width: '100%',
-  height: '100%',
-});
-
-export const slideContent = style({
+  padding: '20px',
   display: 'flex',
-  width: '100%',
-  flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  height: '100%',
+});
+
+export const slide = style({
+  width: '500px',
+  height: '500px',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+});
+
+export const imageContainer = style({
+  height: '100px',
+  backgroundColor: '#f9f9f9',
+  marginBottom: '20px',
 });
 
 // nextButton 스타일 추가
 export const nextButton = style({
-  marginTop: '20px', // 버튼 위쪽에 간격 추가
   padding: '10px 20px', // 버튼 내부 여백
   backgroundColor: '#007bff', // 버튼 배경색 (파란색)
   color: '#fff', // 버튼 텍스트 색상 (흰색)
@@ -39,4 +38,24 @@ export const nextButton = style({
   ':hover': {
     backgroundColor: '#0056b3', // 호버 시 어두운 파란색으로 변경
   },
+});
+
+export const content = style({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '300px',
+  marginBottom: '20px',
+});
+
+export const infoText = style({
+  marginTop: '20px', // 상단 여백 추가
+  padding: '10px',
+  textAlign: 'center',
+  fontSize: '15px',
+  fontWeight: 'bold',
+
+  color: 'rgba(51,51,51,0.7)', // 텍스트 색상
+  borderRadius: '5px',
 });

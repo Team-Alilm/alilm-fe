@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 
 export const basketCard = style({
   minWidth: '100px',
-  width: '30%',
+  width: '25%',
 });
 
 export const thumbnailImage = style({
@@ -15,21 +15,18 @@ export const name = style({
   fontSize: '14px',
   fontWeight: '700',
   marginBottom: '6px',
-  whiteSpace: 'nowrap', // Prevents text from wrapping to the next line
-  overflow: 'hidden', // Ensures that the overflowed content is hidden
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
   textOverflow: 'ellipsis', // Replaces the overflowed content with an ellipsis (...)
-});
-
-export const brand = style({
-  fontSize: '14px',
-  fontWeight: '400',
-  marginBottom: '6px',
 });
 
 export const options = style({
   fontSize: '13px',
   fontWeight: '400',
   marginBottom: '12px',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
 });
 
 export const waitTogetherButton = style({
@@ -43,13 +40,9 @@ export const waitTogetherButton = style({
   background: '#FFFFFF',
   cursor: 'pointer',
   marginTop: '10px',
-});
-
-export const basketBadgeList = style({
-  display: 'flex',
-  alignItems: 'center',
-  gap: '4px',
-  margin: '6px 0',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
 });
 
 export const waitingCount = style({
