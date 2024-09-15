@@ -36,12 +36,7 @@ const OnboardingPage = () => {
         <SwiperSlide>
           <div className={slide}>
             <div className={imageContainer}>
-              <Image
-                src={'/icons/free-icon-export-8815146.png'}
-                alt={'export icon'}
-                width={100}
-                height={100}
-              />
+              <Image src={'/icons/export.png'} alt={'export icon'} width={100} height={100} />
             </div>
             <div className={content}>
               <Image
