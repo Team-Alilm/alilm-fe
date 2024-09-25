@@ -1,9 +1,17 @@
 import { style } from '@vanilla-extract/css';
 
 export const basketCard = style({
+  display: 'flex',
+  flexDirection: 'column',
   minWidth: '100px',
   margin: 'auto',
-  width: '30%',
+  width: '90%',
+  height: '100%',
+});
+
+export const imageWrapper = style({
+  height: '70%',
+  alignContent: 'center',
 });
 
 export const thumbnailImage = style({
