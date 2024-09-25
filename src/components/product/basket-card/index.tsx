@@ -22,30 +22,34 @@ const BasketCard = ({
 
   const description = `${brand}${firstOption ? ` / ${firstOption}` : ''}${secondOption ? ` / ${secondOption}` : ''}${thirdOption ? ` / ${thirdOption}` : ''}`;
 
-  const handleWaitToggetherButtonClick = () => {
+  const handleWaitTogetherButtonClick = () => {
     copyBasketsMutate(id);
   };
 
   return (
     <div className={styles.basketCard}>
-      <Image
-        src={imageUrl}
-        className={styles.thumbnailImage}
-        alt="Basket Thubnail"
-        width={800}
-        height={800}
-        style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
-      />
-      <BasketBadge>{category}</BasketBadge>
-      <p className={styles.name}>{name}</p>
-      <p className={styles.options}>{description}</p>
-      <p className={styles.waitingCount}>
-        <Image src="/icons/user.png" width={12} height={12} alt="user" /> 함께 기다리는 사람{' '}
-        {waitingCount} 명
-      </p>
-      <button onClick={handleWaitToggetherButtonClick} className={styles.waitTogetherButton}>
-        함께 기다리기
-      </button>
+      <div className={styles.imageWrapper}>
+        <Image
+          src={imageUrl}
+          className={styles.thumbnailImage}
+          alt="Basket Thumbnail"
+          width={800}
+          height={800}
+          style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
+        />
+      </div>
+      <div style={{}}>
+        <BasketBadge>{category}</BasketBadge>
+        <p className={styles.name}>{name}</p>
+        <p className={styles.options}>{description}</p>
+        <p className={styles.waitingCount}>
+          <Image src="/icons/user.png" width={12} height={12} alt="user" /> 함께 기다리는 사람{' '}
+          {waitingCount} 명
+        </p>
+        <button onClick={handleWaitTogetherButtonClick} className={styles.waitTogetherButton}>
+          함께 기다리기
+        </button>
+      </div>
     </div>
   );
 };

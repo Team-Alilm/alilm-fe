@@ -25,7 +25,7 @@ const MyBasketCard = ({
         alt="Basket Thubnail"
         width={800}
         height={800}
-        style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
+        style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
       />
       <BasketBadge>{category}</BasketBadge>
       <p className={styles.name}>{name}</p>
