@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { LOCAL_STORAGE_KEY, Storage } from '@/libs/storage';
+import handleFcmToken from '@/utils/handle-fcm-token';
 
 const OauthKakaoPage = () => {
   const router = useRouter();
@@ -14,6 +15,7 @@ const OauthKakaoPage = () => {
     if (accessToken) {
       Storage.setItem(LOCAL_STORAGE_KEY.accessToken, accessToken);
       router.replace('/');
+      handleFcmToken();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
