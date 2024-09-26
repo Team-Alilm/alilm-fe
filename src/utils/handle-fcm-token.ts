@@ -28,7 +28,6 @@ export const handleFcmToken = async () => {
 
     // 토큰 발급 성공 시 서버로 토큰 전송
     await postFcmToken(fcmToken);
-    console.log('FCM token:', fcmToken);
   } catch (error) {
     console.error('에러 발생:', error);
   }
