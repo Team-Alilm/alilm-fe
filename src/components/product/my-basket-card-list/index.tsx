@@ -1,6 +1,6 @@
 import { useGetMyBaskets } from '@/hooks/quries/use-get-my-baskets';
 
-import MyBasketCard from '../my-basket-card';
+import BasketCard from '../basket-card';
 import * as styles from './index.css';
 
 const MyBasketCardList = () => {
@@ -9,7 +9,7 @@ const MyBasketCardList = () => {
   return (
     <div className={styles.myBasketCardList}>
       {myBaskets.map(myBasket => (
-        <MyBasketCard key={myBasket.id} {...myBasket} />
+        <BasketCard key={myBasket.id} {...myBasket} tab="my-basket" />
       ))}
     </div>
   );

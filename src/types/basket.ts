@@ -10,7 +10,9 @@ export interface Basket {
   firstOption: string;
   secondOption?: string;
   thirdOption?: string;
-  waitingCount: number;
+  waitingCount?: number;
+  tab: 'home' | 'my-basket';
+  // isHidden: boolean;
 }
 
 export interface MyBasket {
