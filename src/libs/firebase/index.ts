@@ -1,6 +1,6 @@
 // firebase.js
 import { initializeApp } from 'firebase/app';
-import { getMessaging } from 'firebase/messaging';
+import { getMessaging, type Messaging } from 'firebase/messaging';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -12,7 +12,13 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
+// Firebase 앱 초기화
 const app = initializeApp(firebaseConfig);
-const messaging = getMessaging(app);
+
+// 브라우저 환경에서만 메시징 가져오기
+let messaging: Messaging;
+if (typeof window !== 'undefined') {
+  messaging = getMessaging(app);
+}
 
 export { messaging };
