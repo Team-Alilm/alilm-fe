@@ -32,7 +32,7 @@ export const onboardingModal = style({
   animation: `${modalFadeIn} 0.5s ease-in-out`,
 
   '@media': {
-    'screen and (max-width: 768px)': {
+    'screen and (max-width: 480px)': {
       width: '84%',
     },
   },
