@@ -11,7 +11,6 @@ import { background, content, nextButton, onboardingModal, slide } from './index
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import 'swiper/css/effect-fade';
 
 interface OnboardingProps {
   onClose: () => void;
@@ -62,7 +61,7 @@ const OnboardingModal = ({ onClose }: OnboardingProps) => {
           onSlideChange={handleSlideChange}
           spaceBetween={20}
           slidesPerView={1}
-          pagination={{ clickable: false }}
+          pagination={{ clickable: true }}
           modules={[Navigation, Pagination, EffectFade]}
         >
           <SwiperSlide>
@@ -71,7 +70,7 @@ const OnboardingModal = ({ onClose }: OnboardingProps) => {
                 <Image
                   src={'/images/onboarding_1.png'}
                   layout={'intrinsic'}
-                  alt={'export icon'}
+                  alt={'onboarding imag'}
                   width={500}
                   height={300}
                 />
@@ -84,7 +83,7 @@ const OnboardingModal = ({ onClose }: OnboardingProps) => {
                 <Image
                   src={'/images/onboarding_2.png'}
                   layout={'intrinsic'}
-                  alt={'export icon'}
+                  alt={'onboarding image'}
                   width={500}
                   height={300}
                 />

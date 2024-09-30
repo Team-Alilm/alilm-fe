@@ -1,4 +1,4 @@
-import { keyframes, style } from '@vanilla-extract/css';
+import { globalStyle, keyframes, style } from '@vanilla-extract/css';
 
 const modalFadeIn = keyframes({
   '0%': { opacity: 0, transform: 'translateY(20px)' },
@@ -85,6 +85,13 @@ export const content = style({
   justifyContent: 'center',
   width: '64%',
   height: '100%',
-  // marginBottom: '30px',
-  textAlign: 'center', // 텍스트 가운데 정렬
+});
+
+globalStyle('.swiper-pagination-bullet-active', {
+  backgroundColor: '#fff !important',
+  opacity: '0.8 !important',
+});
+
+globalStyle('.swiper-pagination-bullet', {
+  backgroundColor: '#fff !important',
 });

@@ -16,7 +16,7 @@ const ProductCardList = () => {
         value={alilmTab}
         caseBy={{
           home: (
-            <Suspense>
+            <Suspense fallback={<BasketCardList />}>
               <BasketCardList />
             </Suspense>
           ),
