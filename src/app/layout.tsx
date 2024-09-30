@@ -24,6 +24,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
           <div className={styles.layout}>
             <HeaderController /> {/* 헤더 조절 로직을 담당하는 클라이언트 컴포넌트 */}
             <div className={styles.mainContent}>{children}</div>
+            <div id="modal-root" style={{ width: 'inherit' }} />
           </div>
         </Providers>
       </body>
