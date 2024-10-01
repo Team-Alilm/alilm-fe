@@ -1,4 +1,5 @@
 import { type ChangeEvent, type Dispatch, type SetStateAction, useEffect, useMemo } from 'react';
+import Image from 'next/image';
 import { type CreateFormValue } from '@/app/create/page';
 import Select from '@/components/design-system/select';
 import { useGetProductsCrawling } from '@/hooks/quries/use-get-products-crawling';
@@ -48,7 +49,11 @@ const ProductOptionsForm = ({ url, setCreateForm }: ProductOptionsFormProps) => 
 
   return (
     <>
-      <img src={productsCrawling.imageUrl} className={styles.previewImage} alt="Product Preview" />
+      <Image
+        src={productsCrawling.imageUrl}
+        className={styles.previewImage}
+        alt="Product Preview"
+      />
       {isNotEmptyArray(firstOptions) && (
         <Select
           onChange={handleOptionsChange}
