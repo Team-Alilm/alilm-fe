@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 
 export default function useBooleanState() {
-  const [isVisible, setIsVisible] = useState<boolean>(true);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const open = useCallback(() => setIsVisible(true), [setIsVisible]);
 
