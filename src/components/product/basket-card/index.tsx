@@ -18,7 +18,6 @@ const BasketCard = ({
   secondOption,
   thirdOption,
   waitingCount,
-  tab,
 }: BasketProps) => {
   const { mutate: copyBasketsMutate } = useCopyBaskets();
 
