@@ -44,9 +44,8 @@ const BasketCard = ({
         <p className={styles.name}>{name}</p>
         <p className={styles.options}>{description}</p>
         <div className={styles.waitingCount}>
-          {/* <Image src="/icons/user.png" width={12} height={12} alt="user" /> 함께 기다리는 사람{' '} */}
           <Icon icon="UserTwoPerson" width={12} height={12} />
-          {waitingCount} 명
+          함께 기다리는 사람 {waitingCount}명
         </div>
         <button onClick={handleWaitTogetherButtonClick} className={styles.waitTogetherButton}>
           함께 기다리기

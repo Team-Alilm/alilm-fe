@@ -55,6 +55,10 @@ export const waitTogetherButton = style({
 });
 
 export const waitingCount = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '4px',
+
   fontSize: '14px',
   fontWeight: '400',
   color: '#666',
