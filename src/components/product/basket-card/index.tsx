@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Icon from '@/components/icons';
 import { BasketBadge } from '@/components/product/basket-badge';
 import { useCopyBaskets } from '@/hooks/mutations/use-copy-baskets';
 import { type Basket } from '@/types/basket';
@@ -38,14 +39,15 @@ const BasketCard = ({
           style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
         />
       </div>
-      <div style={{}}>
+      <div>
         <BasketBadge>{category}</BasketBadge>
         <p className={styles.name}>{name}</p>
         <p className={styles.options}>{description}</p>
-        <p className={styles.waitingCount}>
-          <Image src="/icons/user.png" width={12} height={12} alt="user" /> 함께 기다리는 사람{' '}
+        <div className={styles.waitingCount}>
+          {/* <Image src="/icons/user.png" width={12} height={12} alt="user" /> 함께 기다리는 사람{' '} */}
+          <Icon icon="UserTwoPerson" width={12} height={12} />
           {waitingCount} 명
-        </p>
+        </div>
         <button onClick={handleWaitTogetherButtonClick} className={styles.waitTogetherButton}>
           함께 기다리기
         </button>
