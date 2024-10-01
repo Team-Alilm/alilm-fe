@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Portal from '@/components/common/modal/ModalPortal';
 import Button from '@/components/design-system/button';
@@ -11,19 +11,20 @@ import AlilmTabs from '@/components/main/alilm-tabs';
 import { AlilmTabsProvider } from '@/components/main/alilm-tabs/contexts/alilm-tabs-context';
 import OnboardingModal from '@/components/main/onboarding';
 import ProductCardList from '@/components/product/product-card-list';
+import useBooleanState from '@/hooks/common/use-boolean-state';
 
 import * as styles from './page.css';
 
 const MainPage = () => {
-  const [showOnboarding, setShowOnboarding] = useState(false); // 온보딩 표시 여부 관리
   const router = useRouter();
+  const onBoardingModalState = useBooleanState(); // 온보딩 표시 여부 관리 state
 
   useEffect(() => {
     const firstVisit = localStorage.getItem('showOnboarding');
     if (!firstVisit) {
-      setShowOnboarding(true);
+      onBoardingModalState.open();
     }
-  }, []);
+  }, [onBoardingModalState]);
 
   const handleMoveCreatePage = () => {
     router.push('/create');
@@ -32,7 +33,9 @@ const MainPage = () => {
   return (
     <div className={styles.mainPage}>
       <Portal>
-        {showOnboarding ? <OnboardingModal onClose={() => setShowOnboarding(false)} /> : null}
+        {onBoardingModalState.isVisible ? (
+          <OnboardingModal onClose={onBoardingModalState.close} />
+        ) : null}
       </Portal>
       <Spacer height={40} />
       <Suspense fallback={<AlilmInfo />}>
