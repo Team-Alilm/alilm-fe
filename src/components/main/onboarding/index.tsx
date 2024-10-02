@@ -6,7 +6,14 @@ import Image from 'next/image';
 import { EffectFade, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, type SwiperClass, SwiperSlide } from 'swiper/react';
 
-import { background, content, nextButton, onboardingModal, slide } from './index.css'; // 스타일 파일 import
+import {
+  background,
+  buttonContainer,
+  content,
+  nextButton,
+  onboardingModal,
+  slide,
+} from './index.css'; // 스타일 파일 import
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -16,9 +23,10 @@ interface OnboardingProps {
   onClose: () => void;
 }
 
+const ONBOARDING_IMAGES = ['onboarding_1', 'onboarding_2'];
+
 const OnboardingModal = ({ onClose }: OnboardingProps) => {
-  const swiperRef = useRef<null | SwiperClass>(null); // Swiper 인스턴스를 참조할 Ref 생성
-  // const modalRef = useRef(null);
+  const swiperRef = useRef<null | SwiperClass>(null);
 
   const [buttonText, setButtonText] = useState('다음');
 
@@ -33,7 +41,7 @@ const OnboardingModal = ({ onClose }: OnboardingProps) => {
   const handleNextBtn = () => {
     if (swiperRef.current) {
       if (swiperRef.current.isEnd) {
-        localStorage.setItem('showOnboarding', 'false');
+        localStorage.setItem('showOnboarding', 'completed');
         onClose();
       } else {
         swiperRef.current.slideNext();
@@ -45,7 +53,7 @@ const OnboardingModal = ({ onClose }: OnboardingProps) => {
     // 모달이 열렸을 때 스크롤 막기
     document.body.style.overflow = 'hidden';
 
-    // 컴포넌트가 언마운트될 때(모달이 닫힐 때) 스크롤 다시 활성화
+    // 모달이 닫힐 때 스크롤 다시 활성화
     return () => {
       document.body.style.overflow = 'unset';
     };
@@ -64,33 +72,23 @@ const OnboardingModal = ({ onClose }: OnboardingProps) => {
           pagination={{ clickable: true }}
           modules={[Navigation, Pagination, EffectFade]}
         >
-          <SwiperSlide>
-            <div className={slide}>
-              <div className={content}>
-                <Image
-                  src={'/images/onboarding_1.png'}
-                  layout={'intrinsic'}
-                  alt={'onboarding imag'}
-                  width={500}
-                  height={300}
-                />
+          {ONBOARDING_IMAGES.map(image => (
+            <SwiperSlide key={image}>
+              <div className={slide}>
+                <div className={content}>
+                  <Image
+                    src={`/images/${image}.webp`}
+                    layout={'intrinsic'}
+                    alt={'onboarding imag'}
+                    width={500}
+                    height={300}
+                  />
+                </div>
               </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className={slide}>
-              <div className={content}>
-                <Image
-                  src={'/images/onboarding_2.png'}
-                  layout={'intrinsic'}
-                  alt={'onboarding image'}
-                  width={500}
-                  height={300}
-                />
-              </div>
-            </div>
-          </SwiperSlide>
-          <div style={{ width: '100%', display: 'flex', justifyContent: 'right' }}>
+            </SwiperSlide>
+          ))}
+
+          <div className={buttonContainer}>
             <button className={nextButton} onClick={handleNextBtn}>
               {buttonText}
             </button>

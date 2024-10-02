@@ -20,8 +20,8 @@ const MainPage = () => {
   const onBoardingModalState = useBooleanState(); // 온보딩 표시 여부 관리 state
 
   useEffect(() => {
-    const firstVisit = localStorage.getItem('showOnboarding');
-    if (!firstVisit) {
+    const onboardingState = localStorage.getItem('showOnboarding');
+    if (onboardingState !== 'completed') {
       onBoardingModalState.open();
     }
   }, [onBoardingModalState]);
