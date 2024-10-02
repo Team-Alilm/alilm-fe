@@ -14,10 +14,14 @@ const OauthKakaoPage = () => {
       const queryParams = new URLSearchParams(window.location.search);
       const accessToken = queryParams.get('Authorization');
 
+      console.log('accessToken>>', accessToken);
+
       if (accessToken) {
         Storage.setItem(LOCAL_STORAGE_KEY.accessToken, accessToken);
         router.replace('/');
         handleFcmToken();
+      } else {
+        console.error('Failed to get access token');
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
