@@ -18,6 +18,7 @@ const BasketCard = ({
   secondOption,
   thirdOption,
   waitingCount,
+  tab,
 }: BasketProps) => {
   const { mutate: copyBasketsMutate } = useCopyBaskets();
 
@@ -43,13 +44,18 @@ const BasketCard = ({
         <BasketBadge>{category}</BasketBadge>
         <p className={styles.name}>{name}</p>
         <p className={styles.options}>{description}</p>
-        <div className={styles.waitingCount}>
-          <Icon icon="UserTwoPerson" width={12} height={12} />
-          함께 기다리는 사람 {waitingCount}명
-        </div>
-        <button onClick={handleWaitTogetherButtonClick} className={styles.waitTogetherButton}>
-          함께 기다리기
-        </button>
+
+        {tab === 'home' ? (
+          <>
+            <div className={styles.waitingCount}>
+              <Icon icon="UserTwoPerson" width={12} height={12} />
+              함께 기다리는 사람 {waitingCount}명
+            </div>
+            <button onClick={handleWaitTogetherButtonClick} className={styles.waitTogetherButton}>
+              함께 기다리기
+            </button>
+          </>
+        ) : null}
       </div>
     </div>
   );
