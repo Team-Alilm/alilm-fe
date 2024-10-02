@@ -40,6 +40,8 @@ const interceptorResponseFulfilled = (res: AxiosResponse) => {
 
 // Response interceptor
 const interceptorResponseRejected = (error: AxiosError<ApiErrorScheme>) => {
+  console.log('interceptorResponseRejected>>', error);
+
   //todo : 401 권환 헨들링을 임시로 했어요 리펙토링 필요해보여요!
   if (error.response?.status === 401) {
     if (typeof window !== 'undefined') {
