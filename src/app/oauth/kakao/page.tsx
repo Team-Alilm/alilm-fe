@@ -21,6 +21,7 @@ const OauthKakaoPage = () => {
         router.replace('/');
         handleFcmToken();
       } else {
+        alert('Failed to get access token');
         console.error('Failed to get access token');
       }
     }
