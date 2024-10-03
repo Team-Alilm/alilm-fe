@@ -2,9 +2,9 @@
 
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
+import { Storage } from '@/libs/storage';
 
 import * as styles from './index.css';
-import { Storage } from '@/libs/storage';
 
 const Header = () => {
   const router = useRouter();
