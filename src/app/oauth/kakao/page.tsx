@@ -16,6 +16,7 @@ const OauthKakaoPage = () => {
       const queryParams = new URLSearchParams(window.location.search);
       const accessToken = queryParams.get('Authorization');
       console.log('accessToken>>', accessToken);
+      alert('accessToken>>' + accessToken);
 
       if (accessToken) {
         Storage.setItem(LOCAL_STORAGE_KEY.accessToken, accessToken);
