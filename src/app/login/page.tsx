@@ -6,8 +6,8 @@ import * as styles from './index.css';
 
 const LoginPage = () => {
   const handleKakaoLoginClick = () => {
-    // window.location.href = `https://alilm.store/oauth2/authorization/kakao`;
-    window.location.href = `http://172.30.1.41:8080/oauth2/authorization/kakao`;
+    window.location.href = `https://alilm.store/oauth2/authorization/kakao`;
+    // window.location.href = `http://172.30.1.41:8080/oauth2/authorization/kakao`;
   };
 
   return (
