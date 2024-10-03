@@ -69,21 +69,16 @@ export const buttonContainer = style({
 });
 
 export const nextButton = style({
-  padding: '3.5% 5.5%',
+  width: '18%',
+  padding: '3.5% 0',
   backgroundColor: '#E6E6E6',
   color: '#303030',
   border: 'none',
   borderRadius: '100px',
   cursor: 'pointer',
-  fontSize: '1rem',
+  fontSize: '0.9rem',
   fontWeight: '700',
   zIndex: 10,
-
-  '@media': {
-    'screen and (max-width: 768px)': {
-      fontSize: '0.9rem',
-    },
-  },
 });
 
 export const content = style({
@@ -96,11 +91,10 @@ export const content = style({
 });
 
 globalStyle('.swiper-pagination-bullet.swiper-pagination-bullet-active', {
-  opacity: '0.2',
   width: '16%',
   borderRadius: '1rem',
   animation: `${bulletGrow} 0.2s ease-in-out`,
-  backgroundColor: '#fff',
+  backgroundColor: '#B9B9B9',
   height: '0.6vh',
 });
 
