@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image';
+import Icon from '@/components/icons';
 
 import * as styles from './index.css';
 
@@ -17,14 +17,7 @@ const LoginPage = () => {
         로그인해주세요.
       </p>
       <div className={styles.loginButton}>
-        <Image
-          src="/icons/kakao_login_medium_wide.png"
-          onClick={handleKakaoLoginClick}
-          alt="kakao login logo"
-          width={300}
-          height={45}
-          style={{ cursor: 'pointer' }}
-        />
+        <Icon icon="KakaoLoginBtn" width={200} />
       </div>
     </div>
   );
