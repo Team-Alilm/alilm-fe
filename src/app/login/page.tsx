@@ -1,13 +1,15 @@
 'use client';
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 import * as styles from './index.css';
 
 const LoginPage = () => {
+  const router = useRouter();
+
   const handleKakaoLoginClick = () => {
-    window.location.href = `https://alilm.store/oauth2/authorization/kakao`;
-    // window.location.href = `http://172.30.1.41:8080/oauth2/authorization/kakao`;
+    router.push(`https://alilm.store/oauth2/authorization/kakao`);
   };
 
   return (
