@@ -28,16 +28,12 @@ const Header = () => {
       <div className={styles.rightHeaderWrapper}>
         <button
           onClick={() => {
-            if (Storage.getItem('access-token')) {
-              Storage.deleteItem('access-token');
-              router.push('/');
-            } else {
-              router.push('/login');
-            }
+            Storage.deleteItem('access-token');
           }}
         >
-          {Storage.getItem('access-token') ? '로그아웃' : '카카오로 로그인하기'}
+          로그아웃
         </button>
+
         <Image
           src="/icons/alilm.svg"
           className={styles.alilmIcon}
