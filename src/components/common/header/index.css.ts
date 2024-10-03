@@ -14,3 +14,9 @@ export const header = style({
 export const alilmIcon = style({
   cursor: 'pointer',
 });
+
+export const rightHeaderWrapper = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '12px',
+});
