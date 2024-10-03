@@ -7,13 +7,12 @@ import handleFcmToken from '@/utils/handle-fcm-token';
 
 const OauthKakaoPage = () => {
   const router = useRouter();
+  const queryParams = new URLSearchParams(window.location.search);
+  const accessToken = queryParams.get('Authorization');
 
   useEffect(() => {
     // 클라이언트 환경에서만 실행되도록 window 객체가 있는지 확인
     if (typeof window !== 'undefined') {
-      const queryParams = new URLSearchParams(window.location.search);
-      const accessToken = queryParams.get('Authorization');
-
       console.log('accessToken>>', accessToken);
 
       if (accessToken) {
@@ -24,9 +23,11 @@ const OauthKakaoPage = () => {
         alert('Failed to get access token');
         console.error('Failed to get access token');
       }
+    } else {
+      alert('Failed to get access token');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [accessToken]);
 
   return null;
 };
