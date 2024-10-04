@@ -1,12 +1,16 @@
 'use client';
 
 import Icon from '@/components/icons';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 import * as styles from './index.css';
 
 const LoginPage = () => {
+  const router = useRouter();
+
   const handleKakaoLoginClick = () => {
-    window.location.href = `https://alilm.store/oauth2/authorization/kakao`;
+    router.push(`https://alilm.store/oauth2/authorization/kakao`);
   };
 
   return (

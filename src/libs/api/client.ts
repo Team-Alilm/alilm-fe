@@ -15,6 +15,7 @@ const interceptorRequestFulfilled = (config: InternalAxiosRequestConfig) => {
     return config;
   }
   const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
+  // Bearer
   if (!config.headers) {
     return config;
   }
@@ -22,7 +23,7 @@ const interceptorRequestFulfilled = (config: InternalAxiosRequestConfig) => {
     return config;
   }
 
-  config.headers.Authorization = `Bearer ${accessToken}`;
+  config.headers.Authorization = `${accessToken}`;
 
   return config;
 };
