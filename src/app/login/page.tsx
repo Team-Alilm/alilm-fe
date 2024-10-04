@@ -16,8 +16,14 @@ const LoginPage = () => {
         <br />
         로그인해주세요.
       </p>
-      <div className={styles.loginButton}>
-        <Icon icon="KakaoLoginBtn" width={200} />
+      <div
+        className={styles.loginButton}
+        role="button"
+        tabIndex={0}
+        onKeyDown={handleKakaoLoginClick}
+        onClick={handleKakaoLoginClick}
+      >
+        <Icon icon="KakaoLoginBtn" width={180} cursor="pointer" />
       </div>
     </div>
   );
