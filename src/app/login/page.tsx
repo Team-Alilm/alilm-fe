@@ -1,8 +1,7 @@
 'use client';
 
-import Icon from '@/components/icons';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import Icon from '@/components/icons';
 
 import * as styles from './index.css';
 
