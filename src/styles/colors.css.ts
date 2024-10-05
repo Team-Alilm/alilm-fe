@@ -10,6 +10,8 @@ export const tokens = createGlobalTheme(':root', {
     textPrimary: '#000000',
     textSecondary: '#757575',
 
+    productName: '#101010',
+    productOptions: '#303030',
     waitingCount: '#303030',
 
     categoryTagBg: '#EBF0FF',

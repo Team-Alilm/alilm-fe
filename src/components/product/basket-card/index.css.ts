@@ -28,7 +28,8 @@ export const name = style({
   marginBottom: '6px',
   whiteSpace: 'nowrap',
   overflow: 'hidden',
-  textOverflow: 'ellipsis', // Replaces the overflowed content with an ellipsis (...)
+  textOverflow: 'ellipsis',
+  color: tokens.color.productName,
 });
 
 export const options = style({
@@ -38,6 +39,7 @@ export const options = style({
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
+  color: tokens.color.productOptions,
 });
 
 export const waitTogetherButton = style({
@@ -57,12 +59,13 @@ export const waitTogetherButton = style({
 });
 
 export const waitingCount = style([
+  fonts.waitingCount,
   {
     display: 'flex',
     alignItems: 'center',
     gap: '4px',
+    color: tokens.color.waitingCount,
   },
-  fonts.waitingCount,
 ]);
 
 export const waitingCountStrong = style([
