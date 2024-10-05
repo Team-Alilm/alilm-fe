@@ -15,4 +15,9 @@ export const tokens = createGlobalTheme(':root', {
     categoryTagBg: '#EBF0FF',
     categoryTagText: '#456AEB',
   },
+  // shadows: {}
+
+  // borderRadius: {}
+
+  // zIndex: {}
 });
