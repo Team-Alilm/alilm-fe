@@ -45,7 +45,7 @@ export const waitTogetherButton = style({
   borderRadius: '4px',
   height: '33px',
   padding: '0 14px',
-  fontSize: '14px',
+  fontSize: '1.4rem',
   fontWeight: '600',
   color: '#101010',
   background: '#FFFFFF',

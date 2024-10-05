@@ -8,22 +8,22 @@ const baseTextStyle = {
 
 export const fonts = {
   waitingCount: style({
-    fontSize: '12px',
+    fontSize: '1.2rem',
     fontWeight: '500',
-    lineHeight: '14.32px',
+    lineHeight: '1.432px',
     ...baseTextStyle,
   }),
   waitingCountStrong: style({
-    fontSize: '12px',
+    fontSize: '1.2rem',
     fontWeight: '600',
-    lineHeight: '14.32px',
+    lineHeight: '1.432px',
     ...baseTextStyle,
   }),
 
   categoryText: style({
-    fontSize: '12px',
+    fontSize: '1.2rem',
     fontWeight: '700',
-    lineHeight: '14.32px',
+    lineHeight: '1.432px',
     ...baseTextStyle,
   }),
 };
