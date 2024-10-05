@@ -13,7 +13,7 @@ export const basketBadge = style([
     padding: '0 8px',
 
     borderRadius: '2px',
-    backgroundColor: tokens.color.categoryTagBg,
-    color: tokens.color.categoryTagText,
+    backgroundColor: tokens.colors.categoryTagBg,
+    color: tokens.colors.categoryTagText,
   },
 ]);

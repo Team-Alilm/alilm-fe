@@ -1,9 +1,9 @@
 import { style } from '@vanilla-extract/css';
 
-import { tokens } from './colors.css';
+import { tokens } from './tokens.css';
 
 const baseTextStyle = {
-  color: tokens.color.textPrimary,
+  color: tokens.colors.textPrimary,
 };
 
 export const fonts = {

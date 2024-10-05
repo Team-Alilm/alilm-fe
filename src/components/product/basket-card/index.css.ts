@@ -29,7 +29,7 @@ export const name = style({
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
-  color: tokens.color.productName,
+  color: tokens.colors.productName,
 });
 
 export const options = style({
@@ -39,7 +39,7 @@ export const options = style({
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
-  color: tokens.color.productOptions,
+  color: tokens.colors.productOptions,
 });
 
 export const waitTogetherButton = style({
@@ -64,13 +64,13 @@ export const waitingCount = style([
     display: 'flex',
     alignItems: 'center',
     gap: '4px',
-    color: tokens.color.waitingCount,
+    color: tokens.colors.waitingCount,
   },
 ]);
 
 export const waitingCountStrong = style([
   fonts.waitingCountStrong,
   {
-    color: tokens.color.waitingCount,
+    color: tokens.colors.waitingCount,
   },
 ]);

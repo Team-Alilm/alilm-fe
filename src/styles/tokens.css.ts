@@ -1,7 +1,7 @@
 import { createGlobalTheme } from '@vanilla-extract/css';
 
 export const tokens = createGlobalTheme(':root', {
-  color: {
+  colors: {
     primary: '#6200ee',
     secondary: '#03dac6',
     background: '#f6f6f6',
