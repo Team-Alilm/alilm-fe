@@ -1,3 +1,4 @@
+import { fonts } from '@/styles/fonts.css';
 import { style } from '@vanilla-extract/css';
 
 export const basketCard = style({
@@ -54,12 +55,13 @@ export const waitTogetherButton = style({
   textOverflow: 'ellipsis',
 });
 
-export const waitingCount = style({
-  display: 'flex',
-  alignItems: 'center',
-  gap: '4px',
+export const waitingCount = style([
+  {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '4px',
+  },
+  fonts.waitingCount,
+]);
 
-  fontSize: '14px',
-  fontWeight: '400',
-  color: '#666',
-});
+export const waitingCountStrong = style([fonts.waitingCountStrong]);
