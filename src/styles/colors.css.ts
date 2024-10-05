@@ -11,5 +11,8 @@ export const tokens = createGlobalTheme(':root', {
     textSecondary: '#757575',
 
     waitingCount: '#303030',
+
+    categoryTagBg: '#EBF0FF',
+    categoryTagText: '#456AEB',
   },
 });

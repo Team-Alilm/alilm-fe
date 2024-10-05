@@ -17,6 +17,13 @@ export const fonts = {
     fontSize: '12px',
     fontWeight: '600',
     lineHeight: '14.32px',
-    color: tokens.color.waitingCount,
+    ...baseTextStyle,
+  }),
+
+  categoryText: style({
+    fontSize: '12px',
+    fontWeight: '700',
+    lineHeight: '14.32px',
+    ...baseTextStyle,
   }),
 };

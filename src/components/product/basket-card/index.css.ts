@@ -1,3 +1,4 @@
+import { tokens } from '@/styles';
 import { fonts } from '@/styles/fonts.css';
 import { style } from '@vanilla-extract/css';
 
@@ -64,4 +65,9 @@ export const waitingCount = style([
   fonts.waitingCount,
 ]);
 
-export const waitingCountStrong = style([fonts.waitingCountStrong]);
+export const waitingCountStrong = style([
+  fonts.waitingCountStrong,
+  {
+    color: tokens.color.waitingCount,
+  },
+]);
