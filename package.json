@@ -11,6 +11,11 @@
     "prepare": "husky install",
     "check:type": "tsc --noEmit"
   },
+  "pnpm": {
+    "overrides": {
+      "undici": "5.28.4"
+    }
+  },
   "dependencies": {
     "@suspensive/react": "^2.14.0",
     "@suspensive/react-query": "^2.14.0",

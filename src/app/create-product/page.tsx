@@ -6,7 +6,10 @@ import Image from 'next/image';
 interface ProductInfo {
   title?: string;
   imageUrl?: string;
-  price?: string;
+  price?: number;
+  firstOptions?: string[];
+  secondOptions?: string[];
+  thirdOptions?: string[];
 }
 
 export default function CrawlingPage() {
@@ -39,7 +42,7 @@ export default function CrawlingPage() {
       const data = await response.json();
       setProductInfo(data);
     } catch (err) {
-      setError('An error occurred while fetching the data. Please try again.');
+      setError('Failed to fetch data');
       console.error(err);
     } finally {
       setIsLoading(false);
@@ -72,7 +75,7 @@ export default function CrawlingPage() {
             cursor: isLoading ? 'not-allowed' : 'pointer',
           }}
         >
-          {isLoading ? 'Loading...' : 'Crawl Product'}
+          {isLoading ? '...' : '조회'}
         </button>
       </form>
 
@@ -93,8 +96,44 @@ export default function CrawlingPage() {
             />
           )}
           {productInfo.price && (
-            <p style={{ fontSize: '1.1rem', fontWeight: 'bold' }}>Price: {productInfo.price}</p>
+            <p style={{ fontSize: '1.1rem', fontWeight: 'bold' }}>
+              가격: {productInfo.price.toLocaleString()}원
+            </p>
           )}
+          {/* Display size options */}
+          <div>
+            <h3>상품</h3>
+            {productInfo.firstOptions && productInfo.firstOptions.length > 0 && (
+              <div>
+                <strong>상품 옵션1:</strong>
+                <ul>
+                  {productInfo.firstOptions.map((option, index) => (
+                    <li key={index}>{option}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {productInfo.secondOptions && productInfo.secondOptions.length > 0 && (
+              <div>
+                <strong>Second Options:</strong>
+                <ul>
+                  {productInfo.secondOptions.map((option, index) => (
+                    <li key={index}>{option}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {productInfo.thirdOptions && productInfo.thirdOptions.length > 0 && (
+              <div>
+                <strong>Third Options:</strong>
+                <ul>
+                  {productInfo.thirdOptions.map((option, index) => (
+                    <li key={index}>{option}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>
