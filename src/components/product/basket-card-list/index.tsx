@@ -2,6 +2,7 @@ import { useIntersection } from '@/hooks/common/use-intersection';
 import { useGetBaskets } from '@/hooks/quries/use-get-baskets';
 
 import BasketCard from '../basket-card';
+import BasketCardSkeleton from '../basket-card/basket-card-skeleton';
 import * as styles from './index.css';
 
 const BasketCardList = () => {
@@ -10,6 +11,7 @@ const BasketCardList = () => {
     fetchNextPage,
     hasNextPage,
     isFetching,
+    isLoading,
     isFetchingNextPage,
   } = useGetBaskets();
 
@@ -24,8 +26,12 @@ const BasketCardList = () => {
   return (
     <div className={styles.basketCardList}>
       {baskets.map(basket => (
-        <BasketCard key={basket.id} {...basket} tab="home" isFetching={isFetching} />
+        <BasketCard key={basket.id} {...basket} tab="home" isLoading={isLoading} />
       ))}
+
+      {isFetchingNextPage &&
+        [...Array(5)].map((_, index) => <BasketCardSkeleton key={`skeleton-${index}`} />)}
+
       {hasNextPage && <div ref={observeRef} />}
     </div>
   );

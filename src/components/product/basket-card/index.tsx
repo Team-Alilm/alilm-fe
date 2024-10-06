@@ -4,10 +4,11 @@ import { BasketBadge } from '@/components/product/basket-badge';
 import { useCopyBaskets } from '@/hooks/mutations/use-copy-baskets';
 import { type Basket } from '@/types/basket';
 
+import BasketCardSkeleton from './basket-card-skeleton';
 import * as styles from './index.css';
 
 type BasketProps = Basket & {
-  isFetching?: boolean;
+  isLoading?: boolean;
 };
 
 const BasketCard = ({
@@ -21,7 +22,7 @@ const BasketCard = ({
   thirdOption,
   waitingCount,
   tab,
-  isFetching,
+  isLoading,
 }: BasketProps) => {
   const { mutate: copyBasketsMutate } = useCopyBaskets();
 
@@ -31,21 +32,8 @@ const BasketCard = ({
     copyBasketsMutate(id);
   };
 
-  if (isFetching) {
-    return (
-      <div className={styles.basketCard}>
-        <div className={styles.imageWrapper}>
-          <div className={styles.skeletonThumbnailImage} />
-        </div>
-        <div>
-          <div className={styles.skeletonBadge} />
-          <div className={styles.skeletonName} />
-          <div className={styles.skeletonOptions} />
-          <div className={styles.skeletonWaitingCount} />
-          <div className={styles.skeletonButton} />
-        </div>
-      </div>
-    );
+  if (isLoading) {
+    return <BasketCardSkeleton />;
   }
 
   return (
