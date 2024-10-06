@@ -6,7 +6,9 @@ import { type Basket } from '@/types/basket';
 
 import * as styles from './index.css';
 
-type BasketProps = Basket;
+type BasketProps = Basket & {
+  isFetching?: boolean;
+};
 
 const BasketCard = ({
   id,
@@ -19,6 +21,7 @@ const BasketCard = ({
   thirdOption,
   waitingCount,
   tab,
+  isFetching,
 }: BasketProps) => {
   const { mutate: copyBasketsMutate } = useCopyBaskets();
 
@@ -27,6 +30,23 @@ const BasketCard = ({
   const handleWaitTogetherButtonClick = () => {
     copyBasketsMutate(id);
   };
+
+  if (isFetching) {
+    return (
+      <div className={styles.basketCard}>
+        <div className={styles.imageWrapper}>
+          <div className={styles.skeletonThumbnailImage} />
+        </div>
+        <div>
+          <div className={styles.skeletonBadge} />
+          <div className={styles.skeletonName} />
+          <div className={styles.skeletonOptions} />
+          <div className={styles.skeletonWaitingCount} />
+          <div className={styles.skeletonButton} />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.basketCard}>

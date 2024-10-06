@@ -5,7 +5,13 @@ import BasketCard from '../basket-card';
 import * as styles from './index.css';
 
 const BasketCardList = () => {
-  const { data: baskets, fetchNextPage, hasNextPage, isFetching } = useGetBaskets();
+  const {
+    data: baskets,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+    isFetchingNextPage,
+  } = useGetBaskets();
 
   const observeRef = useIntersection((entry, observer) => {
     observer.unobserve(entry.target);
@@ -18,7 +24,7 @@ const BasketCardList = () => {
   return (
     <div className={styles.basketCardList}>
       {baskets.map(basket => (
-        <BasketCard key={basket.id} {...basket} tab="home" />
+        <BasketCard key={basket.id} {...basket} tab="home" isFetching={isFetching} />
       ))}
       {hasNextPage && <div ref={observeRef} />}
     </div>
