@@ -16,9 +16,12 @@ const Header = () => {
     router.push('/');
   };
 
-  const { data: myInfo, isFetching } = useGetMyInfo();
-
-  console.log('myInfo>>', myInfo);
+  const { data: myInfo } = useGetMyInfo({
+    // interceptorResponseRejected에서 401에러 발생하면 /login으로 이동하도록 설정되어있고,
+    // /login으로 이동하면 useGetMyInfo api가 또 호출하면서 401을 뱉어서 무한루프에 빠지는 문제가 있습니다.
+    // 그래서 아래와 같이 enabled를 설정해주었습니다.
+    enabled: pathname !== '/login' && Boolean(Storage.getItem('access-token')),
+  });
 
   return (
     <header className={styles.header} style={{ display: pathname === '/login' ? 'none' : 'flex' }}>
@@ -31,17 +34,26 @@ const Header = () => {
         alt="Logo"
       />
       <div className={styles.rightHeaderWrapper}>
-        <button
+        {/* 임시 주석 처리 24/10/06 */}
+        {/* <button
           onClick={() => {
             Storage.deleteItem('access-token');
           }}
         >
           로그아웃
-        </button>
+        </button> */}
 
         <Icon icon="Bell" width={24} height={24} />
 
-        <Icon icon="Avatar" width={36} height={36} />
+        {myInfo?.email ? (
+          <Icon
+            icon="Avatar"
+            width={36}
+            height={36}
+            cursor="pointer"
+            onClick={() => alert(`${myInfo.nickname}님 환영합니다! 마이페이지는 준비중입니다.`)}
+          />
+        ) : null}
       </div>
     </header>
   );

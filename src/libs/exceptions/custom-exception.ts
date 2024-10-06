@@ -1,4 +1,4 @@
-type CustomErrorCode = 'UNKNOWN_ERROR' | 'NETWORK_TIMEOUT' | 'NETWORK_ERROR';
+type CustomErrorCode = 'UNKNOWN_ERROR' | 'NETWORK_TIMEOUT' | 'NETWORK_ERROR' | 'UNAUTHORIZED';
 
 class CustomException extends Error {
   declare code: CustomErrorCode;

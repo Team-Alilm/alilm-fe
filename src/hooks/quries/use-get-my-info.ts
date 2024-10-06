@@ -23,7 +23,7 @@ export default function useGetMyInfo(options?: UseQueryCustomOptions<UseGetMyInf
   return useQuery({
     queryKey,
     queryFn,
-    staleTime: 1000 * 60 * 60,
+    staleTime: 1000 * 60 * 60, // 1시간
     ...options,
   });
 }
