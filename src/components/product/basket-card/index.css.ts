@@ -6,7 +6,7 @@ export const basketCard = style({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',
-  minWidth: '100px',
+  minWidth: '10rem',
   margin: 'auto',
   width: '90%',
   height: '100%',
@@ -58,9 +58,9 @@ export const options = style({
 });
 
 export const waitTogetherButton = style({
-  border: '1px solid #EEEEEE',
+  border: '0.1rem solid #EEEEEE',
   borderRadius: '0.4rem',
-  height: '33px',
+  height: '3.3rem',
   padding: '0 1.4rem',
   fontSize: '1.4rem',
   fontWeight: '600',
@@ -78,7 +78,7 @@ export const waitingCount = style([
   {
     display: 'flex',
     alignItems: 'center',
-    gap: '4px',
+    gap: '0.4rem',
     color: tokens.colors.waitingCount,
   },
 ]);
@@ -91,8 +91,8 @@ export const waitingCountStrong = style([
 ]);
 
 const skeletonShimmer = keyframes({
-  '0%': { backgroundPosition: '-1000px 0' },
-  '100%': { backgroundPosition: '1000px 0' },
+  '0%': { backgroundPosition: '-100rem 0' },
+  '100%': { backgroundPosition: '100rem 0' },
 });
 
 // 기본 스켈레톤 스타일
@@ -100,7 +100,7 @@ export const skeletonBase = style({
   backgroundColor: '#e0e0e0',
   backgroundImage: 'linear-gradient(to right, #e0e0e0 0%, #f0f0f0 50%, #e0e0e0 100%)',
   backgroundRepeat: 'no-repeat',
-  backgroundSize: '1000px 100%',
+  backgroundSize: '100rem 100%',
   animation: `${skeletonShimmer} 2s infinite linear`,
 });
 
