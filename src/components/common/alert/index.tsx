@@ -2,27 +2,50 @@ import * as AlertDialog from '@radix-ui/react-alert-dialog';
 
 import * as styles from './index.css';
 
-const Alert = () => (
-  <AlertDialog.Root>
-    <AlertDialog.Trigger asChild>
-      <button className="Button violet">Delete account</button>
-    </AlertDialog.Trigger>
+export interface AlertProps {
+  type: 'alert' | 'confirm';
+  title: string;
+  description?: string;
+  /**
+   * alert일 경우 cancelBtnText만 지정
+   */
+  cancelBtnText: string;
+  confirmBtnText?: string;
+  onClick?: () => void;
+  isOpen: boolean;
+}
+
+/**
+ *  얼럿, 확인창 컴포넌트
+ *
+ */
+const Alert = ({
+  type,
+  title,
+  description,
+  cancelBtnText,
+  confirmBtnText,
+  onClick,
+  isOpen,
+}: AlertProps) => (
+  <AlertDialog.Root open={isOpen}>
     <AlertDialog.Portal>
       <AlertDialog.Overlay className={styles.overlay} />
       <AlertDialog.Content className={styles.content}>
-        <AlertDialog.Title className={styles.title}>
-          이 화면을 나가면 작성중인 게시물이 삭제돼요!
-        </AlertDialog.Title>
+        <AlertDialog.Title className={styles.title}>{title}</AlertDialog.Title>
         <AlertDialog.Description className="AlertDialogDescription">
-          그래도 나가시겠어요?
+          {description}
         </AlertDialog.Description>
-        <div style={{ display: 'flex', gap: 25, justifyContent: 'flex-end' }}>
+
+        <div className={styles.btnContainer}>
           <AlertDialog.Cancel asChild>
-            <button className={styles.button}>취소</button>
+            <button className={styles.cancelBtn}>{cancelBtnText}</button>
           </AlertDialog.Cancel>
-          <AlertDialog.Action asChild>
-            <button className={styles.button}>확인</button>
-          </AlertDialog.Action>
+          {type === 'confirm' && (
+            <AlertDialog.Action asChild onClick={onClick}>
+              <button className={styles.confirmBtn}>{confirmBtnText}</button>
+            </AlertDialog.Action>
+          )}
         </div>
       </AlertDialog.Content>
     </AlertDialog.Portal>
