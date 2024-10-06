@@ -16,7 +16,11 @@ export const tokens = createGlobalTheme(':root', {
 
     categoryTagBg: '#EBF0FF',
     categoryTagText: '#456AEB',
+
+    overlay: 'rgba(0, 0, 0, 0.6)',
+    border: '#DDDDDD',
   },
+
   // shadows: {}
 
   // borderRadius: {}

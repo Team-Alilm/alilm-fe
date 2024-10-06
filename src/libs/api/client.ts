@@ -52,6 +52,10 @@ const interceptorResponseRejected = (error: AxiosError<ApiErrorScheme>) => {
     return Promise.reject(new CustomException(errorMessage.UNKNOWN_401, 'NETWORK_ERROR'));
   }
 
+  if (error.response?.status === 409) {
+    alert(error.response.data);
+  }
+
   if (error.response?.data?.['response_messages']) {
     return Promise.reject(new ApiException(error.response.data, error.response.status));
   }
