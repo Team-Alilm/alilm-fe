@@ -53,6 +53,9 @@ const ProductOptionsForm = ({ url, setCreateForm }: ProductOptionsFormProps) => 
         src={productsCrawling.imageUrl}
         className={styles.previewImage}
         alt="Product Preview"
+        width={800}
+        height={800}
+        style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
       />
       {isNotEmptyArray(firstOptions) && (
         <Select

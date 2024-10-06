@@ -1,6 +1,7 @@
 import { type PropsWithChildren } from 'react';
 import { type Metadata } from 'next';
 import { Theme } from '@radix-ui/themes';
+import { Pretendard } from '@/styles/local-fonts';
 
 import HeaderController from './header-controller'; // 클라이언트 컴포넌트
 import * as styles from './layout.css';
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: PropsWithChildren) => {
   return (
-    <html lang="kr">
+    <html lang="ko" className={Pretendard.className}>
       <body>
         <Providers>
           <Theme>
