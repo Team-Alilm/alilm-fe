@@ -21,7 +21,8 @@ export const thumbnailImage = style({
   maxHeight: '21.8rem',
 
   // height: 'clamp(21.8rem, 21.8rem, 21.8rem)',
-  borderRadius: '0.4rem',
+  objectFit: 'cover',
+  borderRadius: '1.2rem',
 });
 
 export const name = style({

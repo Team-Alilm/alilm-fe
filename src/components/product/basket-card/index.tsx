@@ -37,7 +37,6 @@ const BasketCard = ({
           alt="Basket Thumbnail"
           width={800}
           height={800}
-          style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
         />
       </div>
       <div>
