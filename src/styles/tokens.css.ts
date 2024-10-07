@@ -19,6 +19,8 @@ export const tokens = createGlobalTheme(':root', {
 
     overlay: 'rgba(0, 0, 0, 0.6)',
     border: '#DDDDDD',
+
+    white: '#fff',
   },
 
   // shadows: {}

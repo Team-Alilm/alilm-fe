@@ -4,9 +4,12 @@ import { BasketBadge } from '@/components/product/basket-badge';
 import { useCopyBaskets } from '@/hooks/mutations/use-copy-baskets';
 import { type Basket } from '@/types/basket';
 
+import BasketCardSkeleton from './basket-card-skeleton';
 import * as styles from './index.css';
 
-type BasketProps = Basket;
+type BasketProps = Basket & {
+  isLoading?: boolean;
+};
 
 const BasketCard = ({
   id,
@@ -19,6 +22,7 @@ const BasketCard = ({
   thirdOption,
   waitingCount,
   tab,
+  isLoading,
 }: BasketProps) => {
   const { mutate: copyBasketsMutate } = useCopyBaskets();
 
@@ -27,6 +31,10 @@ const BasketCard = ({
   const handleWaitTogetherButtonClick = () => {
     copyBasketsMutate(id);
   };
+
+  if (isLoading) {
+    return <BasketCardSkeleton />;
+  }
 
   return (
     <div className={styles.basketCard}>
@@ -37,7 +45,6 @@ const BasketCard = ({
           alt="Basket Thumbnail"
           width={800}
           height={800}
-          style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
         />
       </div>
       <div>
