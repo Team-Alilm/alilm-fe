@@ -1,0 +1,21 @@
+export const ERROR_CODE = {
+  UNSUPPORTED_URL: 'UNSUPPORTED_URL',
+  INVALID_PRODUCT_URL: 'INVALID_PRODUCT_URL',
+  PRODUCT_NOT_FOUND: 'PRODUCT_NOT_FOUND',
+  PAGE_NOT_FOUND: 'PAGE_NOT_FOUND',
+  OPTIONS_NOT_FOUND: 'OPTIONS_NOT_FOUND',
+  FETCH_FAILED: 'FETCH_FAILED',
+  INTERNAL_SERVER_ERROR: 'INTERNAL_SERVER_ERROR',
+} as const;
+
+export type ErrorCode = (typeof ERROR_CODE)[keyof typeof ERROR_CODE];
+
+export const ERROR_MESSAGES: Record<ErrorCode, string> = {
+  [ERROR_CODE.UNSUPPORTED_URL]: '지원하지 않는 URL 입니다.',
+  [ERROR_CODE.INVALID_PRODUCT_URL]: '올바른 상품 URL이 아닙니다.',
+  [ERROR_CODE.PRODUCT_NOT_FOUND]: '상품 정보를 찾을 수 없습니다.',
+  [ERROR_CODE.PAGE_NOT_FOUND]: '상품 페이지를 찾을 수 없습니다.',
+  [ERROR_CODE.OPTIONS_NOT_FOUND]: '상품 옵션 정보를 찾을 수 없습니다.',
+  [ERROR_CODE.FETCH_FAILED]: '데이터를 가져오는데 실패했습니다.',
+  [ERROR_CODE.INTERNAL_SERVER_ERROR]: '서버 내부 오류가 발생했습니다.',
+};
