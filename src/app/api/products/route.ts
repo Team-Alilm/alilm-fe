@@ -1,6 +1,7 @@
 // app/api/products/route.ts
 
 import { type NextRequest, NextResponse } from 'next/server';
+import { ERROR_CODE } from '@/utils/error-code';
 import * as cheerio from 'cheerio';
 
 const MUSINSA_API_URL_TEMPLATE =
@@ -11,11 +12,15 @@ export async function POST(request: NextRequest) {
     const { url } = await request.json();
 
     if (!url || !url.includes('musinsa')) {
-      return NextResponse.json({ error: '지원하지 않는 URL 입니다.' }, { status: 400 });
+      return NextResponse.json({ error: ERROR_CODE.UNSUPPORTED_URL }, { status: 400 });
     }
 
     const decodedUrl = decodeURIComponent(url);
     const productNumber = extractProductNumber(decodedUrl);
+
+    if (!productNumber) {
+      return NextResponse.json({ error: ERROR_CODE.INVALID_PRODUCT_URL }, { status: 400 });
+    }
 
     const [pageContent, soldoutCheckResponse] = await Promise.all([
       fetchPageContent(decodedUrl),
@@ -25,7 +30,16 @@ export async function POST(request: NextRequest) {
     const $ = cheerio.load(pageContent);
     const scriptContent = $('script').text();
     const jsonData = extractJsonData(scriptContent, 'window.__MSS__.product.state');
-    const productData = JSON.parse(jsonData || '{}');
+
+    if (!jsonData) {
+      return NextResponse.json({ error: ERROR_CODE.PRODUCT_NOT_FOUND }, { status: 404 });
+    }
+
+    const productData = JSON.parse(jsonData);
+
+    if (!productData.goodsNo) {
+      return NextResponse.json({ error: ERROR_CODE.PRODUCT_NOT_FOUND }, { status: 404 });
+    }
 
     const options = extractOptions(soldoutCheckResponse);
 
@@ -33,7 +47,9 @@ export async function POST(request: NextRequest) {
       number: productData.goodsNo,
       name: productData.goodsNm,
       brand: productData.brand,
-      imageUrl: `https://image.msscdn.net${productData.thumbnailImageUrl}`,
+      imageUrl: productData.thumbnailImageUrl
+        ? `https://image.msscdn.net${productData.thumbnailImageUrl}`
+        : null,
       category: productData.category?.categoryDepth1Title,
       price: productData.goodsPrice?.maxPrice,
       store: 'MUSINSA',
@@ -48,7 +64,11 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Error processing request:', error);
 
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    if (error instanceof Error) {
+      return NextResponse.json({ error: ERROR_CODE.FETCH_FAILED }, { status: 500 });
+    }
+
+    return NextResponse.json({ error: ERROR_CODE.INTERNAL_SERVER_ERROR }, { status: 500 });
   }
 }
 
@@ -60,7 +80,13 @@ function extractProductNumber(url: string): string {
 
 async function fetchPageContent(url: string): Promise<string> {
   const response = await fetch(url);
-  if (!response.ok) throw new Error('Failed to fetch page content');
+
+  if (!response.ok) {
+    if (response.status === 404) {
+      throw new Error(ERROR_CODE.PAGE_NOT_FOUND);
+    }
+    throw new Error(ERROR_CODE.FETCH_FAILED);
+  }
 
   return response.text();
 }
@@ -68,7 +94,13 @@ async function fetchPageContent(url: string): Promise<string> {
 async function fetchSoldoutCheckResponse(number: string) {
   const url = MUSINSA_API_URL_TEMPLATE.replace('%s', number);
   const response = await fetch(url);
-  if (!response.ok) throw new Error('Failed to fetch soldout check response');
+
+  if (!response.ok) {
+    if (response.status === 404) {
+      throw new Error(ERROR_CODE.OPTIONS_NOT_FOUND);
+    }
+    throw new Error(ERROR_CODE.FETCH_FAILED);
+  }
 
   return response.json();
 }
@@ -84,10 +116,53 @@ function extractJsonData(scriptContent: string, variableName: string): string | 
   return substring.substring(0, endIndex);
 }
 
-function extractOptions(response: any): { first: string[]; second: string[]; third: string[] } {
-  const firstOptions = response.data.basic[0]?.optionValues.map((ov: any) => ov.name) || [];
-  const secondOptions = response.data.basic[1]?.optionValues.map((ov: any) => ov.name) || [];
-  const thirdOptions = response.data.basic[2]?.optionValues.map((ov: any) => ov.name) || [];
+//
+interface OptionValue {
+  name: string;
+}
+
+interface Color {}
+
+interface OptionItem {
+  no: number;
+  goodsNo: number;
+  optionValueNos: number[];
+  managedCode: string;
+  price: number;
+  activated: boolean;
+  outOfStock: boolean;
+  isDeleted: boolean;
+  optionValues: OptionValue[];
+  colors: Color[];
+  remainQuantity: number;
+}
+
+interface BasicOption {
+  optionValues: OptionValue[];
+}
+
+interface ExtractOptionsResponse {
+  meta: {
+    result: string;
+    errorCode: string;
+    message: string;
+  };
+  data: {
+    basic: BasicOption[];
+    extra: unknown[];
+    optionItems: OptionItem[];
+  };
+  error: null | unknown;
+}
+
+function extractOptions(response: ExtractOptionsResponse): {
+  first: string[];
+  second: string[];
+  third: string[];
+} {
+  const firstOptions = response.data.basic[0]?.optionValues.map(ov => ov.name) || [];
+  const secondOptions = response.data.basic[1]?.optionValues.map(ov => ov.name) || [];
+  const thirdOptions = response.data.basic[2]?.optionValues.map(ov => ov.name) || [];
 
   return { first: firstOptions, second: secondOptions, third: thirdOptions };
 }
