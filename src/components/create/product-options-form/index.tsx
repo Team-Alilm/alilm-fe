@@ -15,7 +15,7 @@ interface ProductOptionsFormProps {
 
 const ProductOptionsForm = ({ url, setCreateForm }: ProductOptionsFormProps) => {
   const onOpen = useModalStore(state => state.onOpen);
-  const errorMessage = useModalStore(state => state.errorMessage);
+
   const {
     mutate: fetchProduct,
     data: product,
