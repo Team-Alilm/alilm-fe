@@ -35,7 +35,8 @@
     "puppeteer": "^23.5.0",
     "react": "^18",
     "react-dom": "^18",
-    "swiper": "^11.1.14"
+    "swiper": "^11.1.14",
+    "zustand": "5.0.0-rc.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.6.0",
