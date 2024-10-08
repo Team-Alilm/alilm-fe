@@ -8,7 +8,7 @@ export const overlay = style({
 });
 
 export const content = style({
-  position: 'absolute',
+  position: 'fixed',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
@@ -71,7 +71,7 @@ export const cancelBtn = style([
   },
 ]);
 
-export const confirmBtn = style([
+export const mainBtnText = style([
   alertBtnStyles,
   {
     backgroundColor: '#000',

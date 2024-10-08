@@ -1,5 +1,6 @@
 import { useRouter } from 'next/navigation';
 import { post } from '@/libs/api/client';
+import { useModalStore } from '@/store/use-modal-store';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { BASKETS_QUERY_KEY } from '../quries/use-get-baskets';
@@ -25,6 +26,7 @@ const postRegisteredBaskets = async (params: RegisteredBasketsParams) => {
 export const useRegisteredBaskets = () => {
   const queryClient = useQueryClient();
   const router = useRouter();
+  const onOpen = useModalStore(state => state.onOpen);
 
   return useMutation({
     mutationFn: async (params: RegisteredBasketsParams) => await postRegisteredBaskets(params),
@@ -33,5 +35,6 @@ export const useRegisteredBaskets = () => {
       queryClient.invalidateQueries({ queryKey: [BASKETS_QUERY_KEY, MY_BASKETS_QUERY_KEY] });
       router.replace('/');
     },
+    onError: () => onOpen({ modalType: 'alert', title: '이미 등록된 상품이에요.' }),
   });
 };

@@ -3,6 +3,7 @@ import { type Metadata } from 'next';
 import { Pretendard } from '@/styles/local-fonts';
 import { Theme } from '@radix-ui/themes';
 
+import Client from './\bclient';
 import HeaderController from './header-controller'; // 클라이언트 컴포넌트
 import * as styles from './layout.css';
 import Providers from './providers';
@@ -26,9 +27,8 @@ const RootLayout = ({ children }: PropsWithChildren) => {
         <Providers>
           <Theme>
             <div className={styles.layout}>
-              <HeaderController /> {/* 헤더 조절 로직을 담당하는 클라이언트 컴포넌트 */}
-              <div className={styles.mainContent}>{children}</div>
-              <div id="modal-root" style={{ width: 'inherit' }} />
+              <HeaderController />
+              <Client>{children}</Client>
             </div>
           </Theme>
         </Providers>
