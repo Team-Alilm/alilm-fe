@@ -31,7 +31,7 @@ export const useRegisteredBaskets = () => {
   return useMutation({
     mutationFn: async (params: RegisteredBasketsParams) => await postRegisteredBaskets(params),
     onSuccess: () => {
-      alert('상품 등록 성공!');
+      onOpen({ modalType: 'alert', title: '상품 등록 성공!' });
       queryClient.invalidateQueries({ queryKey: [BASKETS_QUERY_KEY, MY_BASKETS_QUERY_KEY] });
       router.replace('/');
     },
