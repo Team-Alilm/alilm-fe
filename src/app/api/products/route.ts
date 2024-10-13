@@ -1,5 +1,3 @@
-// app/api/products/route.ts
-
 import { type NextRequest, NextResponse } from 'next/server';
 import { ERROR_CODE } from '@/utils/error-code';
 import * as cheerio from 'cheerio';
@@ -15,13 +13,17 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: ERROR_CODE.UNSUPPORTED_URL }, { status: 400 });
     }
 
-    const decodedUrl = decodeURIComponent(url);
-    const productNumber = extractProductNumber(decodedUrl);
+    /**
+     * 딥링크일 경우 리다이렉션을 따라가 최종 URL 획득
+     */
+    const finalUrl = await getFinalUrl(url);
 
+    const productNumber = extractProductNumber(finalUrl);
     if (!productNumber) {
       return NextResponse.json({ error: ERROR_CODE.INVALID_PRODUCT_URL }, { status: 400 });
     }
 
+    const decodedUrl = decodeURIComponent(finalUrl);
     const [pageContent, soldoutCheckResponse] = await Promise.all([
       fetchPageContent(decodedUrl),
       fetchSoldoutCheckResponse(productNumber),
@@ -58,7 +60,7 @@ export async function POST(request: NextRequest) {
       thirdOptions: options.third,
     };
 
-    console.log('Product data:', result);
+    // console.log('Product data:', result);
 
     return NextResponse.json(result);
   } catch (error) {
@@ -70,6 +72,19 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ error: ERROR_CODE.INTERNAL_SERVER_ERROR }, { status: 500 });
   }
+}
+
+async function getFinalUrl(url: string): Promise<string> {
+  const response = await fetch(url, {
+    method: 'HEAD',
+    redirect: 'follow',
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to resolve the URL');
+  }
+
+  return response.url;
 }
 
 function extractProductNumber(url: string): string {
