@@ -47,9 +47,16 @@ const interceptorResponseRejected = (error: AxiosError<ApiErrorScheme>) => {
   if (error.response?.status === 401) {
     if (typeof window !== 'undefined') {
       window.location.href = '/login';
+      Storage.deleteItem(LOCAL_STORAGE_KEY.accessToken);
+
+      return Promise.reject(new CustomException(errorMessage.UNKNOWN_401, 'UNAUTHORIZED'));
     }
 
     return Promise.reject(new CustomException(errorMessage.UNKNOWN_401, 'NETWORK_ERROR'));
+  }
+
+  if (error.status === 409) {
+    return Promise.reject(new CustomException(errorMessage.BAD_REQUEST_409, 'ERR_BAD_REQUEST'));
   }
 
   if (error.response?.data?.['response_messages']) {

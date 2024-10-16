@@ -1,17 +1,33 @@
 import { useGetMyBaskets } from '@/hooks/quries/use-get-my-baskets';
 
 import BasketCard from '../basket-card';
-import * as styles from './index.css';
+import MyBasketCard from '../my-basket-card';
+import { cardListHome, cardListMypage } from './index.css';
 
-const MyBasketCardList = () => {
+interface MyBasketCardListProps {
+  type: 'home' | 'mypage';
+}
+
+const MyBasketCardList = ({ type }: MyBasketCardListProps) => {
   const { data: myBaskets } = useGetMyBaskets();
 
   return (
-    <div className={styles.myBasketCardList}>
-      {myBaskets.map(myBasket => (
-        <BasketCard key={myBasket.id} {...myBasket} tab="my-basket" />
-      ))}
-    </div>
+    <>
+      {type === 'home' && (
+        <div className={cardListHome}>
+          {myBaskets.map(myBasket => (
+            <BasketCard key={myBasket.id} {...myBasket} tab="my-basket" />
+          ))}
+        </div>
+      )}
+      {type === 'mypage' && (
+        <div className={cardListMypage}>
+          {myBaskets.map(myBasket => (
+            <MyBasketCard key={myBasket.id} {...myBasket} />
+          ))}
+        </div>
+      )}
+    </>
   );
 };
 

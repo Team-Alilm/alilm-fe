@@ -1,12 +1,15 @@
 import Image from 'next/image';
-import Icon from '@/components/icons';
 import { BasketBadge } from '@/components/product/basket-badge';
 import { useCopyBaskets } from '@/hooks/mutations/use-copy-baskets';
 import { type Basket } from '@/types/basket';
 
+import WaitingCounts from '../waiting-counts';
+import BasketCardSkeleton from './basket-card-skeleton';
 import * as styles from './index.css';
 
-type BasketProps = Basket;
+type BasketProps = Basket & {
+  isLoading?: boolean;
+};
 
 const BasketCard = ({
   id,
@@ -19,6 +22,7 @@ const BasketCard = ({
   thirdOption,
   waitingCount,
   tab,
+  isLoading,
 }: BasketProps) => {
   const { mutate: copyBasketsMutate } = useCopyBaskets();
 
@@ -27,6 +31,10 @@ const BasketCard = ({
   const handleWaitTogetherButtonClick = () => {
     copyBasketsMutate(id);
   };
+
+  if (isLoading) {
+    return <BasketCardSkeleton />;
+  }
 
   return (
     <div className={styles.basketCard}>
@@ -37,7 +45,6 @@ const BasketCard = ({
           alt="Basket Thumbnail"
           width={800}
           height={800}
-          style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
         />
       </div>
       <div>
@@ -47,10 +54,7 @@ const BasketCard = ({
 
         {tab === 'home' ? (
           <>
-            <div className={styles.waitingCount}>
-              <Icon icon="UserTwoPerson" width={12} height={12} />
-              함께 기다리는 사람 {waitingCount}명
-            </div>
+            <WaitingCounts counts={waitingCount} />
             <button onClick={handleWaitTogetherButtonClick} className={styles.waitTogetherButton}>
               함께 기다리기
             </button>
