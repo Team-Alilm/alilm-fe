@@ -4,21 +4,45 @@ import Button from '@/components/design-system/button';
 import Input from '@/components/design-system/input';
 import Spacer from '@/components/design-system/spacer';
 import PageTitle from '@/components/mypage/page-title';
+import { useEditEmail } from '@/hooks/mutations/use-post-email';
 import { useUserStore } from '@/store/use-user-store';
+import { Controller, useForm } from 'react-hook-form';
 
 import { editEmail } from './index.css';
 
 const EditEmail = () => {
   const email = useUserStore(state => state.email);
+  const { mutate: editEmailPost } = useEditEmail();
+
+  const {
+    control,
+    handleSubmit: submit,
+    formState: { errors },
+  } = useForm({ defaultValues: { newEmail: '' } });
+
+  const handleSubmit = submit(data => {
+    editEmailPost(data.newEmail);
+  });
 
   return (
     <div className={editEmail}>
       <PageTitle text="알림 받아 볼 이메일 변경" />
       <Input label="기존 이메일" value={email} disabled={true} />
       <Spacer height={24} />
-      <Input label="변경할 이메일" />
+      <Controller
+        name="newEmail"
+        control={control}
+        render={({ field }) => (
+          <>
+            <Input label="변경할 이메일" {...field} />
+            {errors.newEmail && <p style={{ color: 'red' }}>{errors.newEmail.message}</p>}
+          </>
+        )}
+      />
       <Spacer height={24} />
-      <Button style={{ width: '100%' }}>변경하기</Button>
+      <Button style={{ width: '100%' }} onClick={handleSubmit}>
+        변경하기
+      </Button>
     </div>
   );
 };
