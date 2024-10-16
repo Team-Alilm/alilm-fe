@@ -1,1 +1,2 @@
-export * from './tokens.css';
+export * from './colors.css';
+export * from './fonts.css';

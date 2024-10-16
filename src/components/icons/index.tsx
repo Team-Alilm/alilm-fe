@@ -24,7 +24,6 @@ export default function Icon({
   const IconComponent = icons[icon];
 
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
     <div
       style={{
         width: `${width * 0.1}rem`,
@@ -34,7 +33,6 @@ export default function Icon({
         cursor,
       }}
       className={styles.iconContainer}
-      onClick={props.onClick as unknown as React.MouseEventHandler<HTMLDivElement>}
     >
       <IconComponent {...props} width={`${width * 0.1}rem`} height={`${height * 0.1}rem`} />
     </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { type ChangeEvent, type FormEvent, Suspense, useState } from 'react';
 import ProductOptionsForm from '@/components/create/product-options-form';
 import Button from '@/components/design-system/button';
 import ButtonInput from '@/components/design-system/button-input';
@@ -8,30 +8,44 @@ import {
   type RegisteredBasketsParams,
   useRegisteredBaskets,
 } from '@/hooks/mutations/use-registered-baskets';
+import { PRODUCTS_CRAWLING_QUERY_KEY } from '@/hooks/quries/use-get-products-crawling';
+import { useQueryClient } from '@tanstack/react-query';
 
 import * as styles from './index.css';
 
 export type CreateFormValue = RegisteredBasketsParams;
 
 const CreatePage = () => {
+  const queryClient = useQueryClient();
   const { mutate: registeredBaskets } = useRegisteredBaskets();
   const [url, setUrl] = useState('');
   const [showProductsOptionsForm, setShowProductsOptionsForm] = useState(false);
-  const [createForm, setCreateForm] = useState<CreateFormValue | null>(null);
+  const [createForm, setCreateForm] = useState<CreateFormValue>({
+    number: 0,
+    name: '',
+    brand: '',
+    imageUrl: '',
+    category: '',
+    price: 0,
+    store: '',
+    firstOption: '',
+    secondOption: null,
+    thirdOption: null,
+  });
+  const isButtonDisabled = !createForm.firstOption;
 
-  const handleUrlInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleUrlInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUrl(e.target.value);
   };
 
   const handleUrlInputButtonClick = () => {
     setShowProductsOptionsForm(true);
+    queryClient.invalidateQueries({ queryKey: [PRODUCTS_CRAWLING_QUERY_KEY] });
   };
 
-  const handleCreateFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleCreateFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (createForm) {
-      registeredBaskets(createForm);
-    }
+    registeredBaskets(createForm);
   };
 
   return (
@@ -46,10 +60,14 @@ const CreatePage = () => {
           label="URL 주소"
           buttonText="조회"
         />
-        {showProductsOptionsForm && <ProductOptionsForm url={url} setCreateForm={setCreateForm} />}
+        {showProductsOptionsForm && (
+          <Suspense>
+            <ProductOptionsForm url={url} setCreateForm={setCreateForm} />
+          </Suspense>
+        )}
         <Button
-          style={{ width: '100%', cursor: 'pointer' }}
-          disabled={!createForm?.firstOption}
+          style={{ width: '100%' }}
+          disabled={isButtonDisabled}
           description={
             <p className={styles.buttonDescription}>재입고 알림을 신청하면 홈으로 이동합니다.</p>
           }

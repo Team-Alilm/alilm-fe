@@ -1,166 +1,65 @@
-import { tokens } from '@/styles';
-import { fonts } from '@/styles/fonts.css';
-import { keyframes, style } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 
 export const basketCard = style({
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'flex-start',
-  minWidth: '10rem',
+  minWidth: '100px',
   margin: 'auto',
   width: '90%',
   height: '100%',
 });
 
-export const imageWrapper = style({});
+export const imageWrapper = style({
+  height: '70%',
+  alignContent: 'center',
+});
 
 export const thumbnailImage = style({
   width: '100%',
-  minHeight: '21.8rem',
-  height: '21.8rem',
-  maxHeight: '21.8rem',
-
-  // height: 'clamp(21.8rem, 21.8rem, 21.8rem)',
-  objectFit: 'contain',
-  borderRadius: '1.2rem',
+  maxHeight: '218px',
+  borderRadius: '4px',
 });
 
 export const name = style({
-  fontSize: '1.4rem',
+  fontSize: '14px',
   fontWeight: '700',
-  marginBottom: '0.6rem',
-  color: tokens.colors.productName,
-
-  // 2줄까지만 보여주고 나머지는 생략
-  display: '-webkit-box',
-  WebkitLineClamp: 2,
-  WebkitBoxOrient: 'vertical',
+  marginBottom: '6px',
+  whiteSpace: 'nowrap',
   overflow: 'hidden',
-  textOverflow: 'ellipsis',
-  lineHeight: '1.2',
-  maxHeight: 'calc(14rem * 1.2 * 2)',
+  textOverflow: 'ellipsis', // Replaces the overflowed content with an ellipsis (...)
 });
 
 export const options = style({
-  fontSize: '1.3rem',
+  fontSize: '13px',
   fontWeight: '400',
-  marginBottom: '1.2rem',
-  color: tokens.colors.productOptions,
-
-  // 2줄까지만 보여주고 나머지는 생략
-  display: '-webkit-box',
-  WebkitLineClamp: 2,
-  WebkitBoxOrient: 'vertical',
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
-  lineHeight: '1.2',
-  maxHeight: 'calc(1.3rem * 1.2 * 2)',
-});
-
-export const waitTogetherButton = style({
-  border: '0.1rem solid #EEEEEE',
-  borderRadius: '0.4rem',
-  height: '3.3rem',
-  padding: '0 1.4rem',
-  fontSize: '1.4rem',
-  fontWeight: '600',
-  color: '#101010',
-  background: '#FFFFFF',
-  cursor: 'pointer',
-  marginTop: '1rem',
+  marginBottom: '12px',
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
 });
 
-export const waitingCount = style([
-  fonts.waitingCount,
-  {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '0.4rem',
-    color: tokens.colors.waitingCount,
-  },
-]);
-
-export const waitingCountStrong = style([
-  fonts.waitingCountStrong,
-  {
-    color: tokens.colors.waitingCount,
-  },
-]);
-
-const skeletonShimmer = keyframes({
-  '0%': { backgroundPosition: '-100rem 0' },
-  '100%': { backgroundPosition: '100rem 0' },
+export const waitTogetherButton = style({
+  border: '1px solid #EEEEEE',
+  borderRadius: '4px',
+  height: '33px',
+  padding: '0 14px',
+  fontSize: '14px',
+  fontWeight: '600',
+  color: '#101010',
+  background: '#FFFFFF',
+  cursor: 'pointer',
+  marginTop: '10px',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
 });
 
-// 기본 스켈레톤 스타일
-export const skeletonBase = style({
-  backgroundColor: '#e0e0e0',
-  backgroundImage: 'linear-gradient(to right, #e0e0e0 0%, #f0f0f0 50%, #e0e0e0 100%)',
-  backgroundRepeat: 'no-repeat',
-  backgroundSize: '100rem 100%',
-  animation: `${skeletonShimmer} 2s infinite linear`,
+export const waitingCount = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '4px',
+
+  fontSize: '14px',
+  fontWeight: '400',
+  color: '#666',
 });
-
-export const skeletonThumbnailImage = style([
-  skeletonBase,
-  {
-    width: '100%',
-    minHeight: '21.8rem',
-    height: '21.8rem',
-    maxHeight: '21.8rem',
-    borderRadius: '1.2rem',
-  },
-]);
-
-export const skeletonBadge = style([
-  skeletonBase,
-  {
-    width: '3.7rem',
-    height: '2.2rem',
-    borderRadius: '0.2rem',
-    marginTop: '1rem',
-    marginBottom: '0.6rem',
-  },
-]);
-
-export const skeletonName = style([
-  skeletonBase,
-  {
-    width: '60%',
-    height: '1.4rem',
-    marginBottom: '0.6rem',
-    borderRadius: '0.2rem',
-  },
-]);
-
-export const skeletonOptions = style([
-  skeletonBase,
-  {
-    width: '80%',
-    height: '1.8rem',
-    marginBottom: '1.2rem',
-    borderRadius: '0.2rem',
-  },
-]);
-
-export const skeletonWaitingCount = style([
-  skeletonBase,
-  {
-    width: '50%',
-    height: '1.8rem',
-    marginBottom: '1rem',
-    borderRadius: '0.2rem',
-  },
-]);
-
-export const skeletonButton = style([
-  skeletonBase,
-  {
-    width: '70%',
-    height: '3.3rem',
-    borderRadius: '0.4rem',
-  },
-]);

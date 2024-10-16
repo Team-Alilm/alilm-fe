@@ -34,10 +34,4 @@ self.addEventListener('push', function (event) {
 });
 
 // 클릭 이벤트 처리 - 알림을 클릭 시 사이트로 이동
-self.addEventListener('notificationclick', function (event) {
-  const clickActionUrl = event.notification.data.click_action;
-
-  event.notification.close();
-
-  event.waitUntil(clients.openWindow(clickActionUrl));
-});
+self.addEventListener('notificationclick', function (event) {});

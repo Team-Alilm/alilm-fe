@@ -1,19 +1,28 @@
-import { tokens } from '@/styles';
-import { fonts } from '@/styles/fonts.css';
 import { style } from '@vanilla-extract/css';
 
-export const basketBadge = style([
-  fonts.categoryText,
-  {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '22px',
-    margin: '6px 0',
-    padding: '0 8px',
+export const basketBadge = style({
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '22px',
+  padding: '0 8px',
+  color: '#456AEB',
+  background: '#EBF0FF',
+  fontSize: '12px',
+  fontWeight: '700',
+  margin: '6px 0',
+});
 
-    borderRadius: '2px',
-    backgroundColor: tokens.colors.categoryTagBg,
-    color: tokens.colors.categoryTagText,
-  },
-]);
+export const brandBadge = style({
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '22px',
+  padding: '0 8px',
+  color: '#ed8d29',
+  background: '#EBF0FF',
+  fontSize: '12px',
+  borderRadius: '4px',
+  fontWeight: '700',
+  margin: '6px 0',
+});

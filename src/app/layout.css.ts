@@ -1,12 +1,10 @@
-import { tokens } from '@/styles';
 import { style } from '@vanilla-extract/css';
 
 export const layout = style({
   margin: '0 auto',
+  maxWidth: '600px',
   width: '100%',
-  minWidth: '32rem',
-  maxWidth: '60rem',
-  backgroundColor: tokens.colors.white,
+  backgroundColor: '#ffffff',
   minHeight: '100vh',
 });
 

@@ -129,11 +129,3 @@ globalStyle('html, body', {
   padding: 0,
   background: '#FAFAFA',
 });
-
-globalStyle('html', {
-  fontSize: '62.5%',
-});
-
-globalStyle('body', {
-  fontSize: '1.6rem',
-});

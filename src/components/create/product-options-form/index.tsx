@@ -1,100 +1,89 @@
-import { type Dispatch, type SetStateAction, useEffect } from 'react';
+import { type ChangeEvent, type Dispatch, type SetStateAction, useEffect, useMemo } from 'react';
 import Image from 'next/image';
+import { type CreateFormValue } from '@/app/create/page';
 import Select from '@/components/design-system/select';
-import usePostUrlCrawlingProduct from '@/hooks/mutations/use-post-url-crawling-product';
-import { type RegisteredBasketsParams } from '@/hooks/mutations/use-registered-baskets';
-import { useModalStore } from '@/store/use-modal-store';
-import { ERROR_CODE, ERROR_MESSAGES, type ErrorCode } from '@/utils/error-code';
+import { useGetProductsCrawling } from '@/hooks/quries/use-get-products-crawling';
+import { omit } from 'es-toolkit';
 
 import * as styles from './index.css';
 
 interface ProductOptionsFormProps {
   url: string;
-  setCreateForm: Dispatch<SetStateAction<RegisteredBasketsParams | null>>;
+  setCreateForm: Dispatch<SetStateAction<CreateFormValue>>;
 }
 
 const ProductOptionsForm = ({ url, setCreateForm }: ProductOptionsFormProps) => {
-  const onOpen = useModalStore(state => state.onOpen);
+  const { data: productsCrawling } = useGetProductsCrawling(url);
+  const [firstOptions, secondOptions, thirdOptions] = useMemo(() => {
+    const formatOptions = (options: string[]) =>
+      options.map(option => ({ label: option, value: option }));
 
-  const {
-    mutate: fetchProduct,
-    data: product,
-    isPending,
-    isError,
-    error,
-  } = usePostUrlCrawlingProduct();
+    return [
+      formatOptions(productsCrawling.firstOptions),
+      formatOptions(productsCrawling.secondOptions),
+      formatOptions(productsCrawling.thirdOptions),
+    ];
+  }, [productsCrawling]);
 
-  useEffect(() => {
-    fetchProduct({ url });
-  }, [fetchProduct, url]);
-
-  useEffect(() => {
-    if (product) {
-      setCreateForm({
-        ...product,
-        firstOption: product.firstOptions[0] ?? '',
-        secondOption: product.secondOptions[0] ?? null,
-        thirdOption: product.thirdOptions[0] ?? null,
-      });
-    }
-  }, [product, setCreateForm]);
-
-  const handleOptionsChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleOptionsChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setCreateForm(prev => (prev ? { ...prev, [name]: value } : null));
+    setCreateForm(prevCreateForm => ({ ...prevCreateForm, [name]: value }));
   };
 
-  const renderErrorMessage = (errorCode: ErrorCode) => {
-    const message = ERROR_MESSAGES[errorCode] || ERROR_MESSAGES[ERROR_CODE.INTERNAL_SERVER_ERROR];
-    const invalidUrl = error?.response?.data.error;
+  useEffect(() => {
+    const omitedProductsCrawling = omit(productsCrawling, [
+      'firstOptions',
+      'thirdOptions',
+      'secondOptions',
+    ]);
 
-    if (invalidUrl === 'UNSUPPORTED_URL') {
-      onOpen({
-        modalType: 'alert',
-        title: 'URL 주소를 다시 확인해주세요.',
-        description: '무신사 상품만 등록할 수 있어요.',
-      });
-    } else {
-      onOpen({ modalType: 'alert', title: message });
-    }
-  };
-
-  if (isPending) return <p>상품 정보를 불러오는 중입니다...</p>;
-  if (isError) {
-    const errorCode = ((error as Error)?.message as ErrorCode) || ERROR_CODE.INTERNAL_SERVER_ERROR;
-    renderErrorMessage(errorCode);
-  }
-
-  if (!product) return null;
+    setCreateForm(prevCreateForm => ({
+      ...prevCreateForm,
+      ...omitedProductsCrawling,
+      firstOption: firstOptions[0].value,
+      secondOption: secondOptions[0]?.value ?? null,
+      thirdOption: thirdOptions[0]?.value ?? null,
+    }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [productsCrawling, url]);
 
   return (
     <>
       <Image
-        src={product.imageUrl}
+        src={productsCrawling.imageUrl}
         className={styles.previewImage}
         alt="Product Preview"
-        width={800}
-        height={800}
-        style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
       />
-      {renderSelect('firstOption', '상품 옵션1', product.firstOptions)}
-      {renderSelect('secondOption', '상품 옵션2', product.secondOptions)}
-      {renderSelect('thirdOption', '상품 옵션3', product.thirdOptions)}
+      {isNotEmptyArray(firstOptions) && (
+        <Select
+          onChange={handleOptionsChange}
+          name="firstOption"
+          label="상품 옵션1"
+          options={firstOptions}
+        />
+      )}
+      {isNotEmptyArray(secondOptions) && (
+        <Select
+          onChange={handleOptionsChange}
+          name="secondOption"
+          label="상품 옵션2"
+          options={secondOptions}
+        />
+      )}
+      {isNotEmptyArray(thirdOptions) && (
+        <Select
+          onChange={handleOptionsChange}
+          name="thirdOption"
+          label="상품 옵션3"
+          options={thirdOptions}
+        />
+      )}
     </>
   );
-
-  function renderSelect(name: string, label: string, options: string[]) {
-    if (options.length === 0) return null;
-
-    return (
-      <Select
-        onChange={handleOptionsChange}
-        name={name}
-        label={label}
-        options={options.map(option => ({ label: option, value: option }))}
-      />
-    );
-  }
 };
 
 export default ProductOptionsForm;
+
+function isNotEmptyArray(arr: unknown[]) {
+  return JSON.stringify(arr) !== '[]';
+}

@@ -3,12 +3,10 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { LOCAL_STORAGE_KEY, Storage } from '@/libs/storage';
-import { useModalStore } from '@/store/use-modal-store';
 
 const OauthKakaoPage = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
-  const onOpen = useModalStore(state => state.onOpen);
 
   useEffect(() => {
     const handleOauth = async () => {
@@ -53,18 +51,12 @@ const OauthKakaoPage = () => {
           }
         } catch (error) {
           console.error('OAuth 과정에서 에러 발생:', error);
-          onOpen({
-            modalType: 'alert',
-            title: '로그인 과정에서 에러가 발생했습니다. 다시 시도해주세요.',
-          });
+          alert('로그인 과정에서 에러가 발생했습니다. 다시 시도해주세요.');
           router.replace('/');
         }
       } else {
         console.error('액세스 토큰 가져오기 실패');
-        onOpen({
-          modalType: 'alert',
-          title: '액세스 토큰을 가져오지 못했습니다. 다시 로그인 해주세요.',
-        });
+        alert('액세스 토큰을 가져오지 못했습니다. 다시 로그인 해주세요.');
         router.replace('/');
       }
 

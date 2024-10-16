@@ -2,6 +2,7 @@
 
 import { Suspense, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Alert from '@/components/common/alert';
 import Portal from '@/components/common/modal/ModalPortal';
 import Button from '@/components/design-system/button';
 import Flex from '@/components/design-system/flex';
@@ -41,6 +42,7 @@ const MainPage = () => {
       <Suspense fallback={<AlilmInfo />}>
         <AlilmInfo />
       </Suspense>
+      <Alert />
       <Spacer height={60} />
       <Flex justify="center">
         <Button onClick={handleMoveCreatePage}>재입고 알림 신청하러가기</Button>
