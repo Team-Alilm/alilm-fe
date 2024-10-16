@@ -4,7 +4,7 @@ import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 
 interface BasketsResponse {
   size: number;
-  content: Basket[];
+  contents: Basket[];
   last: number;
 }
 
@@ -23,7 +23,7 @@ export const useGetBaskets = () => {
 
       return allPages.length;
     },
-    select: data => data.pages.flatMap(({ content }) => content),
+    select: data => data.pages.flatMap(({ contents }) => contents),
     initialPageParam: 0,
   });
 };

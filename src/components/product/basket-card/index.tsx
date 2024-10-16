@@ -32,7 +32,7 @@ const BasketCard = ({
     copyBasketsMutate(id);
   };
 
-  if (isLoading) {
+  if (isLoading || !id) {
     return <BasketCardSkeleton />;
   }
 
