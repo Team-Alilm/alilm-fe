@@ -5,7 +5,7 @@ import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 interface BasketsResponse {
   size: number;
   contents: Basket[];
-  last: number;
+  last: boolean;
 }
 
 export const BASKETS_QUERY_KEY = 'getBaskets';
