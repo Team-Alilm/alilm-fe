@@ -26,7 +26,7 @@ const BasketCardList = () => {
   return (
     <div className={styles.basketCardList}>
       {baskets.map(basket => (
-        <BasketCard key={basket.id} {...basket} tab="home" isLoading={isLoading} />
+        <BasketCard key={basket?.id} {...basket} tab="home" isLoading={isLoading} />
       ))}
 
       {isFetchingNextPage &&
