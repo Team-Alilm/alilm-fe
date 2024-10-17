@@ -6,9 +6,15 @@ import Spacer from '@/components/design-system/spacer';
 import PageTitle from '@/components/mypage/page-title';
 import { useEditEmail } from '@/hooks/mutations/use-post-email';
 import { useUserStore } from '@/store/use-user-store';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
 
-import { editEmail } from './index.css';
+import { editEmail, invalidText } from './index.css';
+import { emailSchema } from './validator';
+
+interface EmailFormData {
+  newEmail: string;
+}
 
 const EditEmail = () => {
   const email = useUserStore(state => state.email);
@@ -16,13 +22,17 @@ const EditEmail = () => {
 
   const {
     control,
-    handleSubmit: submit,
+    handleSubmit,
     formState: { errors },
-  } = useForm({ defaultValues: { newEmail: '' } });
-
-  const handleSubmit = submit(data => {
-    editEmailPost(data.newEmail);
+  } = useForm({
+    resolver: zodResolver(emailSchema),
+    defaultValues: { newEmail: '' },
   });
+
+  const onSubmit = (data: EmailFormData) => {
+    console.log(data.newEmail);
+    editEmailPost(data.newEmail);
+  };
 
   return (
     <div className={editEmail}>
@@ -35,12 +45,12 @@ const EditEmail = () => {
         render={({ field }) => (
           <>
             <Input label="변경할 이메일" {...field} />
-            {errors.newEmail && <p style={{ color: 'red' }}>{errors.newEmail.message}</p>}
+            {errors.newEmail && <p className={invalidText}>{errors.newEmail.message}</p>}
           </>
         )}
       />
       <Spacer height={24} />
-      <Button style={{ width: '100%' }} onClick={handleSubmit}>
+      <Button style={{ width: '100%' }} onClick={handleSubmit(onSubmit)}>
         변경하기
       </Button>
     </div>

@@ -6,8 +6,4 @@ export const editEmail = style({
   padding: '0 1.6rem',
 });
 
-export const editEmailTitle = style({
-  fontSize: '2rem',
-  fontWeight: '600',
-  margin: '2.4rem 0',
-});
+export const invalidText = style({ color: 'red', marginTop: '0.4rem', fontSize: '1.4rem' });
