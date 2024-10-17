@@ -30,7 +30,6 @@ const EditEmail = () => {
   });
 
   const onSubmit = (data: EmailFormData) => {
-    console.log(data.newEmail);
     editEmailPost(data.newEmail);
   };
 
