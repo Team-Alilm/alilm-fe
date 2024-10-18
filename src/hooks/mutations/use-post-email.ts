@@ -3,10 +3,10 @@ import { post } from '@/libs/api/client';
 import { useModalStore } from '@/store/use-modal-store';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { MY_INFO_QUERY_KEY } from '../quries/use-get-my-info';
+import { MY_INFO_QUERY_KEY, type UseGetMyInfoResponse } from '../queries/use-get-my-info';
 
-const postEditEmail = async (email: string) => {
-  await post('/mypage/edit-email', { email });
+const postEditEmail = async (userInfo: UseGetMyInfoResponse) => {
+  await post('/member', userInfo);
 };
 
 export const useEditEmail = () => {
@@ -15,12 +15,13 @@ export const useEditEmail = () => {
   const onOpen = useModalStore(state => state.onOpen);
 
   return useMutation({
-    mutationFn: async (email: string) => await postEditEmail(email),
+    mutationFn: postEditEmail,
     onSuccess: () => {
       onOpen({ modalType: 'alert', title: '이메일 변경 성공!' });
       router.replace('/mypage');
       queryClient.invalidateQueries({ queryKey: [MY_INFO_QUERY_KEY] });
     },
-    onError: () => onOpen({ modalType: 'alert', title: '이메일 변경 실패' }),
+    onError: () =>
+      onOpen({ modalType: 'alert', title: '이메일 변경 실패', description: '다시 시도해주세요.' }),
   });
 };

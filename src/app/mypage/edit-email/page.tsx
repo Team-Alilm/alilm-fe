@@ -17,7 +17,7 @@ interface EmailFormData {
 }
 
 const EditEmail = () => {
-  const email = useUserStore(state => state.email);
+  const { email, nickname } = useUserStore();
   const { mutate: editEmailPost } = useEditEmail();
 
   const {
@@ -30,7 +30,7 @@ const EditEmail = () => {
   });
 
   const onSubmit = (data: EmailFormData) => {
-    editEmailPost(data.newEmail);
+    editEmailPost({ email: data.newEmail, nickname });
   };
 
   return (
