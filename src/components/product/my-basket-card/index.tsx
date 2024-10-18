@@ -2,7 +2,6 @@ import Image from 'next/image';
 import { type MyBasket } from '@/types/basket';
 
 import { BasketBadge } from '../basket-badge';
-import WaitingCounts from '../waiting-counts';
 import * as styles from './index.css';
 
 type MyBasketProps = MyBasket;
@@ -32,8 +31,9 @@ const MyBasketCard = ({
         <BasketBadge>{category}</BasketBadge>
         <p className={styles.name}>{name}</p>
         <p className={styles.options}>{description}</p>
-        <WaitingCounts counts={127} />
-        <button className={styles.deleteBtn}>삭제하기</button>
+        {/* 임시 주석 처리 24/10/18 */}
+        {/* <WaitingCounts counts={127} />
+        <button className={styles.deleteBtn}>삭제하기</button> */}
       </div>
     </div>
   );
