@@ -21,6 +21,8 @@ export const tokens = createGlobalTheme(':root', {
     border: '#DDDDDD',
 
     white: '#fff',
+    profileBackground: '#F4F4F4',
+    mypageText: '#505050',
   },
 
   // shadows: {}

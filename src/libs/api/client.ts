@@ -64,8 +64,6 @@ const interceptorResponseRejected = (error: AxiosError<ApiErrorScheme>) => {
   }
 
   if (error.message.startsWith('timeout')) {
-    alert(errorMessage.TIMEOUT);
-
     return Promise.reject(new CustomException(errorMessage.TIMEOUT, 'NETWORK_TIMEOUT'));
   }
 

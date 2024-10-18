@@ -22,7 +22,7 @@ const ProductCardList = () => {
           ),
           myAlilm: (
             <Suspense>
-              <MyBasketCardList />
+              <MyBasketCardList type="home" />
             </Suspense>
           ),
         }}

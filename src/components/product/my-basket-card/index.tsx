@@ -22,14 +22,19 @@ const MyBasketCard = ({
       <Image
         src={imageUrl}
         className={styles.thumbnailImage}
-        alt="Basket Thubnail"
-        width={800}
-        height={800}
+        alt="Basket Thumbnail"
+        width={200}
+        height={200}
         style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
       />
-      <BasketBadge>{category}</BasketBadge>
-      <p className={styles.name}>{name}</p>
-      <p className={styles.options}>{description}</p>
+      <div>
+        <BasketBadge>{category}</BasketBadge>
+        <p className={styles.name}>{name}</p>
+        <p className={styles.options}>{description}</p>
+        {/* 임시 주석 처리 24/10/18 */}
+        {/* <WaitingCounts counts={127} />
+        <button className={styles.deleteBtn}>삭제하기</button> */}
+      </div>
     </div>
   );
 };

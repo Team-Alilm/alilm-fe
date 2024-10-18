@@ -4,6 +4,7 @@ export interface ModalProps {
   modalType: 'alert' | 'confirm';
   title: string;
   description?: string;
+  onClick?: () => void;
 }
 
 export interface ModalStoreState extends ModalProps {
@@ -20,13 +21,15 @@ export const useModalStore = create<ModalStoreState & ModalStoreAction>()(set =>
   modalType: 'alert',
   title: '',
   description: '',
+  onClick: undefined,
 
-  onOpen: ({ modalType, title, description }: ModalProps) =>
+  onOpen: ({ modalType, title, description, onClick }: ModalProps) =>
     set({
       isOpen: true,
       modalType: modalType,
       title: title,
       description: description,
+      onClick: onClick,
     }),
 
   onClose: () =>
@@ -35,5 +38,6 @@ export const useModalStore = create<ModalStoreState & ModalStoreAction>()(set =>
       modalType: 'alert',
       title: '',
       description: '',
+      onClick: undefined,
     }),
 }));

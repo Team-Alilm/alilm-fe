@@ -7,6 +7,7 @@ import { useModalStore } from '@/store/use-modal-store';
 
 const OauthKakaoPage = () => {
   const router = useRouter();
+  const [redirect, setRedirect] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const onOpen = useModalStore(state => state.onOpen);
 
@@ -18,6 +19,18 @@ const OauthKakaoPage = () => {
 
       const queryParams = new URLSearchParams(window.location.search);
       const accessToken = queryParams.get('Authorization');
+
+      // redirect 쿼리 처리
+      const redirectParam = queryParams.get('redirect') as string;
+      setRedirect(redirectParam || null);
+
+      const handleLogin = () => {
+        if (redirect) {
+          router.replace(redirect);
+        } else {
+          router.replace('/');
+        }
+      };
 
       if (accessToken) {
         try {
@@ -36,7 +49,7 @@ const OauthKakaoPage = () => {
             if (isMessagingSupported && !isIPhone && !isInAppBrowser) {
               const { default: handleFcmToken } = await import('@/utils/handle-fcm-token');
               await handleFcmToken();
-              router.replace('/');
+              handleLogin();
             } else if (isIPhone || isInAppBrowser) {
               alert(
                 '알림 기능을 활용하시려면, Safari 또는 Chrome 브라우저에서 이 페이지를 열어주세요.'
@@ -44,7 +57,7 @@ const OauthKakaoPage = () => {
               router.replace('/');
             } else {
               // FCM이 지원되지 않지만 허용된 브라우저인 경우
-              console.log('이 브라우저는 FCM을 지원하지 않습니다.');
+              // console.log('이 브라우저는 FCM을 지원하지 않습니다.');
               router.replace('/');
             }
           } catch (error) {

@@ -1,7 +1,7 @@
 'use client';
 
 import Flex from '@/components/design-system/flex';
-import { useGetNotificationsCount } from '@/hooks/quries/use-get-notifications-count';
+import { useGetNotificationsCount } from '@/hooks/queries/use-get-notifications-count';
 
 import * as styles from './index.css';
 

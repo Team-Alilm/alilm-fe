@@ -1,5 +1,5 @@
 import { useIntersection } from '@/hooks/common/use-intersection';
-import { useGetBaskets } from '@/hooks/quries/use-get-baskets';
+import { useGetBaskets } from '@/hooks/queries/use-get-baskets';
 
 import BasketCard from '../basket-card';
 import BasketCardSkeleton from '../basket-card/basket-card-skeleton';

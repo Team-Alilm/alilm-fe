@@ -3,8 +3,7 @@
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import Icon from '@/components/icons';
-import useGetMyInfo from '@/hooks/quries/use-get-my-info';
-import { Storage } from '@/libs/storage';
+import { LOCAL_STORAGE_KEY, Storage } from '@/libs/storage';
 
 import * as styles from './index.css';
 
@@ -16,12 +15,14 @@ const Header = () => {
     router.push('/');
   };
 
-  const { data: myInfo } = useGetMyInfo({
-    // interceptorResponseRejected에서 401에러 발생하면 /login으로 이동하도록 설정되어있고,
-    // /login으로 이동하면 useGetMyInfo api가 또 호출하면서 401을 뱉어서 무한루프에 빠지는 문제가 있습니다.
-    // 그래서 아래와 같이 enabled를 설정해주었습니다.
-    enabled: pathname !== '/login' && Boolean(Storage.getItem('access-token')),
-  });
+  // const { data: myInfo } = useGetMyInfo({
+  //   // interceptorResponseRejected에서 401에러 발생하면 /login으로 이동하도록 설정되어있고,
+  //   // /login으로 이동하면 useGetMyInfo api가 또 호출하면서 401을 뱉어서 무한루프에 빠지는 문제가 있습니다.
+  //   // 그래서 아래와 같이 enabled를 설정해주었습니다.
+  //   enabled: pathname !== '/login' && Boolean(Storage.getItem('access-token')),
+  // });
+
+  const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
 
   return (
     <header className={styles.header} style={{ display: pathname === '/login' ? 'none' : 'flex' }}>
@@ -45,15 +46,13 @@ const Header = () => {
 
         <Icon icon="Bell" width={24} height={24} />
 
-        {myInfo?.email ? (
-          <Icon
-            icon="Avatar"
-            width={36}
-            height={36}
-            cursor="pointer"
-            onClick={() => alert(`${myInfo.nickname}님 환영합니다! 마이페이지는 준비중입니다.`)}
-          />
-        ) : null}
+        <Icon
+          icon="Avatar"
+          width={36}
+          height={36}
+          cursor="pointer"
+          onClick={() => router.push(accessToken ? '/mypage' : `/login?redirect=/mypage`)}
+        />
       </div>
     </header>
   );

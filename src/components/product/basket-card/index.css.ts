@@ -1,5 +1,4 @@
 import { tokens } from '@/styles';
-import { fonts } from '@/styles/fonts.css';
 import { keyframes, style } from '@vanilla-extract/css';
 
 export const basketCard = style({
@@ -72,23 +71,6 @@ export const waitTogetherButton = style({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
 });
-
-export const waitingCount = style([
-  fonts.waitingCount,
-  {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '0.4rem',
-    color: tokens.colors.waitingCount,
-  },
-]);
-
-export const waitingCountStrong = style([
-  fonts.waitingCountStrong,
-  {
-    color: tokens.colors.waitingCount,
-  },
-]);
 
 const skeletonShimmer = keyframes({
   '0%': { backgroundPosition: '-100rem 0' },

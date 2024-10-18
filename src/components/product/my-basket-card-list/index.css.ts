@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-export const myBasketCardList = style({
+export const cardListHome = style({
   display: 'grid',
   gridTemplateColumns: 'repeat(3, 1fr)',
   columnGap: '1vw',
@@ -10,4 +10,10 @@ export const myBasketCardList = style({
       gridTemplateColumns: 'repeat(2, 1fr)',
     },
   },
+});
+
+export const cardListMypage = style({
+  display: 'grid',
+  // gridTemplateColumns: 'repeat(1fr)',
+  rowGap: '2.4rem',
 });

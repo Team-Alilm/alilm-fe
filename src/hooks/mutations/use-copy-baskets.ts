@@ -2,7 +2,7 @@ import { post } from '@/libs/api/client';
 import { useModalStore } from '@/store/use-modal-store';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { MY_BASKETS_QUERY_KEY } from '../quries/use-get-my-baskets';
+import { MY_BASKETS_QUERY_KEY } from '../queries/use-get-my-baskets';
 
 const postCopyBaskets = async (productId: number) => {
   await post('/baskets/copy', { productId });

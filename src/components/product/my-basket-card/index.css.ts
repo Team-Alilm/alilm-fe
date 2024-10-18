@@ -1,25 +1,30 @@
 import { style } from '@vanilla-extract/css';
 
 export const myBasketCard = style({
-  minWidth: '100px',
-  width: '30%',
-  cursor: 'pointer',
+  minWidth: '100%',
+  width: '100%',
+  display: 'flex',
+  flex: '1 2',
+  justifyContent: 'flex-start',
+  gap: '3.25%',
 });
 
 export const thumbnailImage = style({
-  width: '100%',
-  maxHeight: '218px',
-  borderRadius: '4px',
+  maxWidth: '38%',
+  maxHeight: '21.8rem',
+  aspectRatio: '1/1',
+  borderRadius: '1.2rem',
 });
 
 export const name = style({
-  fontSize: '14px',
+  fontSize: '1.4rem',
   fontWeight: '700',
   marginBottom: '6px',
 });
 
 export const options = style({
-  fontSize: '13px',
+  height: '1.6rem',
+  fontSize: '1.3rem',
   fontWeight: '400',
   marginBottom: '6px',
 });
@@ -35,4 +40,17 @@ export const price = style({
   fontSize: '16px',
   fontWeight: '700',
   color: '#333',
+});
+
+export const deleteBtn = style({
+  all: 'unset',
+  lineHeight: '1.432rem',
+  fontSize: '1.2rem',
+  textAlign: 'center',
+  padding: '0.4rem',
+  marginTop: '0.6rem',
+  color: '#9A9A9A',
+  border: '0.1rem solid #EEEEEE',
+  borderRadius: '0.4rem',
+  cursor: 'pointer',
 });

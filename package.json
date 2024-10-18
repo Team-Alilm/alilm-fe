@@ -17,6 +17,7 @@
     }
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
     "@radix-ui/react-alert-dialog": "^1.1.2",
     "@radix-ui/themes": "^3.1.4",
     "@suspensive/react": "^2.14.0",
@@ -30,12 +31,15 @@
     "dotenv": "^16.4.5",
     "es-toolkit": "^1.16.0",
     "firebase": "^10.13.2",
+    "lucide-react": "^0.452.0",
     "next": "14.1.0",
     "node-fetch": "^3.3.2",
     "puppeteer": "^23.5.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-hook-form": "^7.53.0",
     "swiper": "^11.1.14",
+    "zod": "^3.23.8",
     "zustand": "5.0.0-rc.2"
   },
   "devDependencies": {
