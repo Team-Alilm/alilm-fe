@@ -37,6 +37,7 @@ export const description = style({
   textAlign: 'center',
   color: tokens.colors.textPrimary,
   marginBottom: '3rem',
+  whiteSpace: 'pre-line',
 });
 
 export const btnContainer = style({
