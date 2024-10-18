@@ -1,11 +1,12 @@
 import { get } from '@/libs/api/client';
 import { type Basket } from '@/types/basket';
-import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 
 interface BasketsResponse {
   size: number;
   contents: Basket[];
   last: boolean;
+  hasNext: boolean;
 }
 
 export const BASKETS_QUERY_KEY = 'getBaskets';
@@ -15,13 +16,11 @@ export const getBaskets = async (pageParam: number) => {
 };
 
 export const useGetBaskets = () => {
-  return useSuspenseInfiniteQuery({
+  return useInfiniteQuery({
     queryKey: [BASKETS_QUERY_KEY],
     queryFn: async ({ pageParam }) => await getBaskets(pageParam),
     getNextPageParam: (lastPage, allPages) => {
-      if (lastPage.last) return null;
-
-      return allPages.length;
+      return lastPage.hasNext ? allPages.length : null;
     },
     select: data => data.pages.flatMap(({ contents }) => contents),
     initialPageParam: 0,

@@ -25,7 +25,7 @@ const BasketCardList = () => {
 
   return (
     <div className={styles.basketCardList}>
-      {baskets.map(basket => (
+      {baskets?.map(basket => (
         <BasketCard key={basket?.id} {...basket} tab="home" isLoading={isLoading} />
       ))}
 

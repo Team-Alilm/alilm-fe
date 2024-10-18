@@ -21,7 +21,7 @@ const Profile = ({ userName, email }: ProfileProps) => {
     onOpen({
       modalType: 'confirm',
       title: '로그아웃 하시겠습니까?',
-      description: '재입고 알림을 받으시려면 로그인 상태를 유지해주세요.',
+      description: '재입고 알림을 받으시려면 \n로그인 상태를 유지해주세요!',
       onClick: () => {
         Storage.deleteItem(LOCAL_STORAGE_KEY.accessToken);
         removeUserInfo();
