@@ -2,13 +2,12 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Router from 'next/router';
 import { LOCAL_STORAGE_KEY, Storage } from '@/libs/storage';
 import { useModalStore } from '@/store/use-modal-store';
 
 const OauthKakaoPage = () => {
   const router = useRouter();
-  const redirect = Router.query.redirect as string;
+  const [redirect, setRedirect] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const onOpen = useModalStore(state => state.onOpen);
 
@@ -21,8 +20,11 @@ const OauthKakaoPage = () => {
       const queryParams = new URLSearchParams(window.location.search);
       const accessToken = queryParams.get('Authorization');
 
+      // redirect 쿼리 처리
+      const redirectParam = queryParams.get('redirect') as string;
+      setRedirect(redirectParam || null);
+
       const handleLogin = () => {
-        // 로그인 로직
         if (redirect) {
           router.replace(redirect);
         } else {
