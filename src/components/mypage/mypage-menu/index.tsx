@@ -6,7 +6,7 @@ const MypageMenu = () => {
     <>
       <p style={{ fontSize: '1.4rem', color: '#818181' }}>메뉴</p>
       <Menu
-        text="알림 받아 볼 이메일 변경"
+        text="알림 받아볼 이메일 변경"
         icon={<AtSign width={'1.6rem'} />}
         path="/mypage/edit-email"
       />

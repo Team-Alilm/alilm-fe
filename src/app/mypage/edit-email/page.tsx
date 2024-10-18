@@ -35,7 +35,7 @@ const EditEmail = () => {
 
   return (
     <div className={editEmail}>
-      <PageTitle text="알림 받아 볼 이메일 변경" />
+      <PageTitle text="알림 받아볼 이메일 변경" />
       <Input label="기존 이메일" value={email} disabled={true} />
       <Spacer height={24} />
       <Controller
@@ -43,7 +43,7 @@ const EditEmail = () => {
         control={control}
         render={({ field }) => (
           <>
-            <Input label="변경할 이메일" {...field} />
+            <Input label="변경할 이메일" {...field} placeholder="새로운 이메일을 입력하세요" />
             {errors.newEmail && <p className={invalidText}>{errors.newEmail.message}</p>}
           </>
         )}
