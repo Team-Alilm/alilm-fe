@@ -1,5 +1,5 @@
 import { get } from '@/libs/api/client';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 interface MyAlilmCountsResponse {
   count: number;
@@ -14,8 +14,8 @@ export const getMyAlilmCounts = async () => {
 };
 
 export const useGetMyAlilmCounts = () => {
-  return useSuspenseQuery({
+  return useQuery({
     queryKey: [MY_ALILM_COUNTS_QUERY_KEY],
-    queryFn: async () => await getMyAlilmCounts(),
+    queryFn: getMyAlilmCounts,
   });
 };

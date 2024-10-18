@@ -1,6 +1,6 @@
 import { get } from '@/libs/api/client';
 import { type MyBasket } from '@/types/basket';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 type BasketsResponse = MyBasket[];
 
@@ -13,7 +13,7 @@ export const getMyBaskets = async () => {
 };
 
 export const useGetMyBaskets = () => {
-  return useSuspenseQuery({
+  return useQuery({
     queryKey: [MY_BASKETS_QUERY_KEY],
     queryFn: async () => await getMyBaskets(),
   });

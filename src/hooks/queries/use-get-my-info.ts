@@ -11,7 +11,7 @@ export const getMyInfo = async () => {
   return data;
 };
 
-interface UseGetMyInfoResponse {
+export interface UseGetMyInfoResponse {
   nickname: string;
   email: string;
 }
@@ -23,7 +23,7 @@ export default function useGetMyInfo(options?: UseQueryCustomOptions<UseGetMyInf
   return useQuery({
     queryKey,
     queryFn,
-    staleTime: 1000 * 60 * 60, // 1시간
+    // staleTime: 1000 * 60 * 60, // 1시간
     ...options,
   });
 }
