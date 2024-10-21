@@ -76,7 +76,7 @@ export const nextButton = style({
   border: 'none',
   borderRadius: '100px',
   cursor: 'pointer',
-  fontSize: '0.9rem',
+  fontSize: '1.1rem',
   fontWeight: '700',
   zIndex: 10,
 });
