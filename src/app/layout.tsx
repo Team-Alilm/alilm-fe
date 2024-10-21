@@ -17,8 +17,8 @@ export const metadata: Metadata = {
   keywords: 'Alilm',
   openGraph: {
     title: 'Alilm',
-    description: '재입고 알림을 받아보세요.',
-    images: '/icons/alilm.ico',
+    description: '재입고 알림을 받아보세요!',
+    images: '/images/alilm-thumbnail.webp',
     url: 'https://www.alilm.co.kr/',
   },
   twitter: {
