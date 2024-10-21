@@ -5,12 +5,18 @@ import Alert from '@/components/common/alert';
 import { useModalStore } from '@/store/use-modal-store';
 
 const AlertProvider = ({ children }: PropsWithChildren) => {
-  const { modalType, title, description, onClick } = useModalStore();
+  const { modalType, title, description, mainBtnText, onClick } = useModalStore();
 
   return (
     <>
       {children}
-      <Alert type={modalType} title={title} description={description} onClick={onClick} />
+      <Alert
+        type={modalType}
+        title={title}
+        description={description}
+        mainBtnText={mainBtnText}
+        onClick={onClick}
+      />
     </>
   );
 };
