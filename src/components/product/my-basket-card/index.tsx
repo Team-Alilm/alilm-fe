@@ -4,6 +4,7 @@ import { useModalStore } from '@/store/use-modal-store';
 import { type MyBasket } from '@/types/basket';
 
 import { BasketBadge } from '../basket-badge';
+import WaitingCounts from '../waiting-counts';
 import * as styles from './index.css';
 
 type MyBasketProps = MyBasket;
@@ -17,6 +18,7 @@ const MyBasketCard = ({
   firstOption,
   secondOption,
   thirdOption,
+  waitingCount,
 }: MyBasketProps) => {
   const description = `${brand}${firstOption ? ` / ${firstOption}` : ''}${secondOption ? ` / ${secondOption}` : ''}${thirdOption ? ` / ${thirdOption}` : ''}`;
 
@@ -48,8 +50,7 @@ const MyBasketCard = ({
         <BasketBadge>{category}</BasketBadge>
         <p className={styles.name}>{name}</p>
         <p className={styles.options}>{description}</p>
-        {/* 임시 주석 처리 24/10/18 */}
-        {/* <WaitingCounts counts={127} /> */}
+        <WaitingCounts counts={waitingCount} />
         <button className={styles.deleteBtn} onClick={handleDeleteBtn}>
           삭제하기
         </button>

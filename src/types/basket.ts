@@ -28,4 +28,5 @@ export interface MyBasket {
   secondOption?: string;
   thirdOption?: string;
   isHidden: boolean;
+  waitingCount: number;
 }
