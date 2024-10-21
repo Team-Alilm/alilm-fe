@@ -18,7 +18,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Alilm',
     description: '재입고 알림을 받아보세요!',
-    images: '/images/alilm-thumbnail.webp',
+    images: [
+      {
+        url: 'https://www.alilm.co.kr/images/alilm-thumbnail.webp',
+        width: 1200,
+        height: 630,
+      },
+    ],
     url: 'https://www.alilm.co.kr/',
   },
   twitter: {
