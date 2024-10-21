@@ -1,6 +1,5 @@
 import { type PropsWithChildren } from 'react';
 import { type Metadata } from 'next';
-import Head from 'next/head';
 import { Pretendard } from '@/styles/local-fonts';
 
 import AlertProvider from './alert-provider';
@@ -16,6 +15,15 @@ export const metadata: Metadata = {
   title: 'Alilm',
   description: 'Alilm',
   keywords: 'Alilm',
+  openGraph: {
+    title: 'Alilm',
+    description: '재입고 알림을 받아보세요.',
+    images: '/icons/alilm.ico',
+    url: 'https://www.alilm.co.kr/',
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
   icons: {
     icon: '/icons/alilm.ico',
   },
@@ -24,16 +32,6 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: PropsWithChildren) => {
   return (
     <html lang="ko" className={Pretendard.className}>
-      <Head>
-        <meta property="og:title" content="Alilm" />
-        <meta property="og:description" content="Alilm is a great service" />
-        <meta property="og:image" content="/icons/alilm.ico" />
-        <meta property="og:url" content="https://www.alilm.co.kr/" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="keywords" content="Alilm, service, 알림" />
-        <link rel="icon" href="/icons/alilm.ico" />
-        <title>Alilm</title>
-      </Head>
       <body>
         <Providers>
           <FromProvider>
