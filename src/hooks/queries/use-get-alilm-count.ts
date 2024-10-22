@@ -2,7 +2,8 @@ import { get } from '@/libs/api/client';
 import { useQuery } from '@tanstack/react-query';
 
 interface MyAlilmCountsResponse {
-  count: number;
+  alilmCount: number;
+  basketCount: number;
 }
 
 export const MY_ALILM_COUNTS_QUERY_KEY = 'getMyAlilmCounts';
