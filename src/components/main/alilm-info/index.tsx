@@ -6,17 +6,17 @@ import { useGetNotificationsCount } from '@/hooks/queries/use-get-notifications-
 import * as styles from './index.css';
 
 const AlilmInfo = () => {
-  const { data: notificationsCount } = useGetNotificationsCount();
+  const { data: notificationsCount, isLoading } = useGetNotificationsCount();
 
   return (
     <div className={styles.alilmInfo}>
       <Flex direction="column">
         <p className={styles.title}>누적 재입고 알림</p>
-        <p className={styles.figure}>{notificationsCount.allCount}건</p>
+        <p className={styles.figure}>{isLoading ? 0 : notificationsCount?.allCount}건</p>
       </Flex>
       <Flex direction="column">
         <p className={styles.title}>오늘 재입고 알림</p>
-        <p className={styles.figure}>{notificationsCount.dailyCount}명</p>
+        <p className={styles.figure}>{isLoading ? 0 : notificationsCount?.dailyCount}명</p>
       </Flex>
     </div>
   );

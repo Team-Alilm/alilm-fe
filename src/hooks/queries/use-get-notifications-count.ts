@@ -1,5 +1,5 @@
 import { get } from '@/libs/api/client';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 interface NotificationsCountResponse {
   allCount: number;
@@ -15,7 +15,7 @@ export const getNotificationsCount = async () => {
 };
 
 export const useGetNotificationsCount = () => {
-  return useSuspenseQuery({
+  return useQuery({
     queryKey: [NOTIFICATION_COUNT_QUERY_KEY],
     queryFn: async () => await getNotificationsCount(),
   });
