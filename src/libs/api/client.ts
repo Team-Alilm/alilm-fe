@@ -40,39 +40,49 @@ const interceptorResponseFulfilled = (res: AxiosResponse) => {
 };
 
 // Response interceptor
-const interceptorResponseRejected = (error: AxiosError<ApiErrorScheme>) => {
-  console.log('interceptorResponseRejected>>', error);
+export const interceptorResponseRejected = (openLoginModal: () => void) => {
+  return (error: AxiosError<ApiErrorScheme>) => {
+    console.log('interceptorResponseRejected>>', error);
 
-  //todo : 401 권환 헨들링을 임시로 했어요 리펙토링 필요해보여요!
-  if (error.response?.status === 401) {
-    if (typeof window !== 'undefined') {
-      window.location.href = '/login';
-      Storage.deleteItem(LOCAL_STORAGE_KEY.accessToken);
+    //todo : 401 권환 헨들링을 임시로 했어요 리펙토링 필요해보여요!
+    if (error.response?.status === 401) {
+      if (typeof window !== 'undefined') {
+        // window.location.href = '/login';
+        openLoginModal();
+        Storage.deleteItem(LOCAL_STORAGE_KEY.accessToken);
 
-      return Promise.reject(new CustomException(errorMessage.UNKNOWN_401, 'UNAUTHORIZED'));
+        return Promise.reject(new CustomException(errorMessage.UNKNOWN_401, 'UNAUTHORIZED'));
+      }
+
+      return Promise.reject(new CustomException(errorMessage.UNKNOWN_401, 'NETWORK_ERROR'));
     }
 
-    return Promise.reject(new CustomException(errorMessage.UNKNOWN_401, 'NETWORK_ERROR'));
-  }
+    if (error.status === 409) {
+      return Promise.reject(new CustomException(errorMessage.BAD_REQUEST_409, 'ERR_BAD_REQUEST'));
+    }
 
-  if (error.status === 409) {
-    return Promise.reject(new CustomException(errorMessage.BAD_REQUEST_409, 'ERR_BAD_REQUEST'));
-  }
+    if (error.response?.data?.['response_messages']) {
+      return Promise.reject(new ApiException(error.response.data, error.response.status));
+    }
 
-  if (error.response?.data?.['response_messages']) {
-    return Promise.reject(new ApiException(error.response.data, error.response.status));
-  }
+    if (error.message.startsWith('timeout')) {
+      alert(errorMessage.TIMEOUT);
 
-  if (error.message.startsWith('timeout')) {
-    alert(errorMessage.TIMEOUT);
+      return Promise.reject(new CustomException(errorMessage.TIMEOUT, 'NETWORK_TIMEOUT'));
+    }
 
-    return Promise.reject(new CustomException(errorMessage.TIMEOUT, 'NETWORK_TIMEOUT'));
-  }
-
-  return Promise.reject(new CustomException(errorMessage.UNKNOWN_400, 'NETWORK_ERROR'));
+    return Promise.reject(new CustomException(errorMessage.UNKNOWN_400, 'NETWORK_ERROR'));
+  };
 };
 
-instance.interceptors.response.use(interceptorResponseFulfilled, interceptorResponseRejected);
+export const setupInterceptors = (openLoginModal: () => void) => {
+  instance.interceptors.response.use(
+    interceptorResponseFulfilled,
+    interceptorResponseRejected(openLoginModal)
+  );
+};
+
+export { instance };
 
 export const get = <T>(...args: Parameters<typeof instance.get>) => {
   return instance.get<T, T>(...args);

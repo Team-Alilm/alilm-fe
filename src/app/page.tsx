@@ -2,7 +2,7 @@
 
 import { Suspense, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Portal from '@/components/common/modal/ModalPortal';
+import Portal from '@/components/common/modal/modal-portal';
 import Button from '@/components/design-system/button';
 import Flex from '@/components/design-system/flex';
 import Spacer from '@/components/design-system/spacer';
@@ -12,13 +12,16 @@ import { AlilmTabsProvider } from '@/components/main/alilm-tabs/contexts/alilm-t
 import OnboardingModal from '@/components/main/onboarding';
 import ProductCardList from '@/components/product/product-card-list';
 import useBooleanState from '@/hooks/common/use-boolean-state';
+import { LOCAL_STORAGE_KEY, Storage } from '@/libs/storage';
+import { useLoginModalStore } from '@/store/use-login-modal-store';
 
 import * as styles from './page.css';
 
 const MainPage = () => {
   const router = useRouter();
-  const onBoardingModalState = useBooleanState(); // 온보딩 표시 여부 관리 state
-
+  const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
+  const onBoardingModalState = useBooleanState();
+  const openLoginModal = useLoginModalStore(state => state.openLoginModal);
   useEffect(() => {
     const onboardingState = localStorage.getItem('showOnboarding');
     if (onboardingState !== 'completed') {
@@ -27,7 +30,11 @@ const MainPage = () => {
   }, [onBoardingModalState]);
 
   const handleMoveCreatePage = () => {
-    router.push('/create');
+    if (accessToken) {
+      router.push('/create');
+    } else {
+      openLoginModal();
+    }
   };
 
   return (

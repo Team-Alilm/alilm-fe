@@ -4,12 +4,14 @@ import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import Icon from '@/components/icons';
 import { LOCAL_STORAGE_KEY, Storage } from '@/libs/storage';
+import { useLoginModalStore } from '@/store/use-login-modal-store';
 
 import * as styles from './index.css';
 
 const Header = () => {
   const pathname = usePathname();
   const router = useRouter();
+  const openLoginModal = useLoginModalStore(state => state.openLoginModal);
 
   const handleLogoClick = () => {
     router.push('/');
@@ -51,7 +53,8 @@ const Header = () => {
           width={36}
           height={36}
           cursor="pointer"
-          onClick={() => router.push(accessToken ? '/mypage' : `/login?redirect=/mypage`)}
+          onClick={() => (accessToken ? router.push('/mypage') : openLoginModal())}
+          // onClick={() => router.push(accessToken ? '/mypage' : `/login?redirect=/mypage`)}
         />
       </div>
     </header>

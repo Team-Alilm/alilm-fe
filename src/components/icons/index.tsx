@@ -15,10 +15,12 @@ interface IconProps extends Omit<React.SVGProps<SVGSVGElement>, 'cursor'> {
 
 export default function Icon({
   icon,
-  cursor = 'initial',
   width = 24,
   height = 24,
   rotate = 0,
+  cursor = 'initial',
+  fill = 'none',
+  stroke = 'currentColor',
   ...props
 }: IconProps) {
   const IconComponent = icons[icon];
@@ -36,7 +38,13 @@ export default function Icon({
       className={styles.iconContainer}
       onClick={props.onClick as unknown as React.MouseEventHandler<HTMLDivElement>}
     >
-      <IconComponent {...props} width={`${width * 0.1}rem`} height={`${height * 0.1}rem`} />
+      <IconComponent
+        {...props}
+        width={`${width * 0.1}rem`}
+        height={`${height * 0.1}rem`}
+        fill={fill}
+        stroke={stroke}
+      />
     </div>
   );
 }

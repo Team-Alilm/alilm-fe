@@ -16,5 +16,6 @@ export const useGetMyBaskets = () => {
   return useQuery({
     queryKey: [MY_BASKETS_QUERY_KEY],
     queryFn: async () => await getMyBaskets(),
+    retry: 1,
   });
 };
