@@ -1,19 +1,13 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import Image from 'next/image';
+import Modal from '@/components/common/modal/modal';
 // useRouter를 통해 페이지 이동
 import { EffectFade, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, type SwiperClass, SwiperSlide } from 'swiper/react';
 
-import {
-  background,
-  buttonContainer,
-  content,
-  nextButton,
-  onboardingModal,
-  slide,
-} from './index.css'; // 스타일 파일 import
+import { buttonContainer, content, modal, nextButton, slide } from './index.css'; // 스타일 파일 import
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -49,19 +43,9 @@ const OnboardingModal = ({ onClose }: OnboardingProps) => {
     }
   };
 
-  useEffect(() => {
-    // 모달이 열렸을 때 스크롤 막기
-    document.body.style.overflow = 'hidden';
-
-    // 모달이 닫힐 때 스크롤 다시 활성화
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, []);
-
   return (
-    <div className={background}>
-      <div className={onboardingModal}>
+    <Modal>
+      <div className={modal}>
         <Swiper
           onSwiper={swiper => {
             swiperRef.current = swiper;
@@ -95,7 +79,7 @@ const OnboardingModal = ({ onClose }: OnboardingProps) => {
           </div>
         </Swiper>
       </div>
-    </div>
+    </Modal>
   );
 };
 
