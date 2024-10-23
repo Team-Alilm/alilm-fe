@@ -8,6 +8,8 @@ import {
   type RegisteredBasketsParams,
   useRegisteredBaskets,
 } from '@/hooks/mutations/use-registered-baskets';
+import { LOCAL_STORAGE_KEY, Storage } from '@/libs/storage';
+import { useLoginModalStore } from '@/store/use-login-modal-store';
 
 import * as styles from './index.css';
 
@@ -18,6 +20,8 @@ const CreatePage = () => {
   const [url, setUrl] = useState('');
   const [showProductsOptionsForm, setShowProductsOptionsForm] = useState(false);
   const [createForm, setCreateForm] = useState<CreateFormValue | null>(null);
+  const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
+  const openLoginModal = useLoginModalStore(state => state.openLoginModal);
 
   const handleUrlInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUrl(e.target.value);
@@ -33,6 +37,10 @@ const CreatePage = () => {
       registeredBaskets(createForm);
     }
   };
+
+  if (!accessToken) {
+    openLoginModal();
+  }
 
   return (
     <div className={styles.createPage}>

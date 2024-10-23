@@ -4,6 +4,8 @@ import { type MouseEventHandler } from 'react';
 
 import { type AlilmTab, useAlilmTabs } from './contexts/alilm-tabs-context';
 import * as styles from './index.css';
+import { LOCAL_STORAGE_KEY, Storage } from '@/libs/storage';
+import { useLoginModalStore } from '@/store/use-login-modal-store';
 
 const ALILM_TABS = [
   {
@@ -18,10 +20,16 @@ const ALILM_TABS = [
 
 const AlilmTabs = () => {
   const [alilmTab, setAlilmTab] = useAlilmTabs();
+  const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
+  const openLoginModal = useLoginModalStore(state => state.openLoginModal);
 
   const handleAlilmTabSelect: MouseEventHandler<HTMLButtonElement> = e => {
     const { name } = e.currentTarget;
-    setAlilmTab(name as AlilmTab);
+    if (name === 'myAlilm' && !accessToken) {
+      openLoginModal();
+    } else {
+      setAlilmTab(name as AlilmTab);
+    }
   };
 
   return (

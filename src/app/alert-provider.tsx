@@ -2,6 +2,7 @@
 
 import { type PropsWithChildren } from 'react';
 import Alert from '@/components/common/alert';
+import LoginModal from '@/components/login/login-modal';
 import { useModalStore } from '@/store/use-modal-store';
 
 const AlertProvider = ({ children }: PropsWithChildren) => {
@@ -17,6 +18,7 @@ const AlertProvider = ({ children }: PropsWithChildren) => {
         mainBtnText={mainBtnText}
         onClick={onClick}
       />
+      <LoginModal />
     </>
   );
 };
