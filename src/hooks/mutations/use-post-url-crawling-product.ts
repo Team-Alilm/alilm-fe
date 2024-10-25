@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { type UseMutationCustomOptions } from '../api-types/types';
 
-interface UsePostUrlCrawlingProductResponse {
+export interface UsePostUrlCrawlingProductResponse {
   number: number;
   name: string;
   brand: string;
