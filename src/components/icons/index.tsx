@@ -19,7 +19,6 @@ export default function Icon({
   height = 24,
   rotate = 0,
   cursor = 'initial',
-  fill,
   stroke = 'currentColor',
   ...props
 }: IconProps) {
@@ -42,7 +41,7 @@ export default function Icon({
         {...props}
         width={`${width * 0.1}rem`}
         height={`${height * 0.1}rem`}
-        fill={fill}
+        fill={props.fill}
         stroke={stroke}
       />
     </div>
