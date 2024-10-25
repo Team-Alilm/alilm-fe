@@ -19,7 +19,7 @@ export default function Icon({
   height = 24,
   rotate = 0,
   cursor = 'initial',
-  fill = 'none',
+  fill,
   stroke = 'currentColor',
   ...props
 }: IconProps) {
