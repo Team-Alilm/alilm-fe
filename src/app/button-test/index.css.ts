@@ -1,85 +1,6 @@
-import { tokens } from '@/styles';
 import { createTheme, keyframes, style } from '@vanilla-extract/css';
 
-export const overlay = style({
-  backgroundColor: tokens.colors.overlay,
-  position: 'fixed',
-  inset: '0',
-});
-
-export const content = style({
-  position: 'fixed',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '32.4rem',
-  minHeight: '11.25rem',
-  background: tokens.colors.surface,
-  borderRadius: '2.4rem',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  padding: '2.4rem',
-});
-
-export const title = style({
-  fontSize: '2rem',
-  fontWeight: '700',
-  textAlign: 'center',
-  color: tokens.colors.textPrimary,
-  marginBottom: '1.4rem',
-  lineHeight: '3rem',
-});
-
-export const description = style({
-  fontSize: '1.5rem',
-  textAlign: 'center',
-  color: tokens.colors.textPrimary,
-  marginBottom: '3rem',
-  whiteSpace: 'pre-line',
-});
-
-export const btnContainer = style({
-  width: '100%',
-  height: '5.1rem',
-  display: 'flex',
-  gap: 8,
-  justifyContent: 'center',
-  textAlign: 'center',
-  fontSize: '1.6rem',
-  marginTop: 'auto',
-});
-
-const alertBtnStyles = style({
-  all: 'unset',
-  width: '100%',
-  height: '100%',
-  padding: '0 2%',
-  borderRadius: '0.8rem',
-  overflow: 'hidden',
-  whiteSpace: 'nowrap',
-  textOverflow: 'ellipsis',
-  cursor: 'pointer',
-});
-
-export const cancelBtn = style([
-  alertBtnStyles,
-  {
-    backgroundColor: tokens.colors.surface,
-    border: '0.1rem solid',
-    borderColor: tokens.colors.border,
-  },
-]);
-
-export const mainBtnText = style([
-  alertBtnStyles,
-  {
-    backgroundColor: '#000',
-    color: '#fff',
-  },
-]);
-
+// 색상 테마 설정
 const [themeClass, vars] = createTheme({
   colors: {
     background: '#d1d8e0',
@@ -173,6 +94,17 @@ export const modal = style({
   transform: 'translate(-50%, -50%)',
   zIndex: 1000,
   animation: `${fadeIn} 0.3s ease-out`,
+});
+
+// Overlay 스타일 (모달 배경)
+export const overlay = style({
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  zIndex: 999,
 });
 
 export const theme = themeClass;
