@@ -5,9 +5,7 @@ const withVanillaExtract = createVanillaExtractPlugin();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
-  experimental: {
-    outputFileTracing: true,
-  },
+  outputFileTracing: true,
   images: {
     remotePatterns: [
       {
