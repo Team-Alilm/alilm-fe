@@ -51,7 +51,7 @@ importers:
         specifier: ^1.16.0
         version: 1.23.0
       firebase:
-        specifier: ^10.13.2
+        specifier: ^10.14.0
         version: 10.14.0
       lucide-react:
         specifier: ^0.452.0

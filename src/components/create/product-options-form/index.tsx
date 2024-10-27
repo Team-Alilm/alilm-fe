@@ -1,33 +1,18 @@
 import { type Dispatch, type SetStateAction, useEffect } from 'react';
 import Image from 'next/image';
 import Select from '@/components/design-system/select';
-import usePostUrlCrawlingProduct from '@/hooks/mutations/use-post-url-crawling-product';
+import { type UsePostUrlCrawlingProductResponse } from '@/hooks/mutations/use-post-url-crawling-product';
 import { type RegisteredBasketsParams } from '@/hooks/mutations/use-registered-baskets';
-import { useModalStore } from '@/store/use-modal-store';
-import { ERROR_CODE, ERROR_MESSAGES, type ErrorCode } from '@/utils/error-code';
 
 import * as styles from './index.css';
 
 interface ProductOptionsFormProps {
-  url: string;
+  product?: UsePostUrlCrawlingProductResponse;
+  isPending: boolean;
   setCreateForm: Dispatch<SetStateAction<RegisteredBasketsParams | null>>;
 }
 
-const ProductOptionsForm = ({ url, setCreateForm }: ProductOptionsFormProps) => {
-  const onOpen = useModalStore(state => state.onOpen);
-
-  const {
-    mutate: fetchProduct,
-    data: product,
-    isPending,
-    isError,
-    error,
-  } = usePostUrlCrawlingProduct();
-
-  useEffect(() => {
-    fetchProduct({ url });
-  }, [fetchProduct, url]);
-
+const ProductOptionsForm = ({ product, isPending, setCreateForm }: ProductOptionsFormProps) => {
   useEffect(() => {
     if (product) {
       setCreateForm({
@@ -44,26 +29,7 @@ const ProductOptionsForm = ({ url, setCreateForm }: ProductOptionsFormProps) => 
     setCreateForm(prev => (prev ? { ...prev, [name]: value } : null));
   };
 
-  const renderErrorMessage = (errorCode: ErrorCode) => {
-    const message = ERROR_MESSAGES[errorCode] || ERROR_MESSAGES[ERROR_CODE.INTERNAL_SERVER_ERROR];
-    const invalidUrl = error?.response?.data.error;
-
-    if (invalidUrl === 'UNSUPPORTED_URL') {
-      onOpen({
-        modalType: 'alert',
-        title: 'URL 주소를 다시 확인해주세요.',
-        description: '무신사 상품만 등록할 수 있어요.',
-      });
-    } else {
-      onOpen({ modalType: 'alert', title: message });
-    }
-  };
-
-  if (isPending) return <p>상품 정보를 불러오는 중입니다...</p>;
-  if (isError) {
-    const errorCode = ((error as Error)?.message as ErrorCode) || ERROR_CODE.INTERNAL_SERVER_ERROR;
-    renderErrorMessage(errorCode);
-  }
+  if (isPending) return <p className={styles.pending}>상품 정보를 불러오는 중입니다...</p>;
 
   if (!product) return null;
 
@@ -71,12 +37,13 @@ const ProductOptionsForm = ({ url, setCreateForm }: ProductOptionsFormProps) => 
     <>
       <Image
         src={product.imageUrl}
-        className={styles.previewImage}
         alt="Product Preview"
+        className={styles.previewImage}
         width={800}
         height={800}
         style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
       />
+
       {renderSelect('firstOption', '상품 옵션1', product.firstOptions)}
       {renderSelect('secondOption', '상품 옵션2', product.secondOptions)}
       {renderSelect('thirdOption', '상품 옵션3', product.thirdOptions)}
