@@ -20,7 +20,7 @@ self.addEventListener('push', function (event) {
     console.log('Parsed data:', data);
     const options = {
       body: data.body,
-      icon: data.image,
+      icon: data.icon,
       image: data.image,
       data: {
         click_action: data.click_action,
