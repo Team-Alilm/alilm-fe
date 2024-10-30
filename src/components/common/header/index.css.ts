@@ -1,3 +1,4 @@
+import { tokens } from '@/styles';
 import { style } from '@vanilla-extract/css';
 
 export const header = style({
@@ -19,4 +20,16 @@ export const rightHeaderWrapper = style({
   display: 'flex',
   alignItems: 'center',
   gap: '12px',
+});
+
+export const loginBtn = style({
+  all: 'unset',
+  width: '13rem',
+  height: '3.3rem',
+  backgroundColor: tokens.colors.surface,
+  borderRadius: '0.4rem',
+  fontSize: '1.4rem',
+  fontWeight: 700,
+  textAlign: 'center',
+  cursor: 'pointer',
 });
