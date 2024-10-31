@@ -12,7 +12,7 @@ interface BasketsResponse {
 export const BASKETS_QUERY_KEY = 'getBaskets';
 
 export const getBaskets = async (pageParam: number) => {
-  return await get<BasketsResponse>(`/baskets?size=9&page=${pageParam}`);
+  return await get<BasketsResponse>(`/products?size=9&page=${pageParam}`);
 };
 
 export const useGetBaskets = () => {
