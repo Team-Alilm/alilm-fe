@@ -61,8 +61,17 @@ export const interceptorResponseRejected = (openLoginModal: () => void) => {
       return Promise.reject(new CustomException(errorMessage.BAD_REQUEST_409, 'ERR_BAD_REQUEST'));
     }
 
-    if (error.response?.data?.['response_messages']) {
-      return Promise.reject(new ApiException(error.response.data, error.response.status));
+    // if (error.response?.data?.['response_messages']) {
+    //   return Promise.reject(new ApiException(error.response.data, error.response.status));
+    // }
+
+    if (error.response?.data) {
+      const responseData =
+        typeof error.response.data === 'string'
+          ? { response_messages: error.response.data }
+          : error.response.data;
+
+      return Promise.reject(new ApiException(responseData, error.response.status));
     }
 
     if (error.message.startsWith('timeout')) {

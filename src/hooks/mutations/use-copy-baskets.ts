@@ -18,5 +18,11 @@ export const useCopyBaskets = () => {
       onOpen({ modalType: 'alert', title: '함께 기다리기 성공!' });
       queryClient.invalidateQueries({ queryKey: [MY_BASKETS_QUERY_KEY] });
     },
+    onError: error => {
+      if (error.message.includes('ALILM-008')) {
+        const errorMessage = error.message.split(' : ')[1].trim();
+        onOpen({ modalType: 'alert', title: errorMessage });
+      }
+    },
   });
 };
