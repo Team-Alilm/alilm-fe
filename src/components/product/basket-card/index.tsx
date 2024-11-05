@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import Image from 'next/image';
 import { BasketBadge } from '@/components/product/basket-badge';
 import { useCopyBaskets } from '@/hooks/mutations/use-copy-baskets';
@@ -13,6 +15,7 @@ type BasketProps = Basket & {
 
 const BasketCard = ({
   id,
+  number,
   name,
   brand,
   imageUrl,
@@ -32,26 +35,33 @@ const BasketCard = ({
     copyBasketsMutate(id);
   };
 
+  const handleProductClick = () => {
+    window.open(`https://www.musinsa.com/products/${number}`);
+  };
+
   if (isLoading || !id) {
     return <BasketCardSkeleton />;
   }
 
   return (
     <div className={styles.basketCard}>
-      <div className={styles.imageWrapper}>
-        <Image
-          src={imageUrl}
-          className={styles.thumbnailImage}
-          alt="Basket Thumbnail"
-          width={800}
-          height={800}
-        />
+      <div onClick={handleProductClick} style={{ cursor: 'pointer' }}>
+        <div className={styles.imageWrapper}>
+          <Image
+            src={imageUrl}
+            className={styles.thumbnailImage}
+            alt="Basket Thumbnail"
+            width={800}
+            height={800}
+          />
+        </div>
       </div>
       <div>
-        <BasketBadge>{category}</BasketBadge>
-        <p className={styles.name}>{name}</p>
-        <p className={styles.options}>{description}</p>
-
+        <div onClick={handleProductClick} style={{ cursor: 'pointer' }}>
+          <BasketBadge>{category}</BasketBadge>
+          <p className={styles.name}>{name}</p>
+          <p className={styles.options}>{description}</p>
+        </div>
         {tab === 'home' ? (
           <>
             <WaitingCounts counts={waitingCount} />
