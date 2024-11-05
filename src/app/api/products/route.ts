@@ -2,8 +2,7 @@ import { type NextRequest, NextResponse } from 'next/server';
 import { ERROR_CODE } from '@/utils/error-code';
 import * as cheerio from 'cheerio';
 
-const MUSINSA_API_URL_TEMPLATE =
-  'https://goods-detail.musinsa.com/api2/goods/%s/options?goodsSaleType=SALE';
+const MUSINSA_API_URL_TEMPLATE = 'https://goods.musinsa.com/api2/review/v1/view/filter?goodsNo=%s';
 
 export async function POST(request: NextRequest) {
   try {
@@ -131,9 +130,8 @@ function extractJsonData(scriptContent: string, variableName: string): string | 
   return substring.substring(0, endIndex);
 }
 
-//
 interface OptionValue {
-  name: string;
+  val: string;
 }
 
 interface Color {}
@@ -147,13 +145,8 @@ interface OptionItem {
   activated: boolean;
   outOfStock: boolean;
   isDeleted: boolean;
-  optionValues: OptionValue[];
   colors: Color[];
   remainQuantity: number;
-}
-
-interface BasicOption {
-  optionValues: OptionValue[];
 }
 
 interface ExtractOptionsResponse {
@@ -163,7 +156,12 @@ interface ExtractOptionsResponse {
     message: string;
   };
   data: {
-    basic: BasicOption[];
+    filterOption: {
+      firstOptions?: OptionValue[];
+      secondOptions?: OptionValue[];
+      thirdOptions?: OptionValue[];
+    };
+
     extra: unknown[];
     optionItems: OptionItem[];
   };
@@ -175,9 +173,9 @@ function extractOptions(response: ExtractOptionsResponse): {
   second: string[];
   third: string[];
 } {
-  const firstOptions = response.data.basic[0]?.optionValues.map(ov => ov.name) || [];
-  const secondOptions = response.data.basic[1]?.optionValues.map(ov => ov.name) || [];
-  const thirdOptions = response.data.basic[2]?.optionValues.map(ov => ov.name) || [];
+  const firstOptions = response.data.filterOption.firstOptions?.map(ov => ov.val) || [];
+  const secondOptions = response.data.filterOption.secondOptions?.map(ov => ov.val) || [];
+  const thirdOptions = response.data.filterOption.thirdOptions?.map(ov => ov.val) || [];
 
   return { first: firstOptions, second: secondOptions, third: thirdOptions };
 }
