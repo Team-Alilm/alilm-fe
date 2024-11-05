@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useModalStore } from '@/store/use-modal-store';
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
 
@@ -18,6 +19,23 @@ export interface AlertProps {
 const Alert = ({ type, title, description, cancelBtnText, mainBtnText, onClick }: AlertProps) => {
   const onClose = useModalStore(state => state.onClose);
   const isOpen = useModalStore(state => state.isOpen);
+
+  // 엔터 이벤트 발생 시 얼럿 닫기
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Enter' && isOpen) {
+        event.preventDefault();
+        onClose();
+        if (onClick) {
+          onClick();
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClick, onClose]);
 
   return (
     <AlertDialog.Root
