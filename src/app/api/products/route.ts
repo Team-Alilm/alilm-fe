@@ -37,6 +37,7 @@ export async function POST(request: NextRequest) {
     }
 
     const productData = JSON.parse(jsonData);
+    console.log(productData);
 
     if (!productData.goodsNo) {
       return NextResponse.json({ error: ERROR_CODE.PRODUCT_NOT_FOUND }, { status: 404 });
@@ -44,13 +45,16 @@ export async function POST(request: NextRequest) {
 
     const options = extractOptions(soldoutCheckResponse);
 
+    const productImageUrl = productData.goodsImages?.map(
+      (image: { imageUrl: string[] }) => `https://image.msscdn.net${image.imageUrl}`
+    );
+
     const result = {
       number: productData.goodsNo,
       name: productData.goodsNm,
       brand: productData.brand,
-      imageUrl: productData.thumbnailImageUrl
-        ? `https://image.msscdn.net${productData.thumbnailImageUrl}`
-        : null,
+      thumbnailUrl: `https://image.msscdn.net${productData.thumbnailImageUrl}`,
+      imageUrlList: productImageUrl ? productImageUrl : [],
       category: productData.category?.categoryDepth1Title,
       price: productData.goodsPrice?.maxPrice,
       store: 'MUSINSA',

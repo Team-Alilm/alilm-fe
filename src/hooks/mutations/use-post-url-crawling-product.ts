@@ -7,7 +7,8 @@ export interface UsePostUrlCrawlingProductResponse {
   number: number;
   name: string;
   brand: string;
-  imageUrl: string;
+  thumbnailUrl: string;
+  imageUrlList: string[];
   category: string;
   price: number;
   store: string;

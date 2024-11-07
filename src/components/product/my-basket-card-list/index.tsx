@@ -1,6 +1,6 @@
 import { useGetMyBaskets } from '@/hooks/queries/use-get-my-baskets';
 
-import BasketCard from '../basket-card';
+import ProductCard from '../basket-card';
 import MyBasketCard from '../my-basket-card';
 import { cardListHome, cardListMypage } from './index.css';
 
@@ -16,7 +16,7 @@ const MyBasketCardList = ({ type }: MyBasketCardListProps) => {
       {type === 'home' && (
         <div className={cardListHome}>
           {myBaskets?.map(myBasket => (
-            <BasketCard key={myBasket.id} {...myBasket} tab="my-basket" />
+            <ProductCard key={myBasket.id} {...myBasket} tab="my-basket" />
           ))}
         </div>
       )}

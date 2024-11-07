@@ -1,28 +1,30 @@
 import { get } from '@/libs/api/client';
-import { type Basket } from '@/types/basket';
+import { type Product } from '@/types/basket';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-interface BasketsResponse {
-  size: number;
-  contents: Basket[];
-  last: boolean;
-  hasNext: boolean;
+interface ProductsResponse {
+  customSlice: {
+    size: number;
+    contents: Product[];
+    last: boolean;
+    hasNext: boolean;
+  };
 }
 
-export const BASKETS_QUERY_KEY = 'getBaskets';
+export const PRODUCTS_QUERY_KEY = 'getProducts';
 
-export const getBaskets = async (pageParam: number) => {
-  return await get<BasketsResponse>(`/products?size=9&page=${pageParam}`);
+export const getProducts = async (pageParam: number) => {
+  return await get<ProductsResponse>(`/products?size=9&page=${pageParam}`);
 };
 
-export const useGetBaskets = () => {
+export const useGetProducts = () => {
   return useInfiniteQuery({
-    queryKey: [BASKETS_QUERY_KEY],
-    queryFn: async ({ pageParam }) => await getBaskets(pageParam),
+    queryKey: [PRODUCTS_QUERY_KEY],
+    queryFn: async ({ pageParam }) => await getProducts(pageParam),
     getNextPageParam: (lastPage, allPages) => {
-      return lastPage.hasNext ? allPages.length : null;
+      return lastPage.customSlice.hasNext ? allPages.length : null;
     },
-    select: data => data.pages.flatMap(({ contents }) => contents),
+    select: data => data.pages.flatMap(page => page.customSlice.contents),
     initialPageParam: 0,
   });
 };

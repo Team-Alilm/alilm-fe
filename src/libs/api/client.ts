@@ -94,11 +94,21 @@ export const setupInterceptors = (openLoginModal: () => void) => {
 export { instance };
 
 export const get = <T>(...args: Parameters<typeof instance.get>) => {
-  return instance.get<T, T>(...args);
-};
+  const [url, config] = args;
 
+  return instance.get<T, T>(url, {
+    ...config,
+    baseURL: url.includes('products') ? 'https://alilm.store/api/v2' : instance.defaults.baseURL,
+  });
+};
 export const post = <T>(...args: Parameters<typeof instance.post>) => {
-  return instance.post<T, T>(...args);
+  const [url, data, config] = args;
+
+  return instance.post<T, T>(url, data, {
+    ...config,
+    baseURL:
+      url === '/baskets/registered' ? 'https://alilm.store/api/v2' : instance.defaults.baseURL,
+  });
 };
 
 export const put = <T>(...args: Parameters<typeof instance.put>) => {
