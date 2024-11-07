@@ -36,7 +36,7 @@ const ProductOptionsForm = ({ product, isPending, setCreateForm }: ProductOption
   return (
     <>
       <Image
-        src={product.imageUrl}
+        src={product.thumbnailUrl}
         alt="Product Preview"
         className={styles.previewImage}
         width={800}

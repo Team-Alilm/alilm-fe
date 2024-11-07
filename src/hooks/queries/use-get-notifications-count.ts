@@ -9,7 +9,7 @@ interface NotificationsCountResponse {
 export const NOTIFICATION_COUNT_QUERY_KEY = 'getNotificationCount';
 
 export const getNotificationsCount = async () => {
-  const data = await get<NotificationsCountResponse>('/notifications/count');
+  const data = await get<NotificationsCountResponse>('/alilms/count');
 
   return data;
 };

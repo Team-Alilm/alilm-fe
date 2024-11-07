@@ -1,8 +1,9 @@
-export interface Basket {
+export interface Product {
   id: number;
   number: number;
   name: string;
   brand: string;
+  thumbnailUrl: string;
   imageUrl: string;
   store: string;
   price: number;
@@ -20,6 +21,7 @@ export interface MyBasket {
   number: number;
   name: string;
   brand: string;
+  thumbnailUrl: string;
   imageUrl: string;
   store: string;
   price: number;

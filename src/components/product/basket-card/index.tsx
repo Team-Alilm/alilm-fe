@@ -3,22 +3,23 @@
 import Image from 'next/image';
 import { BasketBadge } from '@/components/product/basket-badge';
 import { useCopyBaskets } from '@/hooks/mutations/use-copy-baskets';
-import { type Basket } from '@/types/basket';
+import { type Product } from '@/types/basket';
 
 import WaitingCounts from '../waiting-counts';
 import BasketCardSkeleton from './basket-card-skeleton';
 import * as styles from './index.css';
 
-type BasketProps = Basket & {
+type BasketProps = Product & {
   isLoading?: boolean;
 };
 
-const BasketCard = ({
+const ProductCard = ({
   id,
   number,
   name,
   brand,
   imageUrl,
+  thumbnailUrl,
   category,
   firstOption,
   secondOption,
@@ -48,7 +49,7 @@ const BasketCard = ({
       <div onClick={handleProductClick} style={{ cursor: 'pointer' }}>
         <div className={styles.imageWrapper}>
           <Image
-            src={imageUrl}
+            src={tab === 'home' ? thumbnailUrl : imageUrl}
             className={styles.thumbnailImage}
             alt="Basket Thumbnail"
             width={800}
@@ -75,4 +76,4 @@ const BasketCard = ({
   );
 };
 
-export default BasketCard;
+export default ProductCard;
