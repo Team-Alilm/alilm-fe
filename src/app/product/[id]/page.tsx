@@ -29,42 +29,28 @@ const ProductDetail = ({ params }: ProductDetailProps) => {
   };
   if (!productInfo) return;
 
+  const imageContents = [productInfo.thumbnailUrl, ...productInfo.imageUrlList];
+
   return (
     productInfo && (
       <div>
         <div className={styles.productImage}>
-          {productInfo.imageUrlList[0] !== 'null' ? (
-            <Swiper
-              spaceBetween={20}
-              slidesPerView={1}
-              pagination={{ clickable: true }}
-              modules={[Navigation, Pagination]}
-            >
-              {productInfo.imageUrlList?.map((image, i) => (
-                <SwiperSlide key={i}>
+          <Swiper
+            spaceBetween={20}
+            slidesPerView={1}
+            pagination={{ clickable: true }}
+            modules={[Navigation, Pagination]}
+          >
+            {imageContents.map((image, i) => (
+              <SwiperSlide key={i}>
+                <div>
                   <div>
-                    <div>
-                      <Image
-                        src={image}
-                        layout={'intrinsic'}
-                        alt={image}
-                        width={800}
-                        height={800}
-                      />
-                    </div>
+                    <Image src={image} layout={'intrinsic'} alt={image} width={800} height={800} />
                   </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          ) : (
-            <Image
-              src={productInfo.thumbnailUrl}
-              layout={'intrinsic'}
-              alt={productInfo.thumbnailUrl}
-              width={800}
-              height={800}
-            />
-          )}
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
         <div className={styles.productInfo}>
           <p className={styles.productName}>{productInfo.name}</p>

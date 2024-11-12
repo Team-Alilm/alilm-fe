@@ -45,9 +45,11 @@ export async function POST(request: NextRequest) {
 
     const options = extractOptions(soldoutCheckResponse);
 
-    const productImageUrl = productData.goodsImages?.map(
-      (image: { imageUrl: string[] }) => `https://image.msscdn.net${image.imageUrl}`
-    );
+    const goodsImages = productData.goodsImages
+      ?.map((image: { imageUrl: string[] }) => `https://image.msscdn.net${image.imageUrl}`)
+      .slice(0, 3);
+
+    const productImageUrl = goodsImages.length > 3 ? goodsImages.slice(0, 3) : goodsImages;
 
     const result = {
       number: productData.goodsNo,
