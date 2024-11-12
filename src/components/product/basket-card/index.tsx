@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { BasketBadge } from '@/components/product/basket-badge';
 import { useCopyBaskets } from '@/hooks/mutations/use-copy-baskets';
 import { type Product } from '@/types/basket';
@@ -15,7 +16,6 @@ type BasketProps = Product & {
 
 const ProductCard = ({
   id,
-  number,
   name,
   brand,
   imageUrl,
@@ -32,12 +32,14 @@ const ProductCard = ({
 
   const description = `${brand}${firstOption ? ` / ${firstOption}` : ''}${secondOption ? ` / ${secondOption}` : ''}${thirdOption ? ` / ${thirdOption}` : ''}`;
 
+  const router = useRouter();
+
   const handleWaitTogetherButtonClick = () => {
     copyBasketsMutate(id);
   };
 
   const handleProductClick = () => {
-    window.open(`https://www.musinsa.com/products/${number}`);
+    router.push(`/product/${id}`);
   };
 
   if (isLoading || !id) {
@@ -46,19 +48,21 @@ const ProductCard = ({
 
   return (
     <div className={styles.basketCard}>
-      <div onClick={handleProductClick} style={{ cursor: 'pointer' }}>
-        <div className={styles.imageWrapper}>
+      <div onClick={handleProductClick} style={{ cursor: 'pointer', width: '100%' }}>
+        <div>
           <Image
             src={tab === 'home' ? thumbnailUrl : imageUrl}
             className={styles.thumbnailImage}
             alt="Basket Thumbnail"
-            width={800}
-            height={800}
+            layout="responsive"
+            width={0}
+            height={0}
+            sizes="100vw"
           />
         </div>
       </div>
       <div>
-        <div onClick={handleProductClick} style={{ cursor: 'pointer' }}>
+        <div onClick={handleProductClick} style={{ cursor: 'pointer', width: '100%' }}>
           <BasketBadge>{category}</BasketBadge>
           <p className={styles.name}>{name}</p>
           <p className={styles.options}>{description}</p>

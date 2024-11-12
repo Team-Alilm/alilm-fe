@@ -16,7 +16,7 @@ const AlilmInfo = () => {
       </Flex>
       <Flex direction="column">
         <p className={styles.title}>오늘 재입고 알림</p>
-        <p className={styles.figure}>{isLoading ? 0 : notificationsCount?.dailyCount}명</p>
+        <p className={styles.figure}>{isLoading ? 0 : notificationsCount?.dailyCount}건</p>
       </Flex>
     </div>
   );

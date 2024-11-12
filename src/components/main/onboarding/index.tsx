@@ -7,7 +7,7 @@ import Modal from '@/components/common/modal/modal';
 import { EffectFade, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, type SwiperClass, SwiperSlide } from 'swiper/react';
 
-import { buttonContainer, content, modal, nextButton, slide } from './index.css'; // 스타일 파일 import
+import { buttonContainer, content, modal, nextButton, slide } from './index.css';
 
 import 'swiper/css';
 import 'swiper/css/navigation';

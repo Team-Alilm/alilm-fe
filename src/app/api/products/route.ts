@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
       thirdOptions: options.third,
     };
 
-    // console.log('Product data:', result);
+    console.log('Product data:', result);
 
     return NextResponse.json(result);
   } catch (error) {

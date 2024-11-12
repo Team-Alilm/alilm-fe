@@ -12,7 +12,7 @@ export interface Product {
   secondOption?: string;
   thirdOption?: string;
   waitingCount?: number;
-  tab: 'home' | 'my-basket';
+  tab?: 'home' | 'my-basket';
   // isHidden: boolean;
 }
 

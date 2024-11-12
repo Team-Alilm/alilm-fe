@@ -7,7 +7,7 @@ export const basketCard = style({
   justifyContent: 'flex-start',
   minWidth: '10rem',
   margin: 'auto',
-  width: '90%',
+  width: 'inherit',
   height: '100%',
 });
 
@@ -21,7 +21,7 @@ export const thumbnailImage = style({
 
   // height: 'clamp(21.8rem, 21.8rem, 21.8rem)',
   objectFit: 'contain',
-  borderRadius: '1.2rem',
+  borderRadius: '0.4rem',
 });
 
 export const name = style({
