@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Button from '@/components/design-system/button';
 import Icon from '@/components/icons';
 import RelatedProductList from '@/components/product/related-products-list';
 import { useCopyBaskets } from '@/hooks/mutations/use-copy-baskets';
@@ -31,6 +32,10 @@ const ProductDetail = ({ params }: ProductDetailProps) => {
 
   const imageContents = [productInfo.thumbnailUrl, ...productInfo.imageUrlList];
 
+  const handleGoToBuyBtn = () => {
+    window.open(`https://www.musinsa.com/products/${productInfo.number}`);
+  };
+
   return (
     productInfo && (
       <div>
@@ -45,7 +50,7 @@ const ProductDetail = ({ params }: ProductDetailProps) => {
               <SwiperSlide key={i}>
                 <div>
                   <div>
-                    <Image src={image} layout={'intrinsic'} alt={image} width={800} height={800} />
+                    <Image src={image} layout={'intrinsic'} alt={image} width={600} height={600} />
                   </div>
                 </div>
               </SwiperSlide>
@@ -64,15 +69,23 @@ const ProductDetail = ({ params }: ProductDetailProps) => {
             <p className={styles.price}>{productInfo.price.toLocaleString()}</p>
           </div>
         </div>
-        <div>
+        <div className={styles.buttonSection}>
           <button className={styles.waitingTogetherBtn} onClick={handleWaitTogetherButtonClick}>
             <Icon icon="UserTwoPerson" width={16} height={16} />
             <span>함께 기다리기</span>
           </button>
+          <div style={{ width: '65.16%' }}>
+            <Button
+              onClick={handleGoToBuyBtn}
+              style={{ width: '100%', height: '5.1rem', borderRadius: '0.8rem' }}
+            >
+              상품 판매 사이트로 가기
+            </Button>
+          </div>
         </div>
         <div className={styles.listSection}>
           <p className={styles.listTitle}>관련 상품</p>
-          <RelatedProductList />
+          <RelatedProductList productId={productInfo.id} />
         </div>
       </div>
     )

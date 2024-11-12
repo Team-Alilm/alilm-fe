@@ -6,9 +6,8 @@ export const productImage = style({
 
 export const waitingTogetherBtn = style({
   all: 'unset',
-  width: '93.33%',
+  width: '26.5%',
   height: '5.1rem',
-  margin: 'auto',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -18,6 +17,14 @@ export const waitingTogetherBtn = style({
   fontSize: '1.6rem',
   fontWeight: '600',
   cursor: 'pointer',
+
+  '@media': {
+    'screen and (max-width: 768px)': {
+      width: '41%',
+      fontSize: '1.5rem',
+      gap: '0.5rem',
+    },
+  },
 });
 
 export const productInfo = style({
@@ -44,12 +51,26 @@ export const price = style({
   marginTop: '0.4rem',
 });
 
+export const buttonSection = style({
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+  gap: '0.8rem',
+
+  '@media': {
+    'screen and (max-width: 768px)': {
+      padding: '2rem',
+    },
+  },
+});
+
 export const listSection = style({
-  marginTop: '6rem',
-  padding: '2rem',
+  margin: '6rem 0',
 });
 
 export const listTitle = style({
   fontSize: '1.6rem',
   fontWeight: '500',
+  paddingLeft: '2rem',
+  paddingBottom: '1.6rem',
 });

@@ -4,7 +4,7 @@ export const cardList = style({
   width: '60rem',
   display: 'flex',
   gap: '1.2rem',
-  overflow: 'scroll',
+  //   overflow: 'hidden',
 });
 
 export const cardWrapper = style({

@@ -6,11 +6,11 @@ type ProductResponse = Omit<Product, 'tab' | 'imageUrl'> & { imageUrlList: strin
 
 export const PRODUCT_QUERY_KEY = 'getProductInfo';
 
-export const getProductInfo = async (productId: number) => {
+export const getProductInfo = async (productId: Product['id']) => {
   return await get<ProductResponse>(`/products/${productId}`);
 };
 
-export const useGetProductInfo = (productId: number) => {
+export const useGetProductInfo = (productId: Product['id']) => {
   return useQuery({
     queryKey: [PRODUCT_QUERY_KEY, productId],
     queryFn: async () => await getProductInfo(productId),
