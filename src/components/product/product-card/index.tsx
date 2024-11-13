@@ -12,7 +12,7 @@ import * as styles from './index.css';
 
 type BasketProps = Product & {
   isLoading?: boolean;
-  productId: number;
+  productId?: number;
 };
 
 const ProductCard = ({
