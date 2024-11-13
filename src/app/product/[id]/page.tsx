@@ -1,11 +1,13 @@
 'use client';
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import Button from '@/components/design-system/button';
 import Icon from '@/components/icons';
 import RelatedProductList from '@/components/product/related-products-list';
 import { useCopyBaskets } from '@/hooks/mutations/use-copy-baskets';
 import { useGetProductInfo } from '@/hooks/queries/use-get-product-info';
+import { useModalStore } from '@/store/use-modal-store';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { type PaginationOptions } from 'swiper/types';
@@ -33,18 +35,30 @@ interface ProductDetailProps {
 }
 
 const ProductDetail = ({ params }: ProductDetailProps) => {
-  const { data: productInfo } = useGetProductInfo(params.id);
+  const { data: productInfo, isLoading } = useGetProductInfo(params.id);
   const { mutate: copyBasketsMutate } = useCopyBaskets();
+  const onOpen = useModalStore(state => state.onOpen);
 
   const handleWaitTogetherButtonClick = () => {
     copyBasketsMutate(params.id);
   };
-  if (!productInfo) return;
 
-  const imageContents = [productInfo.thumbnailUrl, ...productInfo.imageUrlList];
+  const router = useRouter();
+
+  if (!isLoading && !productInfo) {
+    onOpen({
+      modalType: 'alert',
+      title: '존재하지 않는 상품입니다.',
+      onClick: () => router.push('/'),
+    });
+  }
+
+  console.log(productInfo);
+
+  const imageContents = [productInfo?.thumbnailUrl, ...(productInfo?.imageUrlList || [])];
 
   const handleGoToBuyBtn = () => {
-    window.open(`https://www.musinsa.com/products/${productInfo.number}`);
+    window.open(`https://www.musinsa.com/products/${productInfo!.number}`);
   };
 
   return (
