@@ -18,6 +18,7 @@ export interface Product {
 
 export interface MyBasket {
   id: number;
+  productId: number;
   number: number;
   name: string;
   brand: string;

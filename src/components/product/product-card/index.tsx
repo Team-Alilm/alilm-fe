@@ -12,10 +12,12 @@ import * as styles from './index.css';
 
 type BasketProps = Product & {
   isLoading?: boolean;
+  productId: number;
 };
 
 const ProductCard = ({
   id,
+  productId,
   name,
   brand,
   imageUrl,
@@ -39,7 +41,7 @@ const ProductCard = ({
   };
 
   const handleProductClick = () => {
-    router.push(`/product/${id}`);
+    router.push(tab === 'home' ? `/product/${id}` : `/product/${productId}`);
   };
 
   if (isLoading || !id) {

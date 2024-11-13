@@ -1,4 +1,7 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useDeleteBasket } from '@/hooks/mutations/use-delete-basket';
 import { useModalStore } from '@/store/use-modal-store';
 import { type MyBasket } from '@/types/basket';
@@ -11,6 +14,7 @@ type MyBasketProps = MyBasket;
 
 const MyBasketCard = ({
   id,
+  productId,
   name,
   brand,
   imageUrl,
@@ -36,6 +40,12 @@ const MyBasketCard = ({
     });
   };
 
+  const router = useRouter();
+
+  const openProductDetail = () => {
+    router.push(`/product/${productId}`);
+  };
+
   return (
     <div className={styles.myBasketCard}>
       <Image
@@ -44,11 +54,14 @@ const MyBasketCard = ({
         alt="Basket Thumbnail"
         width={200}
         height={200}
-        style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
+        style={{ width: '100%', height: 'auto', objectFit: 'cover', cursor: 'pointer' }}
+        onClick={openProductDetail}
       />
       <div>
         <BasketBadge>{category}</BasketBadge>
-        <p className={styles.name}>{name}</p>
+        <p className={styles.name} onClick={openProductDetail}>
+          {name}
+        </p>
         <p className={styles.options}>{description}</p>
         <WaitingCounts counts={waitingCount} />
         <button className={styles.deleteBtn} onClick={handleDeleteBtn}>

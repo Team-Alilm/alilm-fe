@@ -1,7 +1,7 @@
 import { useGetMyBaskets } from '@/hooks/queries/use-get-my-baskets';
 
-import ProductCard from '../basket-card';
 import MyBasketCard from '../my-basket-card';
+import ProductCard from '../product-card';
 import { cardListHome, cardListMypage } from './index.css';
 
 interface MyBasketCardListProps {

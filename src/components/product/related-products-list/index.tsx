@@ -3,7 +3,7 @@ import { type Product } from '@/types/basket';
 import { Mousewheel, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import ProductCard from '../basket-card';
+import ProductCard from '../product-card';
 import * as styles from './index.css';
 
 import 'swiper/css';
