@@ -45,7 +45,11 @@ const ProductDetail = ({ params }: ProductDetailProps) => {
 
   const router = useRouter();
 
-  if (!isLoading && !productInfo) {
+  if (isLoading) {
+    return <div className={styles.loadingText}>상품 정보를 불러오고 있어요...</div>;
+  }
+
+  if (!productInfo) {
     onOpen({
       modalType: 'alert',
       title: '존재하지 않는 상품입니다.',
