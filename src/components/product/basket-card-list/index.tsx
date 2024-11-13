@@ -1,8 +1,8 @@
 import { useIntersection } from '@/hooks/common/use-intersection';
 import { useGetProducts } from '@/hooks/queries/use-get-baskets';
 
-import ProductCard from '../basket-card';
-import BasketCardSkeleton from '../basket-card/basket-card-skeleton';
+import ProductCard from '../product-card';
+import BasketCardSkeleton from '../product-card/basket-card-skeleton';
 import * as styles from './index.css';
 
 const BasketCardList = () => {

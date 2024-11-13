@@ -17,7 +17,6 @@ self.addEventListener('push', function (event) {
   if (event.data) {
     // 알림 메세지일 경우엔 event.data.json().notification;
     const data = event.data.json().data;
-    console.log('Parsed data:', data);
     const options = {
       body: data.body,
       icon:

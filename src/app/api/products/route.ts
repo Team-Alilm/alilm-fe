@@ -37,7 +37,6 @@ export async function POST(request: NextRequest) {
     }
 
     const productData = JSON.parse(jsonData);
-    console.log(productData);
 
     if (!productData.goodsNo) {
       return NextResponse.json({ error: ERROR_CODE.PRODUCT_NOT_FOUND }, { status: 404 });
@@ -45,9 +44,11 @@ export async function POST(request: NextRequest) {
 
     const options = extractOptions(soldoutCheckResponse);
 
-    const productImageUrl = productData.goodsImages?.map(
-      (image: { imageUrl: string[] }) => `https://image.msscdn.net${image.imageUrl}`
-    );
+    const goodsImages = productData.goodsImages
+      ?.map((image: { imageUrl: string[] }) => `https://image.msscdn.net${image.imageUrl}`)
+      .slice(0, 3);
+
+    const productImageUrl = goodsImages.length > 3 ? goodsImages.slice(0, 3) : goodsImages;
 
     const result = {
       number: productData.goodsNo,
@@ -62,8 +63,6 @@ export async function POST(request: NextRequest) {
       secondOptions: options.second,
       thirdOptions: options.third,
     };
-
-    // console.log('Product data:', result);
 
     return NextResponse.json(result);
   } catch (error) {

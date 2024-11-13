@@ -14,6 +14,12 @@ export const button = recipe({
     border: 'none',
     borderRadius: '4px',
     cursor: 'pointer',
+
+    '@media': {
+      'screen and (max-width: 768px)': {
+        fontSize: '1.5rem',
+      },
+    },
   },
   variants: {
     disabled: {

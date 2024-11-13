@@ -20,6 +20,7 @@ export const name = style({
   fontSize: '1.4rem',
   fontWeight: '700',
   marginBottom: '6px',
+  cursor: 'pointer',
 });
 
 export const options = style({

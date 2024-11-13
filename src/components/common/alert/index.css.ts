@@ -5,6 +5,7 @@ export const overlay = style({
   backgroundColor: tokens.colors.overlay,
   position: 'fixed',
   inset: '0',
+  zIndex: '1',
 });
 
 export const content = style({
@@ -21,6 +22,7 @@ export const content = style({
   justifyContent: 'space-between',
   alignItems: 'center',
   padding: '2.4rem',
+  zIndex: '2',
 });
 
 export const title = style({

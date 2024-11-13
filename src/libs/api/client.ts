@@ -98,7 +98,9 @@ export const get = <T>(...args: Parameters<typeof instance.get>) => {
 
   return instance.get<T, T>(url, {
     ...config,
-    baseURL: url.includes('products') ? 'https://alilm.store/api/v2' : instance.defaults.baseURL,
+    baseURL: url.includes('products?size')
+      ? 'https://alilm.store/api/v2'
+      : instance.defaults.baseURL,
   });
 };
 export const post = <T>(...args: Parameters<typeof instance.post>) => {
