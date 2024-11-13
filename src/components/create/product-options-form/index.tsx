@@ -29,7 +29,7 @@ const ProductOptionsForm = ({ product, isPending, setCreateForm }: ProductOption
     setCreateForm(prev => (prev ? { ...prev, [name]: value } : null));
   };
 
-  if (isPending) return <p className={styles.pending}>상품 정보를 불러오는 중입니다...</p>;
+  if (isPending) return <p className={styles.pending}>상품 정보를 불러오고 있어요...</p>;
 
   if (!product) return null;
 

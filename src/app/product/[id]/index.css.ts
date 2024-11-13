@@ -1,3 +1,4 @@
+import { tokens } from '@/styles';
 import { style } from '@vanilla-extract/css';
 
 export const productImage = style({
@@ -106,4 +107,13 @@ export const swiperPaginationTotal = style({
 export const swiperPaginationSlash = style({
   color: '#979797',
   margin: '0 0.2rem',
+});
+
+// 로딩 텍스트 스타일
+export const loadingText = style({
+  height: '20rem',
+  fontSize: '2rem',
+  color: tokens.colors.textSecondary,
+  textAlign: 'center',
+  padding: '8rem 0',
 });
