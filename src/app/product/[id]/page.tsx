@@ -53,8 +53,6 @@ const ProductDetail = ({ params }: ProductDetailProps) => {
     });
   }
 
-  console.log(productInfo);
-
   const imageContents = [productInfo?.thumbnailUrl, ...(productInfo?.imageUrlList || [])];
 
   const handleGoToBuyBtn = () => {
@@ -75,7 +73,13 @@ const ProductDetail = ({ params }: ProductDetailProps) => {
               <SwiperSlide key={i}>
                 <div>
                   <div>
-                    <Image src={image} layout={'intrinsic'} alt={image} width={600} height={600} />
+                    <Image
+                      src={image || '/images/empty-image.webp'}
+                      layout={'intrinsic'}
+                      alt={image || ''}
+                      width={600}
+                      height={600}
+                    />
                   </div>
                 </div>
               </SwiperSlide>
