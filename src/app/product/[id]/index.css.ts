@@ -74,3 +74,36 @@ export const listTitle = style({
   paddingLeft: '2rem',
   paddingBottom: '1.6rem',
 });
+
+// swiper 페이지네이션 스타일
+export const swiperPaginationWrapper = style({
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'flex-end',
+});
+
+export const swiperPaginationFraction = style({
+  width: '5.4rem',
+  height: '3.5rem',
+  backgroundColor: 'rgba(40, 40, 40, 0.6)',
+  borderRadius: '6rem',
+  alignContent: 'right',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontWeight: '500',
+  margin: '0 2.8rem 2.8rem 0',
+});
+
+export const swiperPaginationCurrent = style({
+  color: '#ffffff',
+});
+
+export const swiperPaginationTotal = style({
+  color: '#979797',
+});
+
+export const swiperPaginationSlash = style({
+  color: '#979797',
+  margin: '0 0.2rem',
+});

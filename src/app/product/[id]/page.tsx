@@ -8,12 +8,25 @@ import { useCopyBaskets } from '@/hooks/mutations/use-copy-baskets';
 import { useGetProductInfo } from '@/hooks/queries/use-get-product-info';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { type PaginationOptions } from 'swiper/types';
 
 import * as styles from './index.css';
 
 import 'swiper/css';
-import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+
+const paginationConfig: PaginationOptions = {
+  type: 'fraction',
+  renderFraction: (current, total) => `
+  <div class="${styles.swiperPaginationWrapper}">
+    <div class="${styles.swiperPaginationFraction}">
+      <span class="${styles.swiperPaginationCurrent} ${current}"></span>
+      <span class="${styles.swiperPaginationSlash}"> / </span> 
+      <span class="${styles.swiperPaginationTotal} ${total}"></span>
+    </div>
+  </div>
+    `,
+};
 
 interface ProductDetailProps {
   params: { id: number };
@@ -22,8 +35,6 @@ interface ProductDetailProps {
 const ProductDetail = ({ params }: ProductDetailProps) => {
   const { data: productInfo } = useGetProductInfo(params.id);
   const { mutate: copyBasketsMutate } = useCopyBaskets();
-
-  console.log(productInfo);
 
   const handleWaitTogetherButtonClick = () => {
     copyBasketsMutate(params.id);
@@ -43,7 +54,7 @@ const ProductDetail = ({ params }: ProductDetailProps) => {
           <Swiper
             spaceBetween={20}
             slidesPerView={1}
-            pagination={{ clickable: true }}
+            pagination={paginationConfig}
             modules={[Navigation, Pagination]}
           >
             {imageContents.map((image, i) => (

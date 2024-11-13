@@ -37,7 +37,6 @@ export async function POST(request: NextRequest) {
     }
 
     const productData = JSON.parse(jsonData);
-    console.log(productData);
 
     if (!productData.goodsNo) {
       return NextResponse.json({ error: ERROR_CODE.PRODUCT_NOT_FOUND }, { status: 404 });
@@ -64,8 +63,6 @@ export async function POST(request: NextRequest) {
       secondOptions: options.second,
       thirdOptions: options.third,
     };
-
-    console.log('Product data:', result);
 
     return NextResponse.json(result);
   } catch (error) {
