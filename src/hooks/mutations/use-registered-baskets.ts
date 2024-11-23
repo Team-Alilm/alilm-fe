@@ -11,7 +11,8 @@ export interface RegisteredBasketsParams {
   name: string;
   brand: string;
   imageUrlList: string[];
-  category: string;
+  firstCategory: string;
+  secondCategory: string;
   price: number;
   store: string;
   firstOption: string;
@@ -35,6 +36,8 @@ export const useRegisteredBaskets = () => {
       queryClient.invalidateQueries({ queryKey: [PRODUCTS_QUERY_KEY, MY_BASKETS_QUERY_KEY] });
       router.replace('/');
     },
-    onError: () => onOpen({ modalType: 'alert', title: '이미 등록된 상품이에요.' }),
+    onError: error => {
+      onOpen({ modalType: 'alert', title: error.message });
+    },
   });
 };

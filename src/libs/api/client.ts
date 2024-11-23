@@ -61,6 +61,10 @@ export const interceptorResponseRejected = (openLoginModal: () => void) => {
       return Promise.reject(new CustomException(errorMessage.BAD_REQUEST_409, 'ERR_BAD_REQUEST'));
     }
 
+    if (error.status === 400) {
+      return Promise.reject(new CustomException(errorMessage.UNKNOWN_400, 'ERR_BAD_REQUEST'));
+    }
+
     // if (error.response?.data?.['response_messages']) {
     //   return Promise.reject(new ApiException(error.response.data, error.response.status));
     // }
