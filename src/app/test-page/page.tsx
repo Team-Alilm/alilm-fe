@@ -22,7 +22,7 @@ function ProductFetcher() {
     try {
       const response = await axios.get(finalUrl);
       setData(response.data);
-      console.log(response.data);
+      console.log(data);
     } catch (error) {
       console.error('데이터를 가져오는 중 에러 발생', error);
     }
