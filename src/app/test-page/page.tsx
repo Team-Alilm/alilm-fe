@@ -3,8 +3,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-const MUSINSA_API_URL_TEMPLATE =
-  'https://goods-detail.musinsa.com/api2/goods/%s/options?goodsSaleType=SALE';
+const MUSINSA_API_URL_TEMPLATE = 'https://goods-detail.musinsa.com/api2/goods/%s';
 
 function ProductFetcher() {
   const [url, setUrl] = useState('');
