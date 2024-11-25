@@ -6,7 +6,7 @@ export const basketCard = style({
   flexDirection: 'column',
   justifyContent: 'flex-start',
   minWidth: '10rem',
-  margin: 'auto',
+  // margin: 'auto',
   width: 'inherit',
   height: '100%',
 });
