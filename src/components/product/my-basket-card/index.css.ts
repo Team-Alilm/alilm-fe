@@ -4,7 +4,6 @@ export const myBasketCard = style({
   minWidth: '100%',
   width: '100%',
   display: 'flex',
-  flex: '1 2',
   justifyContent: 'flex-start',
   gap: '3.25%',
 });
@@ -16,6 +15,10 @@ export const thumbnailImage = style({
   borderRadius: '1.2rem',
 });
 
+export const productInfo = style({
+  width: '55%',
+});
+
 export const name = style({
   fontSize: '1.4rem',
   fontWeight: '700',
@@ -24,10 +27,14 @@ export const name = style({
 });
 
 export const options = style({
+  width: '100%',
   height: '1.6rem',
   fontSize: '1.3rem',
   fontWeight: '400',
   marginBottom: '6px',
+  overflow: 'hidden',
+  whiteSpace: 'nowrap',
+  textOverflow: 'ellipsis',
 });
 
 export const myBasketBadgeList = style({
