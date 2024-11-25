@@ -57,7 +57,7 @@ const MyBasketCard = ({
         style={{ width: '100%', height: 'auto', objectFit: 'cover', cursor: 'pointer' }}
         onClick={openProductDetail}
       />
-      <div>
+      <div className={styles.productInfo}>
         <BasketBadge>{category}</BasketBadge>
         <p className={styles.name} onClick={openProductDetail}>
           {name}

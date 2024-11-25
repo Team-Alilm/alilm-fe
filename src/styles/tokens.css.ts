@@ -23,6 +23,7 @@ export const tokens = createGlobalTheme(':root', {
     white: '#fff',
     profileBackground: '#F4F4F4',
     mypageText: '#505050',
+    toast: '#272727',
   },
 
   // shadows: {}

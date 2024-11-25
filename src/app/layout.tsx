@@ -1,10 +1,11 @@
 import { type PropsWithChildren } from 'react';
 import { type Metadata } from 'next';
+import { ToastNotification } from '@/components/common/toast';
 import { Pretendard } from '@/styles/local-fonts';
 
 import AlertProvider from './alert-provider';
 import FromProvider from './from-provider';
-import HeaderController from './header-controller'; // 클라이언트 컴포넌트
+import HeaderController from './header-controller';
 import * as styles from './layout.css';
 import Providers from './providers';
 
@@ -46,6 +47,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
                 <HeaderController />
                 <div className={styles.mainContent}>{children}</div>
                 <div id="modal-root" style={{ width: 'inherit' }} />
+                <ToastNotification />
               </div>
             </AlertProvider>
           </FromProvider>
