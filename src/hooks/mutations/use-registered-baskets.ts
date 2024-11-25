@@ -11,6 +11,7 @@ export interface RegisteredBasketsParams {
   name: string;
   brand: string;
   imageUrlList: string[];
+  category: string;
   firstCategory: string;
   secondCategory: string;
   price: number;

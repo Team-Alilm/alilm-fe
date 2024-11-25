@@ -9,6 +9,7 @@ export interface UsePostUrlCrawlingProductResponse {
   brand: string;
   thumbnailUrl: string;
   imageUrlList: string[];
+  category: string;
   firstCategory: string;
   secondCategory: string;
   price: number;

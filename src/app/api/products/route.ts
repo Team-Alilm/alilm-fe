@@ -56,6 +56,7 @@ export async function POST(request: NextRequest) {
       brand: productData.brand,
       thumbnailUrl: `https://image.msscdn.net${productData.thumbnailImageUrl}`,
       imageUrlList: productImageUrl ? productImageUrl : [],
+      category: productData.category?.categoryDepth1Title,
       firstCategory: productData.category?.categoryDepth1Title,
       secondCategory: productData.category?.categoryDepth2Title,
       price: productData.goodsPrice?.maxPrice,
