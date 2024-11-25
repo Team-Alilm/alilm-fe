@@ -35,7 +35,7 @@ export const useRegisteredBaskets = () => {
     onSuccess: () => {
       onOpen({ modalType: 'alert', title: '상품 등록 성공!' });
       queryClient.invalidateQueries({ queryKey: [PRODUCTS_QUERY_KEY, MY_BASKETS_QUERY_KEY] });
-      router.replace('/');
+      router.replace('/?tab=myAlilm');
     },
     onError: error => {
       onOpen({ modalType: 'alert', title: error.message });
