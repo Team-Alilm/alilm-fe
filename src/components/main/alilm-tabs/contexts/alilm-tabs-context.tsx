@@ -1,8 +1,8 @@
 'use client';
 
 import { type PropsWithChildren, useEffect, useState } from 'react';
-import { createSafeContext } from '@/utils/create-safe-context';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { createSafeContext } from '@/utils/create-safe-context';
 
 export type AlilmTab = 'home' | 'myAlilm';
 type AlilmTabs = [AlilmTab, (alilmTab: AlilmTab) => void];
