@@ -66,8 +66,6 @@ export async function POST(request: NextRequest) {
       thirdOptions: options.third,
     };
 
-    console.log(result);
-
     return NextResponse.json(result);
   } catch (error) {
     console.error('Error processing request:', error);
