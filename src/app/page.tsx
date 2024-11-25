@@ -53,11 +53,13 @@ const MainPage = () => {
         <Button onClick={handleMoveCreatePage}>재입고 알림 신청하러가기</Button>
       </Flex>
       <Spacer height={60} />
-      <AlilmTabsProvider>
-        <AlilmTabs />
-        <Spacer height={28} />
-        <ProductCardList />
-      </AlilmTabsProvider>
+      <Suspense fallback={<div>탭 정보 초기화 중...</div>}>
+        <AlilmTabsProvider>
+          <AlilmTabs />
+          <Spacer height={28} />
+          <ProductCardList />
+        </AlilmTabsProvider>
+      </Suspense>
       <Spacer height={80} />
     </div>
   );
