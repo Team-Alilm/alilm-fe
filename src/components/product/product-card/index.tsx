@@ -41,7 +41,7 @@ const ProductCard = ({
   };
 
   const handleProductClick = () => {
-    router.push(tab === 'home' ? `/product/${id}` : `/product/${productId}`);
+    router.push(tab === 'my-basket' ? `/product/${productId}` : `/product/${id}`);
   };
 
   if (isLoading || !id) {
