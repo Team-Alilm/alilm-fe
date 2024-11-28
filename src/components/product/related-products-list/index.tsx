@@ -20,15 +20,14 @@ const RelatedProductList = ({ productId }: RelatedProductListProps) => {
   return (
     <div className={styles.cardList}>
       <Swiper
-        spaceBetween={20}
         slidesPerView={3}
         mousewheel={true}
         modules={[Pagination, Mousewheel]}
         style={{ paddingLeft: '2rem' }}
       >
         {relatedProducts?.relatedProductList.map(product => (
-          <SwiperSlide key={product.id}>
-            <div key={product.id} className={styles.cardWrapper}>
+          <SwiperSlide key={product.id} className={styles.cardWrapper}>
+            <div key={product.id}>
               <ProductCard {...product} />
             </div>
           </SwiperSlide>
