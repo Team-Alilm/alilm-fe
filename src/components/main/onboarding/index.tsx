@@ -3,7 +3,6 @@
 import { useRef, useState } from 'react';
 import Image from 'next/image';
 import Modal from '@/components/common/modal/modal';
-// useRouter를 통해 페이지 이동
 import { EffectFade, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, type SwiperClass, SwiperSlide } from 'swiper/react';
 

@@ -20,7 +20,7 @@ const LoginModal = () => {
 
   const handleCloseModalBtn = () => {
     closeLoginModal();
-    if (pathname !== '/') {
+    if (pathname !== '/' && !pathname.includes('/product')) {
       router.push('/');
     }
   };

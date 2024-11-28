@@ -17,6 +17,7 @@ export const background = style({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  zIndex: '9999',
 });
 
 export const modal = style({
