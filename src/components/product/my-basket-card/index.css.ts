@@ -49,16 +49,3 @@ export const price = style({
   fontWeight: '700',
   color: '#333',
 });
-
-export const deleteBtn = style({
-  all: 'unset',
-  lineHeight: '1.432rem',
-  fontSize: '1.2rem',
-  textAlign: 'center',
-  padding: '0.4rem',
-  marginTop: '0.6rem',
-  color: '#9A9A9A',
-  border: '0.1rem solid #EEEEEE',
-  borderRadius: '0.4rem',
-  cursor: 'pointer',
-});

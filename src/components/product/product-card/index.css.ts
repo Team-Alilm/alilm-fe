@@ -11,6 +11,11 @@ export const basketCard = style({
   height: '100%',
 });
 
+export const productInfo = style({
+  width: '100%',
+  cursor: 'pointer',
+});
+
 export const name = style({
   fontSize: '1.4rem',
   fontWeight: '700',

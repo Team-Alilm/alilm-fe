@@ -5,6 +5,7 @@ import { BasketBadge } from '@/components/product/basket-badge';
 import { useCopyBaskets } from '@/hooks/mutations/use-copy-baskets';
 import { type Product } from '@/types/basket';
 
+import DeleteProductBtn from '../delete-product';
 import ProductThumbnailImage from '../product-thumbnail';
 import WaitingCounts from '../waiting-counts';
 import BasketCardSkeleton from './basket-card-skeleton';
@@ -62,19 +63,19 @@ const ProductCard = ({
         />
       </div>
       <div>
-        <div onClick={handleProductClick} style={{ cursor: 'pointer', width: '100%' }}>
+        <div onClick={handleProductClick} className={styles.productInfo}>
           <BasketBadge>{category}</BasketBadge>
           <p className={styles.name}>{name}</p>
           <p className={styles.options}>{description}</p>
         </div>
+        <WaitingCounts counts={waitingCount} />
         {tab === 'home' ? (
-          <>
-            <WaitingCounts counts={waitingCount} />
-            <button onClick={handleWaitTogetherButtonClick} className={styles.waitTogetherButton}>
-              함께 기다리기
-            </button>
-          </>
-        ) : null}
+          <button onClick={handleWaitTogetherButtonClick} className={styles.waitTogetherButton}>
+            함께 기다리기
+          </button>
+        ) : (
+          <DeleteProductBtn id={id} name={name} />
+        )}
       </div>
     </div>
   );
