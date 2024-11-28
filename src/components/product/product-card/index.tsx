@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { BasketBadge } from '@/components/product/basket-badge';
 import { useCopyBaskets } from '@/hooks/mutations/use-copy-baskets';
 import { type Product } from '@/types/basket';
+import { BellRing } from 'lucide-react';
 
 import WaitingCounts from '../waiting-counts';
 import BasketCardSkeleton from './basket-card-skeleton';
@@ -13,6 +14,7 @@ import * as styles from './index.css';
 type BasketProps = Product & {
   isLoading?: boolean;
   productId?: number;
+  isAlilm?: string;
 };
 
 const ProductCard = ({
@@ -29,6 +31,7 @@ const ProductCard = ({
   waitingCount,
   tab,
   isLoading,
+  isAlilm,
 }: BasketProps) => {
   const { mutate: copyBasketsMutate } = useCopyBaskets();
 
@@ -51,7 +54,7 @@ const ProductCard = ({
   return (
     <div className={styles.basketCard}>
       <div onClick={handleProductClick} style={{ cursor: 'pointer', width: '100%' }}>
-        <div>
+        <div className={styles.imageWrapper}>
           <Image
             src={tab === 'home' ? thumbnailUrl : imageUrl}
             className={styles.thumbnailImage}
@@ -61,6 +64,7 @@ const ProductCard = ({
             height={0}
             sizes="100vw"
           />
+          {isAlilm && <BellRing stroke="#555BF1" className={styles.icon} />}
         </div>
       </div>
       <div>
