@@ -1,12 +1,11 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { BasketBadge } from '@/components/product/basket-badge';
 import { useCopyBaskets } from '@/hooks/mutations/use-copy-baskets';
 import { type Product } from '@/types/basket';
-import { BellRing } from 'lucide-react';
 
+import ProductThumbnailImage from '../product-thumbnail';
 import WaitingCounts from '../waiting-counts';
 import BasketCardSkeleton from './basket-card-skeleton';
 import * as styles from './index.css';
@@ -54,18 +53,13 @@ const ProductCard = ({
   return (
     <div className={styles.basketCard}>
       <div onClick={handleProductClick} style={{ cursor: 'pointer', width: '100%' }}>
-        <div className={styles.imageWrapper}>
-          <Image
-            src={tab === 'home' ? thumbnailUrl : imageUrl}
-            className={styles.thumbnailImage}
-            alt="Basket Thumbnail"
-            layout="responsive"
-            width={0}
-            height={0}
-            sizes="100vw"
-          />
-          {isAlilm && <BellRing stroke="#555BF1" className={styles.icon} />}
-        </div>
+        <ProductThumbnailImage
+          imageUrl={imageUrl}
+          thumbnailUrl={thumbnailUrl}
+          tab={tab}
+          isAlilm={isAlilm}
+          card={'thin'}
+        />
       </div>
       <div>
         <div onClick={handleProductClick} style={{ cursor: 'pointer', width: '100%' }}>

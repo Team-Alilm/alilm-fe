@@ -11,17 +11,6 @@ export const basketCard = style({
   height: '100%',
 });
 
-export const thumbnailImage = style({
-  width: '100%',
-  minHeight: '21.8rem',
-  height: '21.8rem',
-  maxHeight: '21.8rem',
-  borderRadius: '1.2rem',
-
-  // height: 'clamp(21.8rem, 21.8rem, 21.8rem)',
-  objectFit: 'cover',
-});
-
 export const name = style({
   fontSize: '1.4rem',
   fontWeight: '700',
@@ -144,14 +133,3 @@ export const skeletonButton = style([
     borderRadius: '0.4rem',
   },
 ]);
-export const imageWrapper = style({
-  position: 'relative',
-});
-
-export const icon = style({
-  position: 'absolute',
-  top: '4%',
-  right: '5%',
-  zIndex: '2',
-  width: '2rem',
-});
