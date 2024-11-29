@@ -14,6 +14,8 @@ const fadeOut = keyframes({
 export const toastContainer = style({
   width: '100%',
   height: '4.6rem',
+  display: 'flex',
+  alignItems: 'center',
   padding: '1.6rem 2rem',
   backgroundColor: tokens.colors.toast,
   borderRadius: '0.4rem',

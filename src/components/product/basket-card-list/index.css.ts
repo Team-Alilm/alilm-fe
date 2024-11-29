@@ -6,7 +6,7 @@ export const basketCardList = style({
   columnGap: '1.8rem',
   rowGap: '5vh',
   '@media': {
-    'screen and (max-width: 768px)': {
+    'screen and (max-width: 576px)': {
       gridTemplateColumns: 'repeat(2, 1fr)',
     },
   },

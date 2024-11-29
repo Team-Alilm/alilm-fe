@@ -11,17 +11,9 @@ export const basketCard = style({
   height: '100%',
 });
 
-export const imageWrapper = style({});
-
-export const thumbnailImage = style({
+export const productInfo = style({
   width: '100%',
-  minHeight: '21.8rem',
-  height: '21.8rem',
-  maxHeight: '21.8rem',
-
-  // height: 'clamp(21.8rem, 21.8rem, 21.8rem)',
-  objectFit: 'contain',
-  borderRadius: '0.4rem',
+  cursor: 'pointer',
 });
 
 export const name = style({

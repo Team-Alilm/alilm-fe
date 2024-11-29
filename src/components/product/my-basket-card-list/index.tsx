@@ -1,8 +1,9 @@
 import { useGetMyBaskets } from '@/hooks/queries/use-get-my-baskets';
+import { BellRing } from 'lucide-react';
 
 import MyBasketCard from '../my-basket-card';
 import ProductCard from '../product-card';
-import { cardListHome, cardListMypage } from './index.css';
+import { cardListHome, cardListMypage, infoBox } from './index.css';
 
 interface MyBasketCardListProps {
   type: 'home' | 'mypage';
@@ -11,8 +12,16 @@ interface MyBasketCardListProps {
 const MyBasketCardList = ({ type }: MyBasketCardListProps) => {
   const { data: myBaskets } = useGetMyBaskets();
 
+  const alilmedProducts = myBaskets?.filter(product => product.isAlilm);
+
   return (
     <>
+      {alilmedProducts?.length && (
+        <div className={infoBox}>
+          <BellRing stroke={'#707070'} width={13} />
+          재입고 알림을 보낸 상품에 알림 표시를 해두었어요.
+        </div>
+      )}
       {type === 'home' && (
         <div className={cardListHome}>
           {myBaskets?.map(myBasket => (

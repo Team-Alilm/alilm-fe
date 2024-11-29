@@ -1,18 +1,12 @@
 import { style } from '@vanilla-extract/css';
 
 export const myBasketCard = style({
+  position: 'relative',
   minWidth: '100%',
   width: '100%',
   display: 'flex',
   justifyContent: 'flex-start',
   gap: '3.25%',
-});
-
-export const thumbnailImage = style({
-  maxWidth: '38%',
-  maxHeight: '21.8rem',
-  aspectRatio: '1/1',
-  borderRadius: '1.2rem',
 });
 
 export const productInfo = style({
@@ -24,6 +18,12 @@ export const name = style({
   fontWeight: '700',
   marginBottom: '6px',
   cursor: 'pointer',
+  display: '-webkit-box',
+  WebkitLineClamp: 2,
+  WebkitBoxOrient: 'vertical',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  lineHeight: '1.2',
 });
 
 export const options = style({
@@ -48,17 +48,4 @@ export const price = style({
   fontSize: '16px',
   fontWeight: '700',
   color: '#333',
-});
-
-export const deleteBtn = style({
-  all: 'unset',
-  lineHeight: '1.432rem',
-  fontSize: '1.2rem',
-  textAlign: 'center',
-  padding: '0.4rem',
-  marginTop: '0.6rem',
-  color: '#9A9A9A',
-  border: '0.1rem solid #EEEEEE',
-  borderRadius: '0.4rem',
-  cursor: 'pointer',
 });

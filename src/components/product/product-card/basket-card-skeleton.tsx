@@ -3,7 +3,7 @@ import * as styles from './index.css';
 export default function BasketCardSkeleton() {
   return (
     <div className={styles.basketCard}>
-      <div className={styles.imageWrapper}>
+      <div>
         <div className={styles.skeletonThumbnailImage} />
       </div>
       <div>

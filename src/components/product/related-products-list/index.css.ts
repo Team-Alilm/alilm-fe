@@ -9,4 +9,5 @@ export const cardList = style({
 
 export const cardWrapper = style({
   width: '20rem',
+  margin: '0 0.6rem',
 });

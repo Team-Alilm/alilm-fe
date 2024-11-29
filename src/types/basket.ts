@@ -32,4 +32,5 @@ export interface MyBasket {
   thirdOption?: string;
   isHidden: boolean;
   waitingCount: number;
+  isAlilm: string;
 }
