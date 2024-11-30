@@ -36,6 +36,7 @@ export const thumbnailImage = recipe({
       thin: {
         width: '100%',
         minHeight: '21.8rem',
+        maxHeight: '21.8rem',
       },
       full: {
         aspectRatio: '1/1.2',

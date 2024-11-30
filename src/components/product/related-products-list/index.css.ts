@@ -1,13 +1,13 @@
 import { style } from '@vanilla-extract/css';
 
 export const cardList = style({
-  width: '60rem',
-  display: 'flex',
-  gap: '1.2rem',
-  //   overflow: 'hidden',
+  width: '100%',
 });
 
 export const cardWrapper = style({
-  width: '20rem',
-  margin: '0 0.6rem',
+  selectors: {
+    '&.swiper-slide': {
+      width: '20rem',
+    },
+  },
 });
