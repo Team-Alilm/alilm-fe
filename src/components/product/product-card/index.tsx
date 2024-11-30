@@ -11,7 +11,7 @@ import WaitingCounts from '../waiting-counts';
 import BasketCardSkeleton from './basket-card-skeleton';
 import * as styles from './index.css';
 
-type BasketProps = Product & {
+type ProductProps = Product & {
   isLoading?: boolean;
   productId?: number;
   isAlilm?: string;
@@ -32,7 +32,7 @@ const ProductCard = ({
   tab,
   isLoading,
   isAlilm,
-}: BasketProps) => {
+}: ProductProps) => {
   const { mutate: copyBasketsMutate } = useCopyBaskets();
 
   const description = `${brand}${firstOption ? ` / ${firstOption}` : ''}${secondOption ? ` / ${secondOption}` : ''}${thirdOption ? ` / ${thirdOption}` : ''}`;
@@ -68,14 +68,13 @@ const ProductCard = ({
           <p className={styles.name}>{name}</p>
           <p className={styles.options}>{description}</p>
         </div>
-        <WaitingCounts counts={waitingCount} />
-        {tab === 'home' ? (
+        {tab && <WaitingCounts counts={waitingCount} />}
+        {tab === 'home' && (
           <button onClick={handleWaitTogetherButtonClick} className={styles.waitTogetherButton}>
             함께 기다리기
           </button>
-        ) : (
-          <DeleteProductBtn id={id} name={name} />
         )}
+        {tab === 'my-basket' && <DeleteProductBtn id={id} name={name} />}
       </div>
     </div>
   );
