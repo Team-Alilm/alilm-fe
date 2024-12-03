@@ -15,7 +15,7 @@ const LoginModal = () => {
   const pathname = usePathname();
 
   const handleLoginBtn = () => {
-    router.push(`https://alilm.store/oauth2/authorization/kakao`);
+    window.location.href = `https://alilm.store/oauth2/authorization/kakao`;
   };
 
   const handleCloseModalBtn = () => {
