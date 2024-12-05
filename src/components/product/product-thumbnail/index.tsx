@@ -34,7 +34,11 @@ const ProductThumbnailImage = ({
         />
       )}
 
-      {isAlilm && <BellRing stroke="#555BF1" className={styles.icon} />}
+      {isAlilm && (
+        <div className={styles.iconBackground}>
+          <BellRing stroke="#555BF1" className={styles.icon} />
+        </div>
+      )}
     </div>
   );
 };

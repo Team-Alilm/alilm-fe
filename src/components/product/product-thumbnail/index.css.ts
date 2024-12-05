@@ -18,12 +18,21 @@ export const imageWrapper = recipe({
   },
 });
 
-export const icon = style({
+export const iconBackground = style({
+  width: '2.4rem',
+  height: '2.4rem',
+  borderRadius: '100%',
+  backgroundColor: 'rgba(255, 255, 255, 0.2)',
+  backdropFilter: 'blur(0.4rem)',
   position: 'absolute',
   top: '4%',
   right: '5%',
   zIndex: '2',
-  width: '2rem',
+  textAlign: 'center',
+});
+
+export const icon = style({
+  width: '1.6rem',
 });
 
 export const thumbnailImage = recipe({
