@@ -1,6 +1,11 @@
+import withPWA from 'next-pwa';
 import { createVanillaExtractPlugin } from '@vanilla-extract/next-plugin';
 
 const withVanillaExtract = createVanillaExtractPlugin();
+
+const pwaConfig = withPWA({
+  dest: 'public',
+});
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -16,4 +21,4 @@ const nextConfig = {
   },
 };
 
-export default withVanillaExtract(nextConfig);
+export default pwaConfig(withVanillaExtract(nextConfig));

@@ -1,0 +1,10 @@
+{
+  "theme_color": "",
+  "background_color": "",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "name": "Alilm",
+  "short_name": "Alilm",
+  "description": "품절 상품 재입고 알림 서비스"
+}
