@@ -1,114 +1,101 @@
+/**
+ * Copyright 2018 Google Inc. All Rights Reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// If the loader is already loaded, just stop.
 if (!self.define) {
-  let e,
-    s = {};
-  const c = (c, i) => (
-    (c = new URL(c + '.js', i).href),
-    s[c] ||
-      new Promise(s => {
-        if ('document' in self) {
-          const e = document.createElement('script');
-          (e.src = c), (e.onload = s), document.head.appendChild(e);
-        } else (e = c), importScripts(c), s();
-      }).then(() => {
-        let e = s[c];
-        if (!e) throw new Error(`Module ${c} didn’t register its module`);
-        return e;
+  let registry = {};
+
+  // Used for `eval` and `importScripts` where we can't get script URL by other means.
+  // In both cases, it's safe to use a global var because those functions are synchronous.
+  let nextDefineUri;
+
+  const singleRequire = (uri, parentUri) => {
+    uri = new URL(uri + ".js", parentUri).href;
+    return registry[uri] || (
+      
+        new Promise(resolve => {
+          if ("document" in self) {
+            const script = document.createElement("script");
+            script.src = uri;
+            script.onload = resolve;
+            document.head.appendChild(script);
+          } else {
+            nextDefineUri = uri;
+            importScripts(uri);
+            resolve();
+          }
+        })
+      
+      .then(() => {
+        let promise = registry[uri];
+        if (!promise) {
+          throw new Error(`Module ${uri} didn’t register its module`);
+        }
+        return promise;
       })
-  );
-  self.define = (i, a) => {
-    const n = e || ('document' in self ? document.currentScript.src : '') || location.href;
-    if (s[n]) return;
-    let t = {};
-    const o = e => c(e, n),
-      r = { module: { uri: n }, exports: t, require: o };
-    s[n] = Promise.all(i.map(e => r[e] || o(e))).then(e => (a(...e), t));
+    );
+  };
+
+  self.define = (depsNames, factory) => {
+    const uri = nextDefineUri || ("document" in self ? document.currentScript.src : "") || location.href;
+    if (registry[uri]) {
+      // Module is already loading or loaded.
+      return;
+    }
+    let exports = {};
+    const require = depUri => singleRequire(depUri, uri);
+    const specialDeps = {
+      module: { uri },
+      exports,
+      require
+    };
+    registry[uri] = Promise.all(depsNames.map(
+      depName => specialDeps[depName] || require(depName)
+    )).then(deps => {
+      factory(...deps);
+      return exports;
+    });
   };
 }
-define(['./workbox-e9849328'], function (workbox) {
-  'use strict';
-  importScripts(
-    'https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js',
-    'https://www.gstatic.com/firebasejs/10.13.2/firebase-messaging-compat.js'
-  );
+define(['./workbox-8817a5e5'], (function (workbox) { 'use strict';
 
-  // Firebase 초기화
-  firebase.initializeApp({
-    apiKey: 'AIzaSyA8kZXi2ox6qhgUKpk1gBEd48o3Q7rZkjU',
-    projectId: 'alilm-6ed94',
-    messagingSenderId: '815885197726',
-    appId: '1:815885197726:web:d3170a092c2ad613a0f68f',
-  });
-
-  const messaging = firebase.messaging();
-
-  // FCM 푸시 알림 처리
-  self.addEventListener('push', function (event) {
-    if (event.data) {
-      const data = event.data.json().data;
-      const options = {
-        body: data.body,
-        icon: data.icon || '/default-icon.png',
-        image: data.image,
-        data: {
-          click_action: data.click_action,
-        },
-      };
-      event.waitUntil(self.registration.showNotification(data.title, options));
-    } else {
-      console.info('This push event has no data.');
-    }
-  });
-
-  // 알림 클릭 처리
-  self.addEventListener('notificationclick', function (event) {
-    const clickActionUrl = event.notification.data.click_action;
-    event.notification.close();
-    event.waitUntil(clients.openWindow(clickActionUrl));
-  });
-
-  // Workbox 초기화
-  workbox.precaching.precacheAndRoute(self.__WB_MANIFEST || []);
-  workbox.clientsClaim();
+  importScripts();
   self.skipWaiting();
+  workbox.clientsClaim();
+  workbox.registerRoute("/", new workbox.NetworkFirst({
+    "cacheName": "start-url",
+    plugins: [{
+      cacheWillUpdate: async ({
+        request,
+        response,
+        event,
+        state
+      }) => {
+        if (response && response.type === 'opaqueredirect') {
+          return new Response(response.body, {
+            status: 200,
+            statusText: 'OK',
+            headers: response.headers
+          });
+        }
+        return response;
+      }
+    }]
+  }), 'GET');
+  workbox.registerRoute(/.*/i, new workbox.NetworkOnly({
+    "cacheName": "dev",
+    plugins: []
+  }), 'GET');
 
-  // 추가적인 Workbox 캐싱 전략
-  workbox.routing.registerRoute(
-    new RegExp('/_next/static/'),
-    new workbox.strategies.StaleWhileRevalidate({
-      cacheName: 'next-static',
-    })
-  );
-
-  workbox.routing.registerRoute(
-    /\.(?:png|jpg|jpeg|svg|gif|webp)$/,
-    new workbox.strategies.CacheFirst({
-      cacheName: 'image-cache',
-      plugins: [
-        new workbox.expiration.ExpirationPlugin({
-          maxEntries: 50,
-          maxAgeSeconds: 7 * 24 * 60 * 60, // 1주일
-        }),
-      ],
-    })
-  );
-
-  workbox.routing.registerRoute(
-    /\.(?:js|css)$/,
-    new workbox.strategies.StaleWhileRevalidate({
-      cacheName: 'static-resources',
-    })
-  );
-
-  workbox.routing.registerRoute(
-    new RegExp('https://fonts.(?:googleapis|gstatic).com/(.*)'),
-    new workbox.strategies.CacheFirst({
-      cacheName: 'google-fonts',
-      plugins: [
-        new workbox.expiration.ExpirationPlugin({
-          maxEntries: 20,
-          maxAgeSeconds: 60 * 60 * 24 * 365, // 1년
-        }),
-      ],
-    })
-  );
-});
+}));
+//# sourceMappingURL=sw.js.map
