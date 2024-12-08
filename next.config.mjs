@@ -3,10 +3,6 @@ import { createVanillaExtractPlugin } from '@vanilla-extract/next-plugin';
 
 const withVanillaExtract = createVanillaExtractPlugin();
 
-const pwaConfig = withPWA({
-  dest: 'public',
-});
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
@@ -21,4 +17,12 @@ const nextConfig = {
   },
 };
 
-export default pwaConfig(withVanillaExtract(nextConfig));
+const combinedConfig = withVanillaExtract(
+  withPWA({
+    dest: 'public',
+    register: true,
+    skipWaiting: true,
+  })(nextConfig)
+);
+
+export default combinedConfig;
