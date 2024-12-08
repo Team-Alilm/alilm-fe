@@ -34,6 +34,7 @@ export const metadata: Metadata = {
   icons: {
     icon: '/icons/alilm.ico',
   },
+  manifest: '/manifest.json',
 };
 
 const RootLayout = ({ children }: PropsWithChildren) => {
