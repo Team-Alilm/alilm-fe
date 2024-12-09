@@ -9,7 +9,7 @@ import handleFcmToken from '@/utils/handle-fcm-token';
 const OauthKakaoPage = () => {
   const router = useRouter();
   const [redirect, setRedirect] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
   const onOpen = useModalStore(state => state.onOpen);
 
   useEffect(() => {
@@ -72,7 +72,7 @@ const OauthKakaoPage = () => {
         router.replace('/');
       }
 
-      setIsLoading(false);
+      // setIsLoading(false);
     };
 
     handleOauth();
