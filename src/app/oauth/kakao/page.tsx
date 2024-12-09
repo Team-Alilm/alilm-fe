@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { LOCAL_STORAGE_KEY, Storage } from '@/libs/storage';
 import { useModalStore } from '@/store/use-modal-store';
+import handleFcmToken from '@/utils/handle-fcm-token';
 
 const OauthKakaoPage = () => {
   const router = useRouter();
@@ -42,8 +43,8 @@ const OauthKakaoPage = () => {
 
             // FCM이 지원되는 브라우저인 경우
             if (isMessagingSupported) {
-              const { default: handleFcmToken } = await import('@/utils/handle-fcm-token');
-              await handleFcmToken();
+              // const { default: handleFcmToken } = await import('@/utils/handle-fcm-token');
+              // await handleFcmToken();
               handleLogin();
             } else {
               // FCM이 지원되지 않지만 허용된 브라우저인 경우
@@ -77,14 +78,13 @@ const OauthKakaoPage = () => {
     handleOauth();
   }, [router]);
 
-  if (isLoading) {
-    return (
-      <div>
-        <p>로그인 진행 중입니다.</p>
-        <span>아무 응답이 없는 경우 다시 로그인 시도해주세요.</span>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <p>로그인 진행 중입니다.</p>
+      <button onClick={handleFcmToken}>재입고 알림을 받아보시겠어요?</button>
+      {/* <span>아무 응답이 없는 경우 다시 로그인 시도해주세요.</span> */}
+    </div>
+  );
 
   return null;
 };
