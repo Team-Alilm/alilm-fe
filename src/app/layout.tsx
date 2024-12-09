@@ -35,6 +35,7 @@ export const metadata: Metadata = {
     icon: '/icons/alilm.ico',
   },
   manifest: '/manifest.json',
+  viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0',
 };
 
 const RootLayout = ({ children }: PropsWithChildren) => {
