@@ -40,21 +40,11 @@ const OauthKakaoPage = () => {
             const { isSupported } = await import('firebase/messaging');
             const isMessagingSupported = await isSupported();
 
-            // 브라우저 환경 체크
-            const userAgent = window.navigator.userAgent.toLowerCase();
-            const isIPhone = /iphone|ipad|ipod/.test(userAgent);
-            const isInAppBrowser = /kakaotalk|instagram|naver|line/.test(userAgent);
-
             // FCM이 지원되는 브라우저인 경우
-            if (isMessagingSupported && !isIPhone && !isInAppBrowser) {
+            if (isMessagingSupported) {
               const { default: handleFcmToken } = await import('@/utils/handle-fcm-token');
               await handleFcmToken();
               handleLogin();
-            } else if (isIPhone || isInAppBrowser) {
-              alert(
-                '알림 기능을 활용하시려면, Safari 또는 Chrome 브라우저에서 이 페이지를 열어주세요.'
-              );
-              router.replace('/');
             } else {
               // FCM이 지원되지 않지만 허용된 브라우저인 경우
               // console.log('이 브라우저는 FCM을 지원하지 않습니다.');
