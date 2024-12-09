@@ -33,9 +33,7 @@ const MainPage = () => {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker
         .register('/firebase-messaging-sw.js')
-        .then(registration => {
-          console.log('Service Worker Registered', registration);
-        })
+        .then()
         .catch(error => {
           console.error('Service Worker Registration Failed', error);
         });

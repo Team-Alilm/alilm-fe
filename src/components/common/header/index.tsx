@@ -5,7 +5,6 @@ import { usePathname, useRouter } from 'next/navigation';
 import Icon from '@/components/icons';
 import { LOCAL_STORAGE_KEY, Storage } from '@/libs/storage';
 import { useLoginModalStore } from '@/store/use-login-modal-store';
-import handleFcmToken from '@/utils/handle-fcm-token';
 
 import * as styles from './index.css';
 
@@ -15,7 +14,6 @@ const Header = () => {
   const openLoginModal = useLoginModalStore(state => state.openLoginModal);
 
   const handleLogoClick = () => {
-    handleFcmToken();
     router.push('/');
   };
 
