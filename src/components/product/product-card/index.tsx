@@ -24,7 +24,7 @@ const ProductCard = ({
   brand,
   imageUrl,
   thumbnailUrl,
-  category,
+  firstCategory,
   firstOption,
   secondOption,
   thirdOption,
@@ -64,7 +64,7 @@ const ProductCard = ({
       </div>
       <div>
         <div onClick={handleProductClick} className={styles.productInfo}>
-          <BasketBadge>{category}</BasketBadge>
+          <BasketBadge>{firstCategory}</BasketBadge>
           <p className={styles.name}>{name}</p>
           <p className={styles.options}>{description}</p>
         </div>

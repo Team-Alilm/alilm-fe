@@ -7,7 +7,7 @@ export interface Product {
   imageUrl: string;
   store: string;
   price: number;
-  category: string;
+  firstCategory: string;
   firstOption: string;
   secondOption?: string;
   thirdOption?: string;
@@ -16,21 +16,8 @@ export interface Product {
   // isHidden: boolean;
 }
 
-export interface MyBasket {
-  id: number;
+export interface MyBasket extends Product {
   productId: number;
-  number: number;
-  name: string;
-  brand: string;
-  thumbnailUrl: string;
-  imageUrl: string;
-  store: string;
-  price: number;
-  category: string;
-  firstOption: string;
-  secondOption?: string;
-  thirdOption?: string;
   isHidden: boolean;
-  waitingCount: number;
   isAlilm: string;
 }
