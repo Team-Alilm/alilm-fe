@@ -7,7 +7,7 @@ export interface Product {
   imageUrl: string;
   store: string;
   price: number;
-  category: string;
+  firstCategory: string;
   firstOption: string;
   secondOption?: string;
   thirdOption?: string;
