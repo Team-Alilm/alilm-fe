@@ -16,12 +16,12 @@ const MyBasketCardList = ({ type }: MyBasketCardListProps) => {
 
   return (
     <>
-      {alilmedProducts?.length && (
+      {alilmedProducts?.length ? (
         <div className={infoBox}>
           <BellRing stroke={'#707070'} width={13} />
           재입고 알림을 보낸 상품에 알림 표시를 해두었어요.
         </div>
-      )}
+      ) : null}
       {type === 'home' && (
         <div className={cardListHome}>
           {myBaskets?.map(myBasket => (
