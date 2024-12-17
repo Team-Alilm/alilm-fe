@@ -7,31 +7,9 @@ firebase.initializeApp({
   appId: '1:815885197726:web:d3170a092c2ad613a0f68f',
 });
 const messaging = firebase.messaging();
-// 푸시 내용 처리해서 알림 표시
-// self.addEventListener('push', function (event) {});
-
-function registerServiceWorker() {
-  if (typeof window !== 'undefined') {
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker
-        .register('/firebase-messaging-sw.js')
-        .then(registration => {
-          console.log('Service Worker Registered', registration);
-        })
-        .catch(error => {
-          console.error('Service Worker Registration Failed', error);
-        });
-    } else {
-      console.warn('Service Worker is not supported in this browser.');
-    }
-  }
-}
-
-registerServiceWorker();
 
 self.addEventListener('push', function (event) {
   if (event.data) {
-    // 알림 메세지일 경우엔 event.data.json().notification;
     const data = event.data.json().data;
     const options = {
       body: data.body,
@@ -48,6 +26,7 @@ self.addEventListener('push', function (event) {
     console.info('This push event has no data.');
   }
 });
+
 // 클릭 이벤트 처리 - 알림을 클릭 시 사이트로 이동
 self.addEventListener('notificationclick', function (event) {
   const clickActionUrl = event.notification.data.click_action;
@@ -60,8 +39,11 @@ messaging.onBackgroundMessage(payload => {
 
   const notificationTitle = payload.notification?.title || 'Default Title';
   const notificationOptions = {
-    body: payload.notification?.body || 'Default Body',
-    icon: payload.notification?.icon || '/default-icon.png',
+    body: payload.notification?.body,
+    icon:
+      data.icon ||
+      'https://file.notion.so/f/f/c345e317-1a77-4e86-8b67-b491a5db92b8/732799dc-6ad9-46f8-8864-22308c10cdb8/free-icon-bells-7124213.png?table=block&id=1037b278-57a0-8022-8a73-ea04c03ae27e&spaceId=c345e317-1a77-4e86-8b67-b491a5db92b8&expirationTimestamp=1730354400000&signature=hBdHPuerhscY6rXIkAe40sWyyvEq22eyqZ7AqA2Gt5o&downloadName=free-icon-bells-7124213.png',
+    image: data.image,
     data: payload.data || {},
   };
 
