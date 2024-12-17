@@ -32,6 +32,7 @@ export const title = style({
   color: tokens.colors.textPrimary,
   marginBottom: '1.4rem',
   lineHeight: '3rem',
+  wordBreak: 'break-word',
 });
 
 export const description = style({
@@ -40,6 +41,7 @@ export const description = style({
   color: tokens.colors.textPrimary,
   marginBottom: '3rem',
   whiteSpace: 'pre-line',
+  wordBreak: 'break-word',
 });
 
 export const btnContainer = style({
