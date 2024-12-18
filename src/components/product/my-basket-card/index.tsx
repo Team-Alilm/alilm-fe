@@ -22,7 +22,7 @@ const MyBasketCard = ({
   secondOption,
   thirdOption,
   waitingCount,
-  isAlilm,
+  alilm,
 }: MyBasketProps) => {
   const description = `${brand}${firstOption ? ` / ${firstOption}` : ''}${secondOption ? ` / ${secondOption}` : ''}${thirdOption ? ` / ${thirdOption}` : ''}`;
 
@@ -34,7 +34,7 @@ const MyBasketCard = ({
 
   return (
     <div className={styles.myBasketCard}>
-      <ProductThumbnailImage imageUrl={imageUrl} isAlilm={isAlilm} card={'full'} />
+      <ProductThumbnailImage imageUrl={imageUrl} alilm={alilm} card={'full'} />
       <div className={styles.productInfo}>
         <BasketBadge>{firstCategory}</BasketBadge>
         <p className={styles.name} onClick={openProductDetail}>

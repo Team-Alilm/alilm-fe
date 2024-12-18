@@ -12,7 +12,7 @@ interface MyBasketCardListProps {
 const MyBasketCardList = ({ type }: MyBasketCardListProps) => {
   const { data: myBaskets } = useGetMyBaskets();
 
-  const alilmedProducts = myBaskets?.filter(product => product.isAlilm);
+  const alilmedProducts = myBaskets?.filter(product => product.alilm);
 
   return (
     <>

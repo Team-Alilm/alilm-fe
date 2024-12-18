@@ -14,7 +14,7 @@ import * as styles from './index.css';
 type ProductProps = Product & {
   isLoading?: boolean;
   productId?: number;
-  isAlilm?: string;
+  alilm?: string;
 };
 
 const ProductCard = ({
@@ -31,7 +31,7 @@ const ProductCard = ({
   waitingCount,
   tab,
   isLoading,
-  isAlilm,
+  alilm,
 }: ProductProps) => {
   const { mutate: copyBasketsMutate } = useCopyBaskets();
 
@@ -58,7 +58,7 @@ const ProductCard = ({
           imageUrl={imageUrl}
           thumbnailUrl={thumbnailUrl}
           tab={tab}
-          isAlilm={isAlilm}
+          alilm={alilm}
           card={'thin'}
         />
       </div>

@@ -19,5 +19,5 @@ export interface Product {
 export interface MyBasket extends Product {
   productId: number;
   isHidden: boolean;
-  isAlilm: string;
+  alilm: string;
 }
