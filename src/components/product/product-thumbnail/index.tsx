@@ -9,7 +9,7 @@ export interface ProductThumbnailProps {
   card: 'thin' | 'full';
   thumbnailUrl?: Product['thumbnailUrl'];
   imageUrl?: Product['imageUrl'];
-  isAlilm?: MyBasket['isAlilm'];
+  alilm?: MyBasket['alilm'];
 }
 
 const ProductThumbnailImage = ({
@@ -17,7 +17,7 @@ const ProductThumbnailImage = ({
   card,
   thumbnailUrl,
   imageUrl,
-  isAlilm,
+  alilm,
 }: ProductThumbnailProps) => {
   const validURL = tab === 'home' ? thumbnailUrl : imageUrl;
 
@@ -34,7 +34,7 @@ const ProductThumbnailImage = ({
         />
       )}
 
-      {isAlilm && (
+      {alilm && (
         <div className={styles.iconBackground}>
           <BellRing stroke="#555BF1" className={styles.icon} />
         </div>
