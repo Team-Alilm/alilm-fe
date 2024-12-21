@@ -1,14 +1,15 @@
 import { get } from '@/libs/api/client';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-interface ProductsCrawlingResponse {
+export interface ProductsCrawlingResponse {
   number: number;
   name: string;
   brand: string;
-  imageUrl: string;
-  category: string;
-  price: number;
+  thumbnailUrl: string;
   store: string;
+  price: number;
+  firstCategory: 'string';
+  secondCategory: 'string';
   firstOptions: string[];
   secondOptions: string[];
   thirdOptions: string[];
@@ -17,7 +18,8 @@ interface ProductsCrawlingResponse {
 export const PRODUCTS_CRAWLING_QUERY_KEY = 'getProductsCrawling';
 
 export const getProductsCrawling = async (url: string) => {
-  const data = await get<ProductsCrawlingResponse>(`/products/crawling?_url=${url}`);
+  const data = await get<ProductsCrawlingResponse>(`/products/crawling?url=${url}`);
+  console.log(data);
 
   return data;
 };
