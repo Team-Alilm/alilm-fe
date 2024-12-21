@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react';
 import Image from 'next/image';
 import Modal from '@/components/common/modal/modal';
+import handleFcmToken from '@/utils/handle-fcm-token';
 import { EffectFade, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, type SwiperClass, SwiperSlide } from 'swiper/react';
 
@@ -36,6 +37,7 @@ const OnboardingModal = ({ onClose }: OnboardingProps) => {
       if (swiperRef.current.isEnd) {
         localStorage.setItem('showOnboarding', 'completed');
         onClose();
+        handleFcmToken();
       } else {
         swiperRef.current.slideNext();
       }
