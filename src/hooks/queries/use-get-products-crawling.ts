@@ -6,6 +6,7 @@ export interface ProductsCrawlingResponse {
   name: string;
   brand: string;
   thumbnailUrl: string;
+  imageUrlList: string[];
   store: string;
   price: number;
   firstCategory: 'string';

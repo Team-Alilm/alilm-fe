@@ -26,9 +26,10 @@ const ProductOptionsForm = ({ url, setCreateForm }: ProductOptionsFormProps) => 
         secondOptions: _secondOptions,
         ...restProduct
       } = product;
+
       setCreateForm({
         ...restProduct,
-        imageUrlList: [product.thumbnailUrl],
+        imageUrlList: product.imageUrlList ?? [product.thumbnailUrl],
         firstOption: product.firstOptions[0] ?? '',
         secondOption: product.secondOptions[0] ?? null,
         thirdOption: product.thirdOptions[0] ?? null,
@@ -71,7 +72,7 @@ const ProductOptionsForm = ({ url, setCreateForm }: ProductOptionsFormProps) => 
   return (
     <>
       <Image
-        src={`https://image.msscdn.net${product.thumbnailUrl}`}
+        src={product.thumbnailUrl}
         alt="Product Preview"
         className={styles.previewImage}
         width={800}
