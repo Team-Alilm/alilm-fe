@@ -29,5 +29,6 @@ export const useGetProductsCrawling = (url: string) => {
   return useSuspenseQuery({
     queryKey: [PRODUCTS_CRAWLING_QUERY_KEY],
     queryFn: async () => await getProductsCrawling(url),
+    retry: false,
   });
 };

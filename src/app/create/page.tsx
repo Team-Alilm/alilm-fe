@@ -8,14 +8,17 @@ import {
   type RegisteredBasketsParams,
   useRegisteredBaskets,
 } from '@/hooks/mutations/use-registered-baskets';
+import { PRODUCTS_CRAWLING_QUERY_KEY } from '@/hooks/queries/use-get-products-crawling';
 import { LOCAL_STORAGE_KEY, Storage } from '@/libs/storage';
 import { useLoginModalStore } from '@/store/use-login-modal-store';
+import { useQueryClient } from '@tanstack/react-query';
 
 import * as styles from './index.css';
 
 export type CreateFormValue = RegisteredBasketsParams;
 
 const CreatePage = () => {
+  const queryClient = useQueryClient();
   const { mutate: registeredBaskets } = useRegisteredBaskets();
   const [url, setUrl] = useState('');
   const [showProductsOptionsForm, setShowProductsOptionsForm] = useState(false);
@@ -29,7 +32,7 @@ const CreatePage = () => {
 
   const handleUrlInputButtonClick = () => {
     setShowProductsOptionsForm(true);
-    // fetchProduct({ url });
+    queryClient.invalidateQueries({ queryKey: [PRODUCTS_CRAWLING_QUERY_KEY] });
   };
 
   const handleCreateFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
