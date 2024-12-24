@@ -3,7 +3,6 @@
 import { useRef, useState } from 'react';
 import Image from 'next/image';
 import Modal from '@/components/common/modal/modal';
-import handleFcmToken from '@/utils/handle-fcm-token';
 import { EffectFade, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, type SwiperClass, SwiperSlide } from 'swiper/react';
 
@@ -32,12 +31,18 @@ const OnboardingModal = ({ onClose }: OnboardingProps) => {
   /**
    * 온보딩 버튼 핸들링
    */
-  const handleNextBtn = () => {
+  const handleNextBtn = async () => {
+    const { isSupported } = await import('firebase/messaging');
+    const isMessagingSupported = await isSupported();
+
     if (swiperRef.current) {
       if (swiperRef.current.isEnd) {
         localStorage.setItem('showOnboarding', 'completed');
         onClose();
-        handleFcmToken();
+        if (isMessagingSupported) {
+          const { default: handleFcmToken } = await import('@/utils/handle-fcm-token');
+          await handleFcmToken();
+        }
       } else {
         swiperRef.current.slideNext();
       }
