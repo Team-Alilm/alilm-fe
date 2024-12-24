@@ -20,7 +20,6 @@ export const PRODUCTS_CRAWLING_QUERY_KEY = 'getProductsCrawling';
 
 export const getProductsCrawling = async (url: string) => {
   const data = await get<ProductsCrawlingResponse>(`/products/crawling?url=${url}`);
-  console.log(data);
 
   return data;
 };

@@ -29,8 +29,7 @@ const ProductOptionsForm = ({ url, setCreateForm }: ProductOptionsFormProps) => 
 
       setCreateForm({
         ...restProduct,
-        imageUrlList:
-          product.imageUrlList.length > 0 ? product.imageUrlList : [product.thumbnailUrl],
+        imageUrlList: product.imageUrlList,
         firstOption: product.firstOptions[0] ?? '',
         secondOption: product.secondOptions[0] ?? null,
         thirdOption: product.thirdOptions[0] ?? null,
