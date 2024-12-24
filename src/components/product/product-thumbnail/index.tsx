@@ -31,6 +31,7 @@ const ProductThumbnailImage = ({
           layout="responsive"
           width={800}
           height={800}
+          priority
         />
       )}
 
