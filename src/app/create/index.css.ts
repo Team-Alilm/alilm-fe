@@ -11,9 +11,11 @@ export const createPage = style({
 });
 
 export const title = style({
-  fontSize: '22px',
+  fontSize: '2rem',
   fontWeight: '600',
   marginBottom: '40px',
+  textAlign: 'center',
+  lineHeight: '2.8rem',
 });
 
 export const createForm = style({
@@ -27,4 +29,14 @@ export const buttonDescription = style({
   fontSize: '13px',
   color: '#3E3E3E',
   textAlign: 'center',
+});
+
+export const logoImageWrapper = style({
+  display: 'flex',
+  gap: '1.2rem',
+  margin: '1.6rem 0',
+});
+
+export const logoImage = style({
+  borderRadius: '100%',
 });
