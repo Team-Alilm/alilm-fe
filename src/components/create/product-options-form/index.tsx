@@ -71,15 +71,19 @@ const ProductOptionsForm = ({ url, setCreateForm }: ProductOptionsFormProps) => 
 
   return (
     <>
-      <Image
-        src={product.thumbnailUrl}
-        alt="Product Preview"
-        className={styles.previewImage}
-        width={800}
-        height={800}
-        style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
-      />
-
+      <div className={styles.previewImageWrapper}>
+        <Image
+          src={product.thumbnailUrl}
+          alt="Product Preview"
+          className={styles.previewImage}
+          width={800}
+          height={800}
+        />
+      </div>
+      <div>
+        <p className={styles.brand}>{product.brand}</p>
+        <p className={styles.productName}>{product.name}</p>
+      </div>
       {renderSelect('firstOption', '상품 옵션1', product.firstOptions)}
       {renderSelect('secondOption', '상품 옵션2', product.secondOptions)}
       {renderSelect('thirdOption', '상품 옵션3', product.thirdOptions)}

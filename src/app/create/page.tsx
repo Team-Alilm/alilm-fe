@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import ProductOptionsForm from '@/components/create/product-options-form';
 import Button from '@/components/design-system/button';
 import ButtonInput from '@/components/design-system/button-input';
@@ -48,7 +49,27 @@ const CreatePage = () => {
 
   return (
     <div className={styles.createPage}>
-      <p className={styles.title}>지금 재입고 등록을 해보세요!👇</p>
+      <div className={styles.logoImageWrapper}>
+        <Image
+          src="/images/musinsa-logo.svg"
+          alt="My Icon"
+          width={50}
+          height={50}
+          className={styles.logoImage}
+        />
+        <Image
+          src="/images/ably-logo.svg"
+          alt="My Icon"
+          width={50}
+          height={50}
+          className={styles.logoImage}
+        />
+      </div>
+
+      <p className={styles.title}>
+        무신사와 에이블리 제품,
+        <br /> 지금 재입고 등록을 해보세요!
+      </p>
       <form onSubmit={handleCreateFormSubmit} className={styles.createForm}>
         <ButtonInput
           name="url"
