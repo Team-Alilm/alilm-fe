@@ -82,7 +82,6 @@ const CreatePage = () => {
         {showProductsOptionsForm && <ProductOptionsForm url={url} setCreateForm={setCreateForm} />}
         <Button
           style={{ width: '100%', cursor: 'pointer' }}
-          disabled={!createForm?.firstOption}
           description={
             <p className={styles.buttonDescription}>재입고 알림을 신청하면 홈으로 이동합니다.</p>
           }

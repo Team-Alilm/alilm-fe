@@ -39,8 +39,6 @@ const ProductDetail = ({ params }: ProductDetailProps) => {
   const { mutate: copyBasketsMutate } = useCopyBaskets();
   const onOpen = useModalStore(state => state.onOpen);
 
-  console.log(productInfo);
-
   const handleWaitTogetherButtonClick = () => {
     copyBasketsMutate(params.id);
   };
