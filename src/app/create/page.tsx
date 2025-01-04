@@ -58,7 +58,7 @@ const CreatePage = () => {
           className={styles.logoImage}
         />
         <Image
-          src="/images/ably-logo.svg"
+          src="/images/29cm-logo.svg"
           alt="My Icon"
           width={50}
           height={50}
@@ -67,7 +67,7 @@ const CreatePage = () => {
       </div>
 
       <p className={styles.title}>
-        무신사와 에이블리 제품,
+        무신사와 29CM 제품,
         <br /> 지금 재입고 등록을 해보세요!
       </p>
       <form onSubmit={handleCreateFormSubmit} className={styles.createForm}>
