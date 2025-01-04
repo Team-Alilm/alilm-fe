@@ -60,7 +60,28 @@ const ProductDetail = ({ params }: ProductDetailProps) => {
   const imageContents = [productInfo?.thumbnailUrl, ...(productInfo?.imageUrlList || [])];
 
   const handleGoToBuyBtn = () => {
-    window.open(`https://www.musinsa.com/products/${productInfo!.number}`);
+    const { store, number } = productInfo || {};
+    if (!store || !number) {
+      console.error('Invalid product information');
+
+      return;
+    }
+
+    let productUrl;
+    switch (store) {
+      case 'MUSINSA':
+        productUrl = `https://www.musinsa.com/products/${number}`;
+        break;
+      case 'CM29':
+        productUrl = `https://product.29cm.co.kr/catalog/${number}`;
+        break;
+      default:
+        console.error('지원하지 않는 플랫폼입니다.');
+
+        return;
+    }
+
+    window.open(productUrl);
   };
 
   return (
