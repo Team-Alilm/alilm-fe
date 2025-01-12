@@ -20,26 +20,30 @@ const ProductOptionsForm = ({ url, setCreateForm }: ProductOptionsFormProps) => 
 
   useEffect(() => {
     if (product) {
-      const {
-        firstOptions: _firstOptions,
-        secondOptions: _secondOptions,
-        ...restProduct
-      } = product;
+      try {
+        const {
+          firstOptions: _firstOptions,
+          secondOptions: _secondOptions,
+          ...restProduct
+        } = product;
 
-      setCreateForm({
-        ...restProduct,
-        imageUrlList: product.imageUrlList,
-        firstOption: product.firstOptions[0] ?? '',
-        secondOption: product.secondOptions[0] ?? null,
-        thirdOption: product.thirdOptions[0] ?? null,
-      });
+        setCreateForm({
+          ...restProduct,
+          imageUrlList: product.imageUrlList,
+          firstOption: product.firstOptions[0] ?? '',
+          secondOption: product.secondOptions[0] ?? null,
+          thirdOption: product.thirdOptions[0] ?? null,
+        });
+      } catch (err) {
+        onOpen({ modalType: 'alert', title: '상품 정보를 처리하는 도중 문제가 발생했습니다.' });
+      }
     }
   }, [product, setCreateForm]);
 
   useEffect(() => {
-    if (isError) {
+    if (isError && error) {
       const rawErrorMessage =
-        ((error as Error)?.message as string) || ERROR_CODE.INTERNAL_SERVER_ERROR;
+        (error instanceof Error && error.message) || ERROR_CODE.INTERNAL_SERVER_ERROR;
 
       const processedErrorMessage = extractErrorMessage(rawErrorMessage);
 
@@ -47,6 +51,7 @@ const ProductOptionsForm = ({ url, setCreateForm }: ProductOptionsFormProps) => 
     }
   }, [isError, error]);
 
+  // 에러 메시지 텍스트 추출
   const extractErrorMessage = (rawErrorMessage: string): string => {
     const matches = Array.from(rawErrorMessage.matchAll(/default message \[(.*?)\]/g));
 
@@ -62,6 +67,8 @@ const ProductOptionsForm = ({ url, setCreateForm }: ProductOptionsFormProps) => 
   const renderErrorMessage = (errorMessage: string) => {
     if (errorMessage) {
       onOpen({ modalType: 'alert', title: errorMessage });
+    } else {
+      onOpen({ modalType: 'alert', title: error?.message || '' });
     }
   };
 
