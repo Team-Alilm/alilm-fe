@@ -1,5 +1,5 @@
 import { get } from '@/libs/api/client';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 export interface ProductsCrawlingResponse {
   number: number;
@@ -19,13 +19,17 @@ export interface ProductsCrawlingResponse {
 export const PRODUCTS_CRAWLING_QUERY_KEY = 'getProductsCrawling';
 
 export const getProductsCrawling = async (url: string) => {
-  const data = await get<ProductsCrawlingResponse>(`/products/crawling?url=${url}`);
+  try {
+    const data = await get<ProductsCrawlingResponse>(`/products/crawling?url=${url}`);
 
-  return data;
+    return data;
+  } catch (error) {
+    throw new Error('상품 정보를 불러오는 데 실패했습니다.');
+  }
 };
 
 export const useGetProductsCrawling = (url: string) => {
-  return useSuspenseQuery({
+  return useQuery({
     queryKey: [PRODUCTS_CRAWLING_QUERY_KEY],
     queryFn: async () => await getProductsCrawling(url),
     retry: false,
