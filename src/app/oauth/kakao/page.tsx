@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { postFcmToken } from '@/libs/api/fcm-token-post-fetch';
 import { LOCAL_STORAGE_KEY, Storage } from '@/libs/storage';
 import { useModalStore } from '@/store/use-modal-store';
 
@@ -35,25 +36,30 @@ const OauthKakaoPage = () => {
       if (accessToken) {
         try {
           Storage.setItem(LOCAL_STORAGE_KEY.accessToken, accessToken);
+          const fcmToken = localStorage.getItem('fcm-token');
 
-          try {
-            const { isSupported } = await import('firebase/messaging');
-            const isMessagingSupported = await isSupported();
-
-            // FCM이 지원되는 브라우저인 경우
-            if (isMessagingSupported) {
-              const { default: handleFcmToken } = await import('@/utils/handle-fcm-token');
-              await handleFcmToken();
-              handleLogin();
-            } else {
-              // FCM이 지원되지 않지만 허용된 브라우저인 경우
-              // console.log('이 브라우저는 FCM을 지원하지 않습니다.');
-              router.replace('/');
-            }
-          } catch (error) {
-            console.error('FCM 관련 처리 중 오류 발생:', error);
-            router.replace('/');
+          if (fcmToken) {
+            await postFcmToken(fcmToken);
           }
+
+          // try {
+          //   const { isSupported } = await import('firebase/messaging');
+          //   const isMessagingSupported = await isSupported();
+
+          //   // FCM이 지원되는 브라우저인 경우
+          //   if (isMessagingSupported) {
+          //     const { default: handleFcmToken } = await import('@/utils/handle-fcm-token');
+          //     await handleFcmToken();
+          //     handleLogin();
+          //   } else {
+          //     // FCM이 지원되지 않지만 허용된 브라우저인 경우
+          //     // console.log('이 브라우저는 FCM을 지원하지 않습니다.');
+          //     router.replace('/');
+          //   }
+          // } catch (error) {
+          //   console.error('FCM 관련 처리 중 오류 발생:', error);
+          //   router.replace('/');
+          // }
         } catch (error) {
           console.error('OAuth 과정에서 에러 발생:', error);
           onOpen({
