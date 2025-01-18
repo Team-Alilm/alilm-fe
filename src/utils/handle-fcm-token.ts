@@ -1,4 +1,3 @@
-import { postFcmToken } from '@/libs/api/fcm-token-post-fetch';
 import { messaging } from '@/libs/firebase';
 import { getToken } from 'firebase/messaging';
 
@@ -26,8 +25,10 @@ export const handleFcmToken = async () => {
       return;
     }
 
+    localStorage.setItem('fcm-token', fcmToken);
+
     // 토큰 발급 성공 시 서버로 토큰 전송
-    await postFcmToken(fcmToken);
+    // await postFcmToken(fcmToken);
   } catch (error) {
     console.error('에러 발생:', error);
   }
