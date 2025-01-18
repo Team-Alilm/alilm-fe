@@ -40,6 +40,7 @@ const OauthKakaoPage = () => {
 
           if (fcmToken) {
             await postFcmToken(fcmToken);
+            handleLogin;
           }
 
           // try {
