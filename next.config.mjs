@@ -16,6 +16,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'img.29cm.co.kr',
       },
+      {
+        protocol: 'https',
+        hostname: 'cf.product-image.s.zigzag.kr',
+      },
     ],
   },
 };
