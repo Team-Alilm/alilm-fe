@@ -75,6 +75,9 @@ const ProductDetail = ({ params }: ProductDetailProps) => {
       case 'CM29':
         productUrl = `https://product.29cm.co.kr/catalog/${number}`;
         break;
+      case 'ZIGZAG':
+        productUrl = `https://zigzag.kr/catalog/products/${number}`;
+        break;
       default:
         console.error('지원하지 않는 플랫폼입니다.');
 
