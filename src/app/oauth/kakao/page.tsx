@@ -36,8 +36,26 @@ const OauthKakaoPage = () => {
       if (accessToken) {
         try {
           Storage.setItem(LOCAL_STORAGE_KEY.accessToken, accessToken);
-          const fcmToken = localStorage.getItem('fcm-token');
 
+          let fcmToken = localStorage.getItem('fcm-token');
+
+          if (!fcmToken) {
+            // FCM 토큰이 없으면 다시 요청
+            const { isSupported } = await import('firebase/messaging');
+            const isMessagingSupported = await isSupported();
+
+            if (isMessagingSupported) {
+              try {
+                const { default: handleFcmToken } = await import('@/utils/handle-fcm-token');
+                await handleFcmToken();
+                fcmToken = localStorage.getItem('fcm-token');
+              } catch (error) {
+                console.error('FCM 토큰 발급 실패:', error);
+              }
+            }
+          }
+
+          // FCM 토큰이 있을 때만 서버로 전송
           if (fcmToken) {
             try {
               await postFcmToken(fcmToken);
@@ -45,7 +63,8 @@ const OauthKakaoPage = () => {
               console.error('FCM 토큰 저장 중 에러 발생:', error);
             }
           }
-          handleLogin();
+
+          await handleLogin();
         } catch (error) {
           console.error('OAuth 과정에서 에러 발생:', error);
           onOpen({
@@ -65,7 +84,6 @@ const OauthKakaoPage = () => {
 
       setIsLoading(false);
     };
-
     handleOauth();
   }, [router]);
 
