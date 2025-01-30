@@ -68,7 +68,7 @@ const ProductCard = ({
           <p className={styles.name}>{name}</p>
           <p className={styles.options}>{description}</p>
         </div>
-        {tab && <WaitingCounts counts={waitingCount} />}
+        {/* {tab && <WaitingCounts counts={waitingCount} />} */}
         {tab === 'home' && (
           <button onClick={handleWaitTogetherButtonClick} className={styles.waitTogetherButton}>
             함께 기다리기
