@@ -1,4 +1,5 @@
 import Icon from '@/components/icons';
+
 import { waitingCount, waitingCountStrong } from './index.css';
 
 interface WaitingCountsProps {

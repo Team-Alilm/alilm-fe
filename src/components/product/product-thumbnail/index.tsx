@@ -1,8 +1,9 @@
 import Image from 'next/image';
+import Icon from '@/components/icons';
 import { type MyBasket, type Product } from '@/types/basket';
 import { BellRing } from 'lucide-react';
+
 import * as styles from './index.css';
-import Icon from '@/components/icons';
 
 export interface ProductThumbnailProps {
   tab?: 'home' | 'my-basket';
