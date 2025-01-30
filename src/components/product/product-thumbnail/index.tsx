@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import { type MyBasket, type Product } from '@/types/basket';
 import { BellRing } from 'lucide-react';
-
 import * as styles from './index.css';
+import Icon from '@/components/icons';
 
 export interface ProductThumbnailProps {
   tab?: 'home' | 'my-basket';
@@ -10,6 +10,7 @@ export interface ProductThumbnailProps {
   thumbnailUrl?: Product['thumbnailUrl'];
   imageUrl?: Product['imageUrl'];
   alilm?: MyBasket['alilm'];
+  counts?: number;
 }
 
 const ProductThumbnailImage = ({
@@ -18,23 +19,29 @@ const ProductThumbnailImage = ({
   thumbnailUrl,
   imageUrl,
   alilm,
+  counts,
 }: ProductThumbnailProps) => {
   const validURL = tab === 'home' ? thumbnailUrl : imageUrl;
 
   return (
     <div className={styles.imageWrapper({ card })}>
       {validURL && (
-        <Image
-          src={validURL}
-          className={styles.thumbnailImage({ card })}
-          alt="Basket Thumbnail"
-          layout="responsive"
-          width={800}
-          height={800}
-          priority
-        />
+        <>
+          <Image
+            src={validURL}
+            className={styles.thumbnailImage({ card })}
+            alt="Basket Thumbnail"
+            layout="responsive"
+            width={800}
+            height={800}
+            priority
+          />
+          <div className={styles.iconWrapper}>
+            <Icon icon="UserTwoPerson" width={12} height={12} />
+            {counts}
+          </div>
+        </>
       )}
-
       {alilm && (
         <div className={styles.iconBackground}>
           <BellRing stroke="#555BF1" className={styles.icon} />

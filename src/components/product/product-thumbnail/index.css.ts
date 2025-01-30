@@ -18,6 +18,22 @@ export const imageWrapper = recipe({
   },
 });
 
+export const iconWrapper = style({
+  position: 'absolute',
+  top: '80%',
+  right: '8%',
+  backgroundColor: 'rgba(233, 226, 168, 0.97)',
+  width: '4rem',
+  height: '2.4rem',
+  backdropFilter: 'blur(0.4rem)',
+  borderRadius: '8px',
+  zIndex: '2',
+  display: 'flex',
+  justifyContent: 'space-around',
+  fontSize: '1.4rem',
+  alignItems: 'center',
+});
+
 export const iconBackground = style({
   width: '2.4rem',
   height: '2.4rem',

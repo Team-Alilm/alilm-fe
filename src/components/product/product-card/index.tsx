@@ -9,6 +9,7 @@ import DeleteProductBtn from '../delete-product';
 import ProductThumbnailImage from '../product-thumbnail';
 import BasketCardSkeleton from './basket-card-skeleton';
 import * as styles from './index.css';
+import Icon from '@/components/icons';
 
 type ProductProps = Product & {
   isLoading?: boolean;
@@ -30,6 +31,7 @@ const ProductCard = ({
   tab,
   isLoading,
   alilm,
+  waitingCount,
 }: ProductProps) => {
   const { mutate: copyBasketsMutate } = useCopyBaskets();
 
@@ -58,11 +60,13 @@ const ProductCard = ({
           tab={tab}
           alilm={alilm}
           card={'thin'}
+          counts={waitingCount}
         />
       </div>
       {tab === 'home' && (
         <button onClick={handleWaitTogetherButtonClick} className={styles.waitTogetherButton}>
-          함께 기다리기,
+          <Icon icon="UserTwoPerson" width={12} height={12} />
+          함께 기다리기
         </button>
       )}
       <div>
