@@ -27,7 +27,6 @@ const ProductCard = ({
   firstOption,
   secondOption,
   thirdOption,
-  waitingCount,
   tab,
   isLoading,
   alilm,
