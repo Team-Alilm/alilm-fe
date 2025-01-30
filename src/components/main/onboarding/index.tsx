@@ -38,11 +38,15 @@ const OnboardingModal = ({ onClose }: OnboardingProps) => {
     if (swiperRef.current) {
       if (swiperRef.current.isEnd) {
         localStorage.setItem('showOnboarding', 'completed');
-        onClose();
         if (isMessagingSupported) {
-          const { default: handleFcmToken } = await import('@/utils/handle-fcm-token');
-          await handleFcmToken();
+          try {
+            const { default: handleFcmToken } = await import('@/utils/handle-fcm-token');
+            await handleFcmToken();
+          } catch (error) {
+            console.error('FCM 토큰 설정 중 오류 발생:', error);
+          }
         }
+        onClose();
       } else {
         swiperRef.current.slideNext();
       }
