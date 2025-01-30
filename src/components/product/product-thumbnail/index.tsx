@@ -37,6 +37,9 @@ const ProductThumbnailImage = ({
             priority
           />
           <div className={styles.iconWrapper}>
+            <Icon icon="Bell" width={20} height={20} stroke="rgba(135, 96, 225, 0.8)" />
+          </div>
+          <div className={styles.iconWrapper1}>
             <Icon icon="UserTwoPerson" width={12} height={12} />
             {counts}
           </div>
