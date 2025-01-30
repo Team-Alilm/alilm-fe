@@ -7,7 +7,6 @@ import { type Product } from '@/types/basket';
 
 import DeleteProductBtn from '../delete-product';
 import ProductThumbnailImage from '../product-thumbnail';
-import WaitingCounts from '../waiting-counts';
 import BasketCardSkeleton from './basket-card-skeleton';
 import * as styles from './index.css';
 
