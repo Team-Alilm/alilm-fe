@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation';
 import { BasketBadge } from '@/components/product/basket-badge';
 import { useCopyBaskets } from '@/hooks/mutations/use-copy-baskets';
 import { type Product } from '@/types/basket';
-
 import DeleteProductBtn from '../delete-product';
 import ProductThumbnailImage from '../product-thumbnail';
 import BasketCardSkeleton from './basket-card-skeleton';
