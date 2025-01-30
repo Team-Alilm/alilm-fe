@@ -62,6 +62,11 @@ const ProductCard = ({
           card={'thin'}
         />
       </div>
+      {tab === 'home' && (
+        <button onClick={handleWaitTogetherButtonClick} className={styles.waitTogetherButton}>
+          함께 기다리기
+        </button>
+      )}
       <div>
         <div onClick={handleProductClick} className={styles.productInfo}>
           <BasketBadge>{firstCategory}</BasketBadge>
@@ -69,11 +74,7 @@ const ProductCard = ({
           <p className={styles.options}>{description}</p>
         </div>
         {/* {tab && <WaitingCounts counts={waitingCount} />} */}
-        {tab === 'home' && (
-          <button onClick={handleWaitTogetherButtonClick} className={styles.waitTogetherButton}>
-            함께 기다리기
-          </button>
-        )}
+
         {tab === 'my-basket' && <DeleteProductBtn id={id} name={name} />}
       </div>
     </div>
