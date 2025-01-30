@@ -49,10 +49,13 @@ export const options = style({
 });
 
 export const waitTogetherButton = style({
+  display: 'flex',
+  gap: '2.0rem',
   border: '0.1rem solid #EEEEEE',
   borderRadius: '0.4rem',
   height: '3.3rem',
-  padding: '0 1.4rem',
+  alignItems: 'center',
+  padding: '0 2.4rem',
   fontSize: '1.4rem',
   fontWeight: '600',
   color: '#101010',
