@@ -1,8 +1,9 @@
 import Image from 'next/image';
+import Icon from '@/components/icons';
 import { type MyBasket, type Product } from '@/types/basket';
 import { BellRing } from 'lucide-react';
+
 import * as styles from './index.css';
-import Icon from '@/components/icons';
 
 export interface ProductThumbnailProps {
   tab?: 'home' | 'my-basket';
@@ -37,6 +38,9 @@ const ProductThumbnailImage = ({
             priority
           />
           <div className={styles.iconWrapper}>
+            <Icon icon="Bell" width={20} height={20} stroke="rgba(135, 96, 225, 0.8)" />
+          </div>
+          <div className={styles.iconWrapper1}>
             <Icon icon="UserTwoPerson" width={12} height={12} />
             {counts}
           </div>
