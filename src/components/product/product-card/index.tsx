@@ -64,7 +64,7 @@ const ProductCard = ({
       </div>
       {tab === 'home' && (
         <button onClick={handleWaitTogetherButtonClick} className={styles.waitTogetherButton}>
-          함께 기다리기
+          함께 기다리기,
         </button>
       )}
       <div>
