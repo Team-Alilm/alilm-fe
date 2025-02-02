@@ -71,7 +71,7 @@ const OnboardingModal = ({ onClose }: OnboardingProps) => {
               <div className={slide}>
                 <div className={content}>
                   <Image
-                    src={`/images/${image}.webp`}
+                    src={`/images/${image}.svg`}
                     layout={'intrinsic'}
                     alt={'onboarding imag'}
                     width={500}
