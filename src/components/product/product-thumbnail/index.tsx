@@ -36,9 +36,9 @@ const ProductThumbnailImage = ({
             height={800}
             priority
           />
-          <div className={styles.iconWrapper}>
+          {/* <div className={styles.iconWrapper}>
             <BellRing width={20} height={20} stroke="rgba(135, 96, 225, 0.8)" />
-          </div>
+          </div> */}
           <div className={styles.iconWrapper1}>
             <Users
               width={12}
@@ -51,9 +51,9 @@ const ProductThumbnailImage = ({
           </div>
         </>
       )}
-      {alilm && (
-        <div className={styles.iconBackground}>
-          <BellRing stroke="#555BF1" className={styles.icon} />
+      {validURL && alilm && (
+        <div className={styles.iconWrapper}>
+          <BellRing stroke="rgba(135, 96, 225, 0.8)" className={styles.icon} />
         </div>
       )}
     </div>
