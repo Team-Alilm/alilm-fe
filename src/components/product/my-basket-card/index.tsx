@@ -34,7 +34,13 @@ const MyBasketCard = ({
 
   return (
     <div className={styles.myBasketCard}>
-      <ProductThumbnailImage imageUrl={imageUrl} alilm={alilm} card={'full'} />
+      <ProductThumbnailImage
+        id={id}
+        ifsent={false}
+        imageUrl={imageUrl}
+        alilm={alilm}
+        card={'full'}
+      />
       <div className={styles.productInfo}>
         <BasketBadge>{firstCategory}</BasketBadge>
         <p className={styles.name} onClick={openProductDetail}>
