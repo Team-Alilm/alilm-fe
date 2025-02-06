@@ -30,6 +30,7 @@ const ProductThumbnailImage = ({
     // localStorage에서 상태를 가져옴
     const storedStatus = getMessageSentStatus(id);
     // 저장된 값이 없으면 props의 초기값 사용
+
     return storedStatus ?? initialIfSent;
   });
   const validURL = tab === 'home' ? thumbnailUrl : imageUrl;

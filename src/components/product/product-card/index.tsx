@@ -39,6 +39,14 @@ const ProductCard = ({
     return getMessageSentStatus(id) ?? false; // 초기값으로 false 설정
   });
 
+  // id가 변경될 때마다 localStorage에서 상태 업데이트
+  useEffect(() => {
+    const status = getMessageSentStatus(id);
+    if (status !== null) {
+      setMessageStatus(status);
+    }
+  }, [id]);
+
   const { mutate: copyBasketsMutate } = useCopyBaskets();
 
   const description = `${brand}${firstOption ? ` / ${firstOption}` : ''}${secondOption ? ` / ${secondOption}` : ''}${thirdOption ? ` / ${thirdOption}` : ''}`;
@@ -56,14 +64,6 @@ const ProductCard = ({
   if (isLoading || !id) {
     return <BasketCardSkeleton />;
   }
-
-  // id가 변경될 때마다 localStorage에서 상태 업데이트
-  useEffect(() => {
-    const status = getMessageSentStatus(id);
-    if (status !== null) {
-      setMessageStatus(status);
-    }
-  }, [id]);
 
   return (
     <div className={styles.basketCard}>
