@@ -21,7 +21,7 @@ export const imageWrapper = recipe({
 export const iconWrapper = style({
   position: 'absolute',
   top: '4%',
-  right: '8%',
+  right: '6%',
   backgroundColor: 'rgba(233, 229, 245, 0.97)',
   width: '3rem',
   height: '3rem',
