@@ -38,9 +38,9 @@ const ProductThumbnailImage = ({
 
   useEffect(() => {
     if (alilm) {
-      setIsMessageSent(false);
+      setIsMessageSent(true);
       // localStorage에 상태 저장
-      saveMessageSentStatus(id, false);
+      saveMessageSentStatus(id, true);
     }
   }, [alilm, id]);
 
@@ -50,7 +50,7 @@ const ProductThumbnailImage = ({
   }, [id, isMessageSent]);
   return (
     <div className={styles.imageWrapper({ card })}>
-      {validURL && !isMessageSent && (
+      {validURL && (
         <>
           <Image
             src={validURL}
@@ -61,9 +61,11 @@ const ProductThumbnailImage = ({
             height={800}
             priority
           />
-          {/* <div className={styles.iconWrapper}>
-            <BellRing width={20} height={20} stroke="rgba(135, 96, 225, 0.8)" />
-          </div> */}
+          {!isMessageSent ? null : (
+            <div className={styles.iconWrapper}>
+              <BellRing width={20} height={20} stroke="rgba(135, 96, 225, 0.8)" />
+            </div>
+          )}
           <div className={styles.iconWrapper1}>
             <Users
               width={12}
@@ -71,36 +73,7 @@ const ProductThumbnailImage = ({
               stroke="rgba(228, 157, 16, 0.9)"
               fill="rgba(228, 157, 16, 0.9)"
             />
-            {/* <Icon icon="UserTwoPerson" width={12} height={12} color="orange" /> */}
             {counts}
-          </div>
-        </>
-      )}
-
-      {validURL && isMessageSent && (
-        <>
-          <Image
-            src={validURL}
-            className={styles.thumbnailImage({ card })}
-            alt="Basket Thumbnail"
-            layout="responsive"
-            width={800}
-            height={800}
-            priority
-          />
-          <div className={styles.iconWrapper}>
-            <BellRing width={20} height={20} stroke="rgba(135, 96, 225, 0.8)" />
-          </div>
-          <div className={styles.iconWrapper1}>
-            <Users
-              width={12}
-              height={12}
-              stroke="rgba(228, 157, 16, 0.9)"
-              fill="rgba(228, 157, 16, 0.9)"
-            />
-            {/* <Icon icon="UserTwoPerson" width={12} height={12} color="orange" /> */}
-            {counts}
-            {isMessageSent.toString()}
           </div>
         </>
       )}
