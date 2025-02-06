@@ -12,31 +12,31 @@ import Providers from './providers';
 import '@radix-ui/themes/styles.css';
 import '@/styles/global.css';
 
-// export const metadata: Metadata = {
-//   title: 'Alilm',
-//   description: 'Alilm',
-//   keywords: 'Alilm',
-//   openGraph: {
-//     title: 'Alilm',
-//     description: '재입고 알림을 받아보세요!',
-//     images: [
-//       {
-//         url: 'https://www.alilm.co.kr/images/alilm-thumbnail.webp',
-//         width: 1200,
-//         height: 630,
-//       },
-//     ],
-//     url: 'https://www.alilm.co.kr/',
-//   },
-//   twitter: {
-//     card: 'summary_large_image',
-//   },
-//   icons: {
-//     icon: '/icons/alilm.ico',
-//   },
-//   manifest: '/manifest.json',
-//   viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0',
-// };
+export const metadata: Metadata = {
+  title: 'Alilm',
+  description: 'Alilm',
+  keywords: 'Alilm',
+  openGraph: {
+    title: 'Alilm',
+    description: '재입고 알림을 받아보세요!',
+    images: [
+      {
+        url: 'https://www.alilm.co.kr/images/alilm-thumbnail.webp',
+        width: 1200,
+        height: 630,
+      },
+    ],
+    url: 'https://www.alilm.co.kr/',
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
+  icons: {
+    icon: '/icons/alilm.ico',
+  },
+  manifest: '/manifest.json',
+  viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0',
+};
 
 const RootLayout = ({ children }: PropsWithChildren) => {
   return (

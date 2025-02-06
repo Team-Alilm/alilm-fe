@@ -1,4 +1,3 @@
-
 const MESSAGE_SENT_KEY_PREFIX = 'ifsent_';
 
 // 메시지 전송 상태를 저장하는 함수
@@ -14,9 +13,11 @@ export const saveMessageSentStatus = (id: number, status: boolean): void => {
 export const getMessageSentStatus = (id: number): boolean | null => {
   try {
     const status = localStorage.getItem(`${MESSAGE_SENT_KEY_PREFIX}${id}`);
+
     return status === null ? null : status === 'true';
   } catch (error) {
     console.error('Error reading from localStorage:', error);
+
     return null;
   }
 };
