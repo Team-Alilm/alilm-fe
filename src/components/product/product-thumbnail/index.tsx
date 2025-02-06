@@ -4,7 +4,7 @@ import { BellRing, Users } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 import * as styles from './index.css';
-import { saveMessageSentStatus, getMessageSentStatus } from '@/utils/localStorage';
+import { saveMessageSentStatus, getMessageSentStatus } from '@/utils/local-storage';
 
 export interface ProductThumbnailProps {
   tab?: 'home' | 'my-basket';

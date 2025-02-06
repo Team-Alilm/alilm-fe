@@ -10,7 +10,7 @@ import DeleteProductBtn from '../delete-product';
 import ProductThumbnailImage from '../product-thumbnail';
 import BasketCardSkeleton from './basket-card-skeleton';
 import * as styles from './index.css';
-import { getMessageSentStatus } from '@/utils/localStorage';
+import { getMessageSentStatus } from '@/utils/local-storage';
 
 type ProductProps = Product & {
   isLoading?: boolean;
