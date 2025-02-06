@@ -34,20 +34,15 @@ const ProductThumbnailImage = ({
 
     return storedStatus ?? initialIfSent;
   });
-  const validURL = tab === 'home' ? thumbnailUrl : imageUrl;
-
   useEffect(() => {
     if (alilm) {
-      setIsMessageSent(true);
-      // localStorage에 상태 저장
+      // alilm이 undefined가 아닐 때만 처리
+      setIsMessageSent(true); // alilm의 값을 boolean으로 변환하여 저장
       saveMessageSentStatus(id, true);
     }
   }, [alilm, id]);
 
-  // isMessageSent가 변경될 때마다 localStorage 업데이트
-  useEffect(() => {
-    saveMessageSentStatus(id, isMessageSent);
-  }, [id, isMessageSent]);
+  const validURL = tab === 'home' ? thumbnailUrl : imageUrl;
 
   return (
     <div className={styles.imageWrapper({ card })}>
