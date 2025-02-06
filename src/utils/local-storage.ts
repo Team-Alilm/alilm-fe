@@ -17,6 +17,7 @@ export const getMessageSentStatus = (id: number): boolean | null => {
     return status === null ? null : status === 'true';
   } catch (error) {
     console.error('Error reading from localStorage:', error);
+
     return null;
   }
 };

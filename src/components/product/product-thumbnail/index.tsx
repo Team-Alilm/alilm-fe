@@ -1,10 +1,9 @@
-import Image from 'next/image';
+import { saveMessageSentStatus, getMessageSentStatus } from '@/utils/local-storage';
 import { type MyBasket, type Product } from '@/types/basket';
+import Image from 'next/image';
 import { BellRing, Users } from 'lucide-react';
 import { useState, useEffect } from 'react';
-
 import * as styles from './index.css';
-import { saveMessageSentStatus, getMessageSentStatus } from '@/utils/local-storage';
 
 export interface ProductThumbnailProps {
   tab?: 'home' | 'my-basket';
@@ -27,14 +26,13 @@ const ProductThumbnailImage = ({
   id,
   ifsent: initialIfSent,
 }: ProductThumbnailProps) => {
-  const validURL = tab === 'home' ? thumbnailUrl : imageUrl;
-
   const [isMessageSent, setIsMessageSent] = useState<boolean>(() => {
     // localStorage에서 상태를 가져옴
     const storedStatus = getMessageSentStatus(id);
     // 저장된 값이 없으면 props의 초기값 사용
     return storedStatus ?? initialIfSent;
   });
+  const validURL = tab === 'home' ? thumbnailUrl : imageUrl;
 
   useEffect(() => {
     if (alilm) {
