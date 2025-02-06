@@ -77,6 +77,33 @@ const ProductThumbnailImage = ({
           </div>
         </>
       )}
+
+      {validURL && isMessageSent && (
+        <>
+          <Image
+            src={validURL}
+            className={styles.thumbnailImage({ card })}
+            alt="Basket Thumbnail"
+            layout="responsive"
+            width={800}
+            height={800}
+            priority
+          />
+          <div className={styles.iconWrapper}>
+            <BellRing width={20} height={20} stroke="rgba(135, 96, 225, 0.8)" />
+          </div>
+          <div className={styles.iconWrapper1}>
+            <Users
+              width={12}
+              height={12}
+              stroke="rgba(228, 157, 16, 0.9)"
+              fill="rgba(228, 157, 16, 0.9)"
+            />
+            {/* <Icon icon="UserTwoPerson" width={12} height={12} color="orange" /> */}
+            {counts}
+          </div>
+        </>
+      )}
       {alilm && (
         <div className={styles.iconWrapper}>
           <BellRing width={20} height={20} stroke="rgba(135, 96, 225, 0.8)" />
