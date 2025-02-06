@@ -8,6 +8,7 @@ interface MyAlilmProps {
 }
 
 const MyAlilm = ({ alilmCount, basketCount }: MyAlilmProps) => {
+  console.log('alilmCount', alilmCount);
   return (
     <div className={container}>
       <div className={myAlilm}>

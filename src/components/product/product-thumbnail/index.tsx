@@ -100,7 +100,7 @@ const ProductThumbnailImage = ({
             />
             {/* <Icon icon="UserTwoPerson" width={12} height={12} color="orange" /> */}
             {counts}
-            {isMessageSent.toString()}
+
           </div>
         </>
       )}

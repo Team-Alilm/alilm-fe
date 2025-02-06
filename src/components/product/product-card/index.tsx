@@ -34,6 +34,8 @@ const ProductCard = ({
   alilm,
   waitingCount,
 }: ProductProps) => {
+  console.log(localStorage);
+
   const { mutate: copyBasketsMutate } = useCopyBaskets();
 
   const description = `${brand}${firstOption ? ` / ${firstOption}` : ''}${secondOption ? ` / ${secondOption}` : ''}${thirdOption ? ` / ${thirdOption}` : ''}`;
@@ -63,8 +65,6 @@ const ProductCard = ({
       setMessageStatus(status);
     }
   }, [id]);
-
-  console.log(id, messageStatus);
 
   return (
     <div className={styles.basketCard}>

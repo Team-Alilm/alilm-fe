@@ -1,7 +1,4 @@
-// utils/localStorage.ts
-// localStorage 관련 유틸리티 함수들을 모아둔 파일
 
-// localStorage 키 생성을 위한 상수
 const MESSAGE_SENT_KEY_PREFIX = 'ifsent_';
 
 // 메시지 전송 상태를 저장하는 함수
