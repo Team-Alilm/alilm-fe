@@ -1,3 +1,4 @@
+
 const MESSAGE_SENT_KEY_PREFIX = 'ifsent_';
 
 // 메시지 전송 상태를 저장하는 함수

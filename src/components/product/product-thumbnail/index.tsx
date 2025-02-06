@@ -28,7 +28,6 @@ const ProductThumbnailImage = ({
   ifsent: initialIfSent,
 }: ProductThumbnailProps) => {
   const validURL = tab === 'home' ? thumbnailUrl : imageUrl;
-  console.log('alilm', alilm);
 
   const [isMessageSent, setIsMessageSent] = useState<boolean>(() => {
     // localStorage에서 상태를 가져옴
@@ -101,6 +100,7 @@ const ProductThumbnailImage = ({
             />
             {/* <Icon icon="UserTwoPerson" width={12} height={12} color="orange" /> */}
             {counts}
+
           </div>
         </>
       )}
