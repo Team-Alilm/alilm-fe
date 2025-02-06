@@ -22,6 +22,7 @@ const ProductThumbnailImage = ({
   counts,
 }: ProductThumbnailProps) => {
   const validURL = tab === 'home' ? thumbnailUrl : imageUrl;
+  console.log('alilm', alilm);
 
   return (
     <div className={styles.imageWrapper({ card })}>
@@ -36,9 +37,9 @@ const ProductThumbnailImage = ({
             height={800}
             priority
           />
-          <div className={styles.iconWrapper}>
+          {/* <div className={styles.iconWrapper}>
             <BellRing width={20} height={20} stroke="rgba(135, 96, 225, 0.8)" />
-          </div>
+          </div> */}
           <div className={styles.iconWrapper1}>
             <Users
               width={12}
@@ -48,6 +49,7 @@ const ProductThumbnailImage = ({
             />
             {/* <Icon icon="UserTwoPerson" width={12} height={12} color="orange" /> */}
             {counts}
+            {alilm}
           </div>
         </>
       )}
