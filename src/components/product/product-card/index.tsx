@@ -5,11 +5,12 @@ import Icon from '@/components/icons';
 import { BasketBadge } from '@/components/product/basket-badge';
 import { useCopyBaskets } from '@/hooks/mutations/use-copy-baskets';
 import { type Product } from '@/types/basket';
-
+import { useState, useEffect } from 'react';
 import DeleteProductBtn from '../delete-product';
 import ProductThumbnailImage from '../product-thumbnail';
 import BasketCardSkeleton from './basket-card-skeleton';
 import * as styles from './index.css';
+import { getMessageSentStatus } from '@/utils/localStorage';
 
 type ProductProps = Product & {
   isLoading?: boolean;
@@ -51,6 +52,20 @@ const ProductCard = ({
     return <BasketCardSkeleton />;
   }
 
+  const [messageStatus, setMessageStatus] = useState<boolean>(() => {
+    return getMessageSentStatus(id) ?? false; // 초기값으로 false 설정
+  });
+
+  // id가 변경될 때마다 localStorage에서 상태 업데이트
+  useEffect(() => {
+    const status = getMessageSentStatus(id);
+    if (status !== null) {
+      setMessageStatus(status);
+    }
+  }, [id]);
+
+  console.log(id, messageStatus);
+
   return (
     <div className={styles.basketCard}>
       <div onClick={handleProductClick} style={{ cursor: 'pointer', width: '100%' }}>
@@ -61,6 +76,8 @@ const ProductCard = ({
           alilm={alilm}
           card={'thin'}
           counts={waitingCount}
+          id={id}
+          ifsent={messageStatus}
         />
       </div>
       {tab === 'home' && (
