@@ -1,8 +1,9 @@
-import { saveMessageSentStatus, getMessageSentStatus } from '@/utils/local-storage';
-import { type MyBasket, type Product } from '@/types/basket';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { type MyBasket, type Product } from '@/types/basket';
+import { getMessageSentStatus, saveMessageSentStatus } from '@/utils/local-storage';
 import { BellRing, Users } from 'lucide-react';
-import { useState, useEffect } from 'react';
+
 import * as styles from './index.css';
 
 export interface ProductThumbnailProps {
@@ -47,6 +48,7 @@ const ProductThumbnailImage = ({
   useEffect(() => {
     saveMessageSentStatus(id, isMessageSent);
   }, [id, isMessageSent]);
+
   return (
     <div className={styles.imageWrapper({ card })}>
       {validURL && (

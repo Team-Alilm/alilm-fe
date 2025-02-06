@@ -1,13 +1,14 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Icon from '@/components/icons';
 import { BasketBadge } from '@/components/product/basket-badge';
 import { useCopyBaskets } from '@/hooks/mutations/use-copy-baskets';
 import { type Product } from '@/types/basket';
 import { getMessageSentStatus } from '@/utils/local-storage';
-import { useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
+
 import DeleteProductBtn from '../delete-product';
 import ProductThumbnailImage from '../product-thumbnail';
 import BasketCardSkeleton from './basket-card-skeleton';
