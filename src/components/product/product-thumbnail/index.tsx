@@ -28,6 +28,7 @@ const ProductThumbnailImage = ({
   ifsent: initialIfSent,
 }: ProductThumbnailProps) => {
   const validURL = tab === 'home' ? thumbnailUrl : imageUrl;
+  console.log('alilm', alilm);
 
   const [isMessageSent, setIsMessageSent] = useState<boolean>(() => {
     // localStorage에서 상태를 가져옴
@@ -88,9 +89,9 @@ const ProductThumbnailImage = ({
             height={800}
             priority
           />
-          <div className={styles.iconWrapper}>
+          {/* <div className={styles.iconWrapper}>
             <BellRing width={20} height={20} stroke="rgba(135, 96, 225, 0.8)" />
-          </div>
+          </div> */}
           <div className={styles.iconWrapper1}>
             <Users
               width={12}
@@ -100,7 +101,6 @@ const ProductThumbnailImage = ({
             />
             {/* <Icon icon="UserTwoPerson" width={12} height={12} color="orange" /> */}
             {counts}
-            {isMessageSent.toString()}
           </div>
         </>
       )}
