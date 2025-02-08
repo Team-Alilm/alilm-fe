@@ -35,16 +35,13 @@ self.addEventListener('notificationclick', function (event) {
 });
 
 messaging.onBackgroundMessage(payload => {
-  console.log('[firebase-messaging-sw.js] Received background message ', payload);
-
-  const notificationTitle = payload.notification?.title || 'Default Title';
+  const data = payload.data || {};
+  const notificationTitle = payload.notification?.title || data.title || '알림';
   const notificationOptions = {
-    body: payload.notification?.body,
-    icon:
-      data.icon ||
-      'https://file.notion.so/f/f/c345e317-1a77-4e86-8b67-b491a5db92b8/732799dc-6ad9-46f8-8864-22308c10cdb8/free-icon-bells-7124213.png?table=block&id=1037b278-57a0-8022-8a73-ea04c03ae27e&spaceId=c345e317-1a77-4e86-8b67-b491a5db92b8&expirationTimestamp=1730354400000&signature=hBdHPuerhscY6rXIkAe40sWyyvEq22eyqZ7AqA2Gt5o&downloadName=free-icon-bells-7124213.png',
-    image: data.image,
-    data: payload.data || {},
+    body: payload.notification?.body || data.body || '메시지 내용 없음',
+    icon: payload.notification?.icon || data.icon || 'https://example.com/default-icon.png',
+    image: payload.notification?.image || data.image,
+    data: { click_action: data.click_action },
   };
 
   self.registration.showNotification(notificationTitle, notificationOptions);
