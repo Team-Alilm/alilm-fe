@@ -8,6 +8,7 @@ import { BasketBadge } from '@/components/product/basket-badge';
 import { useCopyBaskets } from '@/hooks/mutations/use-copy-baskets';
 import { type Product } from '@/types/basket';
 import { getMessageSentStatus } from '@/utils/local-storage';
+
 import DeleteProductBtn from '../delete-product';
 import ProductThumbnailImage from '../product-thumbnail';
 import BasketCardSkeleton from './basket-card-skeleton';

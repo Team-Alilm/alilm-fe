@@ -14,7 +14,7 @@ import ProductCardList from '@/components/product/product-card-list';
 import useBooleanState from '@/hooks/common/use-boolean-state';
 import { LOCAL_STORAGE_KEY, Storage } from '@/libs/storage';
 import { useLoginModalStore } from '@/store/use-login-modal-store';
-import { useGetRestockResponse } from '@/hooks/queries/use-get-restock-items';
+
 // import { Swiper, SwiperSlide } from 'swiper/react';
 // import { Mousewheel, Pagination } from 'swiper/modules';
 // import ProductCard from '@/components/product/product-card';
@@ -25,7 +25,7 @@ const MainPage = () => {
   const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
   const onBoardingModalState = useBooleanState();
   const openLoginModal = useLoginModalStore(state => state.openLoginModal);
-  const { data: restockResponse } = useGetRestockResponse();
+  // const { data: restockResponse } = useGetRestockResponse();
 
   useEffect(() => {
     const onboardingState = localStorage.getItem('showOnboarding');
