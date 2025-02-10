@@ -62,7 +62,7 @@ const ProductThumbnailImage = ({
               <BellRing width={20} height={20} stroke="rgba(135, 96, 225, 0.8)" />
             </div>
           )}
-          {counts && (
+          {counts !== undefined && counts !== null && (
             <div className={styles.iconWrapper1}>
               <Users
                 width={12}
