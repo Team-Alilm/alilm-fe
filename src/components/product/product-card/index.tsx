@@ -86,11 +86,13 @@ const ProductCard = ({
         </button>
       )}
       <div>
-        <div onClick={handleProductClick} className={styles.productInfo}>
-          <BasketBadge>{firstCategory}</BasketBadge>
-          <p className={styles.name}>{name}</p>
-          <p className={styles.options}>{description}</p>
-        </div>
+        {firstCategory && (
+          <div onClick={handleProductClick} className={styles.productInfo}>
+            <BasketBadge>{firstCategory}</BasketBadge>
+            <p className={styles.name}>{name}</p>
+            <p className={styles.options}>{description}</p>
+          </div>
+        )}
         {/* {tab && <WaitingCounts counts={waitingCount} />} */}
 
         {tab === 'my-basket' && <DeleteProductBtn id={id} name={name} />}

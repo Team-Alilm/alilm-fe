@@ -6,3 +6,17 @@ export const mainPage = style({
   padding: '0 12px',
   background: '#FFFFFF',
 });
+
+export const cardWrapper = style({
+  selectors: {
+    '&.swiper-slide': {
+      width: '20rem',
+    },
+  },
+});
+
+export const restock = style({
+  fontSize: '2rem',
+  textAlign: 'center',
+  paddingBottom: '2rem',
+});

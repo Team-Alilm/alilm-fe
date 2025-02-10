@@ -16,6 +16,7 @@ interface RelatedProductListProps {
 
 const RelatedProductList = ({ productId }: RelatedProductListProps) => {
   const { data: relatedProducts } = useGetRelatedProducts(productId);
+  console.log(relatedProducts);
 
   return (
     <div className={styles.cardList}>
