@@ -44,7 +44,6 @@ const ProductThumbnailImage = ({
 
   const validURL = tab === 'home' ? thumbnailUrl : imageUrl;
 
-  console.log(counts);
   return (
     <div className={styles.imageWrapper({ card })}>
       {validURL && (
