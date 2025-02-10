@@ -13,7 +13,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { type PaginationOptions } from 'swiper/types';
 
 import * as styles from './index.css';
-
 import 'swiper/css';
 import 'swiper/css/pagination';
 

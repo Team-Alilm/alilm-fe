@@ -14,7 +14,10 @@ import ProductCardList from '@/components/product/product-card-list';
 import useBooleanState from '@/hooks/common/use-boolean-state';
 import { LOCAL_STORAGE_KEY, Storage } from '@/libs/storage';
 import { useLoginModalStore } from '@/store/use-login-modal-store';
-
+import { useGetRestockResponse } from '@/hooks/queries/use-get-restock-items';
+// import { Swiper, SwiperSlide } from 'swiper/react';
+// import { Mousewheel, Pagination } from 'swiper/modules';
+// import ProductCard from '@/components/product/product-card';
 import * as styles from './page.css';
 
 const MainPage = () => {
@@ -22,6 +25,8 @@ const MainPage = () => {
   const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
   const onBoardingModalState = useBooleanState();
   const openLoginModal = useLoginModalStore(state => state.openLoginModal);
+  const { data: restockResponse } = useGetRestockResponse();
+
   useEffect(() => {
     const onboardingState = localStorage.getItem('showOnboarding');
     if (onboardingState !== 'completed') {
@@ -60,6 +65,27 @@ const MainPage = () => {
         <AlilmInfo />
       </Suspense>
       <Spacer height={60} />
+
+      <h3 className={styles.restock}>최근 재입고된 상품 TOP7</h3>
+
+      {/* <Swiper
+        slidesPerView="auto"
+        spaceBetween={0}
+        mousewheel={true}
+        modules={[Pagination, Mousewheel]}
+        style={{ paddingLeft: '2rem', paddingRight: '1rem', paddingBottom: '2rem' }}
+      >
+        {restockResponse?.productList.map(item => (
+          <SwiperSlide key={item.productId} className={styles.cardWrapper}>
+            <ProductCard {...item} key={item.productId}
+            id={item.productId}
+            alilm={undefined} thumbnailUrl={item.productThumbnailUrl}
+            imageUrl={item.productThumbnailUrl} number={0} 
+             firstCategory='' firstOption='' name='' brand='' store='' price={0} />
+          </SwiperSlide>
+        ))}
+      </Swiper> */}
+
       <Flex justify="center">
         <Button onClick={handleMoveCreatePage}>재입고 알림 신청하러가기</Button>
       </Flex>
