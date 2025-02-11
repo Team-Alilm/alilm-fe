@@ -84,8 +84,18 @@ export const thumbnailImage = recipe({
         aspectRatio: '1/1.2',
       },
     },
+
+    borderRadius: {
+      rounded: {
+        borderRadius: '1.2rem',
+      },
+      none: {
+        borderRadius: '0',
+      },
+    },
   },
   defaultVariants: {
     card: 'thin',
+    borderRadius: 'rounded',
   },
 });
