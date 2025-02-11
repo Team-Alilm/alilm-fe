@@ -34,16 +34,13 @@ self.addEventListener('notificationclick', function (event) {
   event.waitUntil(clients.openWindow(clickActionUrl));
 });
 
-// 백그라운드 메시지 처리
 messaging.onBackgroundMessage(payload => {
-  console.log('[firebase-messaging-sw.js] Received background message', payload);
-
   const data = payload.data || {};
-  const notificationTitle = data.title || '알림';
+  const notificationTitle = payload.notification?.title || data.title || '알림';
   const notificationOptions = {
-    body: data.body || '메시지 내용 없음',
-    icon: data.icon || 'https://example.com/default-icon.png',
-    image: data.image || '',
+    body: payload.notification?.body || data.body || '메시지 내용 없음',
+    icon: payload.notification?.icon || data.icon || 'https://example.com/default-icon.png',
+    image: payload.notification?.image || data.image,
     data: { click_action: data.click_action },
   };
 
