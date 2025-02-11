@@ -34,15 +34,15 @@ self.addEventListener('notificationclick', function (event) {
   event.waitUntil(clients.openWindow(clickActionUrl));
 });
 
-messaging.onBackgroundMessage(payload => {
-  const data = payload.data || {};
-  const notificationTitle = payload.notification?.title || data.title || '알림';
-  const notificationOptions = {
-    body: payload.notification?.body || data.body || '메시지 내용 없음',
-    icon: payload.notification?.icon || data.icon || 'https://example.com/default-icon.png',
-    image: payload.notification?.image || data.image,
-    data: { click_action: data.click_action },
-  };
+// messaging.onBackgroundMessage(payload => {
+//   const data = payload.data || {};
+//   const notificationTitle = payload.notification?.title || data.title || '알림';
+//   const notificationOptions = {
+//     body: payload.notification?.body || data.body || '메시지 내용 없음',
+//     icon: payload.notification?.icon || data.icon || 'https://example.com/default-icon.png',
+//     image: payload.notification?.image || data.image,
+//     data: { click_action: data.click_action },
+//   };
 
-  self.registration.showNotification(notificationTitle, notificationOptions);
-});
+//   self.registration.showNotification(notificationTitle, notificationOptions);
+// });
