@@ -15,6 +15,7 @@ export interface ProductThumbnailProps {
   counts?: number;
   id: number;
   ifsent: boolean;
+  borderRadius?: number;
 }
 
 const ProductThumbnailImage = ({
@@ -25,6 +26,7 @@ const ProductThumbnailImage = ({
   alilm,
   counts,
   id,
+  borderRadius,
   ifsent: initialIfSent,
 }: ProductThumbnailProps) => {
   const [isMessageSent, setIsMessageSent] = useState<boolean>(() => {
@@ -50,7 +52,10 @@ const ProductThumbnailImage = ({
         <>
           <Image
             src={validURL}
-            className={styles.thumbnailImage({ card })}
+            className={styles.thumbnailImage({
+              card,
+              borderRadius: borderRadius === 0 ? 'none' : 'rounded',
+            })}
             alt="Basket Thumbnail"
             layout="responsive"
             width={800}

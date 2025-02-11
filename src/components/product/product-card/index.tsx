@@ -18,6 +18,7 @@ type ProductProps = Product & {
   isLoading?: boolean;
   productId?: number;
   alilm?: string;
+  borderRadius?: number;
 };
 
 const ProductCard = ({
@@ -35,6 +36,7 @@ const ProductCard = ({
   isLoading,
   alilm,
   waitingCount,
+  borderRadius,
 }: ProductProps) => {
   const [messageStatus, setMessageStatus] = useState<boolean>(() => {
     return getMessageSentStatus(id) ?? false; // 초기값으로 false 설정
@@ -78,6 +80,7 @@ const ProductCard = ({
           counts={waitingCount}
           id={id}
           ifsent={messageStatus}
+          borderRadius={borderRadius}
         />
       </div>
       {tab === 'home' && (
