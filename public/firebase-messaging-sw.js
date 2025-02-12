@@ -26,3 +26,26 @@ self.addEventListener('push', function (event) {
     console.info('This push event has no data.');
   }
 });
+
+// 클릭 이벤트 처리 - 알림을 클릭 시 사이트로 이동
+self.addEventListener('notificationclick', function (event) {
+  const clickActionUrl = event.notification.data.click_action;
+  event.notification.close();
+  event.waitUntil(clients.openWindow(clickActionUrl));
+});
+
+// 백그라운드 메시지 처리
+messaging.onBackgroundMessage(payload => {
+  console.log('[firebase-messaging-sw.js] Received background message', payload);
+
+  const data = payload.data || {};
+  const notificationTitle = data.title || '알림';
+  const notificationOptions = {
+    body: data.body || '메시지 내용 없음',
+    icon: data.icon || 'https://example.com/default-icon.png',
+    image: data.image || '',
+    data: { click_action: data.click_action },
+  };
+
+  self.registration.showNotification(notificationTitle, notificationOptions);
+});
