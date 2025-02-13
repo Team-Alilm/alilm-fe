@@ -30,3 +30,17 @@ messaging.onBackgroundMessage(payload => {
 
   self.registration.showNotification(notificationTitle, notificationOptions);
 });
+
+self.addEventListener('fetch', (event) => {
+  event.respondWith(fetch(event.request)); // 기본 fetch 핸들링
+});
+
+// 설치 이벤트에서 바로 활성화
+self.addEventListener('install', (event) => {
+  self.skipWaiting(); // 새로운 서비스 워커를 즉시 활성화
+});
+
+// 활성화 이벤트에서 클라이언트 제어
+self.addEventListener('activate', (event) => {
+  event.waitUntil(clients.claim()); // 클라이언트를 즉시 제어
+});
