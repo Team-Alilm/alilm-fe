@@ -39,9 +39,29 @@ const MainPage = () => {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker
         .register('/firebase-messaging-sw.js')
-        .then()
+        .then(registration => {
+          console.log('Service Worker registered');
+
+          // 새로운 버전이 발견되었을 때
+          registration.onupdatefound = () => {
+            const newWorker = registration.installing;
+            if (newWorker) {
+              newWorker.onstatechange = () => {
+                if (newWorker.state === 'installed') {
+                  if (navigator.serviceWorker.controller) {
+                    // 새로운 서비스 워커가 설치됨
+                    console.log('New version of Service Worker installed');
+                  } else {
+                    // 첫 번째 설치
+                    console.log('Service Worker installed for the first time');
+                  }
+                }
+              };
+            }
+          };
+        })
         .catch(error => {
-          console.error('Service Worker Registration Failed', error);
+          console.error('Service Worker registration failed:', error);
         });
     }
   }, []);
