@@ -47,27 +47,29 @@ const CreatePage = () => {
     openLoginModal();
   }
 
+  const LOGO_IMAGES = [
+    { name: 'musinsa', fileName: 'musinsa-logo.svg' },
+    { name: '29cm', fileName: '29cm-logo.svg' },
+    { name: 'musinsa', fileName: 'zigzag-logo.svg' },
+  ];
+
   return (
     <div className={styles.createPage}>
       <div className={styles.logoImageWrapper}>
-        <Image
-          src="/images/musinsa-logo.svg"
-          alt="My Icon"
-          width={50}
-          height={50}
-          className={styles.logoImage}
-        />
-        <Image
-          src="/images/29cm-logo.svg"
-          alt="My Icon"
-          width={50}
-          height={50}
-          className={styles.logoImage}
-        />
+        {LOGO_IMAGES.map(image => (
+          <Image
+            key={image.name}
+            src={`/images/${image.fileName}`}
+            alt="My Icon"
+            width={50}
+            height={50}
+            className={styles.logoImage}
+          />
+        ))}
       </div>
 
       <p className={styles.title}>
-        무신사와 29CM 제품,
+        무신사/29CM/지그재그 제품,
         <br /> 지금 재입고 등록을 해보세요!
       </p>
       <form onSubmit={handleCreateFormSubmit} className={styles.createForm}>
