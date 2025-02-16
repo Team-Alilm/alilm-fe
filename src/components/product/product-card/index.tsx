@@ -1,13 +1,11 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 
-import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Icon from '@/components/icons';
 import { BasketBadge } from '@/components/product/basket-badge';
 import { useCopyBaskets } from '@/hooks/mutations/use-copy-baskets';
 import { type Product } from '@/types/basket';
-import { getMessageSentStatus } from '@/utils/local-storage';
 
 import DeleteProductBtn from '../delete-product';
 import ProductThumbnailImage from '../product-thumbnail';
@@ -38,18 +36,6 @@ const ProductCard = ({
   waitingCount,
   borderRadius,
 }: ProductProps) => {
-  const [messageStatus, setMessageStatus] = useState<boolean>(() => {
-    return getMessageSentStatus(id) ?? false; // 초기값으로 false 설정
-  });
-
-  // id가 변경될 때마다 localStorage에서 상태 업데이트
-  useEffect(() => {
-    const status = getMessageSentStatus(id);
-    if (status !== null) {
-      setMessageStatus(status);
-    }
-  }, [id]);
-
   const { mutate: copyBasketsMutate } = useCopyBaskets();
 
   const description = `${brand}${firstOption ? ` / ${firstOption}` : ''}${secondOption ? ` / ${secondOption}` : ''}${thirdOption ? ` / ${thirdOption}` : ''}`;
@@ -79,7 +65,6 @@ const ProductCard = ({
           card={'thin'}
           counts={waitingCount}
           id={id}
-          ifsent={messageStatus}
           borderRadius={borderRadius}
         />
       </div>
