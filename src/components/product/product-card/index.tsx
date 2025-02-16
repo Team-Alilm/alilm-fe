@@ -64,7 +64,6 @@ const ProductCard = ({
           alilm={alilm}
           card={'thin'}
           counts={waitingCount}
-          id={id}
           borderRadius={borderRadius}
         />
       </div>
