@@ -15,10 +15,7 @@ self.addEventListener('push', function (event) {
 
     if (event.data) {
         event.waitUntil(
-            self.registration.showNotification('알림', {
-                body: event.data.text(),
-                icon: '/default-icon.png',
-            })
+            self.registration.showNotification()
         );
     }
 })
