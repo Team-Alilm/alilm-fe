@@ -31,30 +31,3 @@ self.addEventListener("notificationclick", function (event, clients) {
         event.waitUntil(clients.openWindow(action));
     }
 });
-
-messaging.onMessage((payload) => {
-    console.log('[firebase-messaging-sw.js] Received foreground message ', payload);
-
-    const notification = payload.notification || {};
-    const notificationTitle = notification.title || '알림';
-    const notificationOptions = {
-        body: notification.body || '메시지 내용 없음',
-        icon: notification.image || '/default-icon.png',
-        data: {click_action: payload.data.click_action},
-    };
-    self.registration.showNotification(notificationTitle, notificationOptions).then(r => console.log(r));
-});
-
-// 🛠 백그라운드 메시지 처리
-messaging.onBackgroundMessage(payload => {
-    console.log('[firebase-messaging-sw.js] Background Message', payload);
-
-    const notification = payload.notification || {};
-    const notificationTitle = notification.title || '알림';
-    const notificationOptions = {
-        body: notification.body || '메시지 내용 없음',
-        icon: notification.image || '/default-icon.png',
-        data: {click_action: payload.data.click_action},
-    };
-    self.registration.showNotification(notificationTitle, notificationOptions).then(r => console.log(r));
-});
