@@ -11,7 +11,7 @@ firebase.initializeApp({
 const messaging = firebase.messaging();
 
 // 🛠 알림 클릭 이벤트 처리
-self.addEventListener("notificationclick", function (event) {
+self.addEventListener("notificationclick", function (event, clients) {
     event.notification.close();
     const action = event.notification.data?.click_action;
     if (action) {
@@ -44,15 +44,4 @@ messaging.onBackgroundMessage(payload => {
         data: {click_action: payload.data.click_action},
     };
     self.registration.showNotification(notificationTitle, notificationOptions).then(r => console.log(r));
-});
-
-// ✨ 불필요한 fetch 이벤트 제거 (서비스 워커 유지에는 영향 없음)
-
-// ✨ 서비스 워커 업데이트 반영
-self.addEventListener('install', (event) => {
-    self.skipWaiting().then(r => console.log(r));
-});
-
-self.addEventListener('activate', (event, clients) => {
-  event.waitUntil(clients.claim());
 });
