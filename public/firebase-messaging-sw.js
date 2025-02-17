@@ -10,6 +10,19 @@ firebase.initializeApp({
 
 const messaging = firebase.messaging();
 
+self.addEventListener('push', function (event) {
+    console.log('[firebase-messaging-sw.js] Received a push message', event);
+
+    if (event.data) {
+        event.waitUntil(
+            self.registration.showNotification('알림', {
+                body: event.data.text(),
+                icon: '/default-icon.png',
+            })
+        );
+    }
+})
+
 // 🛠 알림 클릭 이벤트 처리
 self.addEventListener("notificationclick", function (event, clients) {
     event.notification.close();
