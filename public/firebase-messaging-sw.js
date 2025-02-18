@@ -12,12 +12,10 @@ const messaging = firebase.messaging();
 
 self.addEventListener('push', function (event) {
     if (event.data) {
-        const data = event.data.json().data;
+        const data = event.data.json().notification;
         const options = {
             body: data.body,
-            icon:
-                data.icon ||
-                'https://file.notion.so/f/f/c345e317-1a77-4e86-8b67-b491a5db92b8/732799dc-6ad9-46f8-8864-22308c10cdb8/free-icon-bells-7124213.png?table=block&id=1037b278-57a0-8022-8a73-ea04c03ae27e&spaceId=c345e317-1a77-4e86-8b67-b491a5db92b8&expirationTimestamp=1730354400000&signature=hBdHPuerhscY6rXIkAe40sWyyvEq22eyqZ7AqA2Gt5o&downloadName=free-icon-bells-7124213.png',
+            icon: data.image,
             image: data.image,
             data: {
                 click_action: data.click_action,
