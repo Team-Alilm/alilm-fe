@@ -10,11 +10,19 @@ firebase.initializeApp({
 
 const messaging = firebase.messaging();
 
-// 🛠 알림 클릭 이벤트 처리
-self.addEventListener("notificationclick", function (event, clients) {
-    event.notification.close();
-    const action = event.notification.data?.click_action;
-    if (action) {
-        event.waitUntil(clients.openWindow(action));
+self.addEventListener('push', function (event) {
+    if (event.data) {
+        const data = event.data.json();
+        const options = {
+            body: data.body,
+            icon: data.image,
+            image: data.image,
+            data: {
+                click_action: data.click_action,
+            },
+        };
+        event.waitUntil(self.registration.showNotification(data.title, options));
+    } else {
+        console.info('This push event has no data.');
     }
 });
