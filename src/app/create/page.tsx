@@ -69,7 +69,7 @@ const CreatePage = () => {
       </div>
 
       <p className={styles.title}>
-        무신사/29CM/지그재그 제품,
+        무신사/29CM/지그재그 상품,
         <br /> 지금 재입고 등록을 해보세요!
       </p>
       <form onSubmit={handleCreateFormSubmit} className={styles.createForm}>
