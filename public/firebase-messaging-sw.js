@@ -12,7 +12,7 @@ const messaging = firebase.messaging();
 
 self.addEventListener('push', function (event) {
     if (event.data) {
-        const data = event.data.json().data;
+        const data = event.data.json();
         const options = {
             body: data.body,
             icon: data.image,
