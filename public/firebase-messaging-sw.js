@@ -9,3 +9,21 @@ firebase.initializeApp({
 });
 
 const messaging = firebase.messaging();
+
+self.addEventListener('push', function (event) {
+    if (event.data) {
+        const data = event.data.json();
+        console.log('This push event has data: ', data);
+        const options = {
+            body: data.body,
+            icon: data.image,
+            image: data.image,
+            data: {
+                click_action: data.click_action,
+            },
+        };
+        event.waitUntil(self.registration.showNotification(data.title, options));
+    } else {
+        console.info('This push event has no data.');
+    }
+});
