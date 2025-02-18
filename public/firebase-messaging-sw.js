@@ -12,8 +12,7 @@ const messaging = firebase.messaging();
 
 self.addEventListener('push', function (event) {
     if (event.data) {
-        const data = event.data.json();
-        console.log('This push event has data: ', data);
+        const data = event.data.json().data;
         const options = {
             body: data.body,
             icon: data.image,
@@ -27,3 +26,44 @@ self.addEventListener('push', function (event) {
         console.info('This push event has no data.');
     }
 });
+
+// 🛠 알림 클릭 이벤트 처리
+self.addEventListener("notificationclick", function (event, clients) {
+    event.notification.close();
+    const action = event.notification.data?.click_action;
+    if (action) {
+        event.waitUntil(clients.openWindow(action));
+    }
+});
+
+self.onBackgroundMessage((payload) => {
+    console.log('[firebase-messaging-sw.js] Received background message ', payload);
+
+    const data = payload.data;
+    const options = {
+        body: data.body,
+        icon: data.image,
+        image: data.image,
+        data: {
+            click_action: data.click_action,
+        },
+    };
+
+    self.registration.showNotification(data.title, options).then(r => console.log(r));
+})
+
+self.onmessage((payload) => {
+    console.log('[firebase-messaging-sw.js] Received background message ', payload);
+
+    const data = payload.data;
+    const options = {
+        body: data.body,
+        icon: data.image,
+        image: data.image,
+        data: {
+            click_action: data.click_action,
+        },
+    };
+
+    self.registration.showNotification(data.title, options).then(r => console.log(r));
+})
