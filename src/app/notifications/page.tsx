@@ -5,6 +5,7 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { usePatchAlilmRead } from '@/hooks/mutations/use-patch-alilm-read';
 import { useGetNotifications } from '@/hooks/queries/use-get-notifications';
 import { BellRing } from 'lucide-react';
 
@@ -24,10 +25,17 @@ import {
 
 const NotificationList = () => {
   const { data: notifications } = useGetNotifications();
+  const { mutate: patchAlilmRead } = usePatchAlilmRead();
 
   const router = useRouter();
 
   if (!notifications) return;
+
+  const handleNotificationClick = (alilmId: number, productId: number) => {
+    patchAlilmRead([alilmId]);
+
+    router.push(`/product/${productId}`);
+  };
 
   return (
     <div>
@@ -44,7 +52,7 @@ const NotificationList = () => {
         >
           <div
             className={notificationContent}
-            onClick={() => router.push(`/product/${item.productid}`)}
+            onClick={() => handleNotificationClick(item.alilmId, item.productid)}
           >
             <div className={notificationTextWrapper}>
               <div className={notificationType}>재입고 알림</div>
