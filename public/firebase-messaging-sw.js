@@ -10,6 +10,8 @@ firebase.initializeApp({
 
 const messaging = firebase.messaging();
 
+// 이수민님 변경
+
 messaging.onBackgroundMessage(payload => {
     console.log('[firebase-messaging-sw.js] Background Message', payload);
 
