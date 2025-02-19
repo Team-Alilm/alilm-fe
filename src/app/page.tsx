@@ -35,16 +35,18 @@ const MainPage = () => {
     }
   }, [onBoardingModalState]);
 
-  useEffect(() => {
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker
-        .register('/firebase-messaging-sw.js')
-        .then()
-        .catch(error => {
-          console.error('Service Worker Registration Failed', error);
-        });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if ('serviceWorker' in navigator) {
+  //     navigator.serviceWorker
+  //       .register('/firebase-messaging-sw.js')
+  //       .then(registration => {
+  //         registration.waiting?.postMessage({ type: 'SKIP_WAITING' });
+  //       })
+  //       .catch(error => {
+  //         console.error('Service Worker Registration Failed', error);
+  //       });
+  //   }
+  // }, []);
 
   const handleMoveCreatePage = () => {
     if (accessToken) {

@@ -43,7 +43,13 @@ const Header = () => {
           로그아웃
         </button> */}
 
-        <Icon icon="Bell" width={24} height={24} />
+        <Icon
+          icon="Bell"
+          width={24}
+          height={24}
+          onClick={() => router.push('/notifications')}
+          cursor="pointer"
+        />
         {accessToken ? (
           <Icon
             icon="Avatar"
