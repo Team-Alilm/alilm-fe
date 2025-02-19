@@ -9,3 +9,16 @@ firebase.initializeApp({
 });
 
 const messaging = firebase.messaging();
+
+messaging.onBackgroundMessage(payload => {
+    console.log('[firebase-messaging-sw.js] Background Message', payload);
+
+    const notification = payload.notification || {};
+    const notificationTitle = notification.title || '알림';
+    const notificationOptions = {
+        body: notification.body || '메시지 내용 없음',
+        icon: notification.image || '/default-icon.png',
+        data: {click_action: payload.data.click_action},
+    };
+    self.registration.showNotification(notificationTitle, notificationOptions).then(r => console.log(r));
+});
