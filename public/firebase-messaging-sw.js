@@ -43,7 +43,7 @@ messaging.onBackgroundMessage(payload => {
       icon: payload.notification.image,
       image: payload.notification.image,
       data: {
-        click_action: payload.notification.click_action,
+        click_action: payload.data.click_action,
       },
     })
     .then(r => console.log(r));
