@@ -36,62 +36,15 @@ const MainPage = () => {
   }, [onBoardingModalState]);
 
   useEffect(() => {
-    // 서비스 워커가 지원되는지 확인
     if ('serviceWorker' in navigator) {
-      // 서비스 워커 등록
       navigator.serviceWorker
         .register('/firebase-messaging-sw.js')
         .then(registration => {
-          // 서비스 워커가 대기 중일 때 SKIP_WAITING 메시지 전송
-          if (registration.waiting) {
-            registration.waiting.postMessage({ type: 'SKIP_WAITING' });
-            console.log('서비스 워커 대기 상태를 건너뜁니다.');
-          } else {
-            console.log('서비스 워커가 활성화되었습니다.');
-          }
-
-          // 새 서비스 워커가 설치된 후, SKIP_WAITING 메시지 전송
-          registration.onupdatefound = () => {
-            const newWorker = registration.installing;
-            if (newWorker) {
-              newWorker.onstatechange = () => {
-                if (newWorker.state === 'installed') {
-                  // 새 서비스 워커가 설치된 후 바로 활성화하려면 SKIP_WAITING 메시지 전송
-                  newWorker.postMessage({ type: 'SKIP_WAITING' });
-                  console.log('새 서비스 워커가 설치되었습니다. 활성화합니다.');
-                }
-              };
-            }
-          };
+          registration.waiting?.postMessage({ type: 'SKIP_WAITING' });
         })
         .catch(error => {
-          console.error('서비스 워커 등록 실패', error);
+          console.error('Service Worker Registration Failed', error);
         });
-
-      // 앱이 삭제될 때 서비스 워커를 삭제하는 방법
-      const removeServiceWorkerOnAppUninstall = () => {
-        navigator.serviceWorker.getRegistrations().then(registrations => {
-          registrations.forEach(registration => {
-            registration.unregister().then(success => {
-              if (success) {
-                console.log('서비스 워커가 성공적으로 삭제되었습니다.');
-              } else {
-                console.error('서비스 워커 삭제 실패');
-              }
-            });
-          });
-        });
-      };
-
-      // PWA가 삭제될 때 서비스 워커 삭제
-      window.addEventListener('beforeunload', removeServiceWorkerOnAppUninstall);
-
-      // 컴포넌트가 unmount될 때 이벤트 리스너 제거
-      return () => {
-        window.removeEventListener('beforeunload', removeServiceWorkerOnAppUninstall);
-      };
-    } else {
-      console.warn('서비스 워커는 이 브라우저에서 지원되지 않습니다.');
     }
   }, []);
 
