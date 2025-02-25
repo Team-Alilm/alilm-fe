@@ -28,24 +28,26 @@ const messaging = firebase.messaging();
 // });
 
 // 🛠 알림 클릭 이벤트 처리
-// self.addEventListener('notificationclick', function (event, clients) {
-//   event.notification.close();
-//   const action = event.notification.data?.click_action;
-//   if (action) {
-//     event.waitUntil(clients.openWindow(action));
-//   }
-// });
+self.addEventListener('notificationclick', function (event, clients) {
+  event.notification.close();
+  const action = event.notification.data?.click_action;
+  if (action) {
+    event.waitUntil(clients.openWindow(action));
+  }
+});
 
-// messaging.onBackgroundMessage((payload) => {
-//     self.registration.showNotification(payload.notification.title, {
-//         body: payload.notification.body,
-//         icon: payload.notification.image,
-//         image: payload.notification.image,
-//         data: {
-//             click_action: payload.notification.click_action,
-//         },
-//     });
-// })
+messaging.onBackgroundMessage(payload => {
+  self.registration
+    .showNotification(payload.notification.title, {
+      body: payload.notification.body,
+      icon: payload.notification.image,
+      image: payload.notification.image,
+      data: {
+        click_action: payload.notification.click_action,
+      },
+    })
+    .then(r => console.log(r));
+});
 //
 // self.onmessage((payload) => {
 //     console.log('[firebase-messaging-sw.js] Received background message ', payload);
