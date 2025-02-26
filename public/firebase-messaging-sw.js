@@ -10,22 +10,45 @@ firebase.initializeApp({
 
 const messaging = firebase.messaging();
 
-// self.addEventListener('push', function (event) {
-//     if (event.data) {
-//         const data = event.data.json().data;
-//         const options = {
-//             body: data.body,
-//             icon: data.image,
-//             image: data.image,
-//             data: {
-//                 click_action: data.click_action,
-//             },
-//         };
-//         event.waitUntil(self.registration.showNotification(data.title, options));
-//     } else {
-//         console.info('This push event has no data.');
-//     }
-// });
+self.addEventListener('push', function (event) {
+  if (event.data) {
+    const payload = event.data.json();
+    console.log('Push received:', payload);
+
+    const notificationTitle = payload.notification?.title || '알림 제목 없음';
+    const notificationOptions = {
+      body: payload.notification?.body || '알림 내용 없음',
+      icon: payload.notification?.icon || '/default-icon.png',
+      image: payload.notification?.image || '/default-image.png',
+      data: {
+        click_action: payload.data?.click_action || '/',
+      },
+    };
+
+    event.waitUntil(self.registration.showNotification(notificationTitle, notificationOptions));
+  } else {
+    console.info('This push event has no data.');
+  }
+});
+
+// 🔹 알림 클릭 시 특정 URL로 이동하도록 처리
+self.addEventListener('notificationclick', function (event) {
+  event.notification.close();
+  const clickAction = event.notification.data?.click_action || '/';
+
+  event.waitUntil(
+    clients.matchAll({ type: 'window', includeUncontrolled: true }).then(clientList => {
+      for (const client of clientList) {
+        if (client.url === clickAction && 'focus' in client) {
+          return client.focus();
+        }
+      }
+      if (clients.openWindow) {
+        return clients.openWindow(clickAction);
+      }
+    })
+  );
+});
 
 messaging.onBackgroundMessage(payload => {
   self.registration
@@ -39,19 +62,3 @@ messaging.onBackgroundMessage(payload => {
     })
     .then(r => console.log(r));
 });
-//
-// self.onmessage((payload) => {
-//     console.log('[firebase-messaging-sw.js] Received background message ', payload);
-//
-//     const data = payload.data;
-//     const options = {
-//         body: data.body,
-//         icon: data.image,
-//         image: data.image,
-//         data: {
-//             click_action: data.click_action,
-//         },
-//     };
-//
-//     self.registration.showNotification(data.title, options).then(r => console.log(r));
-// })
