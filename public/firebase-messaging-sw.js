@@ -49,3 +49,16 @@ self.addEventListener('notificationclick', function (event) {
     })
   );
 });
+
+messaging.onBackgroundMessage(payload => {
+  self.registration
+    .showNotification(payload.notification.title, {
+      body: payload.data.body,
+      icon: payload.data.image,
+      image: payload.data.image,
+      data: {
+        click_action: payload.data.click_action,
+      },
+    })
+    .then(r => console.log(r));
+});
