@@ -17,9 +17,9 @@ self.addEventListener('push', function (event) {
 
     const notificationTitle = payload.notification?.title || '알림 제목 없음';
     const notificationOptions = {
-      body: payload.notification?.body || '알림 내용 없음',
-      icon: payload.notification?.icon || '/default-icon.png',
-      image: payload.notification?.image || '/default-image.png',
+      body: payload.data?.body || '알림 내용 없음',
+      icon: payload.data?.icon || '/default-icon.png',
+      image: payload.data?.image || '/default-image.png',
       data: {
         click_action: payload.data?.click_action || '/',
       },
@@ -53,9 +53,9 @@ self.addEventListener('notificationclick', function (event) {
 messaging.onBackgroundMessage(payload => {
   self.registration
     .showNotification(payload.notification.title, {
-      body: payload.notification.body,
-      icon: payload.notification.image,
-      image: payload.notification.image,
+      body: payload.data.body,
+      icon: payload.data.image,
+      image: payload.data.image,
       data: {
         click_action: payload.data.click_action,
       },
