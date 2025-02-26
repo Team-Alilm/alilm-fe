@@ -15,7 +15,7 @@ self.addEventListener('push', function (event) {
     const payload = event.data.json();
     console.log('Push received:', payload);
 
-    const notificationTitle = payload.notification?.title || '알림 제목 없음';
+    const notificationTitle = payload.data?.title || '알림 제목 없음';
     const notificationOptions = {
       body: payload.data?.body || '알림 내용 없음',
       icon: payload.data?.icon || '/default-icon.png',
@@ -48,17 +48,4 @@ self.addEventListener('notificationclick', function (event) {
       }
     })
   );
-});
-
-messaging.onBackgroundMessage(payload => {
-  self.registration
-    .showNotification(payload.notification.title, {
-      body: payload.data.body,
-      icon: payload.data.image,
-      image: payload.data.image,
-      data: {
-        click_action: payload.data.click_action,
-      },
-    })
-    .then(r => console.log(r));
 });
