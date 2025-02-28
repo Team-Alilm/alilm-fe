@@ -53,9 +53,9 @@ self.addEventListener('notificationclick', function (event) {
 messaging.onBackgroundMessage(payload => {
   self.registration
     .showNotification(payload.notification.title, {
-      body: payload.data.body,
-      icon: payload.data.image,
-      image: payload.data.image,
+      body: payload.notification.body,
+      icon: payload.notification.image,
+      image: payload.notification.image,
       data: {
         click_action: payload.data.click_action,
       },
