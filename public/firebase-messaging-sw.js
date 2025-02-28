@@ -66,6 +66,5 @@ messaging.onBackgroundMessage(payload => {
       .then(r => console.log(r));
 
     // 백그라운드 메시지를 처리했음을 표시
-    isBackgroundMessageReceived = true;
   }
 });
