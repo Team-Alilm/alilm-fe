@@ -15,14 +15,11 @@ self.addEventListener('push', function (event) {
     const payload = event.data.json();
     console.log('Push received:', payload);
 
-    const notificationTitle = payload.data?.title || '알림 제목 없음';
+    const notificationTitle = payload.notification?.title || '알림 제목 없음';
     const notificationOptions = {
-      body: payload.data?.body || '알림 내용 없음',
-      icon: payload.data?.icon || '/default-icon.png',
-      image: payload.data?.image || '/default-image.png',
-      data: {
-        click_action: payload.data?.click_action || '/',
-      },
+      body: payload.notification?.body || '알림 내용 없음',
+      icon: payload.notification?.icon || '/default-icon.png',
+      image: payload.notification?.image || '/default-image.png',
     };
 
     event.waitUntil(self.registration.showNotification(notificationTitle, notificationOptions));
