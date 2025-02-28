@@ -10,6 +10,9 @@ firebase.initializeApp({
 
 const messaging = firebase.messaging();
 
+// `isBackground` 플래그를 사용하여 중복 알림 방지
+let isBackgroundMessageReceived = false;
+
 self.addEventListener('push', function (event) {
   if (event.data) {
     const payload = event.notification.json();
@@ -25,7 +28,10 @@ self.addEventListener('push', function (event) {
       },
     };
 
-    event.waitUntil(self.registration.showNotification(notificationTitle, notificationOptions));
+    // 이미 백그라운드에서 알림을 처리했는지 확인
+    if (!isBackgroundMessageReceived) {
+      event.waitUntil(self.registration.showNotification(notificationTitle, notificationOptions));
+    }
   } else {
     console.info('This push event has no data.');
   }
@@ -51,13 +57,18 @@ self.addEventListener('notificationclick', function (event) {
 });
 
 messaging.onBackgroundMessage(payload => {
-  self.registration
-    .showNotification(payload.notification.title, {
-      body: payload.notification.body,
-      icon: payload.notification.image,
-      data: {
-        click_action: payload.data.click_action,
-      },
-    })
-    .then(r => console.log(r));
+  if (!isBackgroundMessageReceived) {
+    self.registration
+      .showNotification(payload.notification.title, {
+        body: payload.notification.body,
+        icon: payload.notification.image,
+        data: {
+          click_action: payload.data.click_action,
+        },
+      })
+      .then(r => console.log(r));
+
+    // 백그라운드 메시지를 처리했음을 표시
+    isBackgroundMessageReceived = true;
+  }
 });
