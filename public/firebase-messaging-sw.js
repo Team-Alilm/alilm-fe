@@ -15,16 +15,13 @@ let isBackgroundMessageReceived = false;
 
 self.addEventListener('push', function (event) {
   if (event.data) {
-    const payload = event.notification.json();
-    console.log('Push received:', payload);
-
-    const notificationTitle = payload.notification?.title || '알림 제목 없음';
+    const notificationTitle = event.notification?.title || '알림 제목 없음';
     const notificationOptions = {
-      body: payload.notification?.body || '알림 내용 없음',
-      icon: payload.notification?.icon || '/default-icon.png',
-      image: payload.notification?.image || '/default-image.png',
+      body: event.notification?.body || '알림 내용 없음',
+      icon: event.notification?.icon || '/default-icon.png',
+      image: event.notification?.image || '/default-image.png',
       data: {
-        click_action: payload.data?.click_action || '/',
+        click_action: event.data?.click_action || '/',
       },
     };
 
