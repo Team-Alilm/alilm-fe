@@ -21,12 +21,12 @@ export const metadata: Metadata = {
     description: '재입고 알림을 받아보세요!',
     images: [
       {
-        url: 'https://www.alilm.co.kr/images/alilm-thumbnail.webp',
+        url: 'https://www.algamja.com//images/alilm-thumbnail.webp',
         width: 1200,
         height: 630,
       },
     ],
-    url: 'https://www.alilm.co.kr/',
+    url: 'https://www.algamja.com//',
   },
   twitter: {
     card: 'summary_large_image',
