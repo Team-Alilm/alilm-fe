@@ -18,7 +18,7 @@ const Header = () => {
   };
 
   const handleLoginBtn = () => {
-    window.location.href = `https://alilm.store/oauth2/authorization/kakao`;
+    window.location.href = `https://api.algamja.com/oauth2/authorization/kakao`;
   };
 
   const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);

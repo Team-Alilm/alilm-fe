@@ -6,7 +6,7 @@ import type { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axio
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'https://alilm.store/api/v1',
+  baseURL: 'https://api.algamja.com/api/v1',
   timeout: 15000,
 });
 
@@ -103,7 +103,7 @@ export const get = <T>(...args: Parameters<typeof instance.get>) => {
   return instance.get<T, T>(url, {
     ...config,
     baseURL: url.includes('products?size')
-      ? 'https://alilm.store/api/v2'
+      ? 'https://api.algamja.com/api/v2'
       : instance.defaults.baseURL,
   });
 };
@@ -113,7 +113,7 @@ export const post = <T>(...args: Parameters<typeof instance.post>) => {
   return instance.post<T, T>(url, data, {
     ...config,
     baseURL:
-      url === '/baskets/registered' ? 'https://alilm.store/api/v2' : instance.defaults.baseURL,
+      url === '/baskets/registered' ? 'https://api.algamja.com/api/v2' : instance.defaults.baseURL,
   });
 };
 
