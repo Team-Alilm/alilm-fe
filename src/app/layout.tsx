@@ -13,11 +13,11 @@ import '@radix-ui/themes/styles.css';
 import '@/styles/global.css';
 
 export const metadata: Metadata = {
-  title: 'Alilm',
-  description: 'Alilm',
-  keywords: 'Alilm',
+  title: 'Algamja',
+  description: 'Algamja',
+  keywords: 'Algamja',
   openGraph: {
-    title: 'Alilm',
+    title: 'Algamja',
     description: '재입고 알림을 받아보세요!',
     images: [
       {
