@@ -104,7 +104,9 @@ export const get = <T>(...args: Parameters<typeof instance.get>) => {
     ...config,
     baseURL: url.includes('products?size')
       ? 'https://api.algamja.com/api/v2'
-      : instance.defaults.baseURL,
+      : url.includes('products/crawling')
+        ? 'https://crawler.algamja.com/api/v1'
+        : instance.defaults.baseURL,
   });
 };
 export const post = <T>(...args: Parameters<typeof instance.post>) => {
