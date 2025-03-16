@@ -5,6 +5,11 @@ const bulletGrow = keyframes({
   '100%': { width: '16%' },
 });
 
+const spin = keyframes({
+  '0%': { transform: 'rotate(0deg)' },
+  '100%': { transform: 'rotate(360deg)' },
+});
+
 export const modal = style({
   width: '65%',
   height: 'auto',
@@ -59,6 +64,16 @@ export const nextButton = style({
   fontSize: '1.1rem',
   fontWeight: '700',
   zIndex: 10,
+});
+
+export const loadingIndicator = style({
+  display: 'inline-block',
+  width: '2rem',
+  height: '2rem',
+  border: '2px solid #fff',
+  borderTop: '2px solid transparent',
+  borderRadius: '50%',
+  animation: `${spin} 0.8s linear infinite`,
 });
 
 export const content = style({
