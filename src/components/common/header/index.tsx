@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import Icon from '@/components/icons';
+import { useGetReadNCount } from '@/hooks/queries/use-get-read-n-count';
 import { LOCAL_STORAGE_KEY, Storage } from '@/libs/storage';
 import { useLoginModalStore } from '@/store/use-login-modal-store';
 
@@ -23,6 +24,12 @@ const Header = () => {
 
   const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
 
+  // 안 읽은 알림 개수 조회
+  const { data } = useGetReadNCount();
+
+  const unreadNotificationCount = data?.readNCount ?? 0;
+  const notificationText = unreadNotificationCount > 99 ? '99+' : unreadNotificationCount;
+
   return (
     <header className={styles.header} style={{ display: pathname === '/login' ? 'none' : 'flex' }}>
       <Image
@@ -34,22 +41,18 @@ const Header = () => {
         alt="Logo"
       />
       <div className={styles.rightHeaderWrapper}>
-        {/* 임시 주석 처리 24/10/06 */}
-        {/* <button
-          onClick={() => {
-            Storage.deleteItem('access-token');
-          }}
-        >
-          로그아웃
-        </button> */}
-
-        <Icon
-          icon="Bell"
-          width={24}
-          height={24}
-          onClick={() => router.push('/notifications')}
-          cursor="pointer"
-        />
+        <div className={styles.notificationWrapper}>
+          <Icon
+            icon="Bell"
+            width={24}
+            height={24}
+            cursor="pointer"
+            onClick={() => router.push('/notification-history')}
+          />
+          {unreadNotificationCount > 0 && (
+            <span className={styles.notificationBadge}>{notificationText}</span>
+          )}
+        </div>
         {accessToken ? (
           <Icon
             icon="Avatar"

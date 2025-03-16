@@ -23,7 +23,7 @@ import {
   readNotification,
 } from './index.css';
 
-const NotificationList = () => {
+const NotificationHistoryList = () => {
   const { data: notifications } = useGetNotifications();
   const { mutate: patchAlilmRead } = usePatchAlilmRead();
 
@@ -52,7 +52,7 @@ const NotificationList = () => {
         >
           <div
             className={notificationContent}
-            onClick={() => handleNotificationClick(item.alilmId, item.productid)}
+            onClick={() => handleNotificationClick(item.alilmId, item.productId)}
           >
             <div className={notificationTextWrapper}>
               <div className={notificationType}>재입고 알림</div>
@@ -80,4 +80,4 @@ const NotificationList = () => {
   );
 };
 
-export default NotificationList;
+export default NotificationHistoryList;

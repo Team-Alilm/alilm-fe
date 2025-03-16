@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 interface Notification {
   alimHistoryList: {
     alilmId: number;
-    productid: number;
+    productId: number;
     name: string;
     imageUrl: string;
     brand: string;
