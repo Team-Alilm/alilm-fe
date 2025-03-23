@@ -126,7 +126,7 @@ const MainPage = () => {
                 thumbnailUrl={oldResponse?.oldProduct.thumbnailUrl ?? ''}
                 imageUrl={oldResponse?.oldProduct.thumbnailUrl ?? ''}
                 number={0}
-                borderRadius={5}
+                borderRadius={3}
                 firstCategory=""
                 firstOption=""
                 name=""
@@ -148,7 +148,7 @@ const MainPage = () => {
                   height={105}
                   priority
                   style={{
-                    borderRadius: '1rem',
+                    borderRadius: '0.8rem',
                   }}
                   alt=""
                 />
