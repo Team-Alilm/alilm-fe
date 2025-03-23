@@ -1,6 +1,7 @@
 'use client';
 
 import { Suspense, useEffect } from 'react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Portal from '@/components/common/modal/modal-portal';
 import Button from '@/components/design-system/button';
@@ -13,14 +14,13 @@ import OnboardingModal from '@/components/main/onboarding';
 import ProductCard from '@/components/product/product-card';
 import ProductCardList from '@/components/product/product-card-list';
 import useBooleanState from '@/hooks/common/use-boolean-state';
-import { useGetRestockResponse } from '@/hooks/queries/use-get-restock-items';
 import { useGetOldResponse } from '@/hooks/queries/use-get-old-basket';
+import { useGetRestockResponse } from '@/hooks/queries/use-get-restock-items';
 import { LOCAL_STORAGE_KEY, Storage } from '@/libs/storage';
 import { useLoginModalStore } from '@/store/use-login-modal-store';
+import { Clock } from 'lucide-react';
 import { Mousewheel, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Clock } from 'lucide-react';
-import Image from 'next/image';
 
 import * as styles from './page.css';
 
@@ -47,11 +47,6 @@ const MainPage = () => {
   const timePassed = `${elapsedDays}:
   ${String(elapsedHours % 24).padStart(2, '0')}:
   ${String(elapsedMinutes % 60).padStart(2, '0')}`;
-
-  console.log(timePassed);
-
-  console.log(oldResponse);
-  const time = oldResponse?.oldProduct.createdDate;
 
   const related = oldResponse?.relatedProductList;
   useEffect(() => {
@@ -83,96 +78,95 @@ const MainPage = () => {
   };
 
   return (
-    <>
-      <div className={styles.mainPage}>
-        <Portal>
-          {onBoardingModalState.isVisible ? (
-            <OnboardingModal onClose={onBoardingModalState.close} />
-          ) : null}
-        </Portal>
-        <Spacer height={40} />
-        <Suspense fallback={<AlilmInfo />}>
-          <AlilmInfo />
-        </Suspense>
-        <Spacer height={60} />
+    <div className={styles.mainPage}>
+      <Portal>
+        {onBoardingModalState.isVisible ? (
+          <OnboardingModal onClose={onBoardingModalState.close} />
+        ) : null}
+      </Portal>
+      <Spacer height={40} />
+      <Suspense fallback={<AlilmInfo />}>
+        <AlilmInfo />
+      </Suspense>
+      <Spacer height={60} />
 
-        <h3 className={styles.restock}>최근 재입고된 상품 TOP7</h3>
+      <h3 className={styles.restock}>최근 재입고된 상품 TOP7</h3>
 
-        <Swiper
-          slidesPerView="auto"
-          spaceBetween={0}
-          mousewheel={true}
-          modules={[Pagination, Mousewheel]}
-          style={{ paddingBottom: '2rem' }}
-        >
-          {restockResponse?.productList.map(item => (
-            <SwiperSlide key={item.productId} className={styles.cardWrapper}>
-              <Image src={item.productThumbnailUrl} width={180} height={190} alt="" />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+      <Swiper
+        slidesPerView="auto"
+        spaceBetween={0}
+        mousewheel={true}
+        modules={[Pagination, Mousewheel]}
+        style={{ paddingBottom: '2rem' }}
+      >
+        {restockResponse?.productList.map(item => (
+          <SwiperSlide key={item.productId} className={styles.cardWrapper}>
+            <Image src={item.productThumbnailUrl} width={180} height={190} alt="" />
+          </SwiperSlide>
+        ))}
+      </Swiper>
 
-        <Flex justify="center">
-          <Button onClick={handleMoveCreatePage}>재입고 알림 신청하러가기</Button>
-        </Flex>
+      <Flex justify="center">
+        <Button onClick={handleMoveCreatePage}>재입고 알림 신청하러가기</Button>
+      </Flex>
 
-        <Spacer height={30} />
+      <Spacer height={30} />
 
-        <h3 className={styles.late1}>재입고 늦어지는 상품</h3>
-        <h5 className={styles.late2}>비슷한 가격대 추천 상품을 살펴보세요</h5>
+      <h3 className={styles.late1}>재입고 늦어지는 상품</h3>
+      <h5 className={styles.late2}>비슷한 가격대 추천 상품을 살펴보세요</h5>
 
-        <div style={{ display: 'flex', height: '28vh', gap: '1vh', paddingLeft: '1vh' }}>
-          <div style={{ position: 'relative', width: '24vh' }}>
-            <ProductCard
-              key={undefined}
-              id={1}
-              alilm={undefined}
-              thumbnailUrl={oldResponse?.oldProduct.thumbnailUrl ?? ''}
-              imageUrl={oldResponse?.oldProduct.thumbnailUrl ?? ''}
-              number={0}
-              borderRadius={5}
-              firstCategory=""
-              firstOption=""
-              name=""
-              brand=""
-              store=""
-              price={0}
-            />
+      <div style={{ display: 'flex', height: '28vh', gap: '1vh', paddingLeft: '1vh' }}>
+        <div style={{ position: 'relative', width: '24vh' }}>
+          <ProductCard
+            key={undefined}
+            id={1}
+            alilm={undefined}
+            thumbnailUrl={oldResponse?.oldProduct.thumbnailUrl ?? ''}
+            imageUrl={oldResponse?.oldProduct.thumbnailUrl ?? ''}
+            number={0}
+            borderRadius={5}
+            firstCategory=""
+            firstOption=""
+            name=""
+            brand=""
+            store=""
+            price={0}
+          />
 
-            <div className={styles.iconWrapper}>
-              <Clock size={13} />
-              재입고 등록한지 {timePassed} 경과
-            </div>
-          </div>
-
-          <div style={{ display: 'flex', flexWrap: 'wrap', width: 'fit-content', gap: '1vh' }}>
-            {related?.map(item => (
-              <Image
-                src={item.thumbnailUrl ?? ''}
-                width={180}
-                height={105}
-                priority
-                style={{
-                  borderRadius: '1rem',
-                }}
-                alt=""
-              />
-            ))}
+          <div className={styles.iconWrapper}>
+            <Clock size={13} />
+            재입고 등록한지 {timePassed} 경과
           </div>
         </div>
 
-        <Spacer height={30} />
-
-        <Suspense fallback={<div>탭 정보 초기화 중...</div>}>
-          <AlilmTabsProvider>
-            <AlilmTabs />
-            <Spacer height={28} />
-            <ProductCardList />
-          </AlilmTabsProvider>
-        </Suspense>
-        <Spacer height={80} />
+        <div style={{ display: 'flex', flexWrap: 'wrap', width: 'fit-content', gap: '1vh' }}>
+          {related?.map(item => (
+            <Image
+              key={item.thumbnailUrl} // 여기 key 추가
+              src={item.thumbnailUrl ?? ''}
+              width={180}
+              height={105}
+              priority
+              style={{
+                borderRadius: '1rem',
+              }}
+              alt=""
+            />
+          ))}
+        </div>
       </div>
-    </>
+
+      <Spacer height={30} />
+
+      <Suspense fallback={<div>탭 정보 초기화 중...</div>}>
+        <AlilmTabsProvider>
+          <AlilmTabs />
+          <Spacer height={28} />
+          <ProductCardList />
+        </AlilmTabsProvider>
+      </Suspense>
+      <Spacer height={80} />
+    </div>
   );
 };
 
