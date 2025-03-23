@@ -76,7 +76,7 @@ export const thumbnailImage = recipe({
   variants: {
     card: {
       thin: {
-        width: '100%',
+        // width: '100%',
         minHeight: '21.8rem',
         maxHeight: '21.8rem',
       },

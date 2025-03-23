@@ -10,7 +10,7 @@ export const mainPage = style({
 export const cardWrapper = style({
   selectors: {
     '&.swiper-slide': {
-      width: '20rem',
+      width: '18rem',
     },
   },
 });
@@ -19,4 +19,37 @@ export const restock = style({
   fontSize: '2rem',
   textAlign: 'center',
   paddingBottom: '2.2rem',
+});
+
+export const late1 = style({
+  fontSize: '2rem',
+  textAlign: 'left',
+  paddingLeft: '1rem',
+  paddingBottom: '1rem',
+});
+
+export const late2 = style({
+  fontSize: '1.3rem',
+  textAlign: 'left',
+  color: 'gray',
+  paddingLeft: '1rem',
+  paddingBottom: '2.2rem',
+});
+
+export const iconWrapper = style({
+  position: 'absolute',
+  top: '80%',
+  left: '3%',
+  backgroundColor: 'rgba(100, 100, 100, 0.6)',
+  boxShadow: '0 0 0 0.5px white',
+  borderRadius: '0.3rem',
+  width: '94%',
+  height: '2.6rem',
+  zIndex: '2',
+  display: 'flex',
+  fontSize: '1.1rem',
+  gap: '0.3rem',
+  alignItems: 'center',
+  justifyContent: 'center',
+  color: 'rgb(255, 255, 255)',
 });
