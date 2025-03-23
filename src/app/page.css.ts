@@ -72,11 +72,15 @@ export const slideLayout = style({
 export const leftImage = style({
   position: 'relative',
   height: '100%',
+  width: '100%',
+
   objectFit: 'cover',
 });
 
 export const rightGrid = style({
   display: 'grid',
+  marginLeft: '1rem',
+  gap: '1rem',
   gridTemplateColumns: '1fr 1fr',
   gridTemplateRows: '1fr 1fr',
 });

@@ -157,46 +157,6 @@ const MainPage = () => {
           </div>
         </SwiperSlide>
       </Swiper>
-      {/* <div style={{ display: 'flex', justifyContent: 'space-between', height: '30vh', gap: '1vh' }}>
-        <div style={{ position: 'relative', width: '24vh' }}>
-          <ProductCard
-            key={undefined}
-            id={1}
-            alilm={undefined}
-            thumbnailUrl={oldResponse?.oldProduct.thumbnailUrl ?? ''}
-            imageUrl={oldResponse?.oldProduct.thumbnailUrl ?? ''}
-            number={0}
-            borderRadius={5}
-            firstCategory=""
-            firstOption=""
-            name=""
-            brand=""
-            store=""
-            price={0}
-          />
-
-          <div className={styles.iconWrapper}>
-            <Clock size={13} />
-            재입고 등록한지 {timePassed} 경과
-          </div>
-        </div>
-
-        <div className={styles.imageGrid}>
-          {related?.map(item => (
-            <Image
-              key={item.thumbnailUrl} // 여기 key 추가
-              src={item.thumbnailUrl ?? ''}
-              width={180}
-              height={105}
-              priority
-              style={{
-                borderRadius: '1rem',
-              }}
-              alt=""
-            />
-          ))}
-        </div>
-      </div> */}
 
       <Spacer height={50} />
 
