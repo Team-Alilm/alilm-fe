@@ -115,7 +115,49 @@ const MainPage = () => {
       <h3 className={styles.late1}>재입고 늦어지는 상품</h3>
       <h5 className={styles.late2}>비슷한 가격대 추천 상품을 살펴보세요</h5>
 
-      <div style={{ display: 'flex', justifyContent: 'space-between', height: '30vh', gap: '1vh' }}>
+      <Swiper slidesPerView={1} spaceBetween={10} mousewheel={true}>
+        <SwiperSlide>
+          <div className={styles.slideLayout}>
+            <div className={styles.leftImage}>
+              <ProductCard
+                key={undefined}
+                id={1}
+                alilm={undefined}
+                thumbnailUrl={oldResponse?.oldProduct.thumbnailUrl ?? ''}
+                imageUrl={oldResponse?.oldProduct.thumbnailUrl ?? ''}
+                number={0}
+                borderRadius={5}
+                firstCategory=""
+                firstOption=""
+                name=""
+                brand=""
+                store=""
+                price={0}
+              />
+              <div className={styles.iconWrapper}>
+                <Clock size={13} />
+                재입고 등록한지 {timePassed} 경과
+              </div>
+            </div>
+            <div className={styles.rightGrid}>
+              {related?.map(item => (
+                <Image
+                  key={item.thumbnailUrl} // 여기 key 추가
+                  src={item.thumbnailUrl ?? ''}
+                  width={180}
+                  height={105}
+                  priority
+                  style={{
+                    borderRadius: '1rem',
+                  }}
+                  alt=""
+                />
+              ))}
+            </div>
+          </div>
+        </SwiperSlide>
+      </Swiper>
+      {/* <div style={{ display: 'flex', justifyContent: 'space-between', height: '30vh', gap: '1vh' }}>
         <div style={{ position: 'relative', width: '24vh' }}>
           <ProductCard
             key={undefined}
@@ -154,7 +196,7 @@ const MainPage = () => {
             />
           ))}
         </div>
-      </div>
+      </div> */}
 
       <Spacer height={50} />
 
