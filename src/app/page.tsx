@@ -115,7 +115,12 @@ const MainPage = () => {
       <h3 className={styles.late1}>재입고 늦어지는 상품</h3>
       <h5 className={styles.late2}>비슷한 가격대 추천 상품을 살펴보세요</h5>
 
-      <Swiper slidesPerView={1} spaceBetween={10} mousewheel={true}>
+      <Swiper
+        slidesPerView="auto"
+        mousewheel={true}
+        modules={[Pagination, Mousewheel]}
+        spaceBetween={10}
+      >
         <SwiperSlide>
           <div className={styles.slideLayout}>
             <div className={styles.leftImage}>
@@ -144,11 +149,13 @@ const MainPage = () => {
                 <Image
                   key={item.thumbnailUrl} // 여기 key 추가
                   src={item.thumbnailUrl ?? ''}
-                  width={180}
+                  width={200}
                   height={105}
                   priority
                   style={{
                     borderRadius: '0.8rem',
+                    objectFit: 'cover',
+                    objectPosition: 'top',
                   }}
                   alt=""
                 />

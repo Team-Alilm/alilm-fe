@@ -83,10 +83,5 @@ export const rightGrid = style({
   gap: '1rem',
   gridTemplateColumns: '1fr 1fr',
   gridTemplateRows: '1fr 1fr',
-});
-
-export const rightGridImage = style({
-  width: '100%',
-  height: '100%',
   objectFit: 'cover',
 });
