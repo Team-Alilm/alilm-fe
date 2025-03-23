@@ -115,8 +115,8 @@ const MainPage = () => {
       <h3 className={styles.late1}>재입고 늦어지는 상품</h3>
       <h5 className={styles.late2}>비슷한 가격대 추천 상품을 살펴보세요</h5>
 
-      <div style={{ display: 'flex', height: '30vh', gap: '1vh' }}>
-        <div style={{ position: 'relative', width: '24vh' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', height: '34vh', gap: '1vh' }}>
+        <div style={{ position: 'relative', width: '26vh' }}>
           <ProductCard
             key={undefined}
             id={1}
@@ -144,7 +144,7 @@ const MainPage = () => {
             <Image
               key={item.thumbnailUrl} // 여기 key 추가
               src={item.thumbnailUrl ?? ''}
-              width={140}
+              width={150}
               height={105}
               priority
               style={{
@@ -156,7 +156,7 @@ const MainPage = () => {
         </div>
       </div>
 
-      <Spacer height={30} />
+      <Spacer height={50} />
 
       <Suspense fallback={<div>탭 정보 초기화 중...</div>}>
         <AlilmTabsProvider>
