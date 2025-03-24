@@ -116,13 +116,13 @@ const MainPage = () => {
       <h5 className={styles.late2}>비슷한 가격대 추천 상품을 살펴보세요</h5>
 
       <Swiper
-        slidesPerView="auto"
+        slidesPerView={2}
         mousewheel={true}
         modules={[Pagination, Mousewheel]}
         spaceBetween={10}
       >
-        <SwiperSlide>
-          <div className={styles.slideLayout}>
+        <div className={styles.slideLayout}>
+          <SwiperSlide style={{ width: '30%' }}>
             <div className={styles.leftImage}>
               <ProductCard
                 key={undefined}
@@ -144,12 +144,40 @@ const MainPage = () => {
                 재입고 등록한지 {timePassed} 경과
               </div>
             </div>
-            <div className={styles.rightGrid}>
-              {related?.map(item => (
+          </SwiperSlide>
+
+          <SwiperSlide style={{ width: '70%' }}>
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: '8px',
+              }}
+            >
+              {related?.map((item, idx) => (
+                <Image
+                  key={item.thumbnailUrl ?? idx}
+                  src={item.thumbnailUrl ?? ''}
+                  width={180}
+                  height={105}
+                  style={{
+                    borderRadius: '0.8rem',
+                    objectFit: 'cover',
+                    objectPosition: 'top',
+                    width: '100%',
+                  }}
+                  alt=""
+                />
+              ))}
+            </div>
+          </SwiperSlide>
+          {/* <div className={styles.rightGrid}>
+              {related?.map((item,idx) => (
+              <SwiperSlide key={idx} style={{width:'auto'}}>
                 <Image
                   key={item.thumbnailUrl} // 여기 key 추가
                   src={item.thumbnailUrl ?? ''}
-                  width={200}
+                  width={240}
                   height={105}
                   priority
                   style={{
@@ -159,10 +187,11 @@ const MainPage = () => {
                   }}
                   alt=""
                 />
+                </SwiperSlide>
               ))}
-            </div>
-          </div>
-        </SwiperSlide>
+              
+            </div> */}
+        </div>
       </Swiper>
 
       <Spacer height={50} />

@@ -54,14 +54,6 @@ export const iconWrapper = style({
   color: 'rgb(255, 255, 255)',
 });
 
-export const imageGrid = style({
-  display: 'grid',
-  gridTemplateColumns: '1fr 1fr',
-  gridTemplateRows: '1fr 1fr',
-  width: '100%',
-  height: '100%',
-  gap: '1vh',
-});
 export const slideLayout = style({
   display: 'grid',
 
@@ -73,8 +65,6 @@ export const leftImage = style({
   position: 'relative',
   height: '100%',
   width: '100%',
-
-  objectFit: 'cover',
 });
 
 export const rightGrid = style({
