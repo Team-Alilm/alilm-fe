@@ -14,7 +14,6 @@ const Header = () => {
   const pathname = usePathname();
   const router = useRouter();
   const openLoginModal = useLoginModalStore(state => state.openLoginModal);
-  const [readNCount, setReadNCount] = useState<number>(0);
 
   const handleLogoClick = () => {
     router.push('/');
@@ -30,25 +29,6 @@ const Header = () => {
     const token = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
     setAccessToken(token);
   }, []);
-
-  // interface ReadNCount {
-  //   readNCount: number;
-  // }
-
-  // useEffect(() => {
-  //   if (!accessToken) return;
-
-  //   const getReadNCount = async () => {
-  //     try {
-  //       const response = await get<ReadNCount>('/member/my-alilm-history/read-n-count');
-  //       setReadNCount(response.readNCount);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-
-  //   getReadNCount();
-  // }, [accessToken]);
 
   const { data: unreadCount } = useGetUnreadCount(accessToken);
   const unreadNotificationCount = unreadCount?.readNCount ?? 0;
