@@ -7,15 +7,17 @@ interface ReadNCount {
 
 export const READ_N_COUNT_QUERY_KEY = 'getReadNCount';
 
-export const getReadNCount = async () => {
+export const getUnreadCount = async () => {
   const data = await get<ReadNCount>('/member/my-alilm-history/read-n-count');
 
   return data;
 };
 
-export const useGetReadNCount = () => {
+export const useGetUnreadCount = (accessToken: string | null) => {
   return useQuery({
-    queryKey: [READ_N_COUNT_QUERY_KEY],
-    queryFn: getReadNCount,
+    queryKey: [READ_N_COUNT_QUERY_KEY, accessToken],
+    queryFn: getUnreadCount,
+    staleTime: 5000,
+    enabled: !!accessToken,
   });
 };

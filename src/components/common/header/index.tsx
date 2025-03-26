@@ -1,9 +1,10 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import Icon from '@/components/icons';
-import { useGetReadNCount } from '@/hooks/queries/use-get-read-n-count';
+import { useGetUnreadCount } from '@/hooks/queries/use-get-read-n-count';
 import { LOCAL_STORAGE_KEY, Storage } from '@/libs/storage';
 import { useLoginModalStore } from '@/store/use-login-modal-store';
 
@@ -13,6 +14,7 @@ const Header = () => {
   const pathname = usePathname();
   const router = useRouter();
   const openLoginModal = useLoginModalStore(state => state.openLoginModal);
+  const [readNCount, setReadNCount] = useState<number>(0);
 
   const handleLogoClick = () => {
     router.push('/');
@@ -22,13 +24,36 @@ const Header = () => {
     window.location.href = `https://api.algamja.com/oauth2/authorization/kakao`;
   };
 
-  const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
+  const [accessToken, setAccessToken] = useState<string | null>(null);
 
-  // 안 읽은 알림 개수 조회
-  const { data } = useGetReadNCount();
+  useEffect(() => {
+    const token = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
+    setAccessToken(token);
+  }, []);
 
-  const unreadNotificationCount = data?.readNCount ?? 0;
-  const notificationText = unreadNotificationCount > 99 ? '99+' : unreadNotificationCount;
+  // interface ReadNCount {
+  //   readNCount: number;
+  // }
+
+  // useEffect(() => {
+  //   if (!accessToken) return;
+
+  //   const getReadNCount = async () => {
+  //     try {
+  //       const response = await get<ReadNCount>('/member/my-alilm-history/read-n-count');
+  //       setReadNCount(response.readNCount);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
+
+  //   getReadNCount();
+  // }, [accessToken]);
+
+  const { data: unreadCount } = useGetUnreadCount(accessToken);
+  const unreadNotificationCount = unreadCount?.readNCount ?? 0;
+
+  const notificationNumber = unreadNotificationCount > 99 ? '99+' : unreadNotificationCount;
 
   return (
     <header className={styles.header} style={{ display: pathname === '/login' ? 'none' : 'flex' }}>
@@ -41,18 +66,15 @@ const Header = () => {
         alt="Logo"
       />
       <div className={styles.rightHeaderWrapper}>
-        <div className={styles.notificationWrapper}>
-          <Icon
-            icon="Bell"
-            width={24}
-            height={24}
-            cursor="pointer"
-            onClick={() => router.push('/notification-history')}
-          />
+        <button
+          className={styles.notificationWrapper}
+          onClick={() => router.push('/notification-history')}
+        >
+          <Icon icon="Bell" width={24} height={24} cursor="pointer" />
           {unreadNotificationCount > 0 && (
-            <span className={styles.notificationBadge}>{notificationText}</span>
+            <span className={styles.notificationBadge}>{notificationNumber}</span>
           )}
-        </div>
+        </button>
         {accessToken ? (
           <Icon
             icon="Avatar"

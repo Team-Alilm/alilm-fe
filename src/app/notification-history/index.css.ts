@@ -75,3 +75,15 @@ export const info = style([infoBox, { margin: '0' }]);
 export const infoWrapper = style({
   padding: '1.6rem',
 });
+
+export const readAllBtn = style({
+  all: 'unset',
+  textDecoration: 'underline',
+  cursor: 'pointer',
+});
+
+export const infoBoxInner = style({
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'space-between',
+});

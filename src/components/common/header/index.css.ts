@@ -23,6 +23,7 @@ export const rightHeaderWrapper = style({
 });
 
 export const notificationWrapper = style({
+  all: 'unset',
   position: 'relative',
   cursor: 'pointer',
 });
@@ -33,8 +34,8 @@ export const notificationBadge = style({
   right: '-0.4rem',
   minWidth: '1.6rem',
   height: '1.6rem',
-  backgroundColor: 'red',
-  color: 'white',
+  backgroundColor: '#FFC814',
+  color: 'black',
   fontSize: '1.2rem',
   fontWeight: 'bold',
   borderRadius: '99.9rem',
