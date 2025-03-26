@@ -1,25 +1,28 @@
 import { get } from '@/libs/api/client';
 import { useQuery } from '@tanstack/react-query';
 
-interface Notification {
-  alimHistoryList: {
-    alilmId: number;
-    productid: number;
-    name: string;
-    imageUrl: string;
-    brand: string;
-    price: number;
-    firstOption: string;
-    secondOption: string;
-    thirdOption: string;
-    readYn: boolean;
-  }[];
+export interface AlimHistoryItem {
+  alilmId: number;
+  productId: number;
+  name: string;
+  imageUrl: string;
+  brand: string;
+  price: number;
+  firstOption: string;
+  secondOption: string;
+  thirdOption: string;
+  readYn: boolean;
+  createdDate: number;
+}
+
+export interface NotificationProps {
+  alimHistoryList: AlimHistoryItem[];
 }
 
 export const NOTIFICATION_HISTORY_QUERY_KEY = 'getNotificationsHistory';
 
 export const getNotifications = async () => {
-  const data = await get<Notification>('/member/my-alilm-history');
+  const data = await get<NotificationProps>('/member/my-alilm-history');
 
   return data;
 };

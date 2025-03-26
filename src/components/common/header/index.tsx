@@ -1,8 +1,10 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import Icon from '@/components/icons';
+import { useGetUnreadCount } from '@/hooks/queries/use-get-read-n-count';
 import { LOCAL_STORAGE_KEY, Storage } from '@/libs/storage';
 import { useLoginModalStore } from '@/store/use-login-modal-store';
 
@@ -21,7 +23,17 @@ const Header = () => {
     window.location.href = `https://api.algamja.com/oauth2/authorization/kakao`;
   };
 
-  const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
+  const [accessToken, setAccessToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    const token = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
+    setAccessToken(token);
+  }, []);
+
+  const { data: unreadCount } = useGetUnreadCount(accessToken);
+  const unreadNotificationCount = unreadCount?.readNCount ?? 0;
+
+  const notificationNumber = unreadNotificationCount > 99 ? '99+' : unreadNotificationCount;
 
   return (
     <header className={styles.header} style={{ display: pathname === '/login' ? 'none' : 'flex' }}>
@@ -34,22 +46,15 @@ const Header = () => {
         alt="Logo"
       />
       <div className={styles.rightHeaderWrapper}>
-        {/* 임시 주석 처리 24/10/06 */}
-        {/* <button
-          onClick={() => {
-            Storage.deleteItem('access-token');
-          }}
+        <button
+          className={styles.notificationWrapper}
+          onClick={() => router.push('/notification-history')}
         >
-          로그아웃
-        </button> */}
-
-        <Icon
-          icon="Bell"
-          width={24}
-          height={24}
-          onClick={() => router.push('/notifications')}
-          cursor="pointer"
-        />
+          <Icon icon="Bell" width={24} height={24} cursor="pointer" />
+          {unreadNotificationCount > 0 && (
+            <span className={styles.notificationBadge}>{notificationNumber}</span>
+          )}
+        </button>
         {accessToken ? (
           <Icon
             icon="Avatar"

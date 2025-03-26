@@ -6,7 +6,7 @@ import Modal from '@/components/common/modal/modal';
 import { EffectFade, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, type SwiperClass, SwiperSlide } from 'swiper/react';
 
-import { buttonContainer, content, modal, nextButton, slide } from './index.css';
+import { buttonContainer, content, loadingIndicator, modal, nextButton, slide } from './index.css';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -22,6 +22,7 @@ const OnboardingModal = ({ onClose }: OnboardingProps) => {
   const swiperRef = useRef<null | SwiperClass>(null);
 
   const [buttonText, setButtonText] = useState('다음');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSlideChange = () => {
     if (swiperRef.current) {
@@ -41,11 +42,13 @@ const OnboardingModal = ({ onClose }: OnboardingProps) => {
         if (isMessagingSupported) {
           try {
             const { default: handleFcmToken } = await import('@/utils/handle-fcm-token');
+            setIsLoading(true);
             await handleFcmToken();
           } catch (error) {
             console.error('FCM 토큰 설정 중 오류 발생:', error);
           }
         }
+        setIsLoading(false);
         onClose();
       } else {
         swiperRef.current.slideNext();
@@ -55,40 +58,44 @@ const OnboardingModal = ({ onClose }: OnboardingProps) => {
 
   return (
     <Modal>
-      <div className={modal}>
-        <Swiper
-          onSwiper={swiper => {
-            swiperRef.current = swiper;
-          }}
-          onSlideChange={handleSlideChange}
-          spaceBetween={20}
-          slidesPerView={1}
-          pagination={{ clickable: true }}
-          modules={[Navigation, Pagination, EffectFade]}
-        >
-          {ONBOARDING_IMAGES.map(image => (
-            <SwiperSlide key={image}>
-              <div className={slide}>
-                <div className={content}>
-                  <Image
-                    src={`/images/${image}.svg`}
-                    layout={'intrinsic'}
-                    alt={'onboarding imag'}
-                    width={500}
-                    height={300}
-                  />
+      {isLoading ? (
+        <div className={loadingIndicator} />
+      ) : (
+        <div className={modal}>
+          <Swiper
+            onSwiper={swiper => {
+              swiperRef.current = swiper;
+            }}
+            onSlideChange={handleSlideChange}
+            spaceBetween={20}
+            slidesPerView={1}
+            pagination={{ clickable: true }}
+            modules={[Navigation, Pagination, EffectFade]}
+          >
+            {ONBOARDING_IMAGES.map(image => (
+              <SwiperSlide key={image}>
+                <div className={slide}>
+                  <div className={content}>
+                    <Image
+                      src={`/images/${image}.svg`}
+                      layout={'intrinsic'}
+                      alt={'onboarding imag'}
+                      width={500}
+                      height={300}
+                    />
+                  </div>
                 </div>
-              </div>
-            </SwiperSlide>
-          ))}
+              </SwiperSlide>
+            ))}
 
-          <div className={buttonContainer}>
-            <button className={nextButton} onClick={handleNextBtn}>
-              {buttonText}
-            </button>
-          </div>
-        </Swiper>
-      </div>
+            <div className={buttonContainer}>
+              <button className={nextButton} onClick={handleNextBtn}>
+                {buttonText}
+              </button>
+            </div>
+          </Swiper>
+        </div>
+      )}
     </Modal>
   );
 };
