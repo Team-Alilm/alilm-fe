@@ -15,7 +15,7 @@ import ProductCard from '@/components/product/product-card';
 import ProductCardList from '@/components/product/product-card-list';
 import useBooleanState from '@/hooks/common/use-boolean-state';
 import { useGetOldResponse } from '@/hooks/queries/use-get-old-basket';
-import { useGetRestockResponse } from '@/hooks/queries/use-get-restock-items';
+import { type RestockItem, useGetRestockResponse } from '@/hooks/queries/use-get-restock-items';
 import { LOCAL_STORAGE_KEY, Storage } from '@/libs/storage';
 import { useLoginModalStore } from '@/store/use-login-modal-store';
 import { Clock } from 'lucide-react';
@@ -77,6 +77,10 @@ const MainPage = () => {
     }
   };
 
+  const handleProductClick = (item: RestockItem) => {
+    router.push(`/product/${item.productId}`);
+  };
+
   return (
     <div className={styles.mainPage}>
       <Portal>
@@ -101,7 +105,14 @@ const MainPage = () => {
       >
         {restockResponse?.productList.map(item => (
           <SwiperSlide key={item.productId} className={styles.cardWrapper}>
-            <Image src={item.productThumbnailUrl} width={180} height={190} alt="" />
+            <Image
+              src={item.productThumbnailUrl}
+              style={{ cursor: 'pointer' }}
+              width={180}
+              height={190}
+              alt=""
+              onClick={() => handleProductClick(item)}
+            />
           </SwiperSlide>
         ))}
       </Swiper>

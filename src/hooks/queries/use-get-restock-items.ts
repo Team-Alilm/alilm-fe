@@ -1,7 +1,7 @@
 import { get } from '@/libs/api/client';
 import { useQuery } from '@tanstack/react-query';
 
-interface RestockItem {
+export interface RestockItem {
   productId: number;
   productThumbnailUrl: string;
 }
