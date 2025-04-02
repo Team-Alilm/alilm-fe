@@ -3,9 +3,11 @@ import { style } from '@vanilla-extract/css';
 export const mainPage = style({
   width: '100%',
   height: '100%',
-  padding: '0 12px',
+  padding: '0 2rem',
   background: '#FFFFFF',
 });
+
+export const firstModule = style({});
 
 export const cardWrapper = style({
   selectors: {
@@ -74,4 +76,23 @@ export const rightGrid = style({
   gridTemplateColumns: '1fr 1fr',
   gridTemplateRows: '1fr 1fr',
   objectFit: 'cover',
+});
+
+export const topBadge = style({
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  backgroundColor: '#2D2D2D',
+  color: '#fff',
+  padding: '0.4rem 0.9rem',
+  fontSize: '1.1rem',
+  fontWeight: 600,
+  zIndex: 2,
+  cursor: 'pointer',
+
+  // 🎯 모서리별 radius 다르게
+  borderTopLeftRadius: '0.8rem',
+  borderTopRightRadius: '0.4rem',
+  borderBottomRightRadius: '0.4rem',
+  borderBottomLeftRadius: '0rem',
 });
