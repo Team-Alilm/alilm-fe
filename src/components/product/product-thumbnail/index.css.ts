@@ -72,13 +72,14 @@ export const thumbnailImage = recipe({
   base: {
     borderRadius: '1.2rem',
     objectFit: 'cover',
+    cursor: 'pointer',
   },
   variants: {
     card: {
       thin: {
-        // width: '100%',
         minHeight: '21.8rem',
         maxHeight: '21.8rem',
+        aspectRatio: '3 / 4',
       },
       full: {
         aspectRatio: '1/1.2',
@@ -87,7 +88,7 @@ export const thumbnailImage = recipe({
 
     borderRadius: {
       rounded: {
-        borderRadius: '1.2rem',
+        borderRadius: '0.8rem',
       },
       none: {
         borderRadius: '0',
