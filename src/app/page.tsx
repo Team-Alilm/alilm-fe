@@ -95,7 +95,7 @@ const MainPage = () => {
       </Suspense>
       <Spacer height={60} />
       <div className={styles.firstModule}>
-        <h3 className={styles.restock}>최근 재입고된 상품 TOP7</h3>
+        <h3 className={styles.restock}>최근 재입고된 상품 TOP 7</h3>
 
         <Swiper
           slidesPerView="auto"

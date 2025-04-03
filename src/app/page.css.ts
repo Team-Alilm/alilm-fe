@@ -19,8 +19,7 @@ export const cardWrapper = style({
 
 export const restock = style({
   fontSize: '2rem',
-  textAlign: 'center',
-  paddingBottom: '2.2rem',
+  padding: '0 0 2.2rem 2rem',
 });
 
 export const late1 = style({
