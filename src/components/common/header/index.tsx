@@ -50,7 +50,7 @@ const Header = () => {
           className={styles.notificationWrapper}
           onClick={() => router.push('/notification-history')}
         >
-          <Icon icon="Bell" width={24} height={24} cursor="pointer" />
+          <Icon icon="Bell" width={24} height={24} cursor="pointer" stroke="#101010" />
           {unreadNotificationCount > 0 && (
             <span className={styles.notificationBadge}>{notificationNumber}</span>
           )}
