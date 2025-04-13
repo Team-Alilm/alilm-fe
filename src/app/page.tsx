@@ -84,8 +84,6 @@ const MainPage = () => {
     router.push(`/product/${item.productId}`);
   };
 
-  console.log(oldResponse);
-
   return (
     <div>
       <Portal>
@@ -169,7 +167,6 @@ const MainPage = () => {
                   {oldResponse?.oldProduct?.category} |{' '}
                   {oldResponse?.oldProduct?.price?.toLocaleString()}원
                 </p>
-                {/* </SwiperSlide> */}
               </div>
             </SwiperSlide>
 
