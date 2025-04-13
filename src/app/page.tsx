@@ -137,22 +137,28 @@ const MainPage = () => {
             <SwiperSlide style={{ width: '30%' }}>
               <div className={styles.parent}>
                 <div className={styles.topBadge1}>My상품</div>
+
                 {oldResponse?.oldProduct && (
-                  <ProductCard
-                    key={undefined}
-                    id={oldResponse.oldProduct.productId ?? 0}
-                    alilm={undefined}
-                    thumbnailUrl={oldResponse.oldProduct.thumbnailUrl ?? ''}
-                    imageUrl={oldResponse.oldProduct.thumbnailUrl ?? ''}
-                    number={0}
-                    borderRadius={3}
-                    firstCategory=""
-                    firstOption=""
-                    name=""
-                    brand=""
-                    store=""
-                    price={0}
-                  />
+                  <button
+                    style={{ position: 'relative', all: 'unset' }}
+                    onClick={() => router.push(`/product/${oldResponse.oldProduct.productId}`)}
+                  >
+                    <ProductCard
+                      key={undefined}
+                      id={oldResponse.oldProduct.productId ?? 0}
+                      alilm={undefined}
+                      thumbnailUrl={oldResponse.oldProduct.thumbnailUrl ?? ''}
+                      imageUrl={oldResponse.oldProduct.thumbnailUrl ?? ''}
+                      number={0}
+                      borderRadius={3}
+                      firstCategory=""
+                      firstOption=""
+                      name=""
+                      brand=""
+                      store=""
+                      price={0}
+                    />
+                  </button>
                 )}
                 <div className={styles.iconWrapper}>
                   <Clock size={13} />
@@ -176,22 +182,29 @@ const MainPage = () => {
                 <SwiperSlide key={item.productId} className={styles.cardWrapper1}>
                   <div style={{ display: 'column' }}>
                     <div className={styles.topBadge2}>추천상품</div>
-                    <ProductCard
-                      key={item.productId!}
-                      productId={item.productId}
-                      id={item.productId!}
-                      alilm={undefined}
-                      thumbnailUrl={item.thumbnailUrl!}
-                      imageUrl={item.thumbnailUrl!}
-                      number={0}
-                      borderRadius={3}
-                      firstCategory=""
-                      firstOption=""
-                      name=""
-                      brand=""
-                      store=""
-                      price={0}
-                    />
+
+                    <button
+                      style={{ position: 'relative', all: 'unset' }}
+                      onClick={() => router.push(`/product/${item.productId}`)}
+                    >
+                      <ProductCard
+                        key={item.productId!}
+                        productId={item.productId}
+                        id={item.productId!}
+                        alilm={undefined}
+                        thumbnailUrl={item.thumbnailUrl!}
+                        imageUrl={item.thumbnailUrl!}
+                        number={0}
+                        borderRadius={3}
+                        firstCategory=""
+                        firstOption=""
+                        name=""
+                        brand=""
+                        store=""
+                        price={0}
+                      />
+                    </button>
+
                     <p className={styles.name}>{item.brand}</p>
                     <p className={styles.options}>
                       {item.category} | {item.price.toLocaleString()}원
