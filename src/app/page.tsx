@@ -164,7 +164,9 @@ const MainPage = () => {
             <p className={styles.name}> {oldResponse?.oldProduct?.brand} </p>
             <p className={styles.options}>
               {oldResponse?.oldProduct?.category} |{' '}
+
               {oldResponse?.oldProduct?.price?.toLocaleString()}원
+
             </p>
             {/* </SwiperSlide> */}
           </div>
