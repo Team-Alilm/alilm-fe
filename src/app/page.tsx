@@ -158,8 +158,7 @@ const MainPage = () => {
                       store=""
                       price={0}
                     />
-                  </button>
-                )}
+                  </button>                )}
                 <div className={styles.iconWrapper}>
                   <Clock size={13} />
                   기다린 시간:
@@ -182,6 +181,7 @@ const MainPage = () => {
                 <SwiperSlide key={item.productId} className={styles.cardWrapper1}>
                   <div style={{ display: 'column' }}>
                     <div className={styles.topBadge2}>추천상품</div>
+
                     <button
                       style={{ position: 'relative', all: 'unset' }}
                       onClick={() => router.push(`/product/${item.productId}`)}
@@ -203,6 +203,7 @@ const MainPage = () => {
                         price={0}
                       />
                     </button>
+
                     <p className={styles.name}>{item.brand}</p>
                     <p className={styles.options}>
                       {item.category} | {item.price.toLocaleString()}원
