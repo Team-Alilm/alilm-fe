@@ -143,10 +143,10 @@ const MainPage = () => {
             <div className={styles.topBadge1}>My상품</div>
             <ProductCard
               key={undefined}
-              id={oldResponse!.oldProduct!.productId!}
+              id={oldResponse?.oldProduct?.productId!}
               alilm={undefined}
-              thumbnailUrl={oldResponse!.oldProduct.thumbnailUrl!}
-              imageUrl={oldResponse!.oldProduct.thumbnailUrl!}
+              thumbnailUrl={oldResponse?.oldProduct?.thumbnailUrl!}
+              imageUrl={oldResponse?.oldProduct?.thumbnailUrl!}
               number={0}
               borderRadius={3}
               firstCategory=""
