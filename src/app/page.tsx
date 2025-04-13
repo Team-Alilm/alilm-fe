@@ -1,7 +1,6 @@
 'use client';
 
 import { Suspense, useEffect } from 'react';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Portal from '@/components/common/modal/modal-portal';
 import Button from '@/components/design-system/button';
@@ -144,10 +143,10 @@ const MainPage = () => {
             <div className={styles.topBadge1}>My상품</div>
             <ProductCard
               key={undefined}
-              id={oldResponse?.oldProduct?.productId!}
+              id={oldResponse!.oldProduct!.productId!}
               alilm={undefined}
-              thumbnailUrl={oldResponse?.oldProduct.thumbnailUrl!}
-              imageUrl={oldResponse?.oldProduct.thumbnailUrl!}
+              thumbnailUrl={oldResponse!.oldProduct.thumbnailUrl!}
+              imageUrl={oldResponse!.oldProduct.thumbnailUrl!}
               number={0}
               borderRadius={3}
               firstCategory=""
@@ -177,7 +176,7 @@ const MainPage = () => {
             modules={[Pagination, Mousewheel]}
             style={{ padding: '0 1rem' }}
           >
-            {related?.map((item, index) => (
+            {related?.map(item => (
               <SwiperSlide key={item.productId} className={styles.cardWrapper}>
                 <div style={{ display: 'column' }}>
                   <div className={styles.topBadge2}>추천상품</div>

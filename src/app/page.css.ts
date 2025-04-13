@@ -1,5 +1,5 @@
-import { style } from '@vanilla-extract/css';
 import { tokens } from '@/styles';
+import { style } from '@vanilla-extract/css';
 
 export const mainPage = style({
   width: '100%',
