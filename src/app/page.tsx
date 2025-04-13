@@ -1,7 +1,6 @@
 'use client';
 
 import { Suspense, useEffect } from 'react';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Portal from '@/components/common/modal/modal-portal';
 import Button from '@/components/design-system/button';
@@ -44,10 +43,13 @@ const MainPage = () => {
   const elapsedHours = Math.floor(elapsedMinutes / 60); // 경과 시간(시간)
   const elapsedDays = Math.floor(elapsedHours / 24); // 경과 시간(일)
 
-  // DD:HH:MM 형식으로 출력
-  const timePassed = `${elapsedDays}:
-  ${String(elapsedHours % 24).padStart(2, '0')}:
-  ${String(elapsedMinutes % 60).padStart(2, '0')}`;
+  const timePassed = [
+    elapsedDays ? `${elapsedDays}일` : '',
+    elapsedHours % 24 ? `${elapsedHours % 24}시간` : '',
+    elapsedMinutes % 60 ? `${elapsedMinutes % 60}분` : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   const related = oldResponse?.relatedProductList;
   useEffect(() => {
@@ -81,6 +83,8 @@ const MainPage = () => {
   const handleProductClick = (item: RestockItem) => {
     router.push(`/product/${item.productId}`);
   };
+
+  console.log(oldResponse);
 
   return (
     <div>
@@ -126,84 +130,81 @@ const MainPage = () => {
         <h3 className={styles.late1}>재입고 늦어지는 상품</h3>
         <h5 className={styles.late2}>비슷한 가격대 추천 상품을 살펴보세요</h5>
 
-        <Swiper
-          slidesPerView={2}
+        {/* <Swiper
+          slidesPerView={3}
           mousewheel={true}
           modules={[Pagination, Mousewheel]}
           spaceBetween={10}
-        >
-          <div className={styles.slideLayout}>
-            <SwiperSlide style={{ width: '30%' }}>
-              <div className={styles.leftImage}>
-                <ProductCard
-                  key={undefined}
-                  id={1}
-                  alilm={undefined}
-                  thumbnailUrl={oldResponse?.oldProduct.thumbnailUrl ?? ''}
-                  imageUrl={oldResponse?.oldProduct.thumbnailUrl ?? ''}
-                  number={0}
-                  borderRadius={3}
-                  firstCategory=""
-                  firstOption=""
-                  name=""
-                  brand=""
-                  store=""
-                  price={0}
-                />
-                <div className={styles.iconWrapper}>
-                  <Clock size={13} />
-                  재입고 등록한지 {timePassed} 경과
-                </div>
-              </div>
-            </SwiperSlide>
+        > */}
+        <div className={styles.slideLayout}>
+          {/* <SwiperSlide style={{ width: '30%' }}> */}
 
-            <SwiperSlide style={{ width: '70%' }}>
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 1fr',
-                  gap: '8px',
-                }}
-              >
-                {related?.map((item, idx) => (
-                  <Image
-                    key={item.thumbnailUrl ?? idx}
-                    src={item.thumbnailUrl ?? ''}
-                    width={180}
-                    height={105}
-                    style={{
-                      borderRadius: '0.8rem',
-                      objectFit: 'cover',
-                      objectPosition: 'top',
-                      width: '100%',
-                    }}
-                    alt=""
-                  />
-                ))}
-              </div>
-            </SwiperSlide>
-            {/* <div className={styles.rightGrid}>
-              {related?.map((item,idx) => (
-              <SwiperSlide key={idx} style={{width:'auto'}}>
-                <Image
-                  key={item.thumbnailUrl} // 여기 key 추가
-                  src={item.thumbnailUrl ?? ''}
-                  width={240}
-                  height={105}
-                  priority
-                  style={{
-                    borderRadius: '0.8rem',
-                    objectFit: 'cover',
-                    objectPosition: 'top',
-                  }}
-                  alt=""
-                />
-                </SwiperSlide>
-              ))}
-              
-            </div> */}
+          <div className={styles.parent}>
+            <div className={styles.topBadge1}>My상품</div>
+            <ProductCard
+              key={undefined}
+              id={oldResponse!.oldProduct!.productId!}
+              alilm={undefined}
+              thumbnailUrl={oldResponse!.oldProduct.thumbnailUrl!}
+              imageUrl={oldResponse!.oldProduct.thumbnailUrl!}
+              number={0}
+              borderRadius={3}
+              firstCategory=""
+              firstOption=""
+              name=""
+              brand=""
+              store=""
+              price={0}
+            />
+            <div className={styles.iconWrapper}>
+              <Clock size={13} />
+              기다린 시간: {timePassed}
+            </div>
+
+            <p className={styles.name}> {oldResponse?.oldProduct?.brand} </p>
+            <p className={styles.options}>
+              {oldResponse?.oldProduct?.category} |{' '}
+              {oldResponse?.oldProduct?.price.toLocaleString()}원
+            </p>
+            {/* </SwiperSlide> */}
           </div>
-        </Swiper>
+
+          <Swiper
+            slidesPerView={2}
+            spaceBetween={10}
+            mousewheel={true}
+            modules={[Pagination, Mousewheel]}
+            style={{ padding: '0 1rem' }}
+          >
+            {related?.map(item => (
+              <SwiperSlide key={item.productId} className={styles.cardWrapper}>
+                <div style={{ display: 'column' }}>
+                  <div className={styles.topBadge2}>추천상품</div>
+                  <ProductCard
+                    key={item.productId!}
+                    productId={item.productId}
+                    id={item.productId!}
+                    alilm={undefined}
+                    thumbnailUrl={item.thumbnailUrl!}
+                    imageUrl={item.thumbnailUrl!}
+                    number={0}
+                    borderRadius={3}
+                    firstCategory=""
+                    firstOption=""
+                    name=""
+                    brand=""
+                    store=""
+                    price={0}
+                  />
+                  <p className={styles.name}>{item.brand}</p>
+                  <p className={styles.options}>
+                    {item.category} | {item.price.toLocaleString()}원
+                  </p>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
 
         <Spacer height={50} />
 

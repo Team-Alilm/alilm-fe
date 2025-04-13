@@ -1,3 +1,4 @@
+import { tokens } from '@/styles';
 import { style } from '@vanilla-extract/css';
 
 export const mainPage = style({
@@ -37,9 +38,24 @@ export const late2 = style({
   paddingBottom: '2.2rem',
 });
 
+export const title = style({
+  fontSize: '1.5rem',
+  textAlign: 'left',
+  color: 'black',
+  paddingBottom: '0.3rem',
+  fontWeight: 'bold',
+});
+
+export const title1 = style({
+  fontSize: '1.4rem',
+  textAlign: 'left',
+  color: 'black',
+  paddingBottom: '0.3rem',
+});
+
 export const iconWrapper = style({
   position: 'absolute',
-  top: '80%',
+  top: '68%',
   left: '3%',
   backgroundColor: 'rgba(100, 100, 100, 0.6)',
   boxShadow: '0 0 0 0.5px white',
@@ -56,16 +72,17 @@ export const iconWrapper = style({
 });
 
 export const slideLayout = style({
-  display: 'grid',
+  display: 'flex',
 
-  gridTemplateColumns: '1fr 1fr',
+  width: '100%',
+
   height: '100%',
 });
 
-export const leftImage = style({
+export const parent = style({
   position: 'relative',
   height: '100%',
-  width: '100%',
+  width: '25vh',
 });
 
 export const rightGrid = style({
@@ -94,4 +111,72 @@ export const topBadge = style({
   borderTopRightRadius: '0.4rem',
   borderBottomRightRadius: '0.4rem',
   borderBottomLeftRadius: '0rem',
+});
+
+export const topBadge1 = style({
+  position: 'absolute',
+  top: 5,
+  left: 5,
+  backgroundColor: '#FFFDB5',
+  color: '#E08A00',
+  padding: '0.4rem 0.9rem',
+  fontSize: '1.1rem',
+  fontWeight: 600,
+  zIndex: 2,
+  cursor: 'pointer',
+
+  borderTopLeftRadius: '0.4rem',
+  borderTopRightRadius: '0.4rem',
+  borderBottomRightRadius: '0.4rem',
+  borderBottomLeftRadius: '0.4rem',
+});
+
+export const topBadge2 = style({
+  position: 'absolute',
+  top: 5,
+  left: 5,
+  backgroundColor: '#FFD000',
+  color: '#2D2D2D',
+  padding: '0.4rem 0.6rem',
+  fontSize: '1.1rem',
+  fontWeight: 600,
+  zIndex: 2,
+  cursor: 'pointer',
+  borderTopLeftRadius: '0.4rem',
+  borderTopRightRadius: '0.4rem',
+  borderBottomRightRadius: '0.4rem',
+  borderBottomLeftRadius: '0.4rem',
+});
+
+export const name = style({
+  fontSize: '1.4rem',
+  fontWeight: '700',
+  marginTop: '0.2rem',
+  marginBottom: '0.6rem',
+  color: tokens.colors.productName,
+
+  // 2줄까지만 보여주고 나머지는 생략
+  display: '-webkit-box',
+  WebkitLineClamp: 2,
+  WebkitBoxOrient: 'vertical',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  lineHeight: '1.2',
+  maxHeight: 'calc(14rem * 1.2 * 2)',
+});
+
+export const options = style({
+  fontSize: '1.3rem',
+  fontWeight: '400',
+  marginBottom: '1.2rem',
+  color: tokens.colors.productOptions,
+
+  // 2줄까지만 보여주고 나머지는 생략
+  display: '-webkit-box',
+  WebkitLineClamp: 2,
+  WebkitBoxOrient: 'vertical',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  lineHeight: '1.2',
+  maxHeight: 'calc(1.3rem * 1.2 * 2)',
 });

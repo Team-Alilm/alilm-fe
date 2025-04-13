@@ -7,6 +7,7 @@ interface OldItem {
   store: string;
   price: number;
   category: string;
+  productId: number;
   createdDate: number;
 }
 
@@ -15,6 +16,7 @@ interface OldList {
   brand: string;
   store: string;
   price: number;
+  productId: number;
   category: string;
 }
 
