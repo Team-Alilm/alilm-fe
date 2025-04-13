@@ -158,7 +158,8 @@ const MainPage = () => {
                       store=""
                       price={0}
                     />
-                  </button>                )}
+                  </button>
+                )}
                 <div className={styles.iconWrapper}>
                   <Clock size={13} />
                   기다린 시간:
