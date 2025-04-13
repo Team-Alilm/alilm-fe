@@ -133,7 +133,7 @@ const MainPage = () => {
         <Swiper
           slidesPerView={3}
           mousewheel={true}
-          spaceBetween={20}
+          spaceBetween={14}
           modules={[Pagination, Mousewheel]}
         >
           <div className={styles.slideLayout}>
