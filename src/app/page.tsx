@@ -141,21 +141,24 @@ const MainPage = () => {
 
           <div className={styles.parent}>
             <div className={styles.topBadge1}>My상품</div>
-            <ProductCard
-              key={undefined}
-              id={oldResponse!.oldProduct!.productId!}
-              alilm={undefined}
-              thumbnailUrl={oldResponse!.oldProduct.thumbnailUrl!}
-              imageUrl={oldResponse!.oldProduct.thumbnailUrl!}
-              number={0}
-              borderRadius={3}
-              firstCategory=""
-              firstOption=""
-              name=""
-              brand=""
-              store=""
-              price={0}
-            />
+
+            {oldResponse?.oldProduct && (
+              <ProductCard
+                key={undefined}
+                id={oldResponse.oldProduct.productId ?? 0}
+                alilm={undefined}
+                thumbnailUrl={oldResponse.oldProduct.thumbnailUrl ?? ''}
+                imageUrl={oldResponse.oldProduct.thumbnailUrl ?? ''}
+                number={0}
+                borderRadius={3}
+                firstCategory=""
+                firstOption=""
+                name=""
+                brand=""
+                store=""
+                price={0}
+              />
+            )}
             <div className={styles.iconWrapper}>
               <Clock size={13} />
               기다린 시간: {timePassed}
@@ -164,7 +167,7 @@ const MainPage = () => {
             <p className={styles.name}> {oldResponse?.oldProduct?.brand} </p>
             <p className={styles.options}>
               {oldResponse?.oldProduct?.category} |{' '}
-              {oldResponse?.oldProduct?.price.toLocaleString()}원
+              {oldResponse?.oldProduct?.price?.toLocaleString()}원
             </p>
             {/* </SwiperSlide> */}
           </div>
