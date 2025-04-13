@@ -135,12 +135,13 @@ const MainPage = () => {
           mousewheel={true}
           spaceBetween={14}
           modules={[Pagination, Mousewheel]}
+
         >
           <div className={styles.slideLayout}>
             <SwiperSlide style={{ width: '30%' }}>
               <div className={styles.parent}>
                 <div className={styles.topBadge1}>My상품</div>
-
+    
                 {oldResponse?.oldProduct && (
                   <ProductCard
                     key={undefined}
