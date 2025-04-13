@@ -18,6 +18,14 @@ export const cardWrapper = style({
   },
 });
 
+export const cardWrapper1 = style({
+  selectors: {
+    '&.swiper-slide': {
+      width: 'auto',
+    },
+  },
+});
+
 export const restock = style({
   fontSize: '2rem',
   padding: '0 0 2.2rem 2rem',
@@ -55,8 +63,8 @@ export const title1 = style({
 
 export const iconWrapper = style({
   position: 'absolute',
-  top: '68%',
-  left: '3%',
+  top: '65%',
+  left: '4%',
   backgroundColor: 'rgba(100, 100, 100, 0.6)',
   boxShadow: '0 0 0 0.5px white',
   borderRadius: '0.3rem',
@@ -82,7 +90,7 @@ export const slideLayout = style({
 export const parent = style({
   position: 'relative',
   height: '100%',
-  width: '25vh',
+  width: '100%',
 });
 
 export const rightGrid = style({
