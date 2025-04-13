@@ -127,7 +127,6 @@ const MainPage = () => {
 
         <h3 className={styles.late1}>재입고 늦어지는 상품</h3>
         <h5 className={styles.late2}>비슷한 가격대 추천 상품을 살펴보세요</h5>
-
         <Swiper
           slidesPerView={3}
           mousewheel={true}
@@ -138,7 +137,6 @@ const MainPage = () => {
             <SwiperSlide style={{ width: '30%' }}>
               <div className={styles.parent}>
                 <div className={styles.topBadge1}>My상품</div>
-
                 {oldResponse?.oldProduct && (
                   <ProductCard
                     key={undefined}
@@ -161,7 +159,6 @@ const MainPage = () => {
                   기다린 시간:
                   {timePassed}
                 </div>
-
                 <p className={styles.name}> {oldResponse?.oldProduct?.brand} </p>
                 <p className={styles.options}>
                   {oldResponse?.oldProduct?.category} |{' '}
@@ -169,7 +166,6 @@ const MainPage = () => {
                 </p>
               </div>
             </SwiperSlide>
-
             <Swiper
               slidesPerView={2}
               mousewheel={true}
