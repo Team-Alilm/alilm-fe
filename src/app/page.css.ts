@@ -65,11 +65,11 @@ export const title1 = style({
 export const iconWrapper = style({
   position: 'absolute',
   top: '65%',
-  left: '4%',
+  left: '3%',
   backgroundColor: 'rgba(100, 100, 100, 0.6)',
   boxShadow: '0 0 0 0.5px white',
   borderRadius: '0.3rem',
-  width: '94%',
+  width: '90%',
   height: '2.6rem',
   zIndex: '2',
   display: 'flex',
