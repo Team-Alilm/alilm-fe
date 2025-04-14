@@ -107,12 +107,9 @@ const MainPage = () => {
         >
           {restockResponse?.productList.map((item, index) => (
             <SwiperSlide key={item.productId} className={styles.cardWrapper}>
-              <button
-                style={{ position: 'relative', all: 'unset' }}
-                onClick={() => handleProductClick(item)}
-              >
+              <button style={{ all: 'unset' }} onClick={() => handleProductClick(item)}>
                 <div className={styles.topBadge}>{`TOP ${index + 1}`}</div>
-                <ProductThumbnailImage card="thin" imageUrl={item.productThumbnailUrl} />
+                <ProductThumbnailImage card="slide" imageUrl={item.productThumbnailUrl} />
               </button>
             </SwiperSlide>
           ))}

@@ -7,7 +7,7 @@ export const cardList = style({
 export const cardWrapper = style({
   selectors: {
     '&.swiper-slide': {
-      width: '20rem',
+      width: '18rem',
     },
   },
 });

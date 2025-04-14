@@ -11,6 +11,7 @@ export const mainPage = style({
 export const firstModule = style({});
 
 export const cardWrapper = style({
+  marginRight: '1.2rem',
   selectors: {
     '&.swiper-slide': {
       width: '18rem',
@@ -114,7 +115,6 @@ export const topBadge = style({
   zIndex: 2,
   cursor: 'pointer',
 
-  // 🎯 모서리별 radius 다르게
   borderTopLeftRadius: '0.8rem',
   borderTopRightRadius: '0.4rem',
   borderBottomRightRadius: '0.4rem',
