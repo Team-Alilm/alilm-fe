@@ -46,24 +46,26 @@ const Header = () => {
         alt="Logo"
       />
       <div className={styles.rightHeaderWrapper}>
-        <button
-          className={styles.notificationWrapper}
-          onClick={() => router.push('/notification-history')}
-        >
-          <Icon icon="Bell" width={24} height={24} cursor="pointer" stroke="#101010" />
-          {unreadNotificationCount > 0 && (
-            <span className={styles.notificationBadge}>{notificationNumber}</span>
-          )}
-        </button>
         {accessToken ? (
-          <Icon
-            icon="Avatar"
-            width={36}
-            height={36}
-            cursor="pointer"
-            onClick={() => (accessToken ? router.push('/mypage') : openLoginModal())}
-            // onClick={() => router.push(accessToken ? '/mypage' : `/login?redirect=/mypage`)}
-          />
+          <>
+            <button
+              className={styles.notificationWrapper}
+              onClick={() => router.push('/notification-history')}
+            >
+              <Icon icon="Bell" width={24} height={24} cursor="pointer" stroke="#101010" />
+              {unreadNotificationCount > 0 && (
+                <span className={styles.notificationBadge}>{notificationNumber}</span>
+              )}
+            </button>
+            <Icon
+              icon="Avatar"
+              width={36}
+              height={36}
+              cursor="pointer"
+              onClick={() => (accessToken ? router.push('/mypage') : openLoginModal())}
+              // onClick={() => router.push(accessToken ? '/mypage' : `/login?redirect=/mypage`)}
+            />
+          </>
         ) : (
           <button className={styles.loginBtn} onClick={handleLoginBtn}>
             카카오로 로그인하기
