@@ -10,7 +10,7 @@ export const myBasketCard = style({
 });
 
 export const productInfo = style({
-  width: '55%',
+  width: '60%',
 });
 
 export const name = style({

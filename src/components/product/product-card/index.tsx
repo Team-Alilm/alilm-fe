@@ -62,7 +62,7 @@ const ProductCard = ({
           thumbnailUrl={thumbnailUrl}
           tab={tab}
           alilm={alilm}
-          card={'thin'}
+          card="thin"
           counts={waitingCount}
           borderRadius={borderRadius}
         />
