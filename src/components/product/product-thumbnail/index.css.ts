@@ -11,6 +11,7 @@ export const imageWrapper = recipe({
       full: {
         width: '38%',
       },
+      slide: { width: '100%' },
     },
   },
   defaultVariants: {
