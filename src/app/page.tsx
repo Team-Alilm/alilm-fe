@@ -79,8 +79,6 @@ const MainPage = () => {
     }
   };
 
-  console.log(oldResponse);
-
   const handleProductClick = (item: RestockItem) => {
     router.push(`/product/${item.productId}`);
   };
