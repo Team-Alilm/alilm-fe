@@ -27,9 +27,15 @@ interface OldResponse {
 
 export const RESTOCK_QUERY_KEY = 'getOld';
 
+export const getAccessToken = () => {
+  if (typeof window === 'undefined') return null; // SSR 방어
+  return localStorage.getItem('accessToken');
+};
+
 export const getOldResponse = async () => {
-  const token =
-    'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJJZCI6MSwiaWF0IjoxNzQxMTc2MTE5LCJleHAiOjQzMzMxNzYxMTl9.wp59R_vPNAYEZ1Ozv_Z5TTVV4oEu5TpAOMJQFUePywSCknYJQgfJaczjOlVinPYX9tPxjDhALbMaAIZx9n90Sw';
+  const token = getAccessToken(); // 토큰을 외부에서 가져오도록
+  if (!token) throw new Error('로그인 필요');
+
   const data = await get<OldResponse>('/baskets/old', {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -41,9 +47,10 @@ export const getOldResponse = async () => {
   return data;
 };
 
-export const useGetOldResponse = () => {
+export const useGetOldResponse = (accessToken?: String) => {
   return useQuery({
     queryKey: [RESTOCK_QUERY_KEY],
     queryFn: getOldResponse,
+    enabled: !!accessToken,
   });
 };
