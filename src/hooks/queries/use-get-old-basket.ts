@@ -29,6 +29,7 @@ export const RESTOCK_QUERY_KEY = 'getOld';
 
 export const getAccessToken = () => {
   if (typeof window === 'undefined') return null; // SSR 방어
+
   return localStorage.getItem('accessToken');
 };
 
