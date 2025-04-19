@@ -29,7 +29,7 @@ const MainPage = () => {
   const onBoardingModalState = useBooleanState();
   const openLoginModal = useLoginModalStore(state => state.openLoginModal);
   const { data: restockResponse } = useGetRestockResponse();
-  const { data: oldResponse } = useGetOldResponse();
+  const { data: oldResponse } = useGetOldResponse(accessToken ?? '');
 
   const givenTime = oldResponse?.oldProduct.createdDate ?? 0;
   const currentTimestamp = Date.now(); // 현재 타임스탬프 (밀리초 기준)
@@ -79,6 +79,8 @@ const MainPage = () => {
     }
   };
 
+  console.log(oldResponse);
+
   const handleProductClick = (item: RestockItem) => {
     router.push(`/product/${item.productId}`);
   };
@@ -120,61 +122,66 @@ const MainPage = () => {
 
       <Spacer height={30} />
 
-      <h3 className={styles.late1}>재입고 늦어지는 상품</h3>
-      <h5 className={styles.late2}>비슷한 가격대 추천 상품을 살펴보세요</h5>
-      <Swiper
-        mousewheel={true}
-        slidesPerView="auto"
-        modules={[Pagination, Mousewheel]}
-        style={{ padding: '0 0 2rem 2rem' }}
-      >
-        <div>
-          <SwiperSlide className={styles.cardWrapper}>
-            <div className={styles.topBadge1}>My상품</div>
+      {accessToken && (
+        <>
+          <h3 className={styles.late1}>재입고 늦어지는 상품</h3>
+          <h5 className={styles.late2}>비슷한 가격대 추천 상품을 살펴보세요</h5>
+          <Swiper
+            mousewheel={true}
+            slidesPerView="auto"
+            modules={[Pagination, Mousewheel]}
+            style={{ padding: '0 0 2rem 2rem' }}
+          >
+            <div>
+              <SwiperSlide className={styles.cardWrapper}>
+                <div className={styles.topBadge1}>My상품</div>
 
-            {oldResponse?.oldProduct && (
-              <button
-                style={{ position: 'relative', all: 'unset' }}
-                onClick={() => router.push(`/product/${oldResponse.oldProduct.productId}`)}
-              >
-                <ProductThumbnailImage
-                  card="slide"
-                  imageUrl={oldResponse.oldProduct.thumbnailUrl ?? ''}
-                />
-              </button>
-            )}
-            <div className={styles.iconWrapper}>
-              <Clock size={13} />
-              기다린 시간:
-              {timePassed}
-            </div>
-            <p className={styles.name}> {oldResponse?.oldProduct?.brand} </p>
-            <p className={styles.options}>
-              {oldResponse?.oldProduct?.category} |{' '}
-              {oldResponse?.oldProduct?.price?.toLocaleString()}원
-            </p>
-          </SwiperSlide>
-          {related?.map(item => (
-            <SwiperSlide key={item.productId} className={styles.cardWrapper}>
-              <div style={{ display: 'column' }}>
-                <div className={styles.topBadge2}>추천상품</div>
-
-                <button
-                  style={{ position: 'relative', all: 'unset' }}
-                  onClick={() => router.push(`/product/${item.productId}`)}
-                >
-                  <ProductThumbnailImage card="slide" imageUrl={item.thumbnailUrl!} />
-                </button>
-
-                <p className={styles.name}>{item.brand}</p>
+                {oldResponse?.oldProduct && (
+                  <button
+                    style={{ position: 'relative', all: 'unset' }}
+                    onClick={() => router.push(`/product/${oldResponse.oldProduct.productId}`)}
+                  >
+                    <ProductThumbnailImage
+                      card="slide"
+                      imageUrl={oldResponse.oldProduct.thumbnailUrl ?? ''}
+                    />
+                  </button>
+                )}
+                <div className={styles.iconWrapper}>
+                  <Clock size={13} />
+                  기다린 시간:
+                  {timePassed}
+                </div>
+                <p className={styles.name}> {oldResponse?.oldProduct?.brand} </p>
                 <p className={styles.options}>
-                  {item.category} | {item.price.toLocaleString()}원
+                  {oldResponse?.oldProduct?.category} |{' '}
+                  {oldResponse?.oldProduct?.price?.toLocaleString()}원
                 </p>
-              </div>
-            </SwiperSlide>
-          ))}
-        </div>
-      </Swiper>
+              </SwiperSlide>
+              {related?.map(item => (
+                <SwiperSlide key={item.productId} className={styles.cardWrapper}>
+                  <div style={{ display: 'column' }}>
+                    <div className={styles.topBadge2}>추천상품</div>
+
+                    <button
+                      style={{ position: 'relative', all: 'unset' }}
+                      onClick={() => router.push(`/product/${item.productId}`)}
+                    >
+                      <ProductThumbnailImage card="slide" imageUrl={item.thumbnailUrl!} />
+                    </button>
+
+                    <p className={styles.name}>{item.brand}</p>
+                    <p className={styles.options}>
+                      {item.category} | {item.price.toLocaleString()}원
+                    </p>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </div>
+          </Swiper>
+        </>
+      )}
+
       <Spacer height={50} />
       <div className={styles.mainPage}>
         <Suspense fallback={<div>탭 정보 초기화 중...</div>}>
