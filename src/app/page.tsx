@@ -124,43 +124,46 @@ const MainPage = () => {
 
       {accessToken && (
         <>
-          <h3 className={styles.late1}>재입고 늦어지는 상품</h3>
-          <h5 className={styles.late2}>비슷한 가격대 추천 상품을 살펴보세요</h5>
-          <Swiper
-            mousewheel={true}
-            slidesPerView="auto"
-            modules={[Pagination, Mousewheel]}
-            style={{ padding: '0 0 2rem 2rem' }}
-          >
-            <div>
-              <SwiperSlide className={styles.cardWrapper}>
-                <div className={styles.topBadge1}>My상품</div>
-
-                {oldResponse?.oldProduct && (
-                  <button
-                    style={{ position: 'relative', all: 'unset' }}
-                    onClick={() => router.push(`/product/${oldResponse.oldProduct.productId}`)}
-                  >
-                    <ProductThumbnailImage
-                      card="slide"
-                      imageUrl={oldResponse.oldProduct.thumbnailUrl ?? ''}
-                    />
-                  </button>
-                )}
-                <div className={styles.iconWrapper}>
-                  <Clock size={13} />
-                  기다린 시간:
-                  {timePassed}
+          <div className={styles.secondModule}>
+            <h3 className={styles.late1}>재입고 늦어지는 상품</h3>
+            <h5 className={styles.late2}>비슷한 가격대 추천 상품을 살펴보세요</h5>
+            <div style={{ display: 'flex', gap: '1rem', overflow: 'hidden' }}>
+              {/* 고정된 My상품 카드 */}
+              <div style={{ flex: '0 0 auto' }}>
+                <div className={styles.parent}>
+                  <div className={styles.topBadge1}>My상품</div>
+                  {oldResponse?.oldProduct && (
+                    <button
+                      style={{ position: 'relative', all: 'unset' }}
+                      onClick={() => router.push(`/product/${oldResponse.oldProduct.productId}`)}
+                    >
+                      <ProductThumbnailImage
+                        card="slide"
+                        imageUrl={oldResponse.oldProduct.thumbnailUrl ?? ''}
+                      />
+                    </button>
+                  )}
+                  <div className={styles.iconWrapper}>
+                    <Clock size={13} />
+                    기다린 시간: {timePassed}
+                  </div>
+                  <p className={styles.name}>{oldResponse?.oldProduct?.brand}</p>
+                  <p className={styles.options}>
+                    {oldResponse?.oldProduct?.category} |{' '}
+                    {oldResponse?.oldProduct?.price?.toLocaleString()}원
+                  </p>
                 </div>
-                <p className={styles.name}> {oldResponse?.oldProduct?.brand} </p>
-                <p className={styles.options}>
-                  {oldResponse?.oldProduct?.category} |{' '}
-                  {oldResponse?.oldProduct?.price?.toLocaleString()}원
-                </p>
-              </SwiperSlide>
-              {related?.map(item => (
-                <SwiperSlide key={item.productId} className={styles.cardWrapper}>
-                  <div style={{ display: 'column' }}>
+              </div>
+
+              {/* 스크롤되는 추천상품 Swiper */}
+              <Swiper
+                mousewheel={true}
+                slidesPerView="auto"
+                modules={[Pagination, Mousewheel]}
+                style={{ paddingBottom: '2rem', flex: '1 1 auto' }}
+              >
+                {related?.map(item => (
+                  <SwiperSlide key={item.productId} className={styles.cardWrapper}>
                     <div className={styles.topBadge2}>추천상품</div>
 
                     <button
@@ -174,11 +177,11 @@ const MainPage = () => {
                     <p className={styles.options}>
                       {item.category} | {item.price.toLocaleString()}원
                     </p>
-                  </div>
-                </SwiperSlide>
-              ))}
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
-          </Swiper>
+          </div>
         </>
       )}
 
