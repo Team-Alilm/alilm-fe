@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Portal from '@/components/common/modal/modal-portal';
 import Button from '@/components/design-system/button';
@@ -30,7 +30,6 @@ const MainPage = () => {
   const openLoginModal = useLoginModalStore(state => state.openLoginModal);
   const { data: restockResponse } = useGetRestockResponse();
   const { data: oldResponse } = useGetOldResponse();
-  console.log('accessToken', accessToken);
 
   const givenTime = oldResponse?.oldProduct.createdDate ?? 0;
   const currentTimestamp = Date.now(); // 현재 타임스탬프 (밀리초 기준)
