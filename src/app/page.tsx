@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useEffect } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Portal from '@/components/common/modal/modal-portal';
 import Button from '@/components/design-system/button';
@@ -29,7 +29,8 @@ const MainPage = () => {
   const onBoardingModalState = useBooleanState();
   const openLoginModal = useLoginModalStore(state => state.openLoginModal);
   const { data: restockResponse } = useGetRestockResponse();
-  const { data: oldResponse } = useGetOldResponse(accessToken ?? '');
+  const { data: oldResponse } = useGetOldResponse();
+  console.log('accessToken', accessToken);
 
   const givenTime = oldResponse?.oldProduct.createdDate ?? 0;
   const currentTimestamp = Date.now(); // 현재 타임스탬프 (밀리초 기준)
@@ -57,6 +58,8 @@ const MainPage = () => {
       onBoardingModalState.open();
     }
   }, [onBoardingModalState]);
+
+  console.log('old', oldResponse);
 
   useEffect(() => {
     if ('serviceWorker' in navigator) {
