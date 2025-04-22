@@ -5,10 +5,14 @@ export interface UserInfo {
   nickname: string;
   email: string;
 }
-export interface UserStoreState extends UserInfo {}
+
+export interface UserStoreState extends UserInfo {
+  accessToken: string;
+}
 
 export interface UserStoreAction {
   setUserInfo: (state: UserInfo) => void;
+  setAccessToken: (token: string) => void;
   removeUserInfo: () => void;
 }
 
@@ -17,16 +21,25 @@ export const useUserStore = create<UserStoreState & UserStoreAction>()(
     set => ({
       nickname: '',
       email: '',
+      accessToken: '',
 
-      setUserInfo: state =>
-        set({
+      setUserInfo: info =>
+        set(state => ({
           ...state,
-        }),
+          ...info,
+        })),
+
+      setAccessToken: token =>
+        set(state => ({
+          ...state,
+          accessToken: token,
+        })),
 
       removeUserInfo: () =>
         set(() => ({
           nickname: '',
           email: '',
+          accessToken: '',
         })),
     }),
     {

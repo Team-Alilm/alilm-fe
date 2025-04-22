@@ -1,14 +1,18 @@
 import { style } from '@vanilla-extract/css';
 
 export const header = style({
+  position: 'fixed',
+  zIndex: 100,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
   width: '100%',
-  height: '60px',
+  minWidth: '32rem',
+  maxWidth: '60rem',
+  height: '6rem',
   borderBottom: '1px solid #ECECEC',
   background: '#FFFFFF',
-  padding: '0 12px',
+  padding: '0 1.2rem',
 });
 
 export const alilmIcon = style({
