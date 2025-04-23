@@ -5,12 +5,15 @@ import { useRouter } from 'next/navigation';
 import { postFcmToken } from '@/libs/api/fcm-token-post-fetch';
 import { LOCAL_STORAGE_KEY, Storage } from '@/libs/storage';
 import { useModalStore } from '@/store/use-modal-store';
+import { useUserStore } from '@/store/use-user-store';
 
 const OauthKakaoPage = () => {
   const router = useRouter();
   const [redirect, setRedirect] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const onOpen = useModalStore(state => state.onOpen);
+
+  const setAccessToken = useUserStore(state => state.setAccessToken);
 
   useEffect(() => {
     const handleOauth = async () => {
@@ -36,6 +39,7 @@ const OauthKakaoPage = () => {
       if (accessToken) {
         try {
           Storage.setItem(LOCAL_STORAGE_KEY.accessToken, accessToken);
+          setAccessToken(accessToken);
 
           let fcmToken = localStorage.getItem('fcm-token');
 

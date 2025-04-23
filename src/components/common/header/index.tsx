@@ -7,6 +7,7 @@ import Icon from '@/components/icons';
 import { useGetUnreadCount } from '@/hooks/queries/use-get-read-n-count';
 import { LOCAL_STORAGE_KEY, Storage } from '@/libs/storage';
 import { useLoginModalStore } from '@/store/use-login-modal-store';
+import { useUserStore } from '@/store/use-user-store';
 
 import * as styles from './index.css';
 
@@ -25,8 +26,11 @@ const Header = () => {
 
   const [accessToken, setAccessToken] = useState<string | null>(null);
 
+  const userAccessToken = useUserStore(state => state.accessToken);
+
+  const token = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
+
   useEffect(() => {
-    const token = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
     setAccessToken(token);
   }, []);
 
@@ -46,7 +50,7 @@ const Header = () => {
         alt="Logo"
       />
       <div className={styles.rightHeaderWrapper}>
-        {accessToken ? (
+        {userAccessToken ? (
           <>
             <button
               className={styles.notificationWrapper}
