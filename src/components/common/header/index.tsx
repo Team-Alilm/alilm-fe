@@ -66,7 +66,7 @@ const Header = () => {
               width={36}
               height={36}
               cursor="pointer"
-              onClick={() => (accessToken ? router.push('/mypage') : openLoginModal())}
+              onClick={() => (userAccessToken ? router.push('/mypage') : openLoginModal())}
               // onClick={() => router.push(accessToken ? '/mypage' : `/login?redirect=/mypage`)}
             />
           </>
