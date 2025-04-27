@@ -22,7 +22,7 @@ export const content = style({
   justifyContent: 'space-between',
   alignItems: 'center',
   padding: '2.4rem',
-  zIndex: '2',
+  zIndex: '10',
 });
 
 export const title = style({
