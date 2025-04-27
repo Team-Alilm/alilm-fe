@@ -5,7 +5,7 @@ export const overlay = style({
   backgroundColor: tokens.colors.overlay,
   position: 'fixed',
   inset: '0',
-  zIndex: '1',
+  zIndex: '3',
 });
 
 export const content = style({
