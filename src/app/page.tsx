@@ -15,8 +15,8 @@ import ProductThumbnailImage from '@/components/product/product-thumbnail';
 import useBooleanState from '@/hooks/common/use-boolean-state';
 import { useGetOldResponse } from '@/hooks/queries/use-get-old-basket';
 import { type RestockItem, useGetRestockResponse } from '@/hooks/queries/use-get-restock-items';
-import { LOCAL_STORAGE_KEY, Storage } from '@/libs/storage';
 import { useLoginModalStore } from '@/store/use-login-modal-store';
+import { useUserStore } from '@/store/use-user-store';
 import { Clock } from 'lucide-react';
 import { Mousewheel, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -25,11 +25,12 @@ import * as styles from './page.css';
 
 const MainPage = () => {
   const router = useRouter();
-  const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
   const onBoardingModalState = useBooleanState();
   const openLoginModal = useLoginModalStore(state => state.openLoginModal);
   const { data: restockResponse } = useGetRestockResponse();
   const { data: oldResponse } = useGetOldResponse();
+
+  const userAccessToken = useUserStore(state => state.accessToken);
 
   const givenTime = oldResponse?.oldProduct.createdDate ?? 0;
   const currentTimestamp = Date.now(); // 현재 타임스탬프 (밀리초 기준)
@@ -74,7 +75,7 @@ const MainPage = () => {
   }, []);
 
   const handleMoveCreatePage = () => {
-    if (accessToken) {
+    if (userAccessToken) {
       router.push('/create');
     } else {
       openLoginModal();
@@ -122,7 +123,7 @@ const MainPage = () => {
 
       <Spacer height={30} />
 
-      {accessToken && (
+      {userAccessToken && (
         <div className={styles.secondModule}>
           <h3 className={styles.late1}>재입고 늦어지는 상품</h3>
           <h5 className={styles.late2}>비슷한 가격대 추천 상품을 살펴보세요</h5>
