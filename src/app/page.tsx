@@ -18,7 +18,7 @@ import { type RestockItem, useGetRestockResponse } from '@/hooks/queries/use-get
 import { useLoginModalStore } from '@/store/use-login-modal-store';
 import { useUserStore } from '@/store/use-user-store';
 import { Clock } from 'lucide-react';
-import { Mousewheel, Pagination } from 'swiper/modules';
+import { Autoplay, Mousewheel, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import * as styles from './page.css';
@@ -104,8 +104,12 @@ const MainPage = () => {
         <Swiper
           slidesPerView="auto"
           mousewheel={true}
-          modules={[Pagination, Mousewheel]}
+          modules={[Pagination, Mousewheel, Autoplay]}
           style={{ padding: '0 0 2rem 2rem' }}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+          }}
         >
           {restockResponse?.productList.map((item, index) => (
             <SwiperSlide key={item.productId} className={styles.cardWrapper}>
