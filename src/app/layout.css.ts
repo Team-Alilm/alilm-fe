@@ -11,9 +11,10 @@ export const layout = style({
 });
 
 export const header = style({
-  height: '60px',
+  height: '6rem',
+  width: '100%',
 });
 
 export const mainContent = style({
-  overflow: 'auto', // 내용이 넘칠 경우 스크롤 가능
+  overflow: 'auto',
 });

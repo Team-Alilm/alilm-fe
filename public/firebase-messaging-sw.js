@@ -1,6 +1,7 @@
 importScripts('https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js');
 importScripts('https://www.gstatic.com/firebasejs/10.13.2/firebase-messaging-compat.js');
 
+// Firebase 초기화
 firebase.initializeApp({
   apiKey: 'AIzaSyA8kZXi2ox6qhgUKpk1gBEd48o3Q7rZkjU',
   projectId: 'alilm-6ed94',
@@ -10,31 +11,30 @@ firebase.initializeApp({
 
 const messaging = firebase.messaging();
 
-// `isBackground` 플래그를 사용하여 중복 알림 방지
+// 중복 방지용 플래그
 let isBackgroundMessageReceived = false;
 
-self.addEventListener('push', function (event) {
-  if (event.data) {
-    const notificationTitle = event.notification?.title || '알림 제목 없음';
-    const notificationOptions = {
-      body: event.notification?.body || '알림 내용 없음',
-      icon: event.notification?.icon || '/default-icon.png',
-      image: event.notification?.image || '/default-image.png',
+// 📌 FCM 백그라운드 메시지 처리
+messaging.onBackgroundMessage(payload => {
+  if (!isBackgroundMessageReceived) {
+    isBackgroundMessageReceived = true;
+
+    const { title, body, image } = payload.notification;
+    const clickAction = payload.data?.click_action || '/';
+
+    const options = {
+      body: body || '알림 내용 없음',
+      icon: image || '/default-icon.png',
       data: {
-        click_action: event.data?.click_action || '/',
+        click_action: clickAction,
       },
     };
 
-    // 이미 백그라운드에서 알림을 처리했는지 확인
-    if (!isBackgroundMessageReceived) {
-      event.waitUntil(self.registration.showNotification(notificationTitle, notificationOptions));
-    }
-  } else {
-    console.info('This push event has no data.');
+    self.registration.showNotification(title || '알림', options);
   }
 });
 
-// 🔹 알림 클릭 시 특정 URL로 이동하도록 처리
+// 🔹 알림 클릭 시 이동 처리
 self.addEventListener('notificationclick', function (event) {
   event.notification.close();
   const clickAction = event.notification.data?.click_action || '/';
@@ -51,20 +51,4 @@ self.addEventListener('notificationclick', function (event) {
       }
     })
   );
-});
-
-messaging.onBackgroundMessage(payload => {
-  if (!isBackgroundMessageReceived) {
-    self.registration
-      .showNotification(payload.notification.title, {
-        body: payload.notification.body,
-        icon: payload.notification.image,
-        data: {
-          click_action: payload.data.click_action,
-        },
-      })
-      .then(r => console.log(r));
-
-    // 백그라운드 메시지를 처리했음을 표시
-  }
 });

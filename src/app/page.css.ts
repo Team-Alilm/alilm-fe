@@ -10,18 +10,16 @@ export const mainPage = style({
 
 export const firstModule = style({});
 
+export const secondModule = style({
+  padding: '0 1rem',
+});
+
 export const cardWrapper = style({
+  marginRight: '1.2rem',
+
   selectors: {
     '&.swiper-slide': {
       width: '18rem',
-    },
-  },
-});
-
-export const cardWrapper1 = style({
-  selectors: {
-    '&.swiper-slide': {
-      width: 'auto',
     },
   },
 });
@@ -63,12 +61,12 @@ export const title1 = style({
 
 export const iconWrapper = style({
   position: 'absolute',
-  top: '65%',
+  top: '62%',
   left: '4%',
   backgroundColor: 'rgba(100, 100, 100, 0.6)',
   boxShadow: '0 0 0 0.5px white',
   borderRadius: '0.3rem',
-  width: '94%',
+  width: '90%',
   height: '2.6rem',
   zIndex: '2',
   display: 'flex',
@@ -114,7 +112,6 @@ export const topBadge = style({
   zIndex: 2,
   cursor: 'pointer',
 
-  // 🎯 모서리별 radius 다르게
   borderTopLeftRadius: '0.8rem',
   borderTopRightRadius: '0.4rem',
   borderBottomRightRadius: '0.4rem',
@@ -125,7 +122,7 @@ export const topBadge1 = style({
   position: 'absolute',
   top: 5,
   left: 5,
-  backgroundColor: '#FFFDB5',
+  backgroundColor: 'rgba(240, 236, 204, 0.97)',
   color: '#E08A00',
   padding: '0.4rem 0.9rem',
   fontSize: '1.1rem',
