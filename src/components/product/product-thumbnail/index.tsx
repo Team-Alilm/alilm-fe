@@ -6,7 +6,7 @@ import * as styles from './index.css';
 
 export interface ProductThumbnailProps {
   tab?: 'home' | 'my-basket';
-  card: 'thin' | 'full';
+  card: 'thin' | 'full' | 'slide';
   thumbnailUrl?: Product['thumbnailUrl'];
   imageUrl?: Product['imageUrl'];
   alilm?: MyBasket['alilm'];
