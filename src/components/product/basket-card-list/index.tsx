@@ -5,7 +5,11 @@ import ProductCard from '../product-card';
 import BasketCardSkeleton from '../product-card/basket-card-skeleton';
 import * as styles from './index.css';
 
-const BasketCardList = () => {
+interface BasketCardListProps {
+  category: string;
+}
+
+const BasketCardList = ({ category }: BasketCardListProps) => {
   const {
     data: products,
     fetchNextPage,
@@ -13,7 +17,7 @@ const BasketCardList = () => {
     isFetching,
     isLoading,
     isFetchingNextPage,
-  } = useGetProducts();
+  } = useGetProducts(category);
 
   const observeRef = useIntersection((entry, observer) => {
     observer.unobserve(entry.target);

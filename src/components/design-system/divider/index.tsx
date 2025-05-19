@@ -2,14 +2,15 @@ import { type CSSProperties } from 'react';
 
 interface DividerProps {
   marginX?: CSSProperties['margin'];
+  thickness: 'thin' | 'regular' | 'thick';
 }
 
-const Divider = ({ marginX }: DividerProps) => {
+const Divider = ({ marginX, thickness }: DividerProps) => {
   return (
     <div
       style={{
         width: '100%',
-        height: '0.1rem',
+        height: thickness === 'thin' ? '0.2rem' : thickness === 'regular' ? '0.6rem' : '1rem',
         backgroundColor: '#F4F4F4',
         margin: `${marginX}rem 0`,
       }}

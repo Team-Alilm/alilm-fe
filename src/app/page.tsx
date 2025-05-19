@@ -4,10 +4,10 @@ import { Suspense, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Portal from '@/components/common/modal/modal-portal';
 import Button from '@/components/design-system/button';
+import Divider from '@/components/design-system/divider';
 import Flex from '@/components/design-system/flex';
 import Spacer from '@/components/design-system/spacer';
 import AlilmInfo from '@/components/main/alilm-info';
-import AlilmTabs from '@/components/main/alilm-tabs';
 import { AlilmTabsProvider } from '@/components/main/alilm-tabs/contexts/alilm-tabs-context';
 import OnboardingModal from '@/components/main/onboarding';
 import ProductCardList from '@/components/product/product-card-list';
@@ -189,11 +189,11 @@ const MainPage = () => {
       )}
 
       <Spacer height={50} />
-      <div className={styles.mainPage}>
+      <div>
         <Suspense fallback={<div>탭 정보 초기화 중...</div>}>
           <AlilmTabsProvider>
-            <AlilmTabs />
-            <Spacer height={28} />
+            <Divider thickness="regular" />
+            <Spacer height={20} />
             <ProductCardList />
           </AlilmTabsProvider>
         </Suspense>
