@@ -50,7 +50,7 @@ const chunkArray = <T,>(array: T[], size: number): T[][] => {
 
 const ProductCardList = () => {
   const alilmTab = useAlilmTabsValue();
-  const { control, watch } = useForm({ defaultValues: { category: '전체' } });
+  const { control, watch } = useForm({ defaultValues: { category: 'ALL' } });
   const selectedCategory = watch('category');
 
   const categoryChunks = chunkArray(PRODUCTS_CATEGORIES, 10);
