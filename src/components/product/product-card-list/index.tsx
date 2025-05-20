@@ -17,16 +17,24 @@ import * as styles from './index.css';
 import 'swiper/css';
 
 export const PRODUCTS_CATEGORIES = [
-  { name: '전체', value: '전체', iconImageUrl: '/icons/img_category_all.svg' },
-  { name: '스포츠/레저', value: '스포츠/레저', iconImageUrl: '/icons/img_category_sports.svg' },
-  { name: '상의', value: '상의', iconImageUrl: '/icons/img_category_top.svg' },
-  { name: '신발', value: '신발', iconImageUrl: '/icons/img_category_shoes.svg' },
-  { name: '아우터', value: '아우터', iconImageUrl: '/icons/img_category_outer.svg' },
-  { name: '가방', value: '가방', iconImageUrl: '/icons/img_category_bag.svg' },
-  { name: '바지', value: '바지', iconImageUrl: '/icons/img_category_pants.svg' },
-  { name: '속옷/홈웨어', value: '속옷/홈웨어', iconImageUrl: '/icons/img_category_home.svg' },
-  { name: '원피스/스커트', value: '원피스/스커트', iconImageUrl: '/icons/img_category_skirt.svg' },
-  { name: '패션소품', value: '패션소품', iconImageUrl: '/icons/img_category_accessories.svg' },
+  { name: '전체', value: 'ALL', iconImageUrl: '/icons/img_category_all.svg' },
+  { name: '스포츠/레저', value: 'SPORTS_LEISURE', iconImageUrl: '/icons/img_category_sports.svg' },
+  { name: '상의', value: 'TOPS', iconImageUrl: '/icons/img_category_top.svg' },
+  { name: '신발', value: 'SHOES', iconImageUrl: '/icons/img_category_shoes.svg' },
+  { name: '아우터', value: 'OUTERWEAR', iconImageUrl: '/icons/img_category_outer.svg' },
+  { name: '가방', value: 'BAGS', iconImageUrl: '/icons/img_category_bag.svg' },
+  { name: '바지', value: 'PANTS', iconImageUrl: '/icons/img_category_pants.svg' },
+  {
+    name: '속옷/홈웨어',
+    value: 'UNDERWEAR_HOMEWEAR',
+    iconImageUrl: '/icons/img_category_home.svg',
+  },
+  { name: '원피스/스커트', value: 'DRESSES_SKIRTS', iconImageUrl: '/icons/img_category_skirt.svg' },
+  {
+    name: '패션소품',
+    value: 'FASHION_ACCESSORIES',
+    iconImageUrl: '/icons/img_category_accessories.svg',
+  },
   { name: '뷰티', value: '뷰티', iconImageUrl: '/icons/img_category_beauty.svg' },
   { name: '디지털', value: '디지털/라이프', iconImageUrl: '/icons/img_category_digital.svg' },
 ];
