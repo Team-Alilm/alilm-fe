@@ -4,8 +4,8 @@
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
-  "name": "Alilm",
-  "short_name": "Alilm",
+  "name": "Algamja",
+  "short_name": "Algamja",
   "description": "품절 상품 재입고 알림 서비스",
   "icons": [
     {
