@@ -4,14 +4,15 @@
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
-  "name": "Alilm",
-  "short_name": "Alilm",
+  "name": "알감자",
+  "short_name": "알감자",
   "description": "품절 상품 재입고 알림 서비스",
   "icons": [
     {
       "sizes": "512x512",
       "src": "icon512_maskable.png",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "maskable any"
     },
     {
       "sizes": "512x512",

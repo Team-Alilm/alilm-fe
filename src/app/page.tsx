@@ -134,6 +134,7 @@ const MainPage = () => {
             <div style={{ flex: '0 0 auto' }}>
               <div className={styles.parent}>
                 <div className={styles.topBadge1}>My상품</div>
+
                 {oldResponse?.oldProduct && (
                   <button
                     style={{ position: 'relative', all: 'unset' }}
