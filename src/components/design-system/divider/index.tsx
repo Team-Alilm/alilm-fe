@@ -2,10 +2,10 @@ import { type CSSProperties } from 'react';
 
 interface DividerProps {
   marginX?: CSSProperties['margin'];
-  thickness: 'thin' | 'regular' | 'thick';
+  thickness?: 'thin' | 'regular' | 'thick';
 }
 
-const Divider = ({ marginX, thickness }: DividerProps) => {
+const Divider = ({ marginX, thickness = 'regular' }: DividerProps) => {
   return (
     <div
       style={{
