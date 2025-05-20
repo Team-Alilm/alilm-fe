@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import Portal from '@/components/common/modal/modal-portal';
 import Button from '@/components/design-system/button';
 import Divider from '@/components/design-system/divider';
-import Flex from '@/components/design-system/flex';
 import Spacer from '@/components/design-system/spacer';
 import AlilmInfo from '@/components/main/alilm-info';
 import { AlilmTabsProvider } from '@/components/main/alilm-tabs/contexts/alilm-tabs-context';
@@ -121,10 +120,9 @@ const MainPage = () => {
           ))}
         </Swiper>
       </div>
-      <Flex justify="center">
+      <div style={{ padding: '2rem', display: 'flex', justifyContent: 'center' }}>
         <Button onClick={handleMoveCreatePage}>재입고 알림 신청하러가기</Button>
-      </Flex>
-
+      </div>
       {userAccessToken && (
         <div className={styles.secondModule}>
           <h3 className={styles.late1}>재입고 늦어지는 상품</h3>
