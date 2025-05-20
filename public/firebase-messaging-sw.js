@@ -11,27 +11,20 @@ firebase.initializeApp({
 
 const messaging = firebase.messaging();
 
-// 중복 방지용 플래그
-let isBackgroundMessageReceived = false;
-
 // 📌 FCM 백그라운드 메시지 처리
 messaging.onBackgroundMessage(payload => {
-  if (!isBackgroundMessageReceived) {
-    isBackgroundMessageReceived = true;
+  const { title, body, image } = payload.notification;
+  const clickAction = payload.data?.click_action || '/';
 
-    const { title, body, image } = payload.notification;
-    const clickAction = payload.data?.click_action || '/';
+  const options = {
+    body: body || '알림 내용 없음',
+    icon: image || '/default-icon.png',
+    data: {
+      click_action: clickAction,
+    },
+  };
 
-    const options = {
-      body: body || '알림 내용 없음',
-      icon: image || '/default-icon.png',
-      data: {
-        click_action: clickAction,
-      },
-    };
-
-    self.registration.showNotification(title || '알림', options);
-  }
+  self.registration.showNotification(title || '알림', options);
 });
 
 // 🔹 알림 클릭 시 이동 처리
