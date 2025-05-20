@@ -3,6 +3,7 @@ import { useGetProducts } from '@/hooks/queries/use-get-baskets';
 
 import ProductCard from '../product-card';
 import BasketCardSkeleton from '../product-card/basket-card-skeleton';
+import NoProducts from '../product-card-list/no-products';
 import * as styles from './index.css';
 
 interface BasketCardListProps {
@@ -26,6 +27,10 @@ const BasketCardList = ({ category }: BasketCardListProps) => {
       fetchNextPage().then(r => r);
     }
   });
+
+  const hasProducts = products && products.length > 0;
+
+  if (!hasProducts) return <NoProducts />;
 
   return (
     <div className={styles.basketCardList}>

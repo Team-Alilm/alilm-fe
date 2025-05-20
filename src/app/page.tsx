@@ -125,8 +125,6 @@ const MainPage = () => {
         <Button onClick={handleMoveCreatePage}>재입고 알림 신청하러가기</Button>
       </Flex>
 
-      <Spacer height={30} />
-
       {userAccessToken && (
         <div className={styles.secondModule}>
           <h3 className={styles.late1}>재입고 늦어지는 상품</h3>
@@ -187,7 +185,6 @@ const MainPage = () => {
           </div>
         </div>
       )}
-
       <Spacer height={50} />
       <div>
         <Suspense fallback={<div>탭 정보 초기화 중...</div>}>

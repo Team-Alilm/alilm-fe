@@ -31,3 +31,12 @@ export const category = style({
   fontSize: '1.2rem',
   cursor: 'pointer',
 });
+
+export const noProducts = style({
+  width: '100%',
+  minHeight: '35.4rem',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+});
