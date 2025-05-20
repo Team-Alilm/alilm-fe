@@ -3,9 +3,14 @@ import { useGetProducts } from '@/hooks/queries/use-get-baskets';
 
 import ProductCard from '../product-card';
 import BasketCardSkeleton from '../product-card/basket-card-skeleton';
+import NoProducts from '../product-card-list/no-products';
 import * as styles from './index.css';
 
-const BasketCardList = () => {
+interface BasketCardListProps {
+  category: string;
+}
+
+const BasketCardList = ({ category }: BasketCardListProps) => {
   const {
     data: products,
     fetchNextPage,
@@ -13,7 +18,7 @@ const BasketCardList = () => {
     isFetching,
     isLoading,
     isFetchingNextPage,
-  } = useGetProducts();
+  } = useGetProducts(category);
 
   const observeRef = useIntersection((entry, observer) => {
     observer.unobserve(entry.target);
@@ -22,6 +27,10 @@ const BasketCardList = () => {
       fetchNextPage().then(r => r);
     }
   });
+
+  const hasProducts = products && products.length > 0;
+
+  if (!hasProducts) return <NoProducts />;
 
   return (
     <div className={styles.basketCardList}>

@@ -13,14 +13,24 @@ interface ProductsResponse {
 
 export const PRODUCTS_QUERY_KEY = 'getProducts';
 
-export const getProducts = async (pageParam: number) => {
-  return await get<ProductsResponse>(`/products?size=9&page=${pageParam}`);
+export const getProducts = async ({
+  pageParam,
+  category,
+}: {
+  pageParam: number;
+  category: string;
+}) => {
+  return await get<ProductsResponse>(`/products?size=9&page=${pageParam}&category=${category}`);
 };
 
-export const useGetProducts = () => {
+export const useGetProducts = (category: string) => {
   return useInfiniteQuery({
-    queryKey: [PRODUCTS_QUERY_KEY],
-    queryFn: async ({ pageParam }) => await getProducts(pageParam),
+    queryKey: [PRODUCTS_QUERY_KEY, category],
+    queryFn: async ({ pageParam = 0, queryKey }) => {
+      const [, queryCategory] = queryKey;
+
+      return await getProducts({ pageParam, category: queryCategory });
+    },
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.customSlice.hasNext ? allPages.length : null;
     },
