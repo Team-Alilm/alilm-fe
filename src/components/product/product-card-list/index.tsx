@@ -59,7 +59,7 @@ const ProductCardList = () => {
   const categoryPairs = chunkArray(PRODUCTS_CATEGORIES, 2); // 2개씩 자르기 → 한 슬라이드당 2개 카테고리
 
   return (
-    <div>
+    <div className={styles.productCardList}>
       {/* 카태고리 영역 */}
       <Controller
         name="category"
