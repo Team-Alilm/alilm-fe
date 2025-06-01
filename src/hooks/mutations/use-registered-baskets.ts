@@ -36,7 +36,7 @@ export const useRegisteredBaskets = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [PRODUCTS_QUERY_KEY, MY_BASKETS_QUERY_KEY] });
       showToast('재입고 알림 상품이 등록되었습니다.');
-      router.replace('/?tab=myAlilm');
+      router.replace('/my-alilm');
     },
     onError: error => {
       onOpen({ modalType: 'alert', title: error.message });
