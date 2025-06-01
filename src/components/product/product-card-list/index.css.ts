@@ -10,6 +10,7 @@ export const productCardList = style({
 export const swiper = style({
   width: '90%',
   justifySelf: 'center',
+  padding: '0 1.1rem',
 });
 
 export const swiperSlide = style({
@@ -24,6 +25,7 @@ export const swiperSlide = style({
 
 export const category = style({
   all: 'unset',
+  width: '6.7rem',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
