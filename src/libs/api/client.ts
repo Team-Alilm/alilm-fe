@@ -102,11 +102,13 @@ export const get = <T>(...args: Parameters<typeof instance.get>) => {
 
   return instance.get<T, T>(url, {
     ...config,
-    baseURL: url.includes('products?size')
-      ? 'https://api.algamja.com/api/v2'
-      : url.includes('products/crawling')
-        ? 'https://crawler.algamja.com/api/v1'
-        : instance.defaults.baseURL,
+    baseURL: url.includes('sort')
+      ? 'https://api.algamja.com/api/v3'
+      : url.includes('products?size')
+        ? 'https://api.algamja.com/api/v2'
+        : url.includes('products/crawling')
+          ? 'https://crawler.algamja.com/api/v1'
+          : instance.defaults.baseURL,
   });
 };
 export const post = <T>(...args: Parameters<typeof instance.post>) => {

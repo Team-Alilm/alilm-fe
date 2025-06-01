@@ -13,6 +13,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import BasketCardList from '../basket-card-list';
 import MyBasketCardList from '../my-basket-card-list';
 import * as styles from './index.css';
+import SortSelect from './sort-select';
 
 import 'swiper/css';
 
@@ -50,6 +51,7 @@ const chunkArray = <T,>(array: T[], size: number): T[][] => {
 
 const ProductCardList = () => {
   const alilmTab = useAlilmTabsValue();
+
   const { control, watch } = useForm({ defaultValues: { category: 'ALL' } });
   const selectedCategory = watch('category');
 
@@ -57,6 +59,9 @@ const ProductCardList = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const categoryPairs = chunkArray(PRODUCTS_CATEGORIES, 2); // 2개씩 자르기 → 한 슬라이드당 2개 카테고리
+  type SortValue = 'WAITING_COUNT_DESC' | 'PRICE_ASC' | 'PRICE_DESC' | 'CREATED_DATE_DESC';
+
+  const [sort, setSort] = useState<SortValue>('WAITING_COUNT_DESC');
 
   return (
     <div className={styles.productCardList}>
@@ -138,8 +143,11 @@ const ProductCardList = () => {
         value={alilmTab}
         caseBy={{
           home: (
-            <Suspense fallback={<BasketCardList category={selectedCategory} />}>
-              <BasketCardList category={selectedCategory} />
+            <Suspense fallback={<BasketCardList category={selectedCategory} sort={sort} />}>
+              <div style={{ display: 'flex', margin: '0 2rem 2rem auto' }}>
+                <SortSelect value={sort} onChange={setSort} />
+              </div>
+              <BasketCardList category={selectedCategory} sort={sort} />
             </Suspense>
           ),
           myAlilm: (
@@ -150,7 +158,7 @@ const ProductCardList = () => {
         }}
         defaultComponent={
           <Suspense>
-            <BasketCardList category={selectedCategory} />
+            <BasketCardList category={selectedCategory} sort={sort} />
           </Suspense>
         }
       />
