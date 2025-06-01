@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 
 export const header = style({
   position: 'fixed',
-  zIndex: 2,
+  zIndex: 3,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
