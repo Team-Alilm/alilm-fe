@@ -1,5 +1,5 @@
 import { useIntersection } from '@/hooks/common/use-intersection';
-import { useGetProducts } from '@/hooks/queries/use-get-baskets';
+import { useGetOrderResponse } from '@/hooks/queries/use-get-order';
 
 import ProductCard from '../product-card';
 import BasketCardSkeleton from '../product-card/basket-card-skeleton';
@@ -8,34 +8,35 @@ import * as styles from './index.css';
 
 interface BasketCardListProps {
   category: string;
+  sort: string;
 }
 
-const BasketCardList = ({ category }: BasketCardListProps) => {
+const BasketCardList = ({ category, sort }: BasketCardListProps) => {
   const {
-    data: products,
+    data: sortedData,
     fetchNextPage,
     hasNextPage,
     isFetching,
     isLoading,
     isFetchingNextPage,
-  } = useGetProducts(category);
+  } = useGetOrderResponse(category, sort);
 
   const observeRef = useIntersection((entry, observer) => {
     observer.unobserve(entry.target);
 
     if (hasNextPage && !isFetching) {
-      fetchNextPage().then(r => r);
+      fetchNextPage();
     }
   });
 
-  const hasProducts = products && products.length > 0;
+  const hasProducts = sortedData && sortedData.length > 0;
 
   if (!hasProducts) return <NoProducts />;
 
   return (
     <div className={styles.basketCardList}>
-      {products?.map(product => (
-        <ProductCard key={product?.id} {...product} tab="home" isLoading={isLoading} />
+      {sortedData.map(product => (
+        <ProductCard key={product.id} {...product} tab="home" isLoading={isLoading} />
       ))}
 
       {isFetchingNextPage &&
