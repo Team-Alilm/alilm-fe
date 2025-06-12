@@ -189,7 +189,7 @@ const MainPage = () => {
       )}
       <Spacer height={50} />
       <div>
-        <Suspense fallback={<div>탭 정보 초기화 중...</div>}>
+        <Suspense fallback={<div>탭 정보 초기화 중....</div>}>
           <AlilmTabsProvider>
             <Divider thickness="regular" />
             <Spacer height={20} />
