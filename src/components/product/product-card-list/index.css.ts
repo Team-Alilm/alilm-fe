@@ -45,52 +45,18 @@ export const noProducts = style({
 
 export const sortSelectWrapper = style({
   position: 'relative',
-  display: 'inline-block',
-  textAlign: 'left',
+  display: 'flex',
+  textAlign: 'center',
 });
 
-export const sortButton = style({
-  display: 'flex',
-  alignItems: 'center',
-
-  backgroundColor: '#fff',
+export const sortSelect = style({
+  appearance: 'none', // 브라우저 기본 스타일 제거
+  padding: '8px 20px',
+  fontSize: '14px',
   border: '1px solid #ccc',
-  cursor: 'pointer',
-  fontSize: '0.875rem',
-  color: '#333',
-
-  ':hover': {
-    borderColor: '#888',
-  },
-});
-
-export const dropdown = style({
-  position: 'absolute',
-
-  right: 0,
-  backgroundColor: '#fff',
-  border: '1px solid #ddd',
   borderRadius: '6px',
-  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-  zIndex: 10,
-});
-
-export const dropdownItem = style({
-  display: 'flex',
-  alignItems: 'center',
-
-  width: '100%',
-  background: 'transparent',
-  border: 'none',
-  textAlign: 'left',
-  fontSize: '0.875rem',
+  backgroundColor: '#fff',
   color: '#333',
+  width: '100%',
   cursor: 'pointer',
-  transition: 'background-color 0.2s',
-
-  selectors: {
-    '&:hover': {
-      backgroundColor: '#f5f5f5',
-    },
-  },
 });

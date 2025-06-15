@@ -15,10 +15,16 @@ const Select = ({ label, options, ...props }: SelectProps) => {
   return (
     <Flex direction="column" gap={8}>
       {label && <p className={styles.label}>{label}</p>}
-      <Flex align="center" style={{ position: 'relative' }}>
+      <Flex align="center" style={{ position: 'relative', width: '30vh' }}>
         <select className={styles.select} {...props}>
           {options.map(option => (
-            <option key={option.value} value={option.value}>
+            <option
+              key={option.value}
+              value={option.value}
+              style={{
+                fontWeight: props.value === option.value ? 'bold' : 'normal',
+              }}
+            >
               {option.label}
             </option>
           ))}
