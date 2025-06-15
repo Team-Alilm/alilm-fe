@@ -4,7 +4,7 @@ export const select = style({
   fontSize: '15px',
   color: '#3E3E3E',
   height: '54px',
-  width: '20vh',
+  width: '100%',
   padding: '0 40px 8px 12px',
   background: '#FFFFFF',
   border: '1px solid #CACACA',

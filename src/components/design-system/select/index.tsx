@@ -15,7 +15,7 @@ const Select = ({ label, options, ...props }: SelectProps) => {
   return (
     <Flex direction="column" gap={8}>
       {label && <p className={styles.label}>{label}</p>}
-      <Flex align="center" style={{ position: 'relative', width: '30vh' }}>
+      <Flex align="center" style={{ position: 'relative', width: '105%' }}>
         <select className={styles.select} {...props}>
           {options.map(option => (
             <option
