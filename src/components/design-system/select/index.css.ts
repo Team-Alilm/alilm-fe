@@ -5,7 +5,7 @@ export const select = style({
   color: '#3E3E3E',
   height: '54px',
   width: '100%',
-  padding: '0 20px',
+  padding: '0 40px 8px 12px',
   background: '#FFFFFF',
   border: '1px solid #CACACA',
   borderRadius: '4px',
@@ -13,6 +13,9 @@ export const select = style({
   MozAppearance: 'none',
   appearance: 'none',
   cursor: 'pointer',
+  whiteSpace: 'nowrap',
+  textOverflow: 'ellipsis',
+  overflow: 'hidden',
 });
 
 export const label = style({
@@ -22,6 +25,6 @@ export const label = style({
 
 export const chevronDownIcon = style({
   position: 'absolute',
-  right: '20px',
+  right: '10px',
   pointerEvents: 'none',
 });
