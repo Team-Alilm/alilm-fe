@@ -6,7 +6,6 @@ import Portal from '@/components/common/modal/modal-portal';
 import Button from '@/components/design-system/button';
 import Divider from '@/components/design-system/divider';
 import Spacer from '@/components/design-system/spacer';
-import AlilmInfo from '@/components/main/alilm-info';
 import { AlilmTabsProvider } from '@/components/main/alilm-tabs/contexts/alilm-tabs-context';
 import OnboardingModal from '@/components/main/onboarding';
 import ProductCardList from '@/components/product/product-card-list';
@@ -92,10 +91,10 @@ const MainPage = () => {
           <OnboardingModal onClose={onBoardingModalState.close} />
         ) : null}
       </Portal>
-      <Spacer height={40} />
+      {/* <Spacer height={40} />
       <Suspense fallback={<AlilmInfo />}>
         <AlilmInfo />
-      </Suspense>
+      </Suspense> */}
       <Spacer height={60} />
       <div className={styles.firstModule}>
         <h3 className={styles.restock}>최근 재입고된 상품 TOP 7</h3>
