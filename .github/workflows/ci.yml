@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: true
 
 env: # 여기서 환경변수를 설정
-  NEXT_PUBLIC_FIREBASE_API_KEY:  ${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }}
+  NEXT_PUBLIC_FIREBASE_API_KEY: ${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }}
   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: ${{ secrets.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN }}
   NEXT_PUBLIC_FIREBASE_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_PROJECT_ID }}
   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: ${{ secrets.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET }}
@@ -39,3 +39,5 @@ jobs:
       - run: pnpm install --no-frozen-lockfile
       - name: Run commands
         run: pnpm ${{ matrix.command }}
+      - name: Prettier check
+        run: pnpm prettier --check . --config .prettierrc.js
