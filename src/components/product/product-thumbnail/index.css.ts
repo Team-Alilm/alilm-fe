@@ -4,10 +4,14 @@ import { recipe } from '@vanilla-extract/recipes';
 export const imageWrapper = recipe({
   base: {
     position: 'relative',
+    maxWidth: '17.6rem',
+    minWidth: '15.8rem',
   },
   variants: {
     card: {
-      thin: { width: '100%' },
+      thin: {
+        width: '100%',
+      },
       full: {
         width: '38%',
       },
@@ -78,7 +82,7 @@ export const thumbnailImage = recipe({
   variants: {
     card: {
       thin: {
-        maxWidth: '17.4rem',
+        maxWidth: '17.6rem',
         minHeight: '21.8rem',
         maxHeight: '21.8rem',
         aspectRatio: '3 / 4',
@@ -87,8 +91,8 @@ export const thumbnailImage = recipe({
         maxHeight: '21.8rem',
       },
       slide: {
-        maxWidth: '17.4rem',
-        minWidth: '17.4rem',
+        maxWidth: '17.6rem',
+        minWidth: '17.6rem',
         minHeight: '21.8rem',
         maxHeight: '21.8rem',
       },

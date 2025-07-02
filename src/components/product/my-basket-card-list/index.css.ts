@@ -4,10 +4,10 @@ import { style } from '@vanilla-extract/css';
 export const cardListHome = style({
   display: 'grid',
   gridTemplateColumns: 'repeat(3, 1fr)',
-  columnGap: '1.8rem',
+  columnGap: '1.2rem',
   rowGap: '5vh',
   '@media': {
-    'screen and (max-width: 576px)': {
+    'screen and (max-width: 529px)': {
       gridTemplateColumns: 'repeat(2, 1fr)',
     },
   },

@@ -5,9 +5,9 @@ export const basketCard = style({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',
-  minWidth: '10rem',
-  // margin: 'auto',
-  width: 'inherit',
+  minWidth: '15.8rem',
+  maxWidth: '17.6rem',
+
   height: '100%',
 });
 
