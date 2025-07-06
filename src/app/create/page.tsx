@@ -27,7 +27,6 @@ const CreatePage = () => {
   const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
   const [isOpen, setIsOpen] = useState(false);
 
-
   const openLoginModal = useLoginModalStore(state => state.openLoginModal);
 
   const handleUrlInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,9 +58,9 @@ const CreatePage = () => {
   return (
     <>
       <div className={styles.wrapper}>
-        <p className={styles.header} onClick={() => setIsOpen(prev => !prev)}>
+        <button className={styles.header} onClick={() => setIsOpen(prev => !prev)}>
           쇼핑몰 바로가기
-        </p>
+        </button>
 
         {isOpen && (
           <div className={styles.dropdown}>
