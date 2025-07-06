@@ -25,6 +25,12 @@ const CreatePage = () => {
   const [showProductsOptionsForm, setShowProductsOptionsForm] = useState(false);
   const [createForm, setCreateForm] = useState<CreateFormValue | null>(null);
   const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClick = () => {
+    setIsOpen(prev => !prev);
+  };
+
   const openLoginModal = useLoginModalStore(state => state.openLoginModal);
 
   const handleUrlInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,50 +54,82 @@ const CreatePage = () => {
   }
 
   const LOGO_IMAGES = [
-    { name: 'musinsa', fileName: 'musinsa-logo.svg' },
-    { name: '29cm', fileName: '29cm-logo.svg' },
-    { name: 'musinsa', fileName: 'zigzag-logo.svg' },
+    { name: '무신사', fileName: 'musinsa-logo.svg', link: 'http://www.musinsa.com/' },
+    { name: '29CM', fileName: '29cm-logo.svg', link: 'https://29cm.co.kr/' },
+    { name: '지그재그', fileName: 'zigzag-logo.svg', link: 'http://www.zigzag.com/' },
   ];
 
   return (
-    <div className={styles.createPage}>
-      <div className={styles.logoImageWrapper}>
-        {LOGO_IMAGES.map(image => (
-          <Image
-            key={image.name}
-            src={`/images/${image.fileName}`}
-            alt="My Icon"
-            width={50}
-            height={50}
-            className={styles.logoImage}
-          />
-        ))}
-      </div>
+    <>
+      <div className={styles.wrapper}>
+        <p className={styles.header} onClick={() => setIsOpen(prev => !prev)}>
+          쇼핑몰 바로가기
+        </p>
 
-      <p className={styles.title}>
-        무신사/29CM/지그재그 상품,
-        <br /> 지금 재입고 등록을 해보세요!
-      </p>
-      <form onSubmit={handleCreateFormSubmit} className={styles.createForm}>
-        <ButtonInput
-          name="url"
-          onChange={handleUrlInputChange}
-          onButtonClick={handleUrlInputButtonClick}
-          isButtonDisabled={!url}
-          label="URL 주소"
-          buttonText="조회"
-        />
-        {showProductsOptionsForm && <ProductOptionsForm url={url} setCreateForm={setCreateForm} />}
-        <Button
-          style={{ width: '100%', cursor: 'pointer' }}
-          description={
-            <p className={styles.buttonDescription}>재입고 알림을 신청하면 홈으로 이동합니다.</p>
-          }
-        >
-          재입고 알림 신청
-        </Button>
-      </form>
-    </div>
+        {isOpen && (
+          <div className={styles.dropdown}>
+            {LOGO_IMAGES.map(image => (
+              <a
+                key={image.name}
+                href={image.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.dropdownItem}
+              >
+                <Image
+                  src={`/images/${image.fileName}`}
+                  alt={image.name}
+                  width={20}
+                  height={20}
+                  className={styles.logoImage}
+                />
+                <span style={{ paddingBottom: '2px' }}>{image.name}</span>
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+      <div className={styles.createPage}>
+        <div className={styles.logoImageWrapper}>
+          {LOGO_IMAGES.map(image => (
+            <Image
+              key={image.name}
+              src={`/images/${image.fileName}`}
+              alt="My Icon"
+              width={50}
+              height={50}
+              className={styles.logoImage}
+            />
+          ))}
+        </div>
+
+        <p className={styles.title}>
+          무신사/29CM/지그재그 상품,
+          <br /> 지금 재입고 등록을 해보세요!
+        </p>
+        <form onSubmit={handleCreateFormSubmit} className={styles.createForm}>
+          <ButtonInput
+            name="url"
+            onChange={handleUrlInputChange}
+            onButtonClick={handleUrlInputButtonClick}
+            isButtonDisabled={!url}
+            label="URL 주소"
+            buttonText="조회"
+          />
+          {showProductsOptionsForm && (
+            <ProductOptionsForm url={url} setCreateForm={setCreateForm} />
+          )}
+          <Button
+            style={{ width: '100%', cursor: 'pointer' }}
+            description={
+              <p className={styles.buttonDescription}>재입고 알림을 신청하면 홈으로 이동합니다.</p>
+            }
+          >
+            재입고 알림 신청
+          </Button>
+        </form>
+      </div>
+    </>
   );
 };
 
