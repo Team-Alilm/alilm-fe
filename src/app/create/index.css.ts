@@ -44,7 +44,7 @@ export const header = style({
     '&:focus': {
       outline: 'none', // focus outline 제거 (선택)
     },
-  }
+  },
 });
 
 export const dropdown = style({
