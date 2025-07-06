@@ -29,6 +29,7 @@ export const header = style({
   textAlign: 'right',
   lineHeight: '2.8rem',
   color: '#FFC400',
+  cursor: 'pointer',
 });
 
 export const dropdown = style({
