@@ -32,8 +32,8 @@ const MyBasketCardList = ({ type }: MyBasketCardListProps) => {
       {type === 'mypage' && (
         <div className={cardListMypage}>
           {myBaskets?.map(myBasket => (
-          <MyBasketCard key={myBasket.id} {...myBasket} />
-        ))}
+            <MyBasketCard key={myBasket.id} {...myBasket} />
+          ))}
         </div>
       )}
     </>
