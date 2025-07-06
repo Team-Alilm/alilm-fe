@@ -75,7 +75,6 @@ const CreatePage = () => {
         >
           쇼핑몰 바로가기
         </a>
-
         {isOpen && (
           <div className={styles.dropdown}>
             {LOGO_IMAGES.map(image => (
