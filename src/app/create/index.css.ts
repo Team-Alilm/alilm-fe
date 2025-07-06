@@ -20,12 +20,15 @@ export const title = style({
 
 export const wrapper = style({
   position: 'relative',
+  display: 'flex',
+  justifyContent: 'flex-end',
 });
 
 export const header = style({
+  textDecoration: 'none',
   fontSize: '1.8rem',
   fontWeight: '600',
-  margin: '3rem 3rem 0.5rem 0',
+  margin: '3rem 3rem',
   textAlign: 'right',
   lineHeight: '2.8rem',
   color: '#FFC400',
@@ -34,8 +37,8 @@ export const header = style({
 
 export const dropdown = style({
   position: 'absolute',
-  marginTop: '0',
-  left: '66%',
+  marginTop: '16%',
+  left: '62%',
   backgroundColor: 'white',
   marginRight: '3rem',
   border: '1px solid #ccc',
@@ -43,12 +46,13 @@ export const dropdown = style({
   zIndex: 10,
   padding: '4px 0',
   borderRadius: '8px',
-  width: '24vh',
+  width: '32%',
 });
 
 export const dropdownItem = style({
   justifyContent: 'space-between',
   alignItems: 'center',
+  fontSize: '1.4rem',
   gap: '8px',
   textDecoration: 'none',
   color: 'inherit',

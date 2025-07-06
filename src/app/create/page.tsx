@@ -58,10 +58,23 @@ const CreatePage = () => {
   return (
     <>
       <div className={styles.wrapper}>
-        <button className={styles.header} onClick={() => setIsOpen(prev => !prev)}>
+        <a
+          href="#"
+          className={styles.header}
+          onClick={e => {
+            e.preventDefault();
+            setIsOpen(prev => !prev);
+          }}
+          role="button"
+          tabIndex={0}
+          onKeyDown={e => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              setIsOpen(prev => !prev);
+            }
+          }}
+        >
           쇼핑몰 바로가기
-        </button>
-
+        </a>
         {isOpen && (
           <div className={styles.dropdown}>
             {LOGO_IMAGES.map(image => (
