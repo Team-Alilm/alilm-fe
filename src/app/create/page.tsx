@@ -58,9 +58,10 @@ const CreatePage = () => {
   return (
     <>
       <div className={styles.wrapper}>
-        <button type="button" className={styles.header} onClick={() => setIsOpen(prev => !prev)}>
+        <p className={styles.header} onClick={() => setIsOpen(prev => !prev)}>
           쇼핑몰 바로가기
-        </button>
+        </p>
+
         {isOpen && (
           <div className={styles.dropdown}>
             {LOGO_IMAGES.map(image => (
@@ -74,8 +75,8 @@ const CreatePage = () => {
                 <Image
                   src={`/images/${image.fileName}`}
                   alt={image.name}
-                  width={14}
-                  height={14}
+                  width={20}
+                  height={20}
                   className={styles.logoImage}
                 />
                 <span style={{ paddingBottom: '2px' }}>{image.name}</span>
