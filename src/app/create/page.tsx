@@ -61,7 +61,6 @@ const CreatePage = () => {
         <button type="button" className={styles.header} onClick={() => setIsOpen(prev => !prev)}>
           쇼핑몰 바로가기
         </button>
-
         {isOpen && (
           <div className={styles.dropdown}>
             {LOGO_IMAGES.map(image => (
