@@ -58,23 +58,9 @@ const CreatePage = () => {
   return (
     <>
       <div className={styles.wrapper}>
-        <a
-          href="#"
-          className={styles.header}
-          onClick={e => {
-            e.preventDefault();
-            setIsOpen(prev => !prev);
-          }}
-          role="button"
-          tabIndex={0}
-          onKeyDown={e => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              setIsOpen(prev => !prev);
-            }
-          }}
-        >
+        <button type="button" className={styles.header} onClick={() => setIsOpen(prev => !prev)}>
           쇼핑몰 바로가기
-        </a>
+        </button>
         {isOpen && (
           <div className={styles.dropdown}>
             {LOGO_IMAGES.map(image => (
@@ -88,8 +74,8 @@ const CreatePage = () => {
                 <Image
                   src={`/images/${image.fileName}`}
                   alt={image.name}
-                  width={20}
-                  height={20}
+                  width={14}
+                  height={14}
                   className={styles.logoImage}
                 />
                 <span style={{ paddingBottom: '2px' }}>{image.name}</span>
