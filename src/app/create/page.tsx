@@ -27,6 +27,10 @@ const CreatePage = () => {
   const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
   const [isOpen, setIsOpen] = useState(false);
 
+  const handleClick = () => {
+    setIsOpen(prev => !prev);
+  };
+
   const openLoginModal = useLoginModalStore(state => state.openLoginModal);
 
   const handleUrlInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
