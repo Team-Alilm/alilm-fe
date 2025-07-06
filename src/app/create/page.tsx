@@ -58,9 +58,9 @@ const CreatePage = () => {
   return (
     <>
       <div className={styles.wrapper}>
-        <p className={styles.header} onClick={() => setIsOpen(prev => !prev)}>
+        <button className={styles.header} onClick={() => setIsOpen(prev => !prev)}>
           쇼핑몰 바로가기
-        </p>
+        </button>
 
         {isOpen && (
           <div className={styles.dropdown}>
