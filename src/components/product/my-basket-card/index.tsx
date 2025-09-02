@@ -12,7 +12,6 @@ import * as styles from './index.css';
 type MyBasketProps = MyBasket;
 
 const MyBasketCard = ({
-  id,
   basketId,
   productId,
   name,
