@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b34f67b5-c646-42e3-9423-8810ee57548f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/prettier.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/product/my-basket-card-list/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product/my-basket-card-list/index.tsx" afterDir="false" />
@@ -102,7 +103,7 @@
       <workItem from="1756814085979" duration="12560000" />
       <workItem from="1756827819069" duration="69000" />
       <workItem from="1756827891386" duration="958000" />
-      <workItem from="1756828857310" duration="265000" />
+      <workItem from="1756828857310" duration="721000" />
     </task>
     <servers />
   </component>
