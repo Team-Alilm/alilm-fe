@@ -30,11 +30,13 @@ const ProductOptionsForm = ({ url, setCreateForm }: ProductOptionsFormProps) => 
         } = product;
 
         setCreateForm({
-          ...restProduct,
-          imageUrlList: product.imageUrlList,
-          firstOption: product.firstOptions[0] ?? '',
-          secondOption: product.secondOptions[0] ?? null,
-          thirdOption: product.thirdOptions[0] ?? null,
+          data: {
+            ...restProduct,
+            imageUrlList: product.imageUrlList,
+            firstOption: product.firstOptions[0] ?? '',
+            secondOption: product.secondOptions[0] ?? null,
+            thirdOption: product.thirdOptions[0] ?? null,
+          },
         });
       } catch (err) {
         onOpen({ modalType: 'alert', title: '상품 정보를 처리하는 도중 문제가 발생했습니다.' });
