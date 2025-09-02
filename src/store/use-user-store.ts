@@ -1,6 +1,5 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { UseGetMyInfoResponse } from '@/hooks/queries/use-get-my-info';
 
 export interface UserInfo {
   nickname: string;
