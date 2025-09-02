@@ -1,8 +1,8 @@
+import { put } from '@/libs/api/client';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { NOTIFICATION_HISTORY_QUERY_KEY } from '../queries/use-get-notifications';
 import { READ_N_COUNT_QUERY_KEY } from '../queries/use-get-read-n-count';
-import { put } from '@/libs/api/client';
 
 const patchAlilmReadAll = async () => {
   await put('/notifications/read-all');
