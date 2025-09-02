@@ -14,6 +14,10 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'img.msscdn.net',
+      },
+      {
+        protocol: 'https',
         hostname: 'img.29cm.co.kr',
       },
       {

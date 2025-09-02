@@ -2,14 +2,18 @@ import { get } from '@/libs/api/client';
 import { type MyBasket } from '@/types/basket';
 import { useQuery } from '@tanstack/react-query';
 
-type BasketsResponse = MyBasket[];
+type BasketsResponse = {
+  data: {
+    myBasketProductList: MyBasket[];
+  };
+};
 
 export const MY_BASKETS_QUERY_KEY = 'getMyBaskets';
 
 export const getMyBaskets = async () => {
   const data = await get<BasketsResponse>('/baskets/my');
 
-  return data;
+  return data.data;
 };
 
 export const useGetMyBaskets = () => {

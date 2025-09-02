@@ -6,7 +6,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { MY_INFO_QUERY_KEY, type UseGetMyInfoResponse } from '../queries/use-get-my-info';
 
 const postEditEmail = async (userInfo: UseGetMyInfoResponse) => {
-  await post('/member', userInfo);
+  await post('/members', userInfo);
 };
 
 export const useEditEmail = () => {

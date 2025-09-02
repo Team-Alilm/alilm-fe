@@ -5,11 +5,11 @@ import { type MyBasket } from '@/types/basket';
 import * as styles from './index.css';
 
 export interface DeleteProductBtnProps {
-  id: MyBasket['id'];
+  basketId: MyBasket['basketId'];
   name: MyBasket['name'];
 }
 
-const DeleteProductBtn = ({ id, name }: DeleteProductBtnProps) => {
+const DeleteProductBtn = ({ basketId, name }: DeleteProductBtnProps) => {
   const { mutate: deleteBasket } = useDeleteBasket();
 
   const onOpen = useModalStore(state => state.onOpen);
@@ -19,7 +19,7 @@ const DeleteProductBtn = ({ id, name }: DeleteProductBtnProps) => {
       modalType: 'confirm',
       title: '상품을 삭제하시겠습니까?',
       description: name,
-      onClick: () => deleteBasket(id),
+      onClick: () => deleteBasket(basketId),
       mainBtnText: '삭제',
     });
   };

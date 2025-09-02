@@ -5,7 +5,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { MY_BASKETS_QUERY_KEY } from '../queries/use-get-my-baskets';
 
 const deleteBasket = async (basketId: number) => {
-  await del('/baskets', { data: { basketId } });
+  await del(`/baskets/${basketId}`);
 };
 
 export const useDeleteBasket = () => {

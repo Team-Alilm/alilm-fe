@@ -6,7 +6,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { PRODUCTS_QUERY_KEY } from '../queries/use-get-baskets';
 
 const postCopyBaskets = async (productId: number) => {
-  await post('/baskets/copy', { productId });
+  await post(`/baskets/copy/${productId}`);
 
   return productId;
 };

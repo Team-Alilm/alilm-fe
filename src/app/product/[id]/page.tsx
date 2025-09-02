@@ -35,9 +35,11 @@ interface ProductDetailProps {
 }
 
 const ProductDetail = ({ params }: ProductDetailProps) => {
-  const { data: productInfo, isLoading } = useGetProductInfo(params.id);
+  const { data, isLoading } = useGetProductInfo(params.id);
   const { mutate: copyBasketsMutate } = useCopyBaskets();
   const onOpen = useModalStore(state => state.onOpen);
+
+  const productInfo = data?.data;
 
   const handleWaitTogetherButtonClick = () => {
     copyBasketsMutate(params.id);

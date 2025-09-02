@@ -16,7 +16,9 @@ interface ProductOptionsFormProps {
 const ProductOptionsForm = ({ url, setCreateForm }: ProductOptionsFormProps) => {
   const onOpen = useModalStore(state => state.onOpen);
 
-  const { data: product, isPending, isError, error } = useGetProductsCrawling(url);
+  const { data, isPending, isError, error } = useGetProductsCrawling(url);
+
+  const product = data?.data;
 
   useEffect(() => {
     if (product) {
@@ -96,9 +98,9 @@ const ProductOptionsForm = ({ url, setCreateForm }: ProductOptionsFormProps) => 
         <p className={styles.brand}>{product.brand}</p>
         <p className={styles.productName}>{product.name}</p>
       </div>
-      {renderSelect('firstOption', '상품 옵션1', product.firstOptions)}
-      {renderSelect('secondOption', '상품 옵션2', product.secondOptions)}
-      {renderSelect('thirdOption', '상품 옵션3', product.thirdOptions)}
+      {renderSelect('firstOption', '상품 옵션1', product.firstOptions ?? [])}
+      {renderSelect('secondOption', '상품 옵션2', product.secondOptions ?? [])}
+      {renderSelect('thirdOption', '상품 옵션3', product.thirdOptions ?? [])}
     </>
   );
 
