@@ -13,7 +13,7 @@
   },
   "pnpm": {
     "overrides": {
-      "undici": "5.28.4"
+      "undici": "6.21.3"
     }
   },
   "lint-staged": {
