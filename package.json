@@ -37,7 +37,6 @@
     "@vanilla-extract/dynamic": "^2.1.1",
     "@vanilla-extract/recipes": "^0.5.3",
     "axios": "^1.6.7",
-    "cheerio": "^1.0.0",
     "dayjs": "^1.11.13",
     "dotenv": "^16.4.5",
     "es-toolkit": "^1.16.0",
