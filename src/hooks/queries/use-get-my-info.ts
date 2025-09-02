@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { type UseQueryCustomOptions } from '../api-types/types';
 
-export const MY_INFO_QUERY_KEY = 'member';
+export const MY_INFO_QUERY_KEY = 'members/me';
 
 export const getMyInfo = async () => {
   const data = await get<UseGetMyInfoResponse>(`/${MY_INFO_QUERY_KEY}`);
@@ -12,8 +12,12 @@ export const getMyInfo = async () => {
 };
 
 export interface UseGetMyInfoResponse {
-  nickname: string;
-  email: string;
+  data: {
+    id: number;
+    nickname: string;
+    email: string;
+    provider: string;
+  };
 }
 
 export default function useGetMyInfo(options?: UseQueryCustomOptions<UseGetMyInfoResponse>) {

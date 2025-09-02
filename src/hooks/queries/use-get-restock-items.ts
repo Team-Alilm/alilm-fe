@@ -7,13 +7,13 @@ export interface RestockItem {
 }
 
 interface RestockResponse {
-  productList: RestockItem[];
+  recentlyRestockedProductResponseList: RestockItem[];
 }
 
 export const RESTOCK_QUERY_KEY = 'getRestock';
 
 export const getRestockResponse = async () => {
-  const data = await get<RestockResponse>('/alilms/restock/ranking?count=7');
+  const data = await get<RestockResponse>('/products/recently-restocked');
 
   return data;
 };

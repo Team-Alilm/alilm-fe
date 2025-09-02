@@ -13,8 +13,17 @@
   },
   "pnpm": {
     "overrides": {
-      "undici": "5.28.4"
+      "undici": "6.21.3"
     }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -28,7 +37,6 @@
     "@vanilla-extract/dynamic": "^2.1.1",
     "@vanilla-extract/recipes": "^0.5.3",
     "axios": "^1.6.7",
-    "cheerio": "^1.0.0",
     "dayjs": "^1.11.13",
     "dotenv": "^16.4.5",
     "es-toolkit": "^1.16.0",
@@ -42,6 +50,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.53.0",
     "swiper": "^11.1.14",
+    "undici": "^6.21.3",
     "zod": "^3.23.8",
     "zustand": "5.0.0-rc.2"
   },

@@ -2,16 +2,15 @@ import { get } from '@/libs/api/client';
 import { useQuery } from '@tanstack/react-query';
 
 interface MyAlilmCountsResponse {
-  alilmCount: number;
-  basketCount: number;
+  data: { registeredProductCount: number; receivedNotificationCount: number };
 }
 
 export const MY_ALILM_COUNTS_QUERY_KEY = 'getMyAlilmCounts';
 
 export const getMyAlilmCounts = async () => {
-  const data = await get<MyAlilmCountsResponse>('/member/my-alilm-count');
+  const data = await get<MyAlilmCountsResponse>('/members/statistics');
 
-  return data;
+  return data.data;
 };
 
 export const useGetMyAlilmCounts = () => {

@@ -17,7 +17,10 @@ export interface Product {
 }
 
 export interface MyBasket extends Product {
+  basketId: number;
   productId: number;
-  isHidden: boolean;
-  alilm: string;
+  hidden: boolean;
+  // alilm: string;
+  notification: boolean;
+  notificationDate: string;
 }

@@ -12,17 +12,17 @@ import * as styles from './index.css';
 type MyBasketProps = MyBasket;
 
 const MyBasketCard = ({
-  id,
+  basketId,
   productId,
   name,
   brand,
-  imageUrl,
+  thumbnailUrl,
   firstCategory,
   firstOption,
   secondOption,
   thirdOption,
   waitingCount,
-  alilm,
+  notification,
 }: MyBasketProps) => {
   const description = `${brand}${firstOption ? ` / ${firstOption}` : ''}${secondOption ? ` / ${secondOption}` : ''}${thirdOption ? ` / ${thirdOption}` : ''}`;
 
@@ -34,7 +34,7 @@ const MyBasketCard = ({
 
   return (
     <div className={styles.myBasketCard}>
-      <ProductThumbnailImage imageUrl={imageUrl} alilm={alilm} card={'full'} />
+      <ProductThumbnailImage thumbnailUrl={thumbnailUrl} alilm={notification} card={'full'} />
       <div className={styles.productInfo}>
         <BasketBadge>{firstCategory || '-'}</BasketBadge>
         <p className={styles.name} onClick={openProductDetail}>
@@ -42,7 +42,7 @@ const MyBasketCard = ({
         </p>
         <p className={styles.options}>{description}</p>
         <WaitingCounts counts={waitingCount} />
-        <DeleteProductBtn id={id} name={name} />
+        <DeleteProductBtn basketId={basketId} name={name} />
       </div>
     </div>
   );

@@ -78,7 +78,7 @@ const NotificationHistoryList = () => {
           </div>
         </div>
       </div>
-      {notifications.alimHistoryList.map(item => (
+      {notifications.data.notificationResponseList.map(item => (
         <div
           key={item.alilmId}
           className={`${notification} ${item.readYn ? readNotification : ''}`}

@@ -16,13 +16,13 @@ export interface AlimHistoryItem {
 }
 
 export interface NotificationProps {
-  alimHistoryList: AlimHistoryItem[];
+  data: { notificationResponseList: AlimHistoryItem[] };
 }
 
 export const NOTIFICATION_HISTORY_QUERY_KEY = 'getNotificationsHistory';
 
 export const getNotifications = async () => {
-  const data = await get<NotificationProps>('/member/my-alilm-history');
+  const data = await get<NotificationProps>('/notifications/recent');
 
   return data;
 };

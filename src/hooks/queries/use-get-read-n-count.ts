@@ -8,7 +8,7 @@ interface ReadNCount {
 export const READ_N_COUNT_QUERY_KEY = 'getReadNCount';
 
 export const getUnreadCount = async () => {
-  const data = await get<ReadNCount>('/member/my-alilm-history/read-n-count');
+  const data = await get<ReadNCount>('/notifications/unread-count');
 
   return data;
 };

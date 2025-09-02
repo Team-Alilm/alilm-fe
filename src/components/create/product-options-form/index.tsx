@@ -16,7 +16,9 @@ interface ProductOptionsFormProps {
 const ProductOptionsForm = ({ url, setCreateForm }: ProductOptionsFormProps) => {
   const onOpen = useModalStore(state => state.onOpen);
 
-  const { data: product, isPending, isError, error } = useGetProductsCrawling(url);
+  const { data, isPending, isError, error } = useGetProductsCrawling(url);
+
+  const product = data?.data;
 
   useEffect(() => {
     if (product) {
@@ -28,11 +30,13 @@ const ProductOptionsForm = ({ url, setCreateForm }: ProductOptionsFormProps) => 
         } = product;
 
         setCreateForm({
-          ...restProduct,
-          imageUrlList: product.imageUrlList,
-          firstOption: product.firstOptions[0] ?? '',
-          secondOption: product.secondOptions[0] ?? null,
-          thirdOption: product.thirdOptions[0] ?? null,
+          data: {
+            ...restProduct,
+            imageUrlList: product.imageUrlList,
+            firstOption: product.firstOptions[0] ?? '',
+            secondOption: product.secondOptions[0] ?? null,
+            thirdOption: product.thirdOptions[0] ?? null,
+          },
         });
       } catch (err) {
         onOpen({ modalType: 'alert', title: '상품 정보를 처리하는 도중 문제가 발생했습니다.' });
@@ -96,9 +100,9 @@ const ProductOptionsForm = ({ url, setCreateForm }: ProductOptionsFormProps) => 
         <p className={styles.brand}>{product.brand}</p>
         <p className={styles.productName}>{product.name}</p>
       </div>
-      {renderSelect('firstOption', '상품 옵션1', product.firstOptions)}
-      {renderSelect('secondOption', '상품 옵션2', product.secondOptions)}
-      {renderSelect('thirdOption', '상품 옵션3', product.thirdOptions)}
+      {renderSelect('firstOption', '상품 옵션1', product.firstOptions ?? [])}
+      {renderSelect('secondOption', '상품 옵션2', product.secondOptions ?? [])}
+      {renderSelect('thirdOption', '상품 옵션3', product.thirdOptions ?? [])}
     </>
   );
 

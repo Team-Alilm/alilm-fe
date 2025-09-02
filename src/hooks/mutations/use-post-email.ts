@@ -1,12 +1,17 @@
 import { useRouter } from 'next/navigation';
-import { post } from '@/libs/api/client';
+import { put } from '@/libs/api/client';
 import { useModalStore } from '@/store/use-modal-store';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { MY_INFO_QUERY_KEY, type UseGetMyInfoResponse } from '../queries/use-get-my-info';
+import { MY_INFO_QUERY_KEY } from '../queries/use-get-my-info';
 
-const postEditEmail = async (userInfo: UseGetMyInfoResponse) => {
-  await post('/member', userInfo);
+export type EditEmailRequest = {
+  email: string;
+  nickname: string;
+};
+
+const postEditEmail = async (userInfo: EditEmailRequest) => {
+  await put('/members', userInfo);
 };
 
 export const useEditEmail = () => {

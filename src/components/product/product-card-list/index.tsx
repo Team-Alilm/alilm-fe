@@ -18,7 +18,7 @@ import SortSelect from './sort-select';
 import 'swiper/css';
 
 export const PRODUCTS_CATEGORIES = [
-  { name: '전체', value: 'ALL', iconImageUrl: '/icons/img_category_all.svg' },
+  { name: '전체', value: '', iconImageUrl: '/icons/img_category_all.svg' },
   { name: '스포츠/레저', value: 'SPORTS_LEISURE', iconImageUrl: '/icons/img_category_sports.svg' },
   { name: '상의', value: 'TOPS', iconImageUrl: '/icons/img_category_top.svg' },
   { name: '신발', value: 'SHOES', iconImageUrl: '/icons/img_category_shoes.svg' },
@@ -52,7 +52,7 @@ const chunkArray = <T,>(array: T[], size: number): T[][] => {
 const ProductCardList = () => {
   const alilmTab = useAlilmTabsValue();
 
-  const { control, watch } = useForm({ defaultValues: { category: 'ALL' } });
+  const { control, watch } = useForm({ defaultValues: { category: '' } });
   const selectedCategory = watch('category');
 
   const categoryChunks = chunkArray(PRODUCTS_CATEGORIES, 10);
