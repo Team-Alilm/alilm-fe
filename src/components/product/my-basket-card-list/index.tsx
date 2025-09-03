@@ -10,9 +10,10 @@ interface MyBasketCardListProps {
 }
 
 const MyBasketCardList = ({ type }: MyBasketCardListProps) => {
-  const { data: myBaskets } = useGetMyBaskets();
+  const { data } = useGetMyBaskets();
+  const myBaskets = data?.myBasketProductList;
 
-  const alilmedProducts = myBaskets?.filter(product => product.alilm);
+  const alilmedProducts = myBaskets?.filter(product => product.notification);
 
   return (
     <>
@@ -25,15 +26,15 @@ const MyBasketCardList = ({ type }: MyBasketCardListProps) => {
       {type === 'home' && (
         <div className={cardListHome}>
           {myBaskets?.map(myBasket => (
-            <ProductCard key={myBasket.id} {...myBasket} tab="my-basket" />
+            <ProductCard key={myBasket.basketId} {...myBasket} tab="my-basket" />
           ))}
         </div>
       )}
       {type === 'mypage' && (
         <div className={cardListMypage}>
-          {myBaskets?.map(myBasket => (
-            <MyBasketCard key={myBasket.id} {...myBasket} />
-          ))}
+          <div className={cardListMypage}>
+            {myBaskets?.map(myBasket => <MyBasketCard key={myBasket.id} {...myBasket} />)}
+          </div>
         </div>
       )}
     </>

@@ -22,14 +22,17 @@ const Mypage = () => {
 
   useEffect(() => {
     if (accessToken && myInfo) {
-      setUserInfo(myInfo);
+      setUserInfo(myInfo.data);
     }
   }, [myInfo]);
 
   return (
     <div className={mypage}>
-      <Profile userName={myInfo?.nickname} email={myInfo?.email} />
-      <MyAlilm alilmCount={myAlilmCounts?.alilmCount} basketCount={myAlilmCounts?.basketCount} />
+      <Profile userName={myInfo?.data.nickname} email={myInfo?.data.email} />
+      <MyAlilm
+        alilmCount={myAlilmCounts?.receivedNotificationCount}
+        basketCount={myAlilmCounts?.registeredProductCount}
+      />
       <Divider marginX="2.4" />
       <MypageMenu />
     </div>

@@ -2,25 +2,27 @@ import { get } from '@/libs/api/client';
 import { useQuery } from '@tanstack/react-query';
 
 export interface ProductsCrawlingResponse {
-  number: number;
-  name: string;
-  brand: string;
-  thumbnailUrl: string;
-  imageUrlList: string[];
-  store: string;
-  price: number;
-  firstCategory: 'string';
-  secondCategory: 'string';
-  firstOptions: string[];
-  secondOptions: string[];
-  thirdOptions: string[];
+  data: {
+    number: number;
+    name: string;
+    brand: string;
+    thumbnailUrl: string;
+    imageUrlList: string[];
+    store: string;
+    price: number;
+    firstCategory: 'string';
+    secondCategory: 'string';
+    firstOptions: string[];
+    secondOptions: string[];
+    thirdOptions: string[];
+  };
 }
 
 export const PRODUCTS_CRAWLING_QUERY_KEY = 'getProductsCrawling';
 
 export const getProductsCrawling = async (url: string) => {
   try {
-    const data = await get<ProductsCrawlingResponse>(`/products/crawling?url=${url}`);
+    const data = await get<ProductsCrawlingResponse>(`/products/crawl?productUrl=${url}`);
 
     return data;
   } catch (error) {

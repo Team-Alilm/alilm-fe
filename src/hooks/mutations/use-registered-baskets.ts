@@ -22,7 +22,7 @@ export interface RegisteredBasketsParams {
 }
 
 const postRegisteredBaskets = async (params: RegisteredBasketsParams) => {
-  await post('/baskets/registered', params);
+  await post('/products', params);
 };
 
 export const useRegisteredBaskets = () => {

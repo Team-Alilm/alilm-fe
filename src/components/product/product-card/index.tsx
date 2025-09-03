@@ -15,13 +15,15 @@ import * as styles from './index.css';
 type ProductProps = Product & {
   isLoading?: boolean;
   productId?: number;
-  alilm?: string;
+  notification?: boolean;
   borderRadius?: number;
+  basketId?: number;
 };
 
 const ProductCard = ({
   id,
   productId,
+  basketId,
   name,
   brand,
   imageUrl,
@@ -32,7 +34,7 @@ const ProductCard = ({
   thirdOption,
   tab,
   isLoading,
-  alilm,
+  notification,
   waitingCount,
   borderRadius,
 }: ProductProps) => {
@@ -60,8 +62,7 @@ const ProductCard = ({
         <ProductThumbnailImage
           imageUrl={imageUrl}
           thumbnailUrl={thumbnailUrl}
-          tab={tab}
-          alilm={alilm}
+          alilm={notification}
           card="thin"
           counts={waitingCount}
           borderRadius={borderRadius}
@@ -81,7 +82,7 @@ const ProductCard = ({
         </div>
         {/* {tab && <WaitingCounts counts={waitingCount} />} */}
 
-        {tab === 'my-basket' && <DeleteProductBtn id={id} name={name} />}
+        {tab === 'my-basket' && <DeleteProductBtn basketId={basketId ?? 0} name={name} />}
       </div>
     </div>
   );

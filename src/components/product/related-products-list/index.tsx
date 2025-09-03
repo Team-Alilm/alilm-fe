@@ -1,9 +1,13 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+
+import { useRouter } from 'next/navigation';
+import ProductThumbnailImage from '@/components/product/product-thumbnail';
 import { useGetRelatedProducts } from '@/hooks/queries/use-get-related-products';
 import { type Product } from '@/types/basket';
 import { Mousewheel, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import ProductCard from '../product-card';
 import * as styles from './index.css';
 
 import 'swiper/css';
@@ -15,8 +19,17 @@ interface RelatedProductListProps {
 }
 
 const RelatedProductList = ({ productId }: RelatedProductListProps) => {
-  const { data: relatedProducts } = useGetRelatedProducts(productId);
-  console.log(relatedProducts);
+  const { data } = useGetRelatedProducts(productId);
+
+  const relatedProducts = data?.data;
+
+  const router = useRouter();
+
+  const handleProductClick = (relatedProductId: number) => {
+    router.push(`/product/${relatedProductId}`);
+  };
+
+  if (!relatedProducts) return;
 
   return (
     <div className={styles.cardList}>
@@ -27,9 +40,29 @@ const RelatedProductList = ({ productId }: RelatedProductListProps) => {
         modules={[Pagination, Mousewheel]}
         style={{ paddingLeft: '2rem', paddingRight: '1rem' }}
       >
-        {relatedProducts?.relatedProductList.map(product => (
-          <SwiperSlide key={product.id} className={styles.cardWrapper}>
-            <ProductCard {...product} key={product.id} />
+        {relatedProducts.similarProductList.map(product => (
+          <SwiperSlide key={product.productId} className={styles.cardWrapper}>
+            <div className={styles.basketCard}>
+              <div
+                onClick={() => handleProductClick(product.productId)}
+                style={{ cursor: 'pointer', width: '100%' }}
+              >
+                <ProductThumbnailImage
+                  thumbnailUrl={product.thumbnailUrl}
+                  card="thin"
+                  borderRadius={8}
+                />
+              </div>
+              <div>
+                <div
+                  onClick={() => handleProductClick(product.productId)}
+                  className={styles.productInfo}
+                >
+                  <p className={styles.name}>{product.name}</p>
+                  <p className={styles.options}>{product.brand}</p>
+                </div>
+              </div>
+            </div>{' '}
           </SwiperSlide>
         ))}
       </Swiper>

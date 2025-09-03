@@ -28,12 +28,11 @@ interface OldResponse {
 export const RESTOCK_QUERY_KEY = 'getOld';
 
 export const getOldResponse = async () => {
-  const token =
-    'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJJZCI6MSwiaWF0IjoxNzQxMTc2MTE5LCJleHAiOjQzMzMxNzYxMTl9.wp59R_vPNAYEZ1Ozv_Z5TTVV4oEu5TpAOMJQFUePywSCknYJQgfJaczjOlVinPYX9tPxjDhALbMaAIZx9n90Sw';
+  // const token = '';
   const data = await get<OldResponse>('/baskets/old', {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
+    // headers: {
+    //   Authorization: `Bearer ${token}`,
+    // },
   });
 
   if (!data) throw new Error('oldResponse를 가져올 수 없음');

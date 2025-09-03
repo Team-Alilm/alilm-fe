@@ -5,32 +5,27 @@ import { BellRing, Users } from 'lucide-react';
 import * as styles from './index.css';
 
 export interface ProductThumbnailProps {
-  tab?: 'home' | 'my-basket';
   card: 'thin' | 'full' | 'slide';
   thumbnailUrl?: Product['thumbnailUrl'];
   imageUrl?: Product['imageUrl'];
-  alilm?: MyBasket['alilm'];
+  alilm?: MyBasket['notification'];
   counts?: number;
   borderRadius?: number;
 }
 
 const ProductThumbnailImage = ({
-  tab,
   card,
   thumbnailUrl,
-  imageUrl,
   alilm,
   counts,
   borderRadius,
 }: ProductThumbnailProps) => {
-  const validURL = tab === 'home' ? thumbnailUrl : imageUrl;
-
   return (
     <div className={styles.imageWrapper({ card })}>
-      {validURL && (
+      {thumbnailUrl && (
         <>
           <Image
-            src={validURL}
+            src={thumbnailUrl}
             className={styles.thumbnailImage({
               card,
               borderRadius: borderRadius === 0 ? 'none' : 'rounded',

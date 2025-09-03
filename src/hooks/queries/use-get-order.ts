@@ -4,27 +4,29 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 
 interface ProductsResponse {
   data: {
-    customSlice: {
-      size: number;
-      contents: Product[];
-      hasNext: boolean;
-    };
+    // customSlice: {
+    //   size: number;
+    //   contents: Product[];
+    //   hasNext: boolean;
+    // };
+    productList: Product[];
+    hasNext: boolean;
   };
 }
 
 type Cursor = {
   lastProductId: number;
-  price: number;
-  waitingCount: number;
+  lastPrice: number;
+  lastWaitingCount: number;
 };
 
 export const getProducts = async ({
   category,
   sort,
-  size = 9,
+  size = 20,
   lastProductCursor,
 }: {
-  category: string;
+  category?: string;
   sort: string;
   size?: number;
   lastProductCursor?: Cursor;
@@ -36,8 +38,8 @@ export const getProducts = async ({
 
   if (lastProductCursor) {
     query.append('lastProductId', String(lastProductCursor.lastProductId));
-    query.append('price', String(lastProductCursor.price));
-    query.append('waitingCount', String(lastProductCursor.waitingCount));
+    query.append('lastPrice', String(lastProductCursor.lastPrice));
+    query.append('lastWaitingCount', String(lastProductCursor.lastWaitingCount));
   }
 
   return await get<ProductsResponse>(`/products?${query.toString()}`);
@@ -59,20 +61,20 @@ export const useGetOrderResponse = (category: string, sort: string) => {
         lastProductCursor: pageParam,
       }),
     getNextPageParam: (lastPage): Cursor | undefined => {
-      const contents = lastPage.data.customSlice.contents;
+      const { productList, hasNext } = lastPage.data;
 
-      if (contents.length === 0) return undefined;
+      if (!hasNext || productList.length === 0) return undefined;
 
-      const last = contents.at(-1);
+      const last = productList.at(-1);
       if (!last) return undefined;
 
       return {
         lastProductId: last.id,
-        price: last.price,
-        waitingCount: last.waitingCount ?? 0,
+        lastPrice: last.price,
+        lastWaitingCount: last.waitingCount ?? 0,
       };
     },
-    select: data => data.pages.flatMap(page => page.data.customSlice.contents),
+    select: data => data.pages.flatMap(page => page.data.productList),
     initialPageParam: undefined,
   });
 };
