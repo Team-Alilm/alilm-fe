@@ -49,3 +49,10 @@ export const price = style({
   fontWeight: '700',
   color: '#333',
 });
+
+export const thumbnailUrlBtn = style({
+  all: 'unset',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+});
