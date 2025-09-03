@@ -8,6 +8,7 @@ import DeleteProductBtn from '../delete-product';
 import ProductThumbnailImage from '../product-thumbnail';
 import WaitingCounts from '../waiting-counts';
 import * as styles from './index.css';
+import { cardListMypage } from '@/components/product/my-basket-card-list/index.css';
 
 type MyBasketProps = MyBasket;
 
@@ -34,7 +35,9 @@ const MyBasketCard = ({
 
   return (
     <div className={styles.myBasketCard}>
-      <ProductThumbnailImage thumbnailUrl={thumbnailUrl} alilm={notification} card={'full'} />
+      <button onClick={openProductDetail} className={styles.thumbnailUrlBtn}>
+        <ProductThumbnailImage thumbnailUrl={thumbnailUrl} alilm={notification} card={'full'} />
+      </button>
       <div className={styles.productInfo}>
         <BasketBadge>{firstCategory || '-'}</BasketBadge>
         <p className={styles.name} onClick={openProductDetail}>

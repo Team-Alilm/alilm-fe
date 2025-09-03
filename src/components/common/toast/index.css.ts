@@ -30,6 +30,7 @@ export const toastContainer = style({
 });
 
 export const toastViewPort = style({
+  zIndex: 9999,
   position: 'fixed',
   top: '15%',
   left: '50%',

@@ -5,9 +5,8 @@ export const productImage = style({
   width: '100%',
 });
 
-export const waitingTogetherBtn = style({
+const baseButton = style({
   all: 'unset',
-  width: '26.5%',
   height: '5.1rem',
   display: 'flex',
   justifyContent: 'center',
@@ -27,6 +26,13 @@ export const waitingTogetherBtn = style({
     },
   },
 });
+
+export const waitingTogetherBtn = style([baseButton, { width: '26.5%' }]);
+
+export const shareBtn = style([
+  baseButton,
+  { width: 'fit-content', padding: '0 1.4rem' }, // shareBtn은 padding도 다름
+]);
 
 export const productInfo = style({
   padding: '2rem',
@@ -116,4 +122,9 @@ export const loadingText = style({
   color: tokens.colors.textSecondary,
   textAlign: 'center',
   padding: '8rem 0',
+});
+
+export const section = style({
+  display: 'flex',
+  justifyContent: 'space-between',
 });
