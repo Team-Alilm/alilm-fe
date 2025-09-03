@@ -8,7 +8,6 @@ import DeleteProductBtn from '../delete-product';
 import ProductThumbnailImage from '../product-thumbnail';
 import WaitingCounts from '../waiting-counts';
 import * as styles from './index.css';
-import { cardListMypage } from '@/components/product/my-basket-card-list/index.css';
 
 type MyBasketProps = MyBasket;
 
