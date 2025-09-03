@@ -3,16 +3,18 @@ name: Production
 on:
   push:
     branches: [main]
+
 env:
-  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}        # 반드시 org_... ID
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}# 반드시 prj_... ID
+  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   production:
-    name: Production
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -25,14 +27,45 @@ jobs:
           cache-dependency-path: 'pnpm-lock.yaml'
           node-version-file: '.nvmrc'
       - run: pnpm install --no-frozen-lockfile
+
       - name: Install Vercel CLI
         run: pnpm add -g vercel@latest
 
+      # ✅ 프로젝트 링크 (로그 남김)
+      - name: Link Vercel Project (non-interactive)
+        run: |
+          rm -rf .vercel
+          mkdir -p .vercel
+          cat > .vercel/project.json <<'JSON'
+          {
+            "orgId": "${{ env.VERCEL_ORG_ID }}",
+            "projectId": "${{ env.VERCEL_PROJECT_ID }}"
+          }
+          JSON
+          echo "=== Created .vercel/project.json ==="
+          cat .vercel/project.json
+          echo "==================================="
+
       - name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        run: |
+          echo "=== Running vercel whoami ==="
+          vercel whoami --token=$VERCEL_TOKEN || true
+          echo "=== Running vercel pull ==="
+          vercel pull --yes --environment=production --token=$VERCEL_TOKEN
 
       - name: Build Project Artifacts
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel build --prod --token=$VERCEL_TOKEN
 
       - name: Deploy Project Artifacts to Vercel
-        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
+
+      # 실패 시 추가 로그
+      - name: Debug Context on Failure
+        if: failure()
+        run: |
+          echo "=== Debugging on failure ==="
+          pwd && ls -la
+          echo "--- .vercel/project.json ---"
+          test -f .vercel/project.json && cat .vercel/project.json || echo "no project.json"
+          echo "--- vercel whoami ---"
+          vercel whoami --token=$VERCEL_TOKEN || true
