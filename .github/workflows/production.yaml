@@ -6,7 +6,7 @@ on:
 
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}        # 반드시 org_... ID
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}# 반드시 prj_... ID
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }} # 반드시 prj_... ID
   VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
 concurrency:
