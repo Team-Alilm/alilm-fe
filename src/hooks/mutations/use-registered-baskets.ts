@@ -8,19 +8,17 @@ import { PRODUCTS_QUERY_KEY } from '../queries/use-get-baskets';
 import { MY_BASKETS_QUERY_KEY } from '../queries/use-get-my-baskets';
 
 export interface RegisteredBasketsParams {
-  data: {
-    number: number;
-    name: string;
-    brand: string;
-    imageUrlList: string[];
-    firstCategory: string;
-    secondCategory: string;
-    price: number;
-    store: string;
-    firstOption: string;
-    secondOption?: string | null;
-    thirdOption?: string | null;
-  };
+  number: number;
+  name: string;
+  brand: string;
+  imageUrlList: string[];
+  firstCategory: string;
+  secondCategory: string;
+  price: number;
+  store: string;
+  firstOption: string;
+  secondOption?: string | null;
+  thirdOption?: string | null;
 }
 
 const postRegisteredBaskets = async (params: RegisteredBasketsParams) => {
