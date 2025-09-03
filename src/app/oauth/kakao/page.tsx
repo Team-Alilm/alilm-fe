@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { postFcmToken } from '@/libs/api/fcm-token-post-fetch';
 import { LOCAL_STORAGE_KEY, Storage } from '@/libs/storage';
@@ -93,9 +94,34 @@ const OauthKakaoPage = () => {
 
   if (isLoading) {
     return (
-      <div>
-        <p>로그인 진행 중입니다.</p>
-        <span>아무 응답이 없는 경우 다시 로그인 시도해주세요.</span>
+      <div
+        style={{
+          position: 'relative',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '60vh',
+        }}
+      >
+        <div style={{}}>
+          <Image src={`/images/spinner.svg`} alt="spinner" width={150} height={150} />
+        </div>
+
+        {/* 아래쪽 로고 + 텍스트 */}
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: '12px',
+          }}
+        >
+          <Image src={`/images/algamja-logo.svg`} alt="algamja" width={60} height={60} />
+          <span style={{ fontSize: '3rem', fontWeight: 'bold', lineHeight: 1.4 }}>
+            알감자 굽는중
+          </span>
+        </div>
       </div>
     );
   }
