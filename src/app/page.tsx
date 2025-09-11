@@ -98,7 +98,7 @@ const MainPage = () => {
       <Spacer height={60} />
       <div className={styles.firstModule}>
         {restockResponse?.recentlyRestockedProductResponseList && (
-          <h3 className={styles.restock}>최근 재입고된 상품 TOP 7</h3>
+          <h3 className={styles.restock}>최근 재입고된 상품</h3>
         )}
 
         <Swiper
@@ -114,8 +114,8 @@ const MainPage = () => {
           {restockResponse?.recentlyRestockedProductResponseList?.map((item, index) => (
             <SwiperSlide key={item.productId} className={styles.cardWrapper}>
               <button style={{ all: 'unset' }} onClick={() => handleProductClick(item)}>
-                <div className={styles.topBadge}>{`TOP ${index + 1}`}</div>
-                <ProductThumbnailImage card="slide" imageUrl={item.productThumbnailUrl} />
+                <div className={styles.topBadge}>{index + 1}</div>
+                <ProductThumbnailImage card="slide" thumbnailUrl={item.thumbnailUrl} />
               </button>
             </SwiperSlide>
           ))}

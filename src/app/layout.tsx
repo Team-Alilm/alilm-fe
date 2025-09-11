@@ -1,5 +1,5 @@
 import { type PropsWithChildren } from 'react';
-import { type Metadata } from 'next';
+import { type Metadata, type Viewport } from 'next';
 import { ToastNotification } from '@/components/common/toast';
 import { Pretendard } from '@/styles/local-fonts';
 
@@ -13,6 +13,7 @@ import '@radix-ui/themes/styles.css';
 import '@/styles/global.css';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.algamja.com'),
   title: 'Algamja',
   description: 'Algamja',
   keywords: 'Algamja',
@@ -21,12 +22,12 @@ export const metadata: Metadata = {
     description: '재입고 알림을 받아보세요!',
     images: [
       {
-        url: 'https://www.algamja.com//images/alilm-thumbnail.webp',
+        url: '/images/alilm-thumbnail.webp',
         width: 1200,
         height: 630,
       },
     ],
-    url: 'https://www.algamja.com//',
+    url: '/',
   },
   twitter: {
     card: 'summary_large_image',
@@ -35,7 +36,6 @@ export const metadata: Metadata = {
     icon: '/icons/alilm.ico',
   },
   manifest: '/manifest.json',
-  viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0',
 
   // ✅ iOS 홈화면 앱용 메타 태그 추가
   other: {
@@ -43,6 +43,13 @@ export const metadata: Metadata = {
     'apple-mobile-web-app-capable': 'yes',
     'apple-mobile-web-app-status-bar-style': 'default',
   },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1.0,
+  maximumScale: 1.0,
+  userScalable: false,
 };
 
 const RootLayout = ({ children }: PropsWithChildren) => {

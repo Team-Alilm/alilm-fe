@@ -31,9 +31,7 @@ const ProductThumbnailImage = ({
               borderRadius: borderRadius === 0 ? 'none' : 'rounded',
             })}
             alt="Basket Thumbnail"
-            layout="responsive"
-            width={800}
-            height={800}
+            fill
             priority
           />
 

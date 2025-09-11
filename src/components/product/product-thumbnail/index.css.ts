@@ -11,11 +11,16 @@ export const imageWrapper = recipe({
     card: {
       thin: {
         width: '100%',
+        height: '21.8rem',
       },
       full: {
         width: '38%',
+        height: '21.8rem',
       },
-      slide: { width: '100%' },
+      slide: {
+        width: '100%',
+        height: '26rem',
+      },
     },
   },
   defaultVariants: {
@@ -93,8 +98,8 @@ export const thumbnailImage = recipe({
       slide: {
         maxWidth: '17.6rem',
         minWidth: '17.6rem',
-        minHeight: '21.8rem',
-        maxHeight: '21.8rem',
+        minHeight: '26rem',
+        maxHeight: '26rem',
       },
     },
 

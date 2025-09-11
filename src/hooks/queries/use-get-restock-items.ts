@@ -3,7 +3,17 @@ import { useQuery } from '@tanstack/react-query';
 
 export interface RestockItem {
   productId: number;
-  productThumbnailUrl: string;
+  name: string;
+  brand: string;
+  thumbnailUrl: string;
+}
+
+interface RestockApiResponse {
+  code: string;
+  message: string;
+  data: {
+    recentlyRestockedProductResponseList: RestockItem[];
+  };
 }
 
 interface RestockResponse {
@@ -12,10 +22,12 @@ interface RestockResponse {
 
 export const RESTOCK_QUERY_KEY = 'getRestock';
 
-export const getRestockResponse = async () => {
-  const data = await get<RestockResponse>('/products/recently-restocked');
+export const getRestockResponse = async (): Promise<RestockResponse> => {
+  const response = await get<RestockApiResponse>('/products/recently-restocked');
 
-  return data;
+  return {
+    recentlyRestockedProductResponseList: response.data.recentlyRestockedProductResponseList,
+  };
 };
 
 export const useGetRestockResponse = () => {

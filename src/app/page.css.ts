@@ -104,7 +104,7 @@ export const topBadge = style({
   position: 'absolute',
   top: 0,
   left: 0,
-  backgroundColor: '#2D2D2D',
+  backgroundColor: '#FFB600',
   color: '#fff',
   padding: '0.4rem 0.9rem',
   fontSize: '1.1rem',
