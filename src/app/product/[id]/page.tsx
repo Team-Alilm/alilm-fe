@@ -8,6 +8,8 @@ import RelatedProductList from '@/components/product/related-products-list';
 import { useCopyBaskets } from '@/hooks/mutations/use-copy-baskets';
 import { useGetProductInfo } from '@/hooks/queries/use-get-product-info';
 import { useModalStore } from '@/store/use-modal-store';
+import { useToastStore } from '@/store/use-toast-store';
+import { Share2 } from 'lucide-react';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { type PaginationOptions } from 'swiper/types';
@@ -38,6 +40,7 @@ const ProductDetail = ({ params }: ProductDetailProps) => {
   const { data, isLoading } = useGetProductInfo(params.id);
   const { mutate: copyBasketsMutate } = useCopyBaskets();
   const onOpen = useModalStore(state => state.onOpen);
+  const showToast = useToastStore(state => state.showToast);
 
   const productInfo = data?.data;
 
@@ -89,6 +92,16 @@ const ProductDetail = ({ params }: ProductDetailProps) => {
     window.open(productUrl);
   };
 
+  const handleShareBtn = async () => {
+    try {
+      await navigator.clipboard.writeText(`www.algamja.com/product/${params.id}`);
+      showToast('클립보드에 복사되었습니다.');
+    } catch (err) {
+      console.error('클립보드 복사 실패:', err);
+      alert('복사에 실패했습니다. 브라우저 권한을 확인해주세요.');
+    }
+  };
+
   return (
     productInfo && (
       <div>
@@ -123,9 +136,14 @@ const ProductDetail = ({ params }: ProductDetailProps) => {
             {productInfo.secondOption !== null && <span> / {productInfo.secondOption}</span>}
             {productInfo.thirdOption !== null && <span> / {productInfo.thirdOption}</span>}
           </p>
-          <div>
-            <p className={styles.option}>판매가</p>
-            <p className={styles.price}>{productInfo.price.toLocaleString()}</p>
+          <div className={styles.section}>
+            <div>
+              <p className={styles.option}>판매가</p>
+              <p className={styles.price}>{productInfo.price.toLocaleString()}</p>
+            </div>
+            <Button className={styles.shareBtn} onClick={handleShareBtn}>
+              <Share2 />
+            </Button>
           </div>
         </div>
         <div className={styles.buttonSection}>

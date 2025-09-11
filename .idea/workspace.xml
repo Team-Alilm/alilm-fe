@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="b34f67b5-c646-42e3-9423-8810ee57548f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/products/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/products/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/product/[id]/index.css.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/product/[id]/index.css.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/product/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/product/[id]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/toast/index.css.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/toast/index.css.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product/my-basket-card/index.css.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product/my-basket-card/index.css.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product/my-basket-card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product/my-basket-card/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +46,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feat/엔드포인트&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feat/공유하기&quot;,
     &quot;js.debugger.nextJs.config.created.client&quot;: &quot;true&quot;,
     &quot;js.debugger.nextJs.config.created.server&quot;: &quot;true&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
@@ -102,6 +106,7 @@
       <workItem from="1756827819069" duration="69000" />
       <workItem from="1756827891386" duration="958000" />
       <workItem from="1756828857310" duration="4660000" />
+      <workItem from="1756902038783" duration="886000" />
     </task>
     <servers />
   </component>
