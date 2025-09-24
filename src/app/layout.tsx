@@ -1,5 +1,6 @@
 import { type PropsWithChildren } from 'react';
 import { type Metadata, type Viewport } from 'next';
+import Navbar from '@/components/common/navbar';
 import { ToastNotification } from '@/components/common/toast';
 import { Pretendard } from '@/styles/local-fonts';
 
@@ -62,6 +63,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
               <div className={styles.layout}>
                 <HeaderController />
                 <div className={styles.mainContent}>{children}</div>
+                <Navbar />
                 <div id="modal-root" style={{ width: 'inherit' }} />
                 <ToastNotification />
               </div>

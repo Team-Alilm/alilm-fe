@@ -3,7 +3,6 @@
 import { Suspense, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Portal from '@/components/common/modal/modal-portal';
-import Button from '@/components/design-system/button';
 import Divider from '@/components/design-system/divider';
 import Spacer from '@/components/design-system/spacer';
 import { AlilmTabsProvider } from '@/components/main/alilm-tabs/contexts/alilm-tabs-context';
@@ -95,7 +94,13 @@ const MainPage = () => {
       <Suspense fallback={<AlilmInfo />}>
         <AlilmInfo />
       </Suspense> */}
-      <Spacer height={60} />
+
+      <div className={styles.mainBanner}>
+        <button type="button" onClick={handleMoveCreatePage} className={styles.bannerButton}>
+          <img src="/images/mainbanner.png" alt="메인 배너" className={styles.bannerImage} />
+        </button>
+      </div>
+
       <div className={styles.firstModule}>
         {restockResponse?.recentlyRestockedProductResponseList && (
           <h3 className={styles.restock}>최근 재입고된 상품</h3>
@@ -121,9 +126,9 @@ const MainPage = () => {
           ))}
         </Swiper>
       </div>
-      <div style={{ paddingTop: '2rem', display: 'flex', justifyContent: 'center' }}>
+      {/* <div style={{ paddingTop: '2rem', display: 'flex', justifyContent: 'center' }}>
         <Button onClick={handleMoveCreatePage}>재입고 알림 신청하러가기</Button>
-      </div>
+      </div> */}
       {/*{userAccessToken && (*/}
       {/*  <>*/}
       {/*    <Divider marginX={5} />*/}
