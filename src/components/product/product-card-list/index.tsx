@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Divider from '@/components/design-system/divider';
 import Spacer from '@/components/design-system/spacer';
@@ -9,6 +9,7 @@ import { useAlilmTabsValue } from '@/components/main/alilm-tabs/contexts/alilm-t
 import { Controller, useForm } from 'react-hook-form';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import type { Swiper as SwiperType } from 'swiper';
 
 import BasketCardList from '../basket-card-list';
 import MyBasketCardList from '../my-basket-card-list';
@@ -16,6 +17,8 @@ import * as styles from './index.css';
 import SortSelect from './sort-select';
 
 import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 export const PRODUCTS_CATEGORIES = [
   { name: '전체', value: '', iconImageUrl: '/icons/img_category_all.svg' },
@@ -76,6 +79,11 @@ const ProductCardList = () => {
               spaceBetween={1}
               modules={[Navigation, Pagination]}
               onSlideChange={swiper => setActiveIndex(swiper.activeIndex)}
+              cssMode={false}
+              watchOverflow={true}
+              observer={true}
+              observeParents={true}
+              resistanceRatio={0}
             >
               {categoryPairs.map((pair, idx) => (
                 <SwiperSlide key={`slide-${idx}`}>
@@ -98,9 +106,15 @@ const ProductCardList = () => {
                           <Image
                             src={category.iconImageUrl}
                             alt={category.name}
-                            width={40}
-                            height={40}
-                            style={{ borderRadius: '100%' }}
+                            width={67}
+                            height={72}
+                            priority
+                            loading="eager"
+                            style={{
+                              borderRadius: '20%',
+                              filter: isSelected ? 'none' : 'grayscale(100%)',
+                              transition: 'filter 0.3s ease',
+                            }}
                           />
                           <p>{category.name}</p>
                         </button>

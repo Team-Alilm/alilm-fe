@@ -9,8 +9,10 @@ export const productCardList = style({
 
 export const swiper = style({
   width: '90%',
+  minHeight: '20rem',
   justifySelf: 'center',
   padding: '0 1.1rem',
+  marginTop: '2rem',
 });
 
 export const swiperSlide = style({
@@ -21,17 +23,23 @@ export const swiperSlide = style({
   minHeight: '18rem',
   justifyContent: 'center',
   alignItems: 'center',
+  width: '100%',
 });
 
 export const category = style({
   all: 'unset',
   width: '6.7rem',
+  minWidth: '6.7rem',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   gap: '0.4rem',
   fontSize: '1.2rem',
   cursor: 'pointer',
+  transition: 'opacity 0.3s ease',
+  ':hover': {
+    opacity: 0.7,
+  },
 });
 
 export const noProducts = style({
