@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useState } from 'react';
 import Image from 'next/image';
 import Divider from '@/components/design-system/divider';
 import Spacer from '@/components/design-system/spacer';
@@ -9,7 +9,6 @@ import { useAlilmTabsValue } from '@/components/main/alilm-tabs/contexts/alilm-t
 import { Controller, useForm } from 'react-hook-form';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import type { Swiper as SwiperType } from 'swiper';
 
 import BasketCardList from '../basket-card-list';
 import MyBasketCardList from '../my-basket-card-list';

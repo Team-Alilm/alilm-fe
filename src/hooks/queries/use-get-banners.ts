@@ -20,6 +20,7 @@ export const BANNERS_QUERY_KEY = 'getBanners';
 
 export const getBannersResponse = async (): Promise<Banner[]> => {
   const response = await get<BannersApiResponse>('/banners');
+
   return response.data.banners;
 };
 
