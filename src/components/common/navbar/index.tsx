@@ -76,7 +76,10 @@ export default function Navbar() {
         </svg>
         커뮤니티
       </Link>
-      <Link href="/" className={`${styles.navItem} ${pathname === '/' ? styles.active : ''}`}>
+      <Link
+        href="/mypage"
+        className={`${styles.navItem} ${pathname === '/mypage' ? styles.active : ''}`}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
