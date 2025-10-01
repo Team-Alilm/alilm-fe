@@ -53,8 +53,6 @@ const MainPage = () => {
       <ProductListSection />
 
       <Spacer height={20} />
-
-      <Spacer height={80} />
     </div>
   );
 };

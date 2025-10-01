@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { type Control, Controller } from 'react-hook-form';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -27,6 +28,11 @@ interface CategorySwiperProps {
 
 const CategorySwiper = ({ control, categoryPairs, categoryChunks }: CategorySwiperProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const router = useRouter();
+
+  const handleCategoryClick = (categoryValue: string) => {
+    router.push(`/products?category=${categoryValue}`);
+  };
 
   return (
     <Controller
@@ -57,7 +63,7 @@ const CategorySwiper = ({ control, categoryPairs, categoryChunks }: CategorySwip
                     return (
                       <button
                         key={category.value}
-                        onClick={() => field.onChange(category.value)}
+                        onClick={() => handleCategoryClick(category.value)}
                         className={styles.category}
                         style={{
                           fontWeight: isSelected ? '700' : 'normal',

@@ -27,7 +27,10 @@ export default function Navbar() {
         </svg>
         홈
       </Link>
-      <Link href="/" className={`${styles.navItem} ${pathname === '/' ? styles.active : ''}`}>
+      <Link
+        href="/products"
+        className={`${styles.navItem} ${pathname === '/products' ? styles.active : ''}`}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="28"
