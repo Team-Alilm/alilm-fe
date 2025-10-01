@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import * as styles from './index.css';
@@ -18,6 +19,7 @@ const InstagramProductCard = ({
   waitingCount,
 }: InstagramProductCardProps) => {
   const router = useRouter();
+  const [imgError, setImgError] = useState(false);
 
   const handleClick = () => {
     router.push(`/product/${id}`);
@@ -26,14 +28,33 @@ const InstagramProductCard = ({
   return (
     <div className={styles.card} onClick={handleClick}>
       <div className={styles.imageWrapper}>
-        <Image
-          src={imageUrl}
-          alt={productName}
-          fill
-          sizes="(max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
-          className={styles.image}
-          unoptimized
-        />
+        {!imgError ? (
+          <Image
+            src={imageUrl}
+            alt={productName}
+            fill
+            sizes="(max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
+            className={styles.image}
+            priority={false}
+            quality={75}
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <div
+            style={{
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: '#f0f0f0',
+              fontSize: '1.2rem',
+              color: '#999',
+            }}
+          >
+            이미지 로드 실패
+          </div>
+        )}
         {waitingCount && waitingCount > 0 && (
           <div className={styles.overlay}>
             <div className={styles.waitingInfo}>

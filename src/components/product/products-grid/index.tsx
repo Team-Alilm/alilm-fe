@@ -32,9 +32,7 @@ const ProductsGrid = ({ category, sort, search }: ProductsGridProps) => {
   });
 
   const filteredData = search
-    ? sortedData?.filter(product =>
-        product.productName.toLowerCase().includes(search.toLowerCase())
-      )
+    ? sortedData?.filter(product => product.name.toLowerCase().includes(search.toLowerCase()))
     : sortedData;
 
   const hasProducts = filteredData && filteredData.length > 0;
@@ -57,8 +55,8 @@ const ProductsGrid = ({ category, sort, search }: ProductsGridProps) => {
         <InstagramProductCard
           key={product.id}
           id={product.id}
-          productName={product.productName}
-          imageUrl={product.imageUrl}
+          productName={product.name}
+          imageUrl={product.thumbnailUrl}
           waitingCount={product.waitingCount}
         />
       ))}
