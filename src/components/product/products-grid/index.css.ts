@@ -1,4 +1,4 @@
-import { style, keyframes } from '@vanilla-extract/css';
+import { keyframes, style } from '@vanilla-extract/css';
 
 const skeletonShimmer = keyframes({
   '0%': { backgroundPosition: '-200% 0' },

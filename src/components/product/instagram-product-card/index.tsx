@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+
 import * as styles from './index.css';
 
 interface InstagramProductCardProps {
@@ -25,8 +26,21 @@ const InstagramProductCard = ({
     router.push(`/product/${id}`);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleClick();
+    }
+  };
+
   return (
-    <div className={styles.card} onClick={handleClick}>
+    <div
+      className={styles.card}
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      role="button"
+      tabIndex={0}
+    >
       <div className={styles.imageWrapper}>
         {!imgError ? (
           <Image

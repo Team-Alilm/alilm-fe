@@ -2,8 +2,9 @@
 
 import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import Spacer from '@/components/design-system/spacer';
+
 import ScrollToTop from '@/components/common/scroll-to-top';
+import Spacer from '@/components/design-system/spacer';
 import ProductsFilter from '@/components/product/products-filter';
 import ProductsGrid from '@/components/product/products-grid';
 
