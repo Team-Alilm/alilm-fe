@@ -13,8 +13,8 @@ export default function Navbar() {
       <Link href="/" className={`${styles.navItem} ${pathname === '/' ? styles.active : ''}`}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="28"
-          height="28"
+          width="24"
+          height="24"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -33,8 +33,8 @@ export default function Navbar() {
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="28"
-          height="28"
+          width="24"
+          height="24"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -50,17 +50,17 @@ export default function Navbar() {
         카테고리
       </Link>
 
-      <button className={styles.centerButton}>
+      <Link href="/create" className={styles.centerButton}>
         <svg className={styles.centerButtonIcon} viewBox="0 0 24 24">
           <path d="M17 13h-4v4h-2v-4H7v-2h4V7h2v4h4v2z" fill="#ffffff" />
         </svg>
-      </button>
+      </Link>
 
       <Link href="/" className={`${styles.navItem} ${pathname === '/' ? styles.active : ''}`}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="28"
-          height="28"
+          width="24"
+          height="24"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -79,8 +79,8 @@ export default function Navbar() {
       <Link href="/" className={`${styles.navItem} ${pathname === '/' ? styles.active : ''}`}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="28"
-          height="28"
+          width="24"
+          height="24"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"

@@ -8,7 +8,7 @@ export const navbar = style({
   width: '100%',
   minWidth: '32rem',
   maxWidth: '60rem',
-  height: '70px',
+  height: '60px',
   backgroundColor: '#fff',
   borderTop: '1px solid #e5e7eb',
   display: 'flex',
@@ -25,10 +25,10 @@ export const navItem = style({
   alignItems: 'center', // 가로 중앙 정렬
   justifyContent: 'center', // 세로 중앙 정렬
   textAlign: 'center',
-  fontSize: '12px', // 텍스트 크기 조금 줄임
+  fontSize: '11px', // 텍스트 크기 조금 줄임
   color: '#555',
   textDecoration: 'none',
-  gap: '4px', // 아이콘과 텍스트 사이 간격
+  gap: '2px', // 아이콘과 텍스트 사이 간격
   selectors: {
     '&:hover': { color: 'orange' },
   },
@@ -41,8 +41,8 @@ export const active = style({
 
 export const centerButton = style({
   position: 'relative',
-  width: '7.5rem',
-  height: '7.5rem',
+  width: '6rem',
+  height: '6rem',
   borderRadius: '50%',
   backgroundColor: '#FFB600',
   border: '3px solid #FFB600',
@@ -50,20 +50,20 @@ export const centerButton = style({
   alignItems: 'center',
   justifyContent: 'center',
   cursor: 'pointer',
-  transform: 'translateY(-18px)', // Navbar 위쪽으로 15px 올라감
+  transform: 'translateY(-15px)', // Navbar 위쪽으로 15px 올라감
   selectors: {
     '&:hover': {
-      transform: 'translateY(-15px) scale(1.05)',
+      transform: 'translateY(-12px) scale(1.05)',
     },
     '&:active': {
-      transform: 'translateY(-15px) scale(0.95)',
+      transform: 'translateY(-12px) scale(0.95)',
     },
   },
 });
 
 export const centerButtonIcon = style({
-  width: '30px',
-  height: '30px',
+  width: '24px',
+  height: '24px',
   fill: '#FFB600',
   color: '#ffffff', // SVG fill도 흰색으로
 });
