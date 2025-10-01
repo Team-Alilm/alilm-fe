@@ -7,20 +7,33 @@ export const basketCard = style({
   justifyContent: 'flex-start',
   minWidth: '15.8rem',
   maxWidth: '17.6rem',
-
   height: '100%',
+  transition: 'transform 0.2s ease',
+
+  ':hover': {
+    transform: 'translateY(-0.4rem)',
+  },
 });
 
 export const productInfo = style({
   width: '100%',
   cursor: 'pointer',
+  marginTop: '1.2rem',
+});
+
+export const brand = style({
+  fontSize: '1.2rem',
+  fontWeight: '500',
+  color: '#999',
+  marginBottom: '0.6rem',
 });
 
 export const name = style({
   fontSize: '1.4rem',
-  fontWeight: '700',
-  marginBottom: '0.6rem',
-  color: tokens.colors.productName,
+  fontWeight: '600',
+  marginBottom: '0.8rem',
+  color: '#333',
+  lineHeight: '1.4',
 
   // 2줄까지만 보여주고 나머지는 생략
   display: '-webkit-box',
@@ -28,8 +41,12 @@ export const name = style({
   WebkitBoxOrient: 'vertical',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
-  lineHeight: '1.2',
-  maxHeight: 'calc(14rem * 1.2 * 2)',
+});
+
+export const price = style({
+  fontSize: '1.6rem',
+  fontWeight: '700',
+  color: '#333',
 });
 
 export const options = style({
@@ -50,21 +67,29 @@ export const options = style({
 
 export const waitTogetherButton = style({
   display: 'flex',
-  gap: '2.0rem',
-  border: '0.1rem solid #EEEEEE',
-  borderRadius: '0.4rem',
-  height: '3.3rem',
+  gap: '0.6rem',
+  justifyContent: 'center',
+  border: '1px solid #FFB800',
+  borderRadius: '0.6rem',
+  height: '3.6rem',
   alignItems: 'center',
-  padding: '0 2.4rem',
-  fontSize: '1.4rem',
+  padding: '0 1.6rem',
+  fontSize: '1.3rem',
   fontWeight: '600',
-  color: '#101010',
-  background: '#FFFFFF',
+  color: '#CC7A00',
+  background: '#FFF9E6',
   cursor: 'pointer',
   marginTop: '1rem',
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
+  transition: 'all 0.2s ease',
+
+  ':hover': {
+    background: '#FFB800',
+    color: '#7A4800',
+    transform: 'scale(1.02)',
+  },
 });
 
 const skeletonShimmer = keyframes({

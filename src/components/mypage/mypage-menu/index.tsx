@@ -7,10 +7,10 @@ const MypageMenu = () => {
       <p style={{ fontSize: '1.4rem', color: '#818181' }}>메뉴</p>
       <Menu
         text="알림 받아볼 이메일 변경"
-        icon={<AtSign width={'1.6rem'} />}
+        icon={<AtSign width={'1.2rem'} />}
         path="/mypage/edit-email"
       />
-      <Menu text="나의 알림" icon={<Bell width={'1.6rem'} />} path="/mypage/my-alilm" />
+      <Menu text="나의 알림" icon={<Bell width={'1.2rem'} />} path="/mypage/my-alilm" />
     </>
   );
 };

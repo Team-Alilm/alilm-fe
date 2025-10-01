@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Portal from '@/components/common/modal/modal-portal';
 import Spacer from '@/components/design-system/spacer';

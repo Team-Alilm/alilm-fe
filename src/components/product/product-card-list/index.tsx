@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useState } from 'react';
+import { Suspense } from 'react';
 import Spacer from '@/components/design-system/spacer';
 import SwitchCase from '@/components/design-system/switch-case';
 import { useAlilmTabsValue } from '@/components/main/alilm-tabs/contexts/alilm-tabs-context';
@@ -8,7 +8,6 @@ import { useAlilmTabsValue } from '@/components/main/alilm-tabs/contexts/alilm-t
 import BasketCardList from '../basket-card-list';
 import MyBasketCardList from '../my-basket-card-list';
 import * as styles from './index.css';
-import SortSelect from './sort-select';
 
 export const PRODUCTS_CATEGORIES = [
   { name: '전체', value: '', iconImageUrl: '/icons/img_category_all.svg' },
@@ -45,23 +44,23 @@ export const chunkArray = <T,>(array: T[], size: number): T[][] => {
 const ProductCardList = () => {
   const alilmTab = useAlilmTabsValue();
 
-  type SortValue = 'WAITING_COUNT_DESC' | 'PRICE_ASC' | 'PRICE_DESC' | 'CREATED_DATE_DESC';
-
-  const [sort, setSort] = useState<SortValue>('WAITING_COUNT_DESC');
-
   return (
     <div className={styles.productCardList}>
-      <Spacer height={20} />
+      <Spacer height={40} />
+
+      <div className={styles.sectionHeader}>
+        <h2 className={styles.sectionTitle}>전체 상품</h2>
+        <p className={styles.sectionSubtitle}>대기자가 많은 순서대로 보여드려요</p>
+      </div>
+
+      <Spacer height={24} />
 
       <SwitchCase
         value={alilmTab}
         caseBy={{
           home: (
-            <Suspense fallback={<BasketCardList category="" sort={sort} />}>
-              <div style={{ display: 'flex', margin: '0 2rem 2rem auto' }}>
-                <SortSelect value={sort} onChange={setSort} />
-              </div>
-              <BasketCardList category="" sort={sort} />
+            <Suspense fallback={<BasketCardList category="" sort="WAITING_COUNT_DESC" />}>
+              <BasketCardList category="" sort="WAITING_COUNT_DESC" />
             </Suspense>
           ),
           myAlilm: (
@@ -72,7 +71,7 @@ const ProductCardList = () => {
         }}
         defaultComponent={
           <Suspense>
-            <BasketCardList category="" sort={sort} />
+            <BasketCardList category="" sort="WAITING_COUNT_DESC" />
           </Suspense>
         }
       />

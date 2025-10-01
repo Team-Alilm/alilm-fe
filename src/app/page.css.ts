@@ -33,7 +33,13 @@ export const bannerImage = style({
   cursor: 'pointer',
 });
 
-export const firstModule = style({});
+export const firstModule = style({
+  padding: '2rem 0',
+  background: 'linear-gradient(135deg, #FFF6CC 0%, #ffffff 100%)',
+  borderRadius: '1.6rem',
+  margin: '1rem',
+  boxShadow: '0 4px 20px rgba(255, 182, 0, 0.1)',
+});
 
 export const secondModule = style({
   padding: '0 1rem',
@@ -41,17 +47,38 @@ export const secondModule = style({
 
 export const cardWrapper = style({
   marginRight: '1.2rem',
+  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
 
   selectors: {
     '&.swiper-slide': {
       width: '18rem',
     },
+    '&:hover': {
+      transform: 'translateY(-0.5rem)',
+      boxShadow: '0 8px 25px rgba(255, 182, 0, 0.2)',
+    },
   },
 });
 
 export const restock = style({
-  fontSize: '2rem',
-  padding: '0 0 2.2rem 2rem',
+  fontSize: '2.2rem',
+  fontWeight: '700',
+  color: '#935C00',
+  padding: '0 0 2rem 2rem',
+  marginBottom: '1rem',
+  position: 'relative',
+  textShadow: '0 1px 2px rgba(0, 0, 0, 0.1)',
+
+  '::after': {
+    content: '""',
+    position: 'absolute',
+    bottom: '1rem',
+    left: '2rem',
+    width: '4rem',
+    height: '0.3rem',
+    background: 'linear-gradient(135deg, #FFDC66 0%, #FFB600 100%)',
+    borderRadius: '0.15rem',
+  },
 });
 
 export const late1 = style({
@@ -127,20 +154,26 @@ export const rightGrid = style({
 
 export const topBadge = style({
   position: 'absolute',
-  top: 0,
-  left: 0,
-  backgroundColor: '#FFB600',
-  color: '#fff',
-  padding: '0.4rem 0.9rem',
-  fontSize: '1.1rem',
-  fontWeight: 600,
+  top: '1rem',
+  left: '1rem',
+  background: 'linear-gradient(135deg, #FFB600 0%, #EDA600 100%)',
+  color: '#7A4800',
+  padding: '0.6rem 1rem',
+  fontSize: '1rem',
+  fontWeight: 700,
+  borderRadius: '2rem',
+  boxShadow: '0 4px 12px rgba(255, 182, 0, 0.4)',
   zIndex: 2,
   cursor: 'pointer',
+  transform: 'scale(1)',
+  transition: 'transform 0.2s ease',
 
-  borderTopLeftRadius: '0.8rem',
-  borderTopRightRadius: '0.4rem',
-  borderBottomRightRadius: '0.4rem',
-  borderBottomLeftRadius: '0rem',
+  selectors: {
+    '&:hover': {
+      transform: 'scale(1.05)',
+      background: 'linear-gradient(135deg, #FFCD3F 0%, #FFB600 100%)',
+    },
+  },
 });
 
 export const topBadge1 = style({
@@ -209,4 +242,30 @@ export const options = style({
   textOverflow: 'ellipsis',
   lineHeight: '1.2',
   maxHeight: 'calc(1.3rem * 1.2 * 2)',
+});
+
+export const productInfo = style({
+  padding: '1rem',
+  textAlign: 'left',
+});
+
+export const brandName = style({
+  fontSize: '1.2rem',
+  fontWeight: '500',
+  color: '#935C00',
+  marginBottom: '0.4rem',
+});
+
+export const productName = style({
+  fontSize: '1.4rem',
+  fontWeight: '600',
+  color: '#333',
+  lineHeight: '1.3',
+
+  // 2줄까지만 보여주고 나머지는 생략
+  display: '-webkit-box',
+  WebkitLineClamp: 2,
+  WebkitBoxOrient: 'vertical',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
 });

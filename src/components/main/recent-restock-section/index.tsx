@@ -20,9 +20,17 @@ const RecentRestockSection = () => {
     return null;
   }
 
+  const formatPrice = (price?: number) => {
+    if (!price) return '가격 미정';
+    return `${price.toLocaleString()}원`;
+  };
+
   return (
     <div className={styles.firstModule}>
-      <h3 className={styles.restock}>최근 재입고된 상품</h3>
+      <div className={styles.sectionHeader}>
+        <h3 className={styles.restock}>최근 재입고된 상품</h3>
+        <p className={styles.sectionSubtitle}>인기 상품을 빠르게 만나보세요</p>
+      </div>
 
       <Swiper
         slidesPerView="auto"
@@ -31,7 +39,7 @@ const RecentRestockSection = () => {
           releaseOnEdges: true,
         }}
         modules={[Pagination, Mousewheel, Autoplay]}
-        style={{ padding: '0 0 2rem 2rem' }}
+        style={{ padding: '0 0 2rem 2rem', background: 'transparent' }}
         autoplay={{
           delay: 3000,
           disableOnInteraction: false,
@@ -39,12 +47,16 @@ const RecentRestockSection = () => {
       >
         {restockResponse.recentlyRestockedProductResponseList.map((item, index) => (
           <SwiperSlide key={item.productId} className={styles.cardWrapper}>
-            <button style={{ all: 'unset' }} onClick={() => handleProductClick(item)}>
+            <button
+              style={{ all: 'unset', cursor: 'pointer' }}
+              onClick={() => handleProductClick(item)}
+            >
               <div className={styles.topBadge}>{index + 1}</div>
               <ProductThumbnailImage card="slide" thumbnailUrl={item.thumbnailUrl} />
               <div className={styles.productInfo}>
                 <div className={styles.brandName}>{item.brand}</div>
                 <div className={styles.productName}>{item.name}</div>
+                <div className={styles.price}>{formatPrice(item.price)}</div>
               </div>
             </button>
           </SwiperSlide>

@@ -37,10 +37,9 @@ const ProductCard = ({
   notification,
   waitingCount,
   borderRadius,
+  price,
 }: ProductProps) => {
   const { mutate: copyBasketsMutate } = useCopyBaskets();
-
-  const description = `${brand}${firstOption ? ` / ${firstOption}` : ''}${secondOption ? ` / ${secondOption}` : ''}${thirdOption ? ` / ${thirdOption}` : ''}`;
 
   const router = useRouter();
 
@@ -50,6 +49,11 @@ const ProductCard = ({
 
   const handleProductClick = () => {
     router.push(tab === 'my-basket' ? `/product/${productId}` : `/product/${id}`);
+  };
+
+  const formatPrice = (price?: number) => {
+    if (!price) return '가격 미정';
+    return `${price.toLocaleString()}원`;
   };
 
   if (isLoading || !id) {
@@ -68,22 +72,21 @@ const ProductCard = ({
           borderRadius={borderRadius}
         />
       </div>
+
       {tab === 'home' && (
         <button onClick={handleWaitTogetherButtonClick} className={styles.waitTogetherButton}>
           <Icon icon="UserTwoPerson" width={12} height={12} />
           함께 기다리기
         </button>
       )}
-      <div>
-        <div onClick={handleProductClick} className={styles.productInfo}>
-          <BasketBadge>{firstCategory || '-'}</BasketBadge>
-          <p className={styles.name}>{name}</p>
-          <p className={styles.options}>{description}</p>
-        </div>
-        {/* {tab && <WaitingCounts counts={waitingCount} />} */}
 
-        {tab === 'my-basket' && <DeleteProductBtn basketId={basketId ?? 0} name={name} />}
+      <div onClick={handleProductClick} className={styles.productInfo}>
+        <p className={styles.brand}>{brand}</p>
+        <p className={styles.name}>{name}</p>
+        <p className={styles.price}>{formatPrice(price)}</p>
       </div>
+
+      {tab === 'my-basket' && <DeleteProductBtn basketId={basketId ?? 0} name={name} />}
     </div>
   );
 };

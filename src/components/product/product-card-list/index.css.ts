@@ -7,20 +7,39 @@ export const productCardList = style({
   alignItems: 'center',
 });
 
+export const sectionHeader = style({
+  width: '100%',
+  padding: '0 2rem',
+  textAlign: 'left',
+});
+
+export const sectionTitle = style({
+  fontSize: '2.4rem',
+  fontWeight: '700',
+  color: '#333',
+  marginBottom: '0.8rem',
+});
+
+export const sectionSubtitle = style({
+  fontSize: '1.4rem',
+  fontWeight: '400',
+  color: '#999',
+});
+
 export const swiper = style({
   width: '90%',
-  minHeight: '20rem',
+  minHeight: '15rem',
   justifySelf: 'center',
   padding: '0 1.1rem',
-  marginTop: '2rem',
+  marginTop: '0.5rem',
 });
 
 export const swiperSlide = style({
   display: 'flex',
   flexDirection: 'column',
-  gap: '2rem',
-  padding: '1rem 0',
-  minHeight: '18rem',
+  gap: '1rem',
+  padding: '0.25rem 0',
+  minHeight: '13rem',
   justifyContent: 'center',
   alignItems: 'center',
   width: '100%',
@@ -28,18 +47,28 @@ export const swiperSlide = style({
 
 export const category = style({
   all: 'unset',
-  width: '6.7rem',
-  minWidth: '6.7rem',
+  width: '6rem',
+  minWidth: '6rem',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  gap: '0.4rem',
-  fontSize: '1.2rem',
+  gap: '0.3rem',
+  fontSize: '1rem',
   cursor: 'pointer',
   transition: 'opacity 0.3s ease',
   ':hover': {
     opacity: 0.7,
   },
+});
+
+export const categoryText = style({
+  fontSize: '1rem',
+  textAlign: 'center',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  width: '100%',
+  lineHeight: '1.2',
 });
 
 export const noProducts = style({
