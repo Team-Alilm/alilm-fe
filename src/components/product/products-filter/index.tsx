@@ -8,7 +8,7 @@ import * as styles from './index.css';
 
 const SORT_OPTIONS = [
   { label: '대기자 많은순', value: 'WAITING_COUNT_DESC' },
-  { label: '최신순', value: 'CREATED_AT_DESC' },
+  { label: '최신순', value: 'CREATED_DATE_DESC' },
   { label: '가격 낮은순', value: 'PRICE_ASC' },
   { label: '가격 높은순', value: 'PRICE_DESC' },
 ];
