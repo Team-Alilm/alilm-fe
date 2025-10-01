@@ -19,7 +19,7 @@ export const imageWrapper = recipe({
       },
       slide: {
         width: '100%',
-        height: '26rem',
+        height: '22rem',
       },
     },
   },
@@ -98,8 +98,8 @@ export const thumbnailImage = recipe({
       slide: {
         maxWidth: '17.6rem',
         minWidth: '17.6rem',
-        minHeight: '26rem',
-        maxHeight: '26rem',
+        minHeight: '22rem',
+        maxHeight: '22rem',
       },
     },
 

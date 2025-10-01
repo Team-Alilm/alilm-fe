@@ -1,25 +1,23 @@
 'use client';
 
 import { Suspense, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
 import Portal from '@/components/common/modal/modal-portal';
 import Spacer from '@/components/design-system/spacer';
-import { AlilmTabsProvider } from '@/components/main/alilm-tabs/contexts/alilm-tabs-context';
+import ProductListSection from '@/components/main/product-list-section';
 import MainBanner from '@/components/main/main-banner';
 import OnboardingModal from '@/components/main/onboarding';
-import ProductCardList from '@/components/product/product-card-list';
-import ProductThumbnailImage from '@/components/product/product-thumbnail';
+import RecentRestockSection from '@/components/main/recent-restock-section';
+import CategorySwiper from '@/components/product/category-swiper';
+import { PRODUCTS_CATEGORIES, chunkArray } from '@/components/product/product-card-list';
 import useBooleanState from '@/hooks/common/use-boolean-state';
-import { type RestockItem, useGetRestockResponse } from '@/hooks/queries/use-get-restock-items';
-import { Autoplay, Mousewheel, Pagination } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-import * as styles from './page.css';
 
 const MainPage = () => {
-  const router = useRouter();
   const onBoardingModalState = useBooleanState();
-  const { data: restockResponse } = useGetRestockResponse();
+
+  const { control } = useForm({ defaultValues: { category: '' } });
+  const categoryChunks = chunkArray(PRODUCTS_CATEGORIES, 10);
+  const categoryPairs = chunkArray(PRODUCTS_CATEGORIES, 2);
 
   useEffect(() => {
     if ('serviceWorker' in navigator) {
@@ -34,10 +32,6 @@ const MainPage = () => {
     }
   }, []);
 
-  const handleProductClick = (item: RestockItem) => {
-    router.push(`/product/${item.productId}`);
-  };
-
   return (
     <div>
       <Portal>
@@ -48,41 +42,17 @@ const MainPage = () => {
 
       <MainBanner />
 
-      <div>
-        <Suspense fallback={<div>탭 정보 초기화 중...</div>}>
-          <AlilmTabsProvider>
-            <ProductCardList />
-          </AlilmTabsProvider>
-        </Suspense>
-      </div>
+      <CategorySwiper
+        control={control}
+        categoryPairs={categoryPairs}
+        categoryChunks={categoryChunks}
+      />
 
-      <Spacer height={50} />
+      <RecentRestockSection />
 
-      <div className={styles.firstModule}>
-        {restockResponse?.recentlyRestockedProductResponseList && (
-          <h3 className={styles.restock}>최근 재입고된 상품</h3>
-        )}
+      <ProductListSection />
 
-        <Swiper
-          slidesPerView="auto"
-          mousewheel={true}
-          modules={[Pagination, Mousewheel, Autoplay]}
-          style={{ padding: '0 0 2rem 2rem' }}
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: false,
-          }}
-        >
-          {restockResponse?.recentlyRestockedProductResponseList?.map((item, index) => (
-            <SwiperSlide key={item.productId} className={styles.cardWrapper}>
-              <button style={{ all: 'unset' }} onClick={() => handleProductClick(item)}>
-                <div className={styles.topBadge}>{index + 1}</div>
-                <ProductThumbnailImage card="slide" thumbnailUrl={item.thumbnailUrl} />
-              </button>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+      <Spacer height={20} />
 
       <Spacer height={80} />
     </div>

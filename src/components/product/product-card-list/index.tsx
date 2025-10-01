@@ -1,23 +1,14 @@
 'use client';
 
 import { Suspense, useState } from 'react';
-import Image from 'next/image';
-import Divider from '@/components/design-system/divider';
 import Spacer from '@/components/design-system/spacer';
 import SwitchCase from '@/components/design-system/switch-case';
 import { useAlilmTabsValue } from '@/components/main/alilm-tabs/contexts/alilm-tabs-context';
-import { Controller, useForm } from 'react-hook-form';
-import { Navigation, Pagination } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
 
 import BasketCardList from '../basket-card-list';
 import MyBasketCardList from '../my-basket-card-list';
 import * as styles from './index.css';
 import SortSelect from './sort-select';
-
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 
 export const PRODUCTS_CATEGORIES = [
   { name: '전체', value: '', iconImageUrl: '/icons/img_category_all.svg' },
@@ -42,7 +33,7 @@ export const PRODUCTS_CATEGORIES = [
   { name: '디지털', value: '디지털/라이프', iconImageUrl: '/icons/img_category_digital.svg' },
 ];
 
-const chunkArray = <T,>(array: T[], size: number): T[][] => {
+export const chunkArray = <T,>(array: T[], size: number): T[][] => {
   const result: T[][] = [];
   for (let i = 0; i < array.length; i += size) {
     result.push(array.slice(i, i + size));
@@ -54,113 +45,23 @@ const chunkArray = <T,>(array: T[], size: number): T[][] => {
 const ProductCardList = () => {
   const alilmTab = useAlilmTabsValue();
 
-  const { control, watch } = useForm({ defaultValues: { category: '' } });
-  const selectedCategory = watch('category');
-
-  const categoryChunks = chunkArray(PRODUCTS_CATEGORIES, 10);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const categoryPairs = chunkArray(PRODUCTS_CATEGORIES, 2); // 2개씩 자르기 → 한 슬라이드당 2개 카테고리
   type SortValue = 'WAITING_COUNT_DESC' | 'PRICE_ASC' | 'PRICE_DESC' | 'CREATED_DATE_DESC';
 
   const [sort, setSort] = useState<SortValue>('WAITING_COUNT_DESC');
 
   return (
     <div className={styles.productCardList}>
-      {/* 카태고리 영역 */}
-      <Controller
-        name="category"
-        control={control}
-        render={({ field }) => (
-          <div className={styles.swiper}>
-            <Swiper
-              slidesPerView={5}
-              spaceBetween={1}
-              modules={[Navigation, Pagination]}
-              onSlideChange={swiper => setActiveIndex(swiper.activeIndex)}
-              cssMode={false}
-              watchOverflow={true}
-              observer={true}
-              observeParents={true}
-              resistanceRatio={0}
-            >
-              {categoryPairs.map((pair, idx) => (
-                <SwiperSlide key={`slide-${idx}`}>
-                  <div className={styles.swiperSlide}>
-                    {pair.map((category, i) => {
-                      if (!category) {
-                        return <div key={`empty-${i}`} />;
-                      }
-                      const isSelected = field.value === category.value;
-
-                      return (
-                        <button
-                          key={category.value}
-                          onClick={() => field.onChange(category.value)}
-                          className={styles.category}
-                          style={{
-                            fontWeight: isSelected ? '700' : 'normal',
-                          }}
-                        >
-                          <Image
-                            src={category.iconImageUrl}
-                            alt={category.name}
-                            width={67}
-                            height={72}
-                            priority
-                            loading="eager"
-                            style={{
-                              borderRadius: '20%',
-                              filter: isSelected ? 'none' : 'grayscale(100%)',
-                              transition: 'filter 0.3s ease',
-                            }}
-                          />
-                          <p>{category.name}</p>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                marginTop: '1rem',
-                gap: '0.5rem',
-              }}
-            >
-              {categoryChunks.map((_, i) => (
-                <div
-                  key={i}
-                  style={{
-                    width: i === activeIndex ? '3.2rem' : '0.8rem',
-                    height: '0.4rem',
-                    borderRadius: '0.2rem',
-                    backgroundColor: i === activeIndex ? '#FFC814' : '#DADADA',
-                    transition: 'all 0.3s ease',
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-        )}
-      />
-
       <Spacer height={20} />
-      <Divider thickness="thin" />
-      <Spacer height={40} />
 
       <SwitchCase
         value={alilmTab}
         caseBy={{
           home: (
-            <Suspense fallback={<BasketCardList category={selectedCategory} sort={sort} />}>
+            <Suspense fallback={<BasketCardList category="" sort={sort} />}>
               <div style={{ display: 'flex', margin: '0 2rem 2rem auto' }}>
                 <SortSelect value={sort} onChange={setSort} />
               </div>
-              <BasketCardList category={selectedCategory} sort={sort} />
+              <BasketCardList category="" sort={sort} />
             </Suspense>
           ),
           myAlilm: (
@@ -171,7 +72,7 @@ const ProductCardList = () => {
         }}
         defaultComponent={
           <Suspense>
-            <BasketCardList category={selectedCategory} sort={sort} />
+            <BasketCardList category="" sort={sort} />
           </Suspense>
         }
       />

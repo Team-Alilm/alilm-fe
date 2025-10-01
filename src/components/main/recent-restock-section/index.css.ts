@@ -1,0 +1,72 @@
+import { style } from '@vanilla-extract/css';
+
+export const firstModule = style({
+  padding: '2rem 0',
+  background: '#FFF9E6',
+  margin: '2rem 0',
+  borderRadius: '0.8rem',
+});
+
+export const cardWrapper = style({
+  marginRight: '1.2rem',
+  transition: 'transform 0.2s ease',
+  background: '#FFFFFF',
+  overflow: 'hidden',
+  borderRadius: '0.6rem',
+
+  selectors: {
+    '&.swiper-slide': {
+      width: '18rem',
+    },
+    '&:hover': {
+      transform: 'translateY(-0.3rem)',
+    },
+  },
+});
+
+export const restock = style({
+  fontSize: '1.8rem',
+  fontWeight: '700',
+  color: '#CC7A00',
+  padding: '0 0 1.5rem 2rem',
+  marginBottom: '0.5rem',
+});
+
+export const topBadge = style({
+  position: 'absolute',
+  top: '1rem',
+  left: '1rem',
+  background: '#FFB800',
+  color: '#7A4800',
+  padding: '0.5rem 0.9rem',
+  fontSize: '1.2rem',
+  fontWeight: 700,
+  zIndex: 2,
+  borderRadius: '0.4rem',
+});
+
+export const productInfo = style({
+  padding: '1rem',
+  textAlign: 'left',
+});
+
+export const brandName = style({
+  fontSize: '1.2rem',
+  fontWeight: '500',
+  color: '#FF8C00',
+  marginBottom: '0.4rem',
+});
+
+export const productName = style({
+  fontSize: '1.4rem',
+  fontWeight: '600',
+  color: '#333',
+  lineHeight: '1.3',
+
+  // 2줄까지만 보여주고 나머지는 생략
+  display: '-webkit-box',
+  WebkitLineClamp: 2,
+  WebkitBoxOrient: 'vertical',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+});
