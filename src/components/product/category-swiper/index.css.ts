@@ -29,9 +29,9 @@ export const category = style({
   gap: '0.3rem',
   fontSize: '1rem',
   cursor: 'pointer',
-  transition: 'opacity 0.3s ease',
+  transition: 'all 0.2s ease',
   ':hover': {
-    opacity: 0.7,
+    transform: 'translateY(-4px) scale(1.05)',
   },
 });
 
