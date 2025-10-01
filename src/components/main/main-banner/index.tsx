@@ -25,8 +25,8 @@ const MainBanner = () => {
     <div className={styles.mainBanner}>
       <button type="button" onClick={handleMoveCreatePage} className={styles.bannerButton}>
         <img
-          src={banners?.[0]?.imageUrl}
-          alt={banners?.[0]?.title}
+          src={banners?.[0]?.imageUrl || '/images/main_banner.png'}
+          alt={banners?.[0]?.title || '메인 배너'}
           className={styles.bannerImage}
         />
       </button>

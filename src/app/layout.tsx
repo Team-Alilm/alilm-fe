@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   // ✅ iOS 홈화면 앱용 메타 태그 추가
   other: {
     'apple-mobile-web-app-title': '알감자',
-    'apple-mobile-web-app-capable': 'yes',
+    'mobile-web-app-capable': 'yes',
     'apple-mobile-web-app-status-bar-style': 'default',
   },
 };
