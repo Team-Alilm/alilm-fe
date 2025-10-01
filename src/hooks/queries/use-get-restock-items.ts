@@ -6,6 +6,7 @@ export interface RestockItem {
   name: string;
   brand: string;
   thumbnailUrl: string;
+  price?: number;
 }
 
 interface RestockApiResponse {

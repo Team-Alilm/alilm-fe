@@ -22,6 +22,7 @@ const RecentRestockSection = () => {
 
   const formatPrice = (price?: number) => {
     if (!price) return '가격 미정';
+
     return `${price.toLocaleString()}원`;
   };
 

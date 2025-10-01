@@ -3,7 +3,6 @@
 
 import { useRouter } from 'next/navigation';
 import Icon from '@/components/icons';
-import { BasketBadge } from '@/components/product/basket-badge';
 import { useCopyBaskets } from '@/hooks/mutations/use-copy-baskets';
 import { type Product } from '@/types/basket';
 
@@ -28,10 +27,6 @@ const ProductCard = ({
   brand,
   imageUrl,
   thumbnailUrl,
-  firstCategory,
-  firstOption,
-  secondOption,
-  thirdOption,
   tab,
   isLoading,
   notification,
@@ -51,9 +46,10 @@ const ProductCard = ({
     router.push(tab === 'my-basket' ? `/product/${productId}` : `/product/${id}`);
   };
 
-  const formatPrice = (price?: number) => {
-    if (!price) return '가격 미정';
-    return `${price.toLocaleString()}원`;
+  const formatPrice = (priceValue?: number) => {
+    if (!priceValue) return '가격 미정';
+
+    return `${priceValue.toLocaleString()}원`;
   };
 
   if (isLoading || !id) {

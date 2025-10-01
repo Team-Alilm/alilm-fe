@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { Controller, Control } from 'react-hook-form';
+import { type Control, Controller } from 'react-hook-form';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -19,6 +19,7 @@ interface Category {
 }
 
 interface CategorySwiperProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   control: Control<any>;
   categoryPairs: (Category | null)[][];
   categoryChunks: Category[][];
