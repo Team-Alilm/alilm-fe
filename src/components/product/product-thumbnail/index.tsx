@@ -32,6 +32,7 @@ const ProductThumbnailImage = ({
             })}
             alt="Basket Thumbnail"
             fill
+            sizes="(max-width: 768px) 50vw, 33vw"
             priority
           />
 
