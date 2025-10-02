@@ -24,6 +24,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'cf.product-image.s.zigzag.kr',
       },
+      {
+        protocol: 'https',
+        hostname: 'file.notion.so',
+      },
     ],
   },
 };
