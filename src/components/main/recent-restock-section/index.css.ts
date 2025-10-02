@@ -41,7 +41,7 @@ export const restock = style({
   fontSize: '2.4rem',
   fontWeight: '700',
   color: '#333',
-  padding: '0 0 0.8rem 2rem',
+  padding: '0 0 0.8rem 0rem',
   marginBottom: '0rem',
 });
 
@@ -89,4 +89,18 @@ export const price = style({
   fontSize: '1.6rem',
   fontWeight: '700',
   color: '#333',
+});
+
+export const emptyState = style({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  minHeight: '20rem',
+  padding: '4rem 2rem',
+});
+
+export const emptyMessage = style({
+  fontSize: '1.6rem',
+  fontWeight: '500',
+  color: '#999',
 });
