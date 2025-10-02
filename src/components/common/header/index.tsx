@@ -37,8 +37,6 @@ const Header = () => {
   const { data: unreadCount } = useGetUnreadCount(accessToken);
   const unreadNotificationCount = unreadCount?.readNCount ?? 0;
 
-  const notificationNumber = unreadNotificationCount > 99 ? '99+' : unreadNotificationCount;
-
   return (
     <header className={styles.header} style={{ display: pathname === '/login' ? 'none' : 'flex' }}>
       <Image
@@ -57,9 +55,7 @@ const Header = () => {
               onClick={() => router.push('/notification-history')}
             >
               <Icon icon="Bell" width={24} height={24} cursor="pointer" stroke="#101010" />
-              {unreadNotificationCount > 0 && (
-                <span className={styles.notificationBadge}>{notificationNumber}</span>
-              )}
+              {unreadNotificationCount > 0 && <span className={styles.notificationBadge} />}
             </button>
             <Icon
               icon="Avatar"

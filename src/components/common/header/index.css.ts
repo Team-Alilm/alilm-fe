@@ -33,21 +33,12 @@ export const notificationWrapper = style({
 
 export const notificationBadge = style({
   position: 'absolute',
-  top: '-0.4rem',
-  right: '-0.4rem',
-  minWidth: '1.6rem',
-  height: '1.6rem',
-  backgroundColor: '#FFC814',
-  color: 'black',
-  fontSize: '1.2rem',
-  fontWeight: 'bold',
-  borderRadius: '99.9rem',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  padding: '0 0.4rem',
-  lineHeight: '1',
-  whiteSpace: 'nowrap',
+  top: '0',
+  right: '0',
+  width: '0.8rem',
+  height: '0.8rem',
+  backgroundColor: '#FF0000',
+  borderRadius: '50%',
 });
 
 export const loginBtn = style({
