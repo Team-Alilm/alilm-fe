@@ -75,7 +75,7 @@ const CategorySwiper = ({ control, categoryPairs, categoryChunks }: CategorySwip
                           width={50}
                           height={54}
                           priority
-                          loading="eager"
+                          unoptimized
                           style={{
                             borderRadius: '20%',
                             filter: isSelected ? 'none' : 'grayscale(100%)',
