@@ -48,7 +48,7 @@ const NotificationHistoryList = () => {
   dayjs.extend(timezone);
 
   const formattedKST = (item: AlimHistoryItem) => {
-    const createdTime = dayjs.utc(item.createdDate).tz('Asia/Seoul');
+    const createdTime = dayjs.utc(item.createdData).tz('Asia/Seoul');
     const now = dayjs().tz('Asia/Seoul');
     const diffMinutes = now.diff(createdTime, 'minute');
     const diffHours = now.diff(createdTime, 'hour');
@@ -80,28 +80,27 @@ const NotificationHistoryList = () => {
       </div>
       {notifications.data.notificationResponseList.map(item => (
         <div
-          key={item.alilmId}
+          key={item.notificationId}
           className={`${notification} ${item.readYn ? readNotification : ''}`}
         >
           <div
             className={notificationContent}
-            onClick={() => handleNotificationClick(item.alilmId, item.productId)}
+            onClick={() => handleNotificationClick(item.notificationId, item.productId)}
           >
             <div className={notificationTextWrapper}>
               <div className={notificationType}>재입고 알림</div>
-              <div className={brandName}>{item.brand}</div>
-              <div className={notificationProduct}>{item.name}</div>
-              {(item.firstOption || item.secondOption || item.thirdOption) && (
+              <div className={brandName}>{item.productBrand}</div>
+              <div className={notificationProduct}>{item.productName}</div>
+              {(item.firstOption || item.secondOption) && (
                 <div className={notificationOptions}>
                   {item.firstOption && <span>{item.firstOption}</span>}
                   {item.secondOption && <span> | {item.secondOption}</span>}
-                  {item.thirdOption && <span> | {item.thirdOption}</span>}
                   <span> | {formattedKST(item)}</span> 
                 </div>
               )}
             </div>
             <Image
-              src={item.imageUrl}
+              src={item.productThumbnailUrl}
               alt="Notification Image"
               width={50}
               height={50}

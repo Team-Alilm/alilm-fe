@@ -2,17 +2,16 @@ import { get } from '@/libs/api/client';
 import { useQuery } from '@tanstack/react-query';
 
 export interface AlimHistoryItem {
-  alilmId: number;
+  notificationId: number;
   productId: number;
-  name: string;
-  imageUrl: string;
-  brand: string;
-  price: number;
+  productName: string;
+  productThumbnailUrl: string;
+  productBrand: string;
+  productPrice: number;
   firstOption: string;
   secondOption: string;
-  thirdOption: string;
   readYn: boolean;
-  createdDate: number;
+  createdData: number;
 }
 
 export interface NotificationProps {
