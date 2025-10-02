@@ -2,7 +2,6 @@
 
 import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-
 import ScrollToTop from '@/components/common/scroll-to-top';
 import Spacer from '@/components/design-system/spacer';
 import ProductsFilter from '@/components/product/products-filter';
