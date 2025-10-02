@@ -23,9 +23,9 @@ export const metadata: Metadata = {
     description: '재입고 알림을 받아보세요!',
     images: [
       {
-        url: '/images/alilm-thumbnail.webp',
-        width: 1200,
-        height: 630,
+        url: '/icons/algamja.svg',
+        width: 512,
+        height: 512,
       },
     ],
     url: '/',
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
   },
   icons: {
-    icon: '/icons/alilm.ico',
+    icon: '/icons/algamja.svg',
   },
   manifest: '/manifest.json',
 
