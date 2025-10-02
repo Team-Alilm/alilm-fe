@@ -1,0 +1,10 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Disallow private pages
+Disallow: /mypage
+Disallow: /notification-history
+
+# Sitemap
+Sitemap: https://alilm.com/sitemap.xml
