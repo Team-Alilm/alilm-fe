@@ -114,16 +114,16 @@ const ProductDetail = ({ params }: ProductDetailProps) => {
           >
             {imageContents.map((image, i) => (
               <SwiperSlide key={i}>
-                <div>
-                  <div>
-                    <Image
-                      src={image || '/images/empty-image.webp'}
-                      layout={'intrinsic'}
-                      alt={image || ''}
-                      width={600}
-                      height={600}
-                    />
-                  </div>
+                <div style={{ position: 'relative', width: '100%', aspectRatio: '1/1' }}>
+                  <Image
+                    src={image || '/images/empty-image.webp'}
+                    fill
+                    alt={image || ''}
+                    sizes="(max-width: 768px) 100vw, 600px"
+                    style={{ objectFit: 'contain' }}
+                    quality={85}
+                    priority={i === 0}
+                  />
                 </div>
               </SwiperSlide>
             ))}
