@@ -9,7 +9,7 @@ import ProductsGrid from '@/components/product/products-grid';
 
 import * as styles from './page.css';
 
-const ProductsPage = () => {
+const ProductsContent = () => {
   const searchParams = useSearchParams();
 
   const category = searchParams.get('category') || '';
@@ -40,6 +40,14 @@ const ProductsPage = () => {
 
       <ScrollToTop />
     </>
+  );
+};
+
+const ProductsPage = () => {
+  return (
+    <Suspense fallback={<div>로딩 중...</div>}>
+      <ProductsContent />
+    </Suspense>
   );
 };
 
