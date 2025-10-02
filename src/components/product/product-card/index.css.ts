@@ -8,32 +8,41 @@ export const basketCard = style({
   minWidth: '15.8rem',
   maxWidth: '17.6rem',
   height: '100%',
-  transition: 'transform 0.2s ease',
+  backgroundColor: '#FFFFFF',
+  borderRadius: '1.2rem',
+  overflow: 'hidden',
+  transition: 'all 0.3s ease',
+  boxShadow: '0 0.2rem 0.8rem rgba(0, 0, 0, 0.06)',
 
   ':hover': {
-    transform: 'translateY(-0.4rem)',
+    transform: 'translateY(-0.6rem)',
+    boxShadow: '0 0.8rem 2.4rem rgba(0, 0, 0, 0.12)',
   },
 });
 
 export const productInfo = style({
   width: '100%',
   cursor: 'pointer',
-  marginTop: '1.2rem',
+  padding: '1.2rem',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.6rem',
 });
 
 export const brand = style({
   fontSize: '1.2rem',
-  fontWeight: '500',
-  color: '#999',
-  marginBottom: '0.6rem',
+  fontWeight: '600',
+  color: '#6B7280',
+  textTransform: 'uppercase',
+  letterSpacing: '0.05em',
 });
 
 export const name = style({
   fontSize: '1.4rem',
   fontWeight: '600',
-  marginBottom: '0.8rem',
-  color: '#333',
-  lineHeight: '1.4',
+  color: '#1F2937',
+  lineHeight: '1.5',
+  minHeight: '4.2rem',
 
   // 2줄까지만 보여주고 나머지는 생략
   display: '-webkit-box',
@@ -46,7 +55,8 @@ export const name = style({
 export const price = style({
   fontSize: '1.6rem',
   fontWeight: '700',
-  color: '#333',
+  color: '#111827',
+  marginTop: '0.2rem',
 });
 
 export const options = style({
@@ -65,30 +75,51 @@ export const options = style({
   maxHeight: 'calc(1.3rem * 1.2 * 2)',
 });
 
+export const waitingInfo = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.6rem',
+  padding: '0.8rem 1.2rem',
+  backgroundColor: '#F3F4F6',
+  borderTop: '1px solid #E5E7EB',
+  fontSize: '1.3rem',
+  color: '#6B7280',
+  fontWeight: '500',
+});
+
+export const waitingCount = style({
+  fontWeight: '700',
+  color: '#F59E0B',
+  fontSize: '1.4rem',
+});
+
 export const waitTogetherButton = style({
   display: 'flex',
   gap: '0.6rem',
   justifyContent: 'center',
-  border: '1px solid #FFB800',
-  borderRadius: '0.6rem',
-  height: '3.6rem',
+  border: 'none',
+  borderRadius: '0',
+  height: '4rem',
   alignItems: 'center',
   padding: '0 1.6rem',
   fontSize: '1.3rem',
   fontWeight: '600',
-  color: '#CC7A00',
-  background: '#FFF9E6',
+  color: '#FFFFFF',
+  background: 'linear-gradient(135deg, #F59E0B 0%, #D97706 100%)',
   cursor: 'pointer',
-  marginTop: '1rem',
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   transition: 'all 0.2s ease',
+  width: '100%',
 
   ':hover': {
-    background: '#FFB800',
-    color: '#7A4800',
-    transform: 'scale(1.02)',
+    background: 'linear-gradient(135deg, #D97706 0%, #B45309 100%)',
+    transform: 'translateY(-0.1rem)',
+  },
+
+  ':active': {
+    transform: 'translateY(0)',
   },
 });
 

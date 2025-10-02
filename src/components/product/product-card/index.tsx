@@ -64,23 +64,30 @@ const ProductCard = ({
           thumbnailUrl={thumbnailUrl}
           alilm={notification}
           card="thin"
-          counts={waitingCount}
           borderRadius={borderRadius}
         />
       </div>
-
-      {tab === 'home' && (
-        <button onClick={handleWaitTogetherButtonClick} className={styles.waitTogetherButton}>
-          <Icon icon="UserTwoPerson" width={12} height={12} />
-          함께 기다리기
-        </button>
-      )}
 
       <div onClick={handleProductClick} className={styles.productInfo}>
         <p className={styles.brand}>{brand}</p>
         <p className={styles.name}>{name}</p>
         <p className={styles.price}>{formatPrice(price)}</p>
       </div>
+
+      {tab === 'home' && waitingCount !== undefined && waitingCount !== null && (
+        <div className={styles.waitingInfo}>
+          <Icon icon="UserTwoPerson" width={14} height={14} />
+          <span className={styles.waitingCount}>{waitingCount}명</span>
+          <span>대기 중</span>
+        </div>
+      )}
+
+      {tab === 'home' && (
+        <button onClick={handleWaitTogetherButtonClick} className={styles.waitTogetherButton}>
+          <Icon icon="UserTwoPerson" width={14} height={14} />
+          함께 기다리기
+        </button>
+      )}
 
       {tab === 'my-basket' && <DeleteProductBtn basketId={basketId ?? 0} name={name} />}
     </div>
