@@ -13,7 +13,7 @@ import * as styles from './page.css';
 const ProductsPage = () => {
   const searchParams = useSearchParams();
   const category = searchParams.get('category') || '';
-  const sort = searchParams.get('sort') || 'WAITING_COUNT_DESC';
+  const sort = (searchParams.get('sort') as string) || 'WAITING_COUNT_DESC';
   const search = searchParams.get('search') || '';
 
   return (
