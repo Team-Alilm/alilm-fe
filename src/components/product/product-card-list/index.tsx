@@ -46,8 +46,6 @@ const ProductCardList = () => {
 
   return (
     <div className={styles.productCardList}>
-      <Spacer height={40} />
-
       <div className={styles.sectionHeader}>
         <h2 className={styles.sectionTitle}>전체 상품</h2>
         <p className={styles.sectionSubtitle}>대기자가 많은 순서대로 보여드려요</p>
