@@ -40,18 +40,7 @@ const ProductOptionsForm = ({ url, setCreateForm }: ProductOptionsFormProps) => 
         onOpen({ modalType: 'alert', title: '상품 정보를 처리하는 도중 문제가 발생했습니다.' });
       }
     }
-  }, [product, setCreateForm]);
-
-  useEffect(() => {
-    if (isError && error) {
-      const rawErrorMessage =
-        (error instanceof Error && error.message) || ERROR_CODE.INTERNAL_SERVER_ERROR;
-
-      const processedErrorMessage = extractErrorMessage(rawErrorMessage);
-
-      renderErrorMessage(processedErrorMessage);
-    }
-  }, [isError, error]);
+  }, [product, setCreateForm, onOpen]);
 
   // 에러 메시지 텍스트 추출
   const extractErrorMessage = (rawErrorMessage: string): string => {
@@ -73,6 +62,18 @@ const ProductOptionsForm = ({ url, setCreateForm }: ProductOptionsFormProps) => 
       onOpen({ modalType: 'alert', title: error?.message || '' });
     }
   };
+
+  useEffect(() => {
+    if (isError && error) {
+      const rawErrorMessage =
+        (error instanceof Error && error.message) || ERROR_CODE.INTERNAL_SERVER_ERROR;
+
+      const processedErrorMessage = extractErrorMessage(rawErrorMessage);
+
+      renderErrorMessage(processedErrorMessage);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isError, error]);
 
   const handleOptionsChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;

@@ -32,7 +32,7 @@ const Header = () => {
 
   useEffect(() => {
     setAccessToken(token);
-  }, []);
+  }, [token]);
 
   const { data: unreadCount } = useGetUnreadCount(accessToken);
   const unreadNotificationCount = unreadCount?.readNCount ?? 0;

@@ -90,7 +90,7 @@ const OauthKakaoPage = () => {
       setIsLoading(false);
     };
     handleOauth();
-  }, [router]);
+  }, [router, onOpen, redirect, setAccessToken]);
 
   if (isLoading) {
     return (

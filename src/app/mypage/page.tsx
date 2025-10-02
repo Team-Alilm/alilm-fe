@@ -24,7 +24,7 @@ const Mypage = () => {
     if (accessToken && myInfo) {
       setUserInfo(myInfo.data);
     }
-  }, [myInfo]);
+  }, [accessToken, myInfo, setUserInfo]);
 
   return (
     <div className={mypage}>
