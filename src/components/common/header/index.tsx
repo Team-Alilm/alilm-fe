@@ -24,15 +24,14 @@ const Header = () => {
     window.location.href = `${process.env.NEXT_PUBLIC_OAUTH_URL}/oauth2/authorization/kakao`;
   };
 
-  const [accessToken, setAccessToken] = useState<string | null>(null);
-
+  const [isMounted, setIsMounted] = useState(false);
   const userAccessToken = useUserStore(state => state.accessToken);
 
-  const token = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
-
   useEffect(() => {
-    setAccessToken(token);
-  }, [token]);
+    setIsMounted(true);
+  }, []);
+
+  const accessToken = isMounted ? Storage.getItem(LOCAL_STORAGE_KEY.accessToken) : null;
 
   const { data: unreadCount } = useGetUnreadCount(accessToken);
   const unreadNotificationCount = unreadCount?.count ?? 0;
@@ -49,7 +48,7 @@ const Header = () => {
         priority
       />
       <div className={styles.rightHeaderWrapper}>
-        {userAccessToken ? (
+        {!isMounted ? null : userAccessToken ? (
           <>
             <button
               className={styles.notificationWrapper}
