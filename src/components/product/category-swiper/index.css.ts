@@ -1,10 +1,9 @@
 import { style } from '@vanilla-extract/css';
 
 export const swiper = style({
-  width: '90%',
+  width: '100%',
   minHeight: '15rem',
-  justifySelf: 'center',
-  padding: '0 1.1rem',
+  padding: '0',
   marginTop: '0.5rem',
 });
 

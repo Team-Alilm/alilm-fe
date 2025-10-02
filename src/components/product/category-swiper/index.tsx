@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { type Control, Controller } from 'react-hook-form';
@@ -28,7 +28,25 @@ interface CategorySwiperProps {
 
 const CategorySwiper = ({ control, categoryPairs, categoryChunks }: CategorySwiperProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    const allCategories = categoryPairs.flat().filter(Boolean) as Category[];
+    const imagePromises = allCategories.map(
+      category =>
+        new Promise((resolve, reject) => {
+          const img = new window.Image();
+          img.src = category.iconImageUrl;
+          img.onload = resolve;
+          img.onerror = reject;
+        })
+    );
+
+    Promise.all(imagePromises)
+      .then(() => setImagesLoaded(true))
+      .catch(() => setImagesLoaded(true));
+  }, [categoryPairs]);
 
   const handleCategoryClick = (categoryValue: string) => {
     router.push(`/products?category=${categoryValue}`);
@@ -40,76 +58,78 @@ const CategorySwiper = ({ control, categoryPairs, categoryChunks }: CategorySwip
       control={control}
       render={({ field }) => (
         <div className={styles.swiper}>
-          <Swiper
-            slidesPerView={5}
-            spaceBetween={1}
-            modules={[Navigation, Pagination]}
-            onSlideChange={swiper => setActiveIndex(swiper.activeIndex)}
-            cssMode={false}
-            watchOverflow={true}
-            observer={true}
-            observeParents={true}
-            resistanceRatio={0}
-          >
-            {categoryPairs.map((pair, idx) => (
-              <SwiperSlide key={`slide-${idx}`}>
-                <div className={styles.swiperSlide}>
-                  {pair.map((category, i) => {
-                    if (!category) {
-                      return <div key={`empty-${i}`} />;
-                    }
-                    const isSelected = field.value === category.value;
+          <div style={{ opacity: imagesLoaded ? 1 : 0, transition: 'opacity 0.2s ease' }}>
+            <Swiper
+              slidesPerView={5}
+              spaceBetween={1}
+              modules={[Navigation, Pagination]}
+              onSlideChange={swiper => setActiveIndex(swiper.activeIndex)}
+              cssMode={false}
+              watchOverflow={true}
+              observer={true}
+              observeParents={true}
+              resistanceRatio={0}
+            >
+              {categoryPairs.map((pair, idx) => (
+                <SwiperSlide key={`slide-${idx}`}>
+                  <div className={styles.swiperSlide}>
+                    {pair.map((category, i) => {
+                      if (!category) {
+                        return <div key={`empty-${i}`} />;
+                      }
+                      const isSelected = field.value === category.value;
 
-                    return (
-                      <button
-                        key={category.value}
-                        onClick={() => handleCategoryClick(category.value)}
-                        className={styles.category}
-                        style={{
-                          fontWeight: isSelected ? '700' : 'normal',
-                        }}
-                      >
-                        <Image
-                          src={category.iconImageUrl}
-                          alt={category.name}
-                          width={50}
-                          height={54}
-                          priority
-                          unoptimized
+                      return (
+                        <button
+                          key={category.value}
+                          onClick={() => handleCategoryClick(category.value)}
+                          className={styles.category}
                           style={{
-                            borderRadius: '20%',
-                            filter: isSelected ? 'none' : 'grayscale(100%)',
-                            transition: 'filter 0.3s ease',
+                            fontWeight: isSelected ? '700' : 'normal',
                           }}
-                        />
-                        <p className={styles.categoryText}>{category.name}</p>
-                      </button>
-                    );
-                  })}
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              marginTop: '1rem',
-              gap: '0.5rem',
-            }}
-          >
-            {categoryChunks.map((_, i) => (
-              <div
-                key={i}
-                style={{
-                  width: i === activeIndex ? '3.2rem' : '0.8rem',
-                  height: '0.4rem',
-                  borderRadius: '0.2rem',
-                  backgroundColor: i === activeIndex ? '#FFC814' : '#DADADA',
-                  transition: 'all 0.3s ease',
-                }}
-              />
-            ))}
+                        >
+                          <Image
+                            src={category.iconImageUrl}
+                            alt={category.name}
+                            width={50}
+                            height={54}
+                            priority
+                            unoptimized
+                            style={{
+                              borderRadius: '20%',
+                              filter: isSelected ? 'none' : 'grayscale(100%)',
+                              transition: 'filter 0.3s ease',
+                            }}
+                          />
+                          <p className={styles.categoryText}>{category.name}</p>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                marginTop: '1rem',
+                gap: '0.5rem',
+              }}
+            >
+              {categoryChunks.map((_, i) => (
+                <div
+                  key={i}
+                  style={{
+                    width: i === activeIndex ? '3.2rem' : '0.8rem',
+                    height: '0.4rem',
+                    borderRadius: '0.2rem',
+                    backgroundColor: i === activeIndex ? '#FFC814' : '#DADADA',
+                    transition: 'all 0.3s ease',
+                  }}
+                />
+              ))}
+            </div>
           </div>
         </div>
       )}
