@@ -35,7 +35,7 @@ const Header = () => {
   }, [token]);
 
   const { data: unreadCount } = useGetUnreadCount(accessToken);
-  const unreadNotificationCount = unreadCount?.readNCount ?? 0;
+  const unreadNotificationCount = unreadCount?.count ?? 0;
 
   return (
     <header className={styles.header} style={{ display: pathname === '/login' ? 'none' : 'flex' }}>

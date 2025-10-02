@@ -1,16 +1,16 @@
 import { get } from '@/libs/api/client';
 import { useQuery } from '@tanstack/react-query';
 
-interface ReadNCount {
-  readNCount: number;
+interface UnreadCountResponse {
+  count: number;
 }
 
 export const READ_N_COUNT_QUERY_KEY = 'getReadNCount';
 
 export const getUnreadCount = async () => {
-  const data = await get<ReadNCount>('/notifications/unread-count');
+  const response = await get<{ data: UnreadCountResponse }>('/notifications/unread-count');
 
-  return data;
+  return response.data;
 };
 
 export const useGetUnreadCount = (accessToken: string | null) => {
