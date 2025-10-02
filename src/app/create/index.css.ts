@@ -1,115 +1,183 @@
-import { globalStyle, style } from '@vanilla-extract/css';
+import { globalStyle, keyframes, style } from '@vanilla-extract/css';
+
+const fadeIn = keyframes({
+  '0%': { opacity: 0, transform: 'translateY(10px)' },
+  '100%': { opacity: 1, transform: 'translateY(0)' },
+});
 
 export const createPage = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   width: '100%',
-  height: '100%',
-  padding: '32px',
-  background: '#FFFFFF',
+  minHeight: 'calc(100vh - 8rem)',
+  padding: '0',
+  background: 'linear-gradient(135deg, #FFF9E6 0%, #FFFFFF 100%)',
+});
+
+export const container = style({
+  maxWidth: '56rem',
+  width: '100%',
+  padding: '4rem 2rem',
+  animation: `${fadeIn} 0.6s ease-out`,
+});
+
+export const header = style({
+  textAlign: 'center',
+  marginBottom: '4rem',
 });
 
 export const title = style({
-  fontSize: '2rem',
-  fontWeight: '600',
-  marginBottom: '40px',
-  textAlign: 'center',
-  lineHeight: '2.8rem',
+  fontSize: '3.2rem',
+  fontWeight: '700',
+  marginBottom: '1.2rem',
+  background: 'linear-gradient(135deg, #FFB800 0%, #FFC814 100%)',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+  lineHeight: '1.4',
+});
+
+export const subtitle = style({
+  fontSize: '1.6rem',
+  fontWeight: '400',
+  color: '#666',
+  lineHeight: '1.6',
+});
+
+export const shopLinksWrapper = style({
+  display: 'flex',
+  justifyContent: 'center',
+  gap: '1.2rem',
+  marginBottom: '3rem',
+  flexWrap: 'wrap',
+});
+
+export const shopLink = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.8rem',
+  padding: '1.2rem 2rem',
+  background: '#FFFFFF',
+  borderRadius: '1.2rem',
+  textDecoration: 'none',
+  color: '#333',
+  fontSize: '1.4rem',
+  fontWeight: '500',
+  border: '2px solid #F0F0F0',
+  transition: 'all 0.3s ease',
+  selectors: {
+    '&:hover': {
+      transform: 'translateY(-2px)',
+      boxShadow: '0 8px 24px rgba(0, 0, 0, 0.08)',
+      borderColor: '#FFB800',
+    },
+  },
 });
 
 export const wrapper = style({
   position: 'relative',
   display: 'flex',
-  justifyContent: 'flex-end', // 우측 정렬
-  width: '90%',
-  color: '#FFC400',
-  marginTop: '10%',
-  marginLeft: '6%',
+  justifyContent: 'flex-end',
+  width: '100%',
 });
 
-export const header = style({
-  all: 'unset', // 버튼 기본 스타일 제거
-  textDecoration: 'none',
-  fontSize: '1.8rem',
+export const dropdownToggle = style({
+  all: 'unset',
+  fontSize: '1.4rem',
   fontWeight: '600',
-  lineHeight: '2.8rem',
-  color: '#FFC400',
+  color: '#FFB800',
   cursor: 'pointer',
-  font: 'inherit', // 부모 폰트 상속
+  padding: '0.8rem 1.6rem',
+  borderRadius: '0.8rem',
+  transition: 'all 0.2s ease',
   selectors: {
     '&:hover': {
-      cursor: 'pointer', // hover 시 밑줄 효과(선택)
-    },
-    '&:focus': {
-      outline: 'none', // focus outline 제거 (선택)
+      background: '#FFF9E6',
     },
   },
 });
 
 export const dropdown = style({
   position: 'absolute',
-  marginTop: '7%',
-  left: '68%',
+  top: '100%',
+  right: '2rem',
+  marginTop: '0.8rem',
   backgroundColor: 'white',
-  marginRight: '3rem',
-  border: '1px solid #ccc',
-  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
+  border: '1px solid #E0E0E0',
+  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.12)',
   zIndex: 10,
-  padding: '4px 0',
-  borderRadius: '8px',
-  width: '32%',
+  borderRadius: '1.2rem',
+  overflow: 'hidden',
+  minWidth: '18rem',
 });
 
 export const dropdownItem = style({
-  justifyContent: 'space-between',
+  display: 'flex',
   alignItems: 'center',
-  fontSize: '1.1rem',
-  gap: '8px',
+  gap: '1.2rem',
+  padding: '1.2rem 1.6rem',
+  fontSize: '1.4rem',
+  fontWeight: '500',
   textDecoration: 'none',
-  color: 'inherit',
-  borderRadius: '6px',
+  color: '#333',
+  transition: 'all 0.2s ease',
   selectors: {
     '&:hover': {
-      backgroundColor: '#f0f0f0',
+      backgroundColor: '#FFF9E6',
     },
   },
 });
 
 export const logoImage = style({
   objectFit: 'contain',
-  marginRight: '8%',
-  borderRadius: '100%',
+  borderRadius: '0.6rem',
 });
 
-// ✅ dropdown 내 a 태그 스타일은 globalStyle로 설정
 globalStyle(`${dropdown} a`, {
   display: 'block',
-  padding: '8px 16px',
   textDecoration: 'none',
-  color: '#000',
+  color: '#333',
   transition: 'background-color 0.2s',
 });
 
 globalStyle(`${dropdown} a:hover`, {
-  backgroundColor: '#f5f5f5',
+  backgroundColor: '#FFF9E6',
 });
 
 export const createForm = style({
   display: 'flex',
   flexDirection: 'column',
-  gap: '20px',
+  gap: '2.4rem',
   width: '100%',
+  background: '#FFFFFF',
+  padding: '3.2rem',
+  borderRadius: '2rem',
+  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08)',
+});
+
+export const urlInputSection = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1.2rem',
+});
+
+export const inputLabel = style({
+  fontSize: '1.4rem',
+  fontWeight: '600',
+  color: '#333',
+  marginBottom: '0.4rem',
 });
 
 export const buttonDescription = style({
-  fontSize: '13px',
-  color: '#3E3E3E',
+  fontSize: '1.3rem',
+  color: '#666',
   textAlign: 'center',
+  marginTop: '0.8rem',
 });
 
 export const logoImageWrapper = style({
   display: 'flex',
-  gap: '1.2rem',
-  margin: '1.6rem 0',
+  justifyContent: 'center',
+  gap: '1.6rem',
+  margin: '2rem 0',
 });

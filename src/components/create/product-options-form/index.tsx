@@ -80,12 +80,23 @@ const ProductOptionsForm = ({ url, setCreateForm }: ProductOptionsFormProps) => 
     setCreateForm(prev => (prev ? { ...prev, [name]: value } : null));
   };
 
-  if (isPending) return <p className={styles.pending}>상품 정보를 불러오고 있어요...</p>;
+  if (isPending) {
+    return (
+      <div className={styles.productCard}>
+        <div className={`${styles.skeleton} ${styles.skeletonImage}`} />
+        <div className={`${styles.skeleton} ${styles.skeletonText}`} style={{ width: '40%' }} />
+        <div className={`${styles.skeleton} ${styles.skeletonText}`} style={{ width: '80%' }} />
+        <div className={styles.pending}>
+          <p className={styles.loadingText}>상품 정보를 불러오고 있어요...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!product) return null;
 
   return (
-    <>
+    <div className={styles.productCard}>
       <div className={styles.previewImageWrapper}>
         <Image
           src={product.thumbnailUrl}
@@ -95,14 +106,16 @@ const ProductOptionsForm = ({ url, setCreateForm }: ProductOptionsFormProps) => 
           height={800}
         />
       </div>
-      <div>
+      <div className={styles.productInfo}>
         <p className={styles.brand}>{product.brand}</p>
         <p className={styles.productName}>{product.name}</p>
       </div>
-      {renderSelect('firstOption', '상품 옵션1', product.firstOptions ?? [])}
-      {renderSelect('secondOption', '상품 옵션2', product.secondOptions ?? [])}
-      {renderSelect('thirdOption', '상품 옵션3', product.thirdOptions ?? [])}
-    </>
+      <div className={styles.optionsSection}>
+        {renderSelect('firstOption', '상품 옵션 1', product.firstOptions ?? [])}
+        {renderSelect('secondOption', '상품 옵션 2', product.secondOptions ?? [])}
+        {renderSelect('thirdOption', '상품 옵션 3', product.thirdOptions ?? [])}
+      </div>
+    </div>
   );
 
   function renderSelect(name: string, label: string, options: string[]) {

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import ProductOptionsForm from '@/components/create/product-options-form';
 import Button from '@/components/design-system/button';
@@ -27,6 +27,7 @@ const CreatePage = () => {
   const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
   const [isOpen, setIsOpen] = useState(false);
   const openLoginModal = useLoginModalStore(state => state.openLoginModal);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleUrlInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUrl(e.target.value);
@@ -44,6 +45,23 @@ const CreatePage = () => {
     }
   };
 
+  // 드롭다운 외부 클릭 시 닫기
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen]);
+
   if (!accessToken) {
     openLoginModal();
   }
@@ -56,11 +74,7 @@ const CreatePage = () => {
 
   return (
     <>
-      <div className={styles.wrapper}>
-        <button type="button" className={styles.header} onClick={() => setIsOpen(prev => !prev)}>
-          쇼핑몰 바로가기
-        </button>
-
+      <div className={styles.wrapper} ref={dropdownRef}>
         {isOpen && (
           <div className={styles.dropdown}>
             {LOGO_IMAGES.map(image => (
@@ -74,55 +88,74 @@ const CreatePage = () => {
                 <Image
                   src={`/images/${image.fileName}`}
                   alt={image.name}
-                  width={20}
-                  height={20}
+                  width={24}
+                  height={24}
                   className={styles.logoImage}
                 />
-                <span style={{ paddingBottom: '2px' }}>{image.name}</span>
+                <span>{image.name}</span>
               </a>
             ))}
           </div>
         )}
       </div>
       <div className={styles.createPage}>
-        <div className={styles.logoImageWrapper}>
-          {LOGO_IMAGES.map(image => (
-            <Image
-              key={image.name}
-              src={`/images/${image.fileName}`}
-              alt="My Icon"
-              width={50}
-              height={50}
-              className={styles.logoImage}
-            />
-          ))}
-        </div>
+        <div className={styles.container}>
+          <div className={styles.header}>
+            <div className={styles.shopLinksWrapper}>
+              {LOGO_IMAGES.map(image => (
+                <a
+                  key={image.name}
+                  href={image.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.shopLink}
+                >
+                  <Image
+                    src={`/images/${image.fileName}`}
+                    alt={image.name}
+                    width={32}
+                    height={32}
+                    className={styles.logoImage}
+                  />
+                  <span>{image.name}</span>
+                </a>
+              ))}
+            </div>
+            <h1 className={styles.title}>재입고 알림 신청</h1>
+            <p className={styles.subtitle}>
+              무신사 · 29CM · 지그재그 상품의
+              <br />
+              재입고 알림을 간편하게 등록하세요
+            </p>
+          </div>
 
-        <p className={styles.title}>
-          무신사/29CM/지그재그 상품,
-          <br /> 지금 재입고 등록을 해보세요!
-        </p>
-        <form onSubmit={handleCreateFormSubmit} className={styles.createForm}>
-          <ButtonInput
-            name="url"
-            onChange={handleUrlInputChange}
-            onButtonClick={handleUrlInputButtonClick}
-            isButtonDisabled={!url}
-            label="URL 주소"
-            buttonText="조회"
-          />
-          {showProductsOptionsForm && (
-            <ProductOptionsForm url={url} setCreateForm={setCreateForm} />
-          )}
-          <Button
-            style={{ width: '100%', cursor: 'pointer' }}
-            description={
-              <p className={styles.buttonDescription}>재입고 알림을 신청하면 홈으로 이동합니다.</p>
-            }
-          >
-            재입고 알림 신청
-          </Button>
-        </form>
+          <form onSubmit={handleCreateFormSubmit} className={styles.createForm}>
+            <div className={styles.urlInputSection}>
+              <ButtonInput
+                name="url"
+                onChange={handleUrlInputChange}
+                onButtonClick={handleUrlInputButtonClick}
+                isButtonDisabled={!url}
+                label="상품 URL"
+                buttonText="조회"
+                placeholder="상품 URL을 입력해주세요"
+              />
+            </div>
+            {showProductsOptionsForm && (
+              <ProductOptionsForm url={url} setCreateForm={setCreateForm} />
+            )}
+            <Button
+              style={{ width: '100%', cursor: 'pointer' }}
+              description={
+                <span className={styles.buttonDescription}>
+                  재입고 알림을 신청하면 홈으로 이동합니다
+                </span>
+              }
+            >
+              재입고 알림 신청
+            </Button>
+          </form>
+        </div>
       </div>
     </>
   );
