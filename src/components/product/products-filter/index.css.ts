@@ -51,6 +51,10 @@ export const filterSection = style({
   gap: '1.2rem',
 });
 
+export const filterWrapper = style({
+  position: 'relative',
+});
+
 export const categoryFilter = style({
   display: 'flex',
   gap: '0.8rem',
@@ -60,19 +64,8 @@ export const categoryFilter = style({
   WebkitOverflowScrolling: 'touch',
   scrollbarWidth: 'none',
   msOverflowStyle: 'none',
-  position: 'relative',
   '::-webkit-scrollbar': {
     display: 'none',
-  },
-  '::after': {
-    content: '""',
-    position: 'absolute',
-    right: 0,
-    top: 0,
-    bottom: '0.8rem',
-    width: '4rem',
-    background: 'linear-gradient(to right, transparent, rgba(255, 255, 255, 0.95))',
-    pointerEvents: 'none',
   },
 });
 
@@ -102,19 +95,8 @@ export const sortFilter = style({
   WebkitOverflowScrolling: 'touch',
   scrollbarWidth: 'none',
   msOverflowStyle: 'none',
-  position: 'relative',
   '::-webkit-scrollbar': {
     display: 'none',
-  },
-  '::after': {
-    content: '""',
-    position: 'absolute',
-    right: 0,
-    top: 0,
-    bottom: '0.8rem',
-    width: '4rem',
-    background: 'linear-gradient(to right, transparent, rgba(255, 255, 255, 0.95))',
-    pointerEvents: 'none',
   },
 });
 
@@ -143,4 +125,14 @@ export const active = style({
   ':hover': {
     backgroundColor: '#F57C00',
   },
+});
+
+export const gradient = style({
+  position: 'absolute',
+  right: 0,
+  top: 0,
+  bottom: '0.8rem',
+  width: '4rem',
+  background: 'linear-gradient(to right, transparent, rgba(255, 255, 255, 0.95))',
+  pointerEvents: 'none',
 });
