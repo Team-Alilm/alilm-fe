@@ -16,12 +16,6 @@ const RecentRestockSection = () => {
     router.push(`/product/${item.productId}`);
   };
 
-  const formatPrice = (price?: number) => {
-    if (!price) return '가격 미정';
-
-    return `${price.toLocaleString()}원`;
-  };
-
   const hasProducts =
     restockResponse?.recentlyRestockedProductResponseList &&
     restockResponse.recentlyRestockedProductResponseList.length > 0;
@@ -58,7 +52,6 @@ const RecentRestockSection = () => {
                 <div className={styles.productInfo}>
                   <div className={styles.brandName}>{item.brand}</div>
                   <div className={styles.productName}>{item.name}</div>
-                  <div className={styles.price}>{formatPrice(item.price)}</div>
                 </div>
               </button>
             </SwiperSlide>
